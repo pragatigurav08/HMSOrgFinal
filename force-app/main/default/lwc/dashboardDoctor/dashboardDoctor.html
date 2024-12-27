@@ -1,0 +1,974 @@
+<template>
+    <div>
+       <template if:true={homepage}>
+    <lightning-card>
+        <div class="slds-var-m-around_medium responsive-grid">
+            <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none responsive-grid">
+                <div class="slds-page-header responsive-grid" style="padding-bottom: 0px;padding-top: 0px;
+">
+                    <div class="slds-page-header__row responsive-grid">
+                        <div class="slds-page-header__col-title responsive-grid">
+                            <div class="slds-media">
+                                <div class="slds-media__figure" style="margin-top: 9px;">
+                                    <!-- <lightning-icon class="slds-text-align_right" icon-name="standard:avatar"
+                                        alternative-text="case" title="case"></lightning-icon> -->
+                                    <img src={doctorimageIcon} alt="Doctor Image" class="slds-m-bottom_small" style="width: 50px; height: 50px; border-radius: 50%;" />    
+                                </div>
+                                <div class="slds-media__body responsive-grid" style="margin-top: 9px;"> 
+                                    <div class="slds-page-header__name responsive-grid">
+                                        <div class="slds-page-header__name-title responsive-grid">
+                                            <h1 class="welcome-message-container">
+                                                <span class="slds-page-header__title slds-truncate welcome-message" 
+                                                    title="Doctors Appointment">
+                                                    {welcomeMessage}
+                                                </span>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-m-around_medium">
+                                    <!-- Toggle button -->
+                                    <lightning-input
+                                        type="toggle"
+                                        label="Availability"
+                                        checked={isAvailable}
+                                        onchange={handleToggleChange}>
+                                    </lightning-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                <div class="custom-card-doctor">
+                    <div class="card-content">
+                        <!-- Image Section -->
+                        <div class="card-image">
+                            <img src={doctorcardImage} alt="Illustration" />
+                        </div>
+                        
+                        <!-- Text Section -->
+                        <div class="card-text">
+                            <h2>{greetingMessage}</h2>
+                            <p>
+                                Welcome to your daily update. Stay informed with the latest health tips and announcements curated just for you.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="slds-var-m-around_medium responsive-grid">
+                <div class="slds-grid slds-wrap slds-gutters responsive-grid">
+            
+                    <!-- Appointments Card -->
+                    <div class="slds-col slds-size_1-of-4 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-p-around_x-small responsive-grid">
+                        <div class="custom-card" onclick={toggleAppointmentsTable}>
+                            <div class="card-body">
+                                <!-- <lightning-icon icon-name="standard:facility_bed" size="medium" alternative-text="Appointments"></lightning-icon> -->
+                                <img src={doctorAppointment} alt="Doctor Image" class="slds-m-bottom_small" style="width: 60px; height: 60px; border-radius: 50%;" />
+                                <span class="card-title">Appointments</span>
+            
+                                <div class="card-stats">
+                                    <div class="card-sub-item">
+                                        <p class="card-number">{todaysAppointmentCount}</p>
+                                        <p class="card-sub-title">Today</p>
+                                    </div>
+                                    <div class="card-sub-item">
+                                        <p class="card-number">{totalAppointmentCount}</p>
+                                        <p class="card-sub-title">Total</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Admitted Patients Card -->
+                    <div class="slds-col slds-size_1-of-4 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-p-around_x-small responsive-grid">
+                        <div class="custom-card" onclick={toggleTable}>
+                            <div class="card-body">
+                            <!-- <lightning-icon icon-name="standard:timeslot" size="medium" alternative-text="Admitted Patients"></lightning-icon> -->
+                            <img src={AddmitedPatients} alt="Doctor Image" class="slds-m-bottom_small" style="width: 60px; height: 60px; border-radius: 50%;" />
+
+                                <span class="card-title">Admitted Patients</span>
+            
+                                <div class="card-stats">
+                                    <p class="card-number">{admittedCount}</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Upcoming Appointments Card -->
+                    <div class="slds-col slds-size_1-of-4 slds-small-size_1-of-2 slds-medium-size_1-of-3 slds-p-around_x-small responsive-grid">
+                        <div class="custom-card" onclick={handleCardClick}>
+                            <div class="card-body">
+                                <!-- <lightning-icon icon-name="standard:date_input" size="medium" alternative-text="Upcoming Appointments"></lightning-icon> -->
+                                <img src={upcomingAppoinment} alt="Doctor Image" class="slds-m-bottom_small" style="width: 60px; height: 60px; border-radius: 50%;" />
+
+                                <span class="card-title">Upcoming Appointments</span>
+            
+                                <div class="card-stats">
+                                    <p class="card-number">{totalAppointments}</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+            
+            
+                
+
+
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+    </lightning-card>
+</template>
+</div>
+    <!--------------------------------------pavithra------------------------------------------------------------------------------>
+    <!--Patients records who all admitted -->
+    <!--<lightning-card>-->
+    <!-- Button to show or hide admitted patients table -->
+    <!--<lightning-button 
+            variant="brand" 
+            label="Show Admitted Patients" 
+            title="Show Admitted Patients" 
+            onclick={toggleTable}>
+        </lightning-button>-->
+
+    <!-- Display the patient records in a lightning-datatable if isTableVisible is true -->
+    <template if:true={isTableVisible}>
+        <!-- If there are admitted patients, display the datatable -->
+        <template if:true={medicalRecords.length}>
+            <lightning-datatable 
+                key-field="Id" 
+                data={medicalRecords} 
+                columns={columns} 
+                hide-checkbox-column="true"
+                onrowaction={handleRowAction}>
+            </lightning-datatable>
+        </template>
+    
+        <!-- If no admitted patients, display a message -->
+        <template if:false={medicalRecords.length}>
+            <lightning-card>
+                <div class="slds-p-around_medium no-appointments">
+                    <h2 class="center-text">No admitted patients</h2>
+                </div>
+            </lightning-card>
+        </template>
+    
+        <!-- Display an error message if there is an error fetching the records -->
+        <template if:true={error}>
+            <p>Error loading records: {error.message}</p>
+        </template>
+    </template>
+    
+    <!-- </lightning-card>-->
+    <!--////////////////////pavithra's//////////////////////////-->
+    
+    <!--<lightning-card>-->
+    <!-- Display today's appointments if isAppointmentsTableVisible is true -->
+     
+    <template if:true={isAppointmentsTableVisible}>
+        <template if:true={appointments}>
+    
+            <!--/////////////////////Old Code///////////////////////////-->
+            <!--
+                <lightning-datatable key-field="Id" data={appointments} columns={appointmentColumns}
+                    hide-checkbox-column="true" onrowaction={handleRowAction1}>
+                </lightning-datatable>-->
+    
+            <!--///////////////////////End code////////////////////////////////-->
+    
+            <!--////////////New code for today appointments table//////////-->
+    
+    
+            <lightning-card title="Today's Appointments" icon-name="standard:event">
+    
+                <div class="slds-scrollable_y">
+                    <table
+                        class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-max-medium-table_stacked">
+                        <thead style="height: 2rem;">
+                            <tr class="slds-line-height_reset">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Patient Name">Patient Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Age">Age</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Start Time">Start Time</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="End Time">End Time</div>
+                                </th>
+                                <!-- <th scope="col">
+                                        <div class="slds-truncate" title="Actions">Add Details</div>
+                                    </th> -->
+    
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Actions">Cancel</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="no-border1">
+                            <template for:each={appointments} for:item="appointment">
+                                <tr key={appointment.Id} class="slds-hint-parent">
+                                    <!-- <td data-label="Patient Name" >
+                                            <div class="slds-truncate " title={appointment.PatientName}>{appointment.PatientName}</div>
+                                        </td>-->
+                                    <td data-label="Patient Name">
+                                        <lightning-button label={appointment.PatientName} variant="base"
+                                            class="patient-name-link" title={appointment.PatientName}
+                                            data-id={appointment.patintidapp} onclick={handlePatientClick}>
+                                        </lightning-button>
+                                    </td>
+    
+                                    <td data-label="Age">
+                                        <div class="slds-truncate " title={appointment.Age}>{appointment.Age}</div>
+                                    </td>
+                                    <td data-label="Start Time">
+                                        <div class="slds-truncate" title={appointment.StartTime}>{appointment.StartTime}
+                                        </div>
+                                    </td>
+                                    <td data-label="End Time">
+                                        <div class="slds-truncate" title={appointment.EndTime}>{appointment.EndTime}</div>
+                                    </td>
+                                    <!-- <td data-label="Add Details">
+                                            <lightning-button label="Add Details" variant="brand" 
+                                                onclick={handleAddDetails} data-id={appointment.Id}></lightning-button>
+                                           
+                                        </td> -->
+                                    <td data-label="Cancel">
+                                        <lightning-button label="Cancel" class="solid-coloring"
+                                            onclick={handleCancelAppointment}
+                                            data-patappid={appointment.patintidapp}></lightning-button>
+                                    </td>
+                                </tr>
+                            </template>
+                          
+                            <template if:true={errorAppointments}>
+                                <tr>
+                                    <td colspan="5">Error loading appointments: {errorAppointments}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </lightning-card>
+        </template> 
+        
+
+            <!--    <template if:true={isPatientDetailsVisible}>
+                    <div class="patient-details-section">
+                        <lightning-card title="Patient Details" icon-name="standard:contact">
+                            <div class="patient-info">
+                                <p><strong>Name:</strong> {patientDetails.Name}</p>
+                                <p><strong>Age:</strong> {patientDetails.Age}</p>
+                                <p><strong>Gender:</strong> {patientDetails.Gender}</p>
+                                <p><strong>Email:</strong> {patientDetails.Email}</p>
+                            </div>
+                        </lightning-card>
+                        
+                        <lightning-card title="Medical Records" icon-name="standard:work_order">
+                            <div class="medical-records-list">
+                                <template for:each={medicalRecords} for:item="record">
+                                    <div class="record-container" key={record.Id}>
+                                       
+                                        <p><strong>Prescription:</strong> <span class="value">{record.Prescription__c}</span></p>
+                                        <p><strong>Blood Group:</strong> <span class="value">{record.Blood_Group__c}</span></p>
+                                        <p><strong>Remarks:</strong> <span class="value">{record.Remarks__c}</span></p>
+                                        <p><strong>Next Visit Date:</strong> <span class="value">{record.Visit_Date__c}</span></p>
+                                        <p><strong>Diagnosis:</strong> <span class="value">{record.Diagonisis__c}</span></p>
+                                    </div>
+                                    
+                                </template>
+                            </div>
+                        </lightning-card>
+                    </div>
+                </template>-->
+    
+    
+    
+    
+            <!--////////////New code for today appointments table//////////-->
+    
+    
+    
+    
+            <!-- link card -->
+    
+    
+            <template if:true={showPatientDetails}>
+                <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                title="Close" onclick={handleCloseModal}>
+                                <lightning-icon icon-name="utility:close" alternative-text="close"
+                                    size="small"></lightning-icon>
+                            </button>
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={handleCloseModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close"
+                                size="small"></lightning-icon>
+                        </button>
+                            <h2 class="slds-text-heading_medium">Patient Profile</h2>
+                        </header>
+    
+    
+    
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <div class="slds-grid slds-wrap">
+                                <!-- Patient Profile Section -->
+                                <div
+                                    class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-around_medium profile-section">
+                                    <div class="slds-box slds-box_xx-large profile-background">
+                                        <div class="slds-p-horizontal_medium">
+                                            <h1 style="font-size: 16px; padding-left: 47px;"><b>Patient Information</b></h1>
+                                            <br>
+                                            <lightning-avatar alternative-text="Patient Profile Picture"
+                                                src={profileImageUrl} size="large"></lightning-avatar>
+                                            <p><strong>Name:</strong> {selectedPatient.Name}</p>
+                                            <p><strong>Age:</strong> {selectedPatient.Age__c}</p>
+                                            <p><strong>Email:</strong> {selectedPatient.Email__c}</p>
+                                            <p><strong>Phone:</strong> {selectedPatient.phone_number__c}</p>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <!-- Medical History Section -->
+                                <div
+                                    class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-around_medium medical-history-section">
+                                    <div class="slds-box slds-box_xx-large medical-history-background">
+                                        <div class="slds-p-horizontal_medium">
+                                            <h1 style="font-size: 16px; padding-left: 47px;"><b>Medical Details</b></h1><br>
+                                            <template if:true={medicalRecords}>
+                                                <template for:each={medicalRecords} for:item="record">
+                                                    <div key={record.Id}>
+                                                        <p><strong>Blood Group:</strong> {selectedPatient.blood_group__c}
+                                                        </p>
+                                                        <p><strong>Doctor:</strong>
+                                                            {record.patient_appointment_id__r.Dr__r.Name}
+                                                        </p>
+                                                        <p><strong>Next Visit Date:</strong> {record.Visit_Date__c}</p>
+                                                        <p><strong>Remarks:</strong> {record.Remarks__c}</p>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <footer class="slds-modal__footer">
+                            <lightning-button variant="neutral" label="Close" onclick={handleCloseModal}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+       
+
+        <!-- Display an error message if there is an error fetching the records -->
+        <template if:true={errorAppointments}>
+            <p>Error loading appointments: {errorAppointments.message}</p>
+        </template>
+    </template>
+
+    <template if:true={isPatientDetailsVisible}>
+       <!-- <lightning-card>-->
+
+            <div class="slds-page-header responsive-grid" style="padding-bottom: 0px; padding-top: 0px; background-color: rgb(248 249 247 / 91%);;">
+                <div class="slds-media">
+                    <div class="slds-media__figure" style="margin-top: 9px;">
+                        <!-- Profile Icon -->
+                        <img src={profileImageUrl} alt="Profile Image" class="slds-m-bottom_small"
+                            style="width: 40px; height: 30px; border-radius: 50%;" />
+                    </div>
+                    <div class="slds-media__body responsive-grid" style="margin-top: 9px;">
+                        <!-- Patient Profile Title -->
+            
+                        <h1 class="slds-page-header__title slds-truncate">
+                            {patientProfileTitle}
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div>
+                <img src={backgroundProfile} alt="Doctor Image" class="slds-m-bottom_small" style="width: 100%; height: 200px;padding-top:10px" />
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters"> 
+                
+                 Patient Information Section
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_small">
+                    <lightning-card title="Patient Information" icon-name="standard:contact">
+                        <div class="slds-p-around_medium slds-box slds-theme_default">
+                            <p><strong>Name:</strong> {patientDetails.Name}</p>
+                            <p><strong>Age:</strong> {patientDetails.Age__c}</p>
+                            <p><strong>Gender:</strong> {patientDetails.Gender__c}</p>
+                            
+                            <p><strong>Phone:</strong> {patientDetails.phone_number__c}</p>
+                            <p><strong>Emergency Contact:</strong> {patientDetails.Emergency_Contact__c}</p>
+                        </div>
+                    </lightning-card>
+                </div>
+    
+                Medical Records Section 
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_small">
+                    <lightning-card title="Medical Records" icon-name="standard:work_order">
+                        <div class="slds-p-around_medium slds-box slds-theme_shade">
+                            <template for:each={medicalRecords} for:item="record">
+                                <div class="record-container slds-m-bottom_medium" key={record.Id}>
+                                   
+                                    <p><strong>Prescription:</strong> {record.Prescription__c}</p>
+                                    <p><strong>Blood Group:</strong> {record.Blood_Group__c}</p>
+                                    <p><strong>Remarks:</strong> {record.Remarks__c}</p>
+                                    <p><strong>Next Visit Date:</strong> {record.Visit_Date__c}</p>
+                                    <p><strong>Diagnosis:</strong> {record.Diagnosis__c}</p>
+                                </div>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </div>
+            </div>-->
+            
+            <!-- <div class="progress-container">
+                <div class="progress-header">Status</div>
+        
+                
+                <div class="progress-indicator">
+                    <div class="progress-line" style={progressStyle}>{progressPercentage}%</div>
+                </div>
+            </div> -->
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
+
+            <div class="horizontal-nav">
+                <div class="nav-item active" onclick={handleSectionClick} data-section="medicalRecord">
+                    <lightning-icon icon-name="standard:product" size="x-small" alternative-text="Medical History"></lightning-icon>
+                    <span>Medical History</span>
+                </div>
+                <div class="nav-item" onclick={handleSectionClick} data-section="clinicalNotes">
+                    <lightning-icon icon-name="standard:record" size="x-small" alternative-text="Diagnosis"></lightning-icon>
+                    <span>Diagnosis</span>
+                </div>
+                <div class="nav-item" onclick={handleSectionClick} data-section="vitalSign">
+                    <lightning-icon icon-name="standard:report" size="x-small" alternative-text="Clinical Report"></lightning-icon>
+                    <span>Clinical Report</span>
+                </div>
+                <div class="nav-item" onclick={handleSectionClick} data-section="prescription">
+                    <lightning-icon icon-name="standard:task" size="x-small" alternative-text="Prescription"></lightning-icon>
+                    <span>Prescription</span>
+                </div>
+            </div>
+                        
+            
+            <div class="container">
+                <!-- Sidebar Navigation -->
+                <!-- <div class="sidebar">
+                    <div class="sidebar-item" onclick={handleSectionClick} data-section="medicalRecord">Medical History</div>
+                    <div class="sidebar-item" onclick={handleSectionClick} data-section="clinicalNotes">Diagnosis</div>
+                    <div class="sidebar-item" onclick={handleSectionClick} data-section="vitalSign">Clinical Report</div>
+                    <div class="sidebar-item" onclick={handleSectionClick} data-section="prescription">Prescription</div>
+                    
+                </div>
+     -->
+                <!-- Main Content -->
+                <div class="main-content">
+
+
+                <!-- Medical Record section -->
+                <template if:true={isMedicalRecordsActive}>
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <!-- Left column for Medical Records -->
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_small">
+                            <lightning-card title="Personal Information" icon-name="standard:work_order">
+                                <div class="slds-p-around_medium slds-box slds-theme_shade">
+                                    <div class="record-container slds-m-bottom_medium">
+                                        <p><strong>Name:</strong> {patientDetails.Name}</p>
+                                        <p><strong>Age:</strong> {patientDetails.Age__c}</p>
+                                        <p><strong>Gender:</strong> {patientDetails.Gender__c}</p>
+                                        <p><strong>Email:</strong> {patientDetails.Email__c}</p>
+                                    </div>
+                                </div>
+                            </lightning-card>
+                        </div>
+                
+                        <!-- Right column for Diagnosis Details -->
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_small">
+                            <lightning-card title="Medical History" icon-name="standard:report">
+                                <div class="slds-p-around_medium slds-box slds-theme_shade">
+                                    <template if:true={hasDiagnosisDetails}>
+                                        <template for:each={diagnosisDetails} for:item="diagnosis">
+                                            <div class="record-container slds-m-bottom_medium" key={diagnosis.Id}>
+                                                <p><strong>Complaints:</strong> {diagnosis.Complaints__c}</p>
+                                                <p><strong>Observations:</strong> {diagnosis.Observations__c}</p>
+                                                <p><strong>Diagnoses:</strong> {diagnosis.Diagnosis__c}</p>
+                                            </div>
+                                        </template>
+                                    </template> 
+                                    <template if:false={hasDiagnosisDetails}>
+                                        <p class="slds-text-title_caps">No medical history</p>
+                                    </template>
+                                </div>
+                            </lightning-card>
+                        </div>
+                    </div>
+                </template>
+
+
+
+
+                    <!-- Clinical Notes Section -->
+                    <template if:true={isClinicalNotesActive}>
+                        <div class="section">
+                            <!-- Tags for Complaints, Observations, and Diagnoses -->
+                            <div class="tag-section">
+                                <!-- Complaints Section -->
+                                <div class="tag-category">
+                                    <span class="section-header">Complaints</span>
+                                    <div class="input-group">
+                                        <lightning-input type="text" placeholder="Add Complaint" value={newComplaint} onchange={handleComplaintChange}></lightning-input>
+                                        <lightning-button label="Add" onclick={addComplaint} class="slds-m-left_x-small"></lightning-button>
+                                    </div>
+                                    <template for:each={complaints} for:item="complaint">
+                                        <div key={complaint} class="tag orange">
+                                            {complaint} <span class="remove-tag" data-id={complaint} onclick={removeComplaint}>x</span>
+                                        </div>
+                                    </template>
+                                </div>
+    
+                                <!-- Observations Section -->
+                                <div class="tag-category">
+                                    <span class="section-header">Observations</span>
+                                    <div class="input-group">
+                                        <lightning-input type="text" placeholder="Add Observation" value={newObservation} onchange={handleObservationChange}></lightning-input>
+                                        <lightning-button label="Add" onclick={addObservation} class="slds-m-left_x-small"></lightning-button>
+                                    </div>
+                                    <template for:each={observations} for:item="observation">
+                                        <div key={observation} class="tag blue">
+                                            {observation} <span class="remove-tag" data-id={observation} onclick={removeObservation}>x</span>
+                                        </div>
+                                    </template>
+                                </div>
+    
+                                <!-- Diagnoses Section -->
+                                <div class="tag-category">
+                                    <span class="section-header">Diagnoses</span>
+                                    <div class="input-group">
+                                        <lightning-input type="text" placeholder="Add Diagnosis" value={newDiagnosis} onchange={handleDiagnosisChange}></lightning-input>
+                                        <lightning-button label="Add" onclick={addDiagnosis} class="slds-m-left_x-small"></lightning-button>
+                                    </div>
+                                    <template for:each={diagnoses} for:item="diagnosis">
+                                        <div key={diagnosis} class="tag green">
+                                            {diagnosis} <span class="remove-tag" data-id={diagnosis} onclick={removeDiagnosis}>x</span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+    
+                            <!-- Notes Section -->
+                            <div class="notes-section">
+                                <label>Notes</label>
+                                <textarea class="notes-input" rows="4" value={newNote} onchange={handleNoteChange}></textarea>
+                            </div>
+    
+                            <!-- Save Button -->
+                            <div class="button-section">
+                                <lightning-button variant="brand" label="Save" onclick={handleSave}></lightning-button>
+                            </div>
+                        </div>
+                    </template>
+    
+                    <!-- clinical reports -->
+                    <template if:true={isVitalSignActive}>
+                        <div class="vital-sign-section slds-m-around_medium">
+                            <div class="slds-grid slds-wrap fields-container">
+                               
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                                    <label>Temperature (°C)</label>
+                                   
+                                    <lightning-input type="Number"
+                                    value={medicalRecord.Temperature__c} data-field="Temperature__c"
+                                    onchange={handleInputChange}>
+                                    </lightning-input>
+                                </div>
+
+                                <!-- Height field 
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                                    <label>Height (CM)</label>
+                                   
+                                    <lightning-input type="Number"
+                                    value={medicalRecord.Height__c} data-field="Height__c"
+                                    onchange={handleInputChange}>
+                                    </lightning-input>
+                                </div>-->
+ 
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                                    <label>Weight (kg)</label>
+                                   
+                                    <lightning-input type="Number"
+                                    value={medicalRecord.Weight__c} data-field="Weight__c"
+                                    onchange={handleInputChange}>
+                                    </lightning-input>
+                                   
+                                </div>
+                               
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                                    <label>Blood Pressure</label>
+                                    <lightning-input type="text"
+                                    value={medicalRecord.Bp__c} data-field="Bp__c"
+                                    onchange={handleInputChange}>
+                                    </lightning-input>
+                           
+                                </div>
+                           
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                                    <label>Next Visit Date</label>
+                                    <lightning-input type="date"
+                                    value={medicalRecord.Visit_Date__c} data-field="Visit_Date__c"
+                                    onchange={handleInputChange}>
+                                </lightning-input>
+                                </div>
+     
+                               
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                                    <label>Remarks</label>
+                                        <!--lightning-textarea placeholder="Enter Remarks" value={remarks} data-field="Remarks__c" onchange={handleInputChange1}></lightning-textarea-->
+                                    <lightning-input type="text"
+                                    value={medicalRecord.Remarks__c} data-field="Remarks__c"
+                                    onchange={handleInputChange}>
+                                    </lightning-input>
+                               
+                                </div>
+     
+                               
+                               
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                                    <label>hCG Test</label>
+ 
+                                    <lightning-input type="checkbox"
+                                    checked={medicalRecord.hCG_test__c} data-field="hCG_test__c"
+                                    onchange={handleInputChange}>
+                                    </lightning-input>
+                                </div>
+                                 
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                                    <label>HbA1c Test</label>
+                           
+                                    <lightning-input type="checkbox"
+                                    checked={medicalRecord.HbA1c_test__c} data-field="HbA1c_test__c"
+                                    onchange={handleInputChange}>
+                                    </lightning-input>
+                                </div>
+                               
+                               
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                                    <label>Blood Test</label>
+                                    <lightning-input type="checkbox"
+                                    checked={medicalRecord.Blood_test__c} data-field="Blood_test__c"
+                                    onchange={handleInputChange}>
+                                </lightning-input>
+                                </div>
+                               
+                               
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                                    <label>Urine Examination</label>
+                                    <lightning-input type="checkbox"
+                                    checked={medicalRecord.Urine_examination__c} data-field="Urine_examination__c"
+                                    onchange={handleInputChange}>
+                                </lightning-input>
+                                </div>
+                               
+                               
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                                    <label>Admit</label>
+                                    <lightning-input type="checkbox"
+                                    checked={medicalRecord.Admit__c} data-field="Admit__c"
+                                    onchange={handleInputChange}>
+                                    </lightning-input>
+                   
+                                </div>
+ 
+                             
+                           
+                           
+                           
+                               
+                            </div>
+                           
+                            <!-- Save Button -->
+                            <div class="slds-m-top_medium button-section">
+                                <!-- <lightning-button variant="brand" label="Save" onclick={handleSaveClinic}></lightning-button> -->
+                               
+                                <button class="slds-button slds-button_brand" onclick={handleSaveMedicalRecord} >Save Record</button>
+                            </div>
+ 
+                          
+                        </div>
+                    </template>
+ 
+                    
+                    
+    
+                     <!-- Prescription Section -->
+                     <template if:true={isPrescriptionActive}>
+                        <div class="slds-m-around_medium">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_resizable-cols slds-max-medium-table_stacked-horizontal">
+                                <thead>
+                                    <tr>
+                                        <th>Drug</th>
+                                        <th>Dosage</th>
+                                        <th>Frequency</th>
+                                        <th>Intake</th>
+                                        <th>Duration</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={prescriptions} for:item="prescription">
+                                        <tr key={prescription.id}>
+                                            <!-- Drug Field -->
+                                            <td data-label="Drug">
+                                                <lightning-combobox 
+                                                    name="drug"
+                                                    placeholder="Select Drug"
+                                                    options={drugOptions} 
+                                                    value={prescription.drug} 
+                                                    data-id={prescription.id} 
+                                                    onchange={handleFieldChange}
+                                                    class="slds-input"
+                                                    style="border:none; background-color:transparent;">
+                                                </lightning-combobox>
+                                            </td>
+                                            <!-- Dosage Field -->
+                                            <td data-label="Dosage">
+                                                <lightning-input 
+                                                    name="dosage"
+                                                    type="number" 
+                                                    value={prescription.dosage} 
+                                                    data-id={prescription.id} 
+                                                    onchange={handleFieldChange}
+                                                    style="border:none; background-color:transparent;top: 4px;">
+                                                </lightning-input>
+                                            </td>
+                                            <!-- Frequency Field -->
+                                            <td data-label="Frequency">
+                                                <lightning-combobox 
+                                                    name="frequency"
+                                                    placeholder="Select Frequency"
+                                                    options={frequencyOptions} 
+                                                    value={prescription.frequency} 
+                                                    data-id={prescription.id} 
+                                                    onchange={handleFieldChange}
+                                                    class="slds-input"
+                                                    style="border:none; background-color:transparent;">
+                                                </lightning-combobox>
+                                            </td>
+                                            <!-- Intake Field -->
+                                            <td data-label="Intake">
+                                                <lightning-combobox 
+                                                    name="intake"
+                                                    placeholder="Select Intake"
+                                                    options={intakeOptions} 
+                                                    value={prescription.intake} 
+                                                    data-id={prescription.id} 
+                                                    onchange={handleFieldChange}
+                                                    class="slds-input"
+                                                    style="border:none; background-color:transparent;">
+                                                </lightning-combobox>
+                                            </td>
+                                            <!-- Duration Field -->
+                                            <td data-label="Duration">
+                                                <lightning-input 
+                                                    name="duration"
+                                                    type="number" 
+                                                    value={prescription.duration} 
+                                                    data-id={prescription.id} 
+                                                    onchange={handleFieldChange}
+                                                    style="border:none; background-color:transparent;top: 4px;">
+                                                </lightning-input>
+                                            </td>
+                                            <!-- Action Field -->
+                                            <td data-label="Action">
+                                                <lightning-button-icon 
+                                                    icon-name="utility:add" 
+                                                    alternative-text="Add New Prescription" 
+                                                    onclick={addPrescriptionRow}
+                                                    class="slds-button_icon"
+                                                    style="border:none; background-color:transparent;top: 4px;">
+                                                </lightning-button-icon>
+                                                <lightning-button-icon 
+                                                    icon-name="utility:delete" 
+                                                    alternative-text="Remove Prescription" 
+                                                    data-id={prescription.id} 
+                                                    onclick={handleDeletePrescription}
+                                                    class="slds-button_icon"
+                                                    style="border:none; background-color:transparent;top: 4px;">
+                                                    
+                                                </lightning-button-icon>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                            
+                            <div class="slds-m-top_medium">
+                                <lightning-button label="Save Prescriptions" variant="brand" onclick={savePrescriptions}></lightning-button>
+                            </div>
+                        </div>
+                    </template>
+                    
+                    <!-- Additional sections (Prescription, Invoice) can be added similarly -->
+                </div>
+            </div>
+            <!-- Close Button -->
+            <div class="slds-text-align_right slds-p-top_medium" style="padding-right: 10px;background-color:#efefef">
+                <lightning-button label="Close" onclick={handlecancel} variant="neutral"></lightning-button>
+            </div>
+            <div class="slds-text-align_right slds-p-top_medium" style="padding-right: 10px;background-color:#efefef">
+                <lightning-button label="Previous" variant="neutral" onclick={handlePrevious}  style="margin-right: 8px;"></lightning-button>
+                <lightning-button label="Next" variant="neutral" onclick={handleNext}></lightning-button>
+            </div>
+        
+    </template>
+
+    
+    <template if:true={showUpcomingAppointmentsTable}>
+        <template if:true={hasUpcomingAppointments}>
+            <lightning-datatable
+              key-field="Id"
+              data={upcomingAppointments}
+              columns={columnsupcomingapp}
+              hide-checkbox-column="true"
+            >
+            </lightning-datatable>
+      </template>
+    
+      <template if:false={hasUpcomingAppointments}>
+        <lightning-card>
+            <div class="slds-p-around_medium no-appointments">
+                <h2 class="center-text">No upcoming appointments</h2>
+            </div>
+        </lightning-card>
+    </template>
+    </template>
+    <!-- Modal for adding medical details -->
+    <template if:true={isModalOpen1}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                    </button>
+                    <h2 class="slds-text-heading_medium">Add Medical Details</h2>
+                </header>
+    
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-grid slds-wrap">
+                        <!-- Left Section -->
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_x-small">
+                            <!--
+                            <lightning-input type="text" label="Patient Name"
+                                value={medicalRecord.Patient__c}
+                                onchange={handleInputChange} required read-only="true">
+                            </lightning-input>-->
+    
+                            <lightning-input type="textarea" label="Prescription"
+                                value={medicalRecord.Prescription__c} data-field="Prescription__c"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+    
+                           
+    
+                            <lightning-input type="text" label="Remarks"
+                                value={medicalRecord.Remarks__c} data-field="Remarks__c"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+
+                            <lightning-input type="checkbox" label="hCG test"
+                                checked={medicalRecord.hCG_test__c} data-field="hCG_test__c"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+
+                            <lightning-input type="checkbox" label="Blood test"
+                            checked={medicalRecord.Blood_test__c} data-field="Blood_test__c"
+                            onchange={handleInputChange}>
+                        </lightning-input>
+
+                        <lightning-input type="checkbox" label="Admit"
+                        checked={medicalRecord.Admit__c} data-field="Admit__c"
+                        onchange={handleInputChange}>
+                    </lightning-input>
+    
+                            
+                        </div>
+    
+                        <!-- Right Section -->
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_x-small">
+                            
+                            <lightning-input type="text" label="Bp Level"
+                            value={medicalRecord.Bp__c} data-field="Bp__c"
+                            onchange={handleInputChange}>
+                            </lightning-input>
+
+                            <lightning-input type="date" label="Next Visit Date"
+                                value={medicalRecord.Visit_Date__c} data-field="Visit_Date__c"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                            
+                            <lightning-input type="checkbox" label="HbA1c"
+                                checked={medicalRecord.HbA1c_test__c} data-field="HbA1c_test__c"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+    
+                            
+    
+                           
+    
+                            <lightning-input type="checkbox" label="Urine examination"
+                                checked={medicalRecord.Urine_examination__c} data-field="Urine_examination__c"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+    
+                           
+                        </div>
+                    </div>
+                </div>
+    
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={handleSaveMedicalRecord} >Save Record</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <!--</lightning-card>-->
+</template>

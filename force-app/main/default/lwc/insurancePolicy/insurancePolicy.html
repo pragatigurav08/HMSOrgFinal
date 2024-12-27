@@ -1,0 +1,33 @@
+<template>
+    <section class="bill-card-container">
+    <lightning-card title="Insurance Taken" class="bill-card" onclick={toggleDetails}>
+        <div slot="actions" class="chevron-container">
+                <lightning-icon icon-name={chevronIcon} alternative-text="Toggle Details" size="xx-small" class="chevron-icon"></lightning-icon>
+            </div>
+            <template if:true={showDetails}>
+        <template if:true={insurancePolicies.length}>
+            <div class="slds-box slds-box_xx-small custom-background" style="margin-left: 8px; margin-right: 8px;">
+                <template for:each={insurancePolicies} for:item="policy">
+                    <div key={policy.Id} class="insurance-card slds-box slds-box_xx-small slds-m-bottom_small">
+                        <div class="slds-grid slds-wrap custom">
+                            <div class="slds-col slds-size_1-of-2">
+                                <p><strong>Insurance Name:</strong> {policy.RecordType.Name}</p>
+                                <p><strong>Policy Id:</strong> {policy.Name}</p>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <p><strong>Premium Amount:</strong> {policy.Policy_Premium_Amount__c}</p>
+                                <p><strong>Status:</strong> {policy.Status__c}</p>
+                                <p><strong>Coverage Amount:</strong> {policy.Coverage_Amount__c}</p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template if:false={insurancePolicies.length}>
+            <p>No insurance policies found for the associated New Account.</p>
+        </template>
+            </template>
+    </lightning-card>
+    </section>
+</template>

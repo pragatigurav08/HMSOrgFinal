@@ -1,0 +1,63 @@
+/* Container styling */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Heading styling */
+.container h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Slider container styling */
+.slider-container {
+    margin-bottom: 20px;
+}
+
+.slider-container label {
+    display: block;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.slider-container input[type="range"] {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.slider-container .range-values {
+    font-size: 14px;
+    color: #777;
+    text-align: right;
+}
+
+/* Result box styling */
+.result-box {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.result-section {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.result-section h2 {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.result-section p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+}

@@ -1,0 +1,904 @@
+.custom-card .slds-card__body {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.custom-card:hover .slds-card__body {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+.card-1 .slds-card__body {
+    background-color: #f4f6f9;
+}
+
+.card-2 .slds-card__body {
+    background-color: #e3f2fd;
+}
+
+.card-3 .slds-card__body {
+    background-color: #fff3e0;
+}
+
+.slds-card__body {
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+.cls-space{
+    margin-left: 10px;
+    font-size: 18px;
+}
+.doc-background-color{
+    background-color: #9494fc;
+    height: 25px;
+}
+
+.doc-background-color {
+    background-color: #2994f1; 
+    color: black;
+    padding: 10px;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.header-color {
+    color: black;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+}
+
+table.slds-table.slds-table_bordered.slds-table_cell-buffer.tab_css {
+    border-left: var(--lwc-borderWidthThin,1px) solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder,rgb(229, 229, 229)));
+    border-right: var(--lwc-borderWidthThin,1px) solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder,rgb(229, 229, 229)));
+}
+
+.slds-m-around_medium {
+    margin: 1rem;
+    }
+    .slds-table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+    .slds-table th, .slds-table td {
+    padding: 0.5rem;
+    text-align: left;
+    }
+    .slds-table th {
+    background-color: rgb(215 215 215);;
+    font-weight: bold;
+    }
+
+    .button-container.button_register
+    {
+        text-align: right;
+        padding-right: 20px;
+    }
+
+
+/*    svg.slds-icon.slds-icon-text-default.slds-icon_small {
+        padding-right: 5px !important;
+    }
+
+    svg.slds-icon.slds-icon-text-default.slds-icon_small {
+        padding-right: 5px !important;
+        --sds-c-icon-color-foreground-default: rgb(47, 30, 129);
+    }
+
+    lightning-icon.acon_abc.slds-icon-utility-apps.slds-icon_container {
+        padding-right: 5px !important;;
+        --sds-c-icon-color-foreground-default: rgb(49, 94, 161);
+    }
+
+    lightning-icon.acon_abc.slds-icon-utility-user.slds-icon_container {
+        padding-right: 5px;
+         --sds-c-icon-color-foreground-default: rgb(49, 94, 161);
+    }
+
+    lightning-icon.acon_abc.slds-icon-utility-locked-with-additions.slds-icon_container {
+        padding-right: 5px;
+         --sds-c-icon-color-foreground-default: rgb(49, 94, 161);
+    }
+
+    lightning-icon.acon_abc.slds-icon-utility-event.slds-icon_container {
+        padding-right: 5px;
+         --sds-c-icon-color-foreground-default: rgb(49, 94, 161);
+
+    }*/
+    
+/* General class to target all icons */
+/*lightning-icon.acon_abc .slds-icon {
+    --slds-c-icon-color-foreground: blue;
+    --sds-c-icon-color-foreground-default: rgb(222, 24, 103);
+}
+
+/* Or target individual icons specifically */
+/*lightning-icon.acon_abc.slds-icon-utility-apps .slds-icon {
+    --slds-c-icon-color-foreground: blue;
+}
+
+lightning-icon.acon_abc.slds-icon-utility-user .slds-icon {
+    --slds-c-icon-color-foreground: blue;
+}
+
+lightning-icon.acon_abc.slds-icon-utility-locked-with-additions .slds-icon {
+    --slds-c-icon-color-foreground: blue;
+}
+
+lightning-icon.acon_abc.slds-icon-utility-event .slds-icon {
+    --slds-c-icon-color-foreground: blue;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+    .sidebar {
+        background-color: #f4f6f9;
+        height: 100vh;
+        border-right: 1px solid #d8dde6;
+    }
+    
+    .slds-nav-vertical__action {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        font-size: 1.1rem;
+        text-decoration: none;
+        color: #4a4a4a;
+    }
+    
+    .slds-nav-vertical__action:hover {
+        background-color: #e0e4eb;
+        border-radius: 0.25rem;
+    }
+    
+    .active {
+        background-color: #2e8540;
+        color: #ffffff;
+        border-radius: 0.25rem;
+    }
+
+    .custom-box { 
+
+        border-radius: 8px; 
+    
+        padding: 15px; 
+    
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    
+        transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    
+    } 
+    
+     
+    
+    .custom-box:hover { 
+    
+        transform: scale(1.05); /* Zoom effect */ 
+    
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */ 
+    
+    } 
+    
+     
+    
+    .small-box { 
+    
+        min-width: 180px; 
+    
+        min-height: 150px; 
+    
+    } 
+    
+     
+    
+    .slds-text-heading_medium { 
+    
+        font-size: 20px; 
+    
+        color: #333; 
+    
+    } 
+    
+     
+    
+    /* Specific box color styles */ 
+    
+    .doctor-box { 
+    
+        background-color: #e5f0e4; /* Light red background for Doctors */ 
+    
+    } 
+    
+     .searchh{
+       /* margin-left: 262px;
+       // width: 195px;*/
+        /*margin-top: -24px;
+        margin-left: 260px;*/
+        margin-top: -23px;
+        color: black;
+     }     
+
+     
+
+
+    .patient-box { 
+    
+        background-color: #d3e1e8; 
+    
+    } 
+    
+     
+    
+    .new-patients-box { 
+    
+        background-color: #eee4ed; 
+    
+    } 
+    
+     
+    
+    .appointments-box { 
+        background-color: #e7e8f5; 
+    } 
+    .lightning-icon { 
+        margin: 0 auto; 
+    } 
+    .slds-m-bottom_small { 
+        color: rgb(0, 153, 255); 
+    }
+    svg.slds-icon.slds-icon-text-default.slds-icon_small {
+        padding-right: 5px !important;
+    }
+
+    svg.slds-icon.slds-icon-text-default.slds-icon_small {
+        padding-right: 5px !important;
+        --sds-c-icon-color-foreground-default: #43a984bf;
+    }
+
+    lightning-icon.acon_abc.slds-icon-utility-apps.slds-icon_container {
+        padding-right: 5px !important;;
+        --sds-c-icon-color-foreground-default: #43a984bf;
+    }
+
+    lightning-icon.acon_abc.slds-icon-utility-user.slds-icon_container {
+        padding-right: 5px;
+         --sds-c-icon-color-foreground-default: #43a984bf;
+    }
+
+    lightning-icon.acon_abc.slds-icon-utility-locked-with-additions.slds-icon_container {
+        padding-right: 5px;
+         --sds-c-icon-color-foreground-default: #43a984bf;
+    }
+
+    lightning-icon.acon_abc.slds-icon-utility-event.slds-icon_container {
+        padding-right: 5px;
+         --sds-c-icon-color-foreground-default: #43a984bf;
+
+    }
+    lightning-icon.acon_abc.slds-icon-utility-money.slds-icon_container {
+        padding-right: 5px;
+         --sds-c-icon-color-foreground-default: #43a984bf;
+
+    }
+
+
+
+    /*Patient Crad css*/
+    .slds-box {
+        border-radius: 8px; 
+    }
+    
+    .profile-card {
+        border: 1px solid #d8dde6;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    }
+    
+    .medical-history-card {
+        border: 1px solid #d8dde6; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    }
+    
+    /* Responsive styles */
+    @media only screen and (max-width: 768px) {
+        .slds-col {
+            flex: 100%; 
+            height: auto !important;
+        }
+    
+        .slds-modal__content {
+            padding: 1rem; 
+        }
+    }
+    
+    .slds-modal__header {
+        background-color: #f4f6f9; 
+    }
+    
+    .slds-modal__footer {
+        background-color: #deebfe; 
+    }
+    
+    .slds-modal__container {
+        max-width: 800px; 
+        width: 100%;
+    }
+    
+    .slds-modal__content {
+        padding: 2rem; 
+    }
+    
+    /* Adjust lightning input styles */
+    .lightning-input {
+        margin-bottom: 1rem; 
+    }
+    .profile-background {
+        background-color: #eaf3ff; 
+        border-radius: 4px; 
+    }
+    
+    .medical-history-background {
+        background-color: #f4f1e7; 
+        border-radius: 4px; 
+    }
+    
+    @media only screen and (max-width: 768px) {
+        .slds-col {
+            flex: 100%; 
+        }
+    
+        .slds-modal__container {
+            width: 90%; 
+            margin: 0 auto; 
+        }
+    
+        .slds-modal__content {
+            padding: 1rem; 
+        }
+    
+        .slds-box_xx-large {
+            padding: 1rem; 
+        }
+    }
+
+
+
+
+    /* responsive */
+
+    
+
+    @media only screen and (max-width: 768px) {
+      
+        .sidebar {
+            padding-top: 10px !important;
+            padding-left: 5px;
+            
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+       
+        .slds-nav-vertical__item {
+            display: block;
+            width: 100%;
+            text-align: left;
+           
+        }
+
+        
+        .acon_abc {
+            margin-right: 10px;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .slds-page-header__row {
+            flex-direction: column;
+        }
+        .slds-page-header__col-title, .button-container {
+            text-align: center;
+            width: 100%;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .slds-box {
+            margin: 0.5rem 0; 
+        }
+    
+        .slds-text-heading_medium {
+            font-size: 1.2rem; 
+        }
+        .custom-button-container {
+            text-align: right !important;
+            width: 100%; /* Ensure it spans the full width on small screens */
+         
+        }
+    }
+    
+    @media only screen and (max-width: 480px) {
+
+        .slds-text-heading_medium {
+            font-size: 1rem; 
+        }
+    
+        .custom-box {
+            padding: 1rem; 
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .tab_css {
+            overflow-x: auto; 
+        }
+        
+        .slds-table_header-fixed {
+            display: block; 
+        }
+    
+        lightning-button {
+            min-width: 80px; 
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        .slds-modal__container {
+            width: 95%; 
+            max-width: 95%;
+        }
+    
+        .slds-modal__content {
+            padding: 0.5rem; 
+        }
+    
+        .slds-modal__header {
+            font-size: 1.2rem; 
+        }
+    
+        .cls_button {
+            width: 100%; 
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        .slds-modal__container {
+            width: 95%; 
+            max-width: 95%; 
+        }
+    
+        .slds-modal__content {
+            padding: 0.5rem; 
+        }
+    
+        .slds-modal__header {
+            font-size: 1.2rem; 
+        }
+    
+        .slds-button {
+            width: 100%; 
+            margin-top: 1rem; 
+        }
+    }
+            
+    
+
+
+    .sidebar {
+        transition: width 0.2s ease-in-out; /* Smooth transition for the sidebar width */
+    }
+
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 100%; /* Full width on mobile */
+            position: relative; /* Relative positioning on mobile */
+        }
+    }
+
+    @media (min-width: 769px) {
+        .sidebar {
+            width: 20%; /* Adjust width on larger screens */
+        }
+    }
+
+    /* Hide icons on small screens if needed */
+    @media (max-width: 768px) {
+        .acon_abc {
+            display: none; /* Hide icons on mobile for a cleaner look */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .slds-page-header {
+            padding: 10px; /* Reduce padding on mobile */
+        }
+
+        .slds-text-heading_medium {
+            font-size: 1.2rem; /* Slightly smaller font on mobile */
+        }
+
+        .button-container {
+            display: flex; /* Use flexbox for button alignment */
+            justify-content: center; /* Center align button on mobile */
+            margin-top: 10px; /* Add margin for spacing */
+        }
+    }
+
+    @media (min-width: 769px) {
+        .slds-page-header {
+            padding: 15px; /* Increase padding on desktop */
+        }
+
+        .button-container {
+            display: flex; /* Align buttons using flexbox */
+            justify-content: flex-end; /* Align button to the right on desktop */
+        }
+    }
+    @media (max-width: 768px) {
+        .slds-modal__header h2 {
+            font-size: 18px; /* Adjust header size */
+        }
+        
+        .slds-box_xx-large {
+            padding: 1rem; /* Reduce padding on smaller screens */
+        }
+    
+        .profile-background,
+        .medical-history-background {
+            padding: 1rem; /* Adjust padding for profiles */
+        }
+    
+        .slds-table {
+            font-size: 14px; /* Adjust font size for tables */
+        }
+    
+        .slds-card__body {
+            padding: 1rem; /* Adjust card body padding */
+        }
+    }
+    
+.appointment-box {
+    border: 2px solid #d1e3f0; /* Softer blue border */
+    border-radius: 12px; /* More rounded corners */
+    padding: 20px; /* Increased padding for better spacing */
+    background-color: #f8faff; /* Light blue background for a calming feel */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadow for more depth */
+    margin-bottom: 24px; /* More space between boxes */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect to make it interactive */
+.appointment-box:hover {
+    transform: scale(1.02); /* Slight zoom-in on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+}
+
+.appointment-header {
+    border-bottom: 1px solid #e1e1e1; /* Divider line */
+    margin-bottom: 16px; /* Space below header */
+}
+
+.appointment-name {
+    font-size: 1.1rem; /* Larger font size for the name */
+    font-weight: 600; /* Semi-bold for emphasis */
+    color: #2c3e50; /* Dark blue color for contrast */
+}
+
+.appointment-details {
+    font-size: 1rem; /* Standard font size for details */
+    color: #34495e; /* Darker blue-gray for details */
+}
+
+.detail {
+    display: flex; /* Flexbox to align items */
+    justify-content: space-between; /* Space out the label and value */
+    align-items: center;
+    margin-bottom: 15px; /* Space between each detail */
+}
+
+.label {
+    font-weight: bold; /* Bold labels for emphasis */
+    color: #292e31; /* Blue for label color */
+}
+
+.time {
+    font-weight: 500; /* Medium weight for time */
+    color: #2c3e50; /* Darker text color */
+}
+
+/* Add a subtle icon in the background for more style */
+.appointment-box::before {
+    content: '\f017'; /* Clock icon (optional) */
+    font-family: 'FontAwesome'; /* Font for the icon */
+    position: absolute;
+    font-size: 80px;
+    color: rgba(200, 220, 230, 0.1); /* Very light color for subtle background effect */
+    top: 50%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+}
+.custom-icon {
+    --sds-c-icon-color-background: #43a984bf;  /* Custom color */
+}
+
+.overview{
+    --sds-c-icon-color-background: #7aad9cbf;
+}
+
+
+.doctor-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doctor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.doctor-card .slds-media__body h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.doctor-card .slds-text-body_small {
+    font-size: 0.875rem;
+}
+
+
+
+/******************************************************************/
+
+.welcome-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: #abd1c4bf; Light gray background */
+    background: linear-gradient(135deg, #daf8ed, #b7d5f3);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.card-content {
+    max-width: 60%; /* Adjust width for text content */
+}
+
+.card-content h2 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    color: #343a40; /* Dark gray text */
+}
+
+.card-content p {
+    margin: 0 0 10px;
+    color: #6c757d; /* Medium gray text */
+    line-height: 1.5;
+}
+
+.image-container {
+    max-width: 35%; /* Adjust width for image */
+    text-align: right;
+}
+
+.image-container img {
+    max-width: 100%;
+    /*height: auto;*/
+    height:150px;
+    border-radius: 5px;
+}
+
+/* Container for the header */
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
+    justify-content: center; /* Centers content vertically */
+    margin-top: 0px; /* Adds spacing above the container */
+}
+
+/* Profile Image Styling */
+.profile-image {
+    width: 70px; /* Adjust image size */
+    height: 70px;
+    border-radius: 50%; /* Makes the image circular */
+    margin-bottom: 10px; /* Adds space below the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for a polished look */
+}
+
+/* Health Care Title Styling */
+.header-title {
+    font-size: 1.5rem; /* Adjust font size */
+    font-weight: bold;
+    color: #333333; /* Dark gray text color */
+    margin: 0;
+}
+
+
+.header-container.receptionRightSiteBarcl {
+    margin-top: 0px !important;
+}
+
+.slds-text-heading_medium .slds-m-bottom_medium{
+    margin-bottom: 0px !important;
+}
+
+.slds-col.slds-size_1-of-2.slds-text-align_right {
+    padding-top: 12px;
+}
+
+.image-container.rec {
+    width: 230px !important;
+}
+
+/******************************** */
+
+/* General table styling */
+.table-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.responsive-table {
+    width: 100%;
+}
+
+/* Mobile view adjustments */
+@media only screen and (max-width: 767px) {
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    lightning-datatable {
+        max-width: 100%;
+        display: block; /* Ensure the table stays within the container */
+    }
+
+    /* For the 'No patients found' message, center it on mobile */
+    p {
+        text-align: center;
+        font-size: 14px;
+        color: #999;
+    }
+}
+
+/* Desktop view adjustments */
+@media only screen and (min-width: 768px) {
+    .table-container {
+        width: 100%; /* Or any other percentage for better centering */
+        margin: 0 auto;
+    }
+
+    .responsive-table {
+        width: 100%;
+    }
+}
+
+.logo-image-container h2 {
+    text-align: center;
+    font-weight: bold;
+}
+
+
+
+/*
+.slds-progress__line {
+    background-color: #d8d8d8; 
+    height: 4px; 
+    margin-bottom: 20px;
+}
+
+.slds-progress__item.slds-is-completed .slds-progress__line,
+.slds-progress__item.slds-is-active .slds-progress__line {
+    background-color: #137cd7; 
+}
+
+.stage-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+}
+.stage-icon {
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    margin: -14px;
+    padding: 6px;
+    border-radius: 50%; 
+}
+
+.stage-name {
+    color: #616161; 
+    font-size: 14px; 
+    margin-top: 10px;
+    font-weight: 600; 
+}
+
+.slds-progress__item.slds-is-completed .stage-name {
+    color: #147813; 
+}
+
+.slds-progress__item.slds-is-active .stage-name {
+    color: #137cd7; 
+    font-weight: 700; 
+}
+*/
+
+
+.slds-progress__list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.slds-progress__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+}
+
+.slds-progress__line {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #d8d8d8;
+    z-index: 1;
+}
+
+.slds-progress__item.slds-is-completed .slds-progress__line {
+    background-color: #147813;
+}
+
+.slds-progress__item:first-child .slds-progress__line {
+    left: 50%;
+}
+
+.slds-progress__item:last-child .slds-progress__line {
+    right: 50%;
+}
+
+.stage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.stage-icon {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 0.5rem;
+}
+
+.stage-name {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    color: #4b4b4b;
+}
+
+.slds-progress__item.slds-is-completed .stage-name {
+    color: #147813;
+    font-weight: 600;
+}
+
+.slds-progress__item.slds-is-active .stage-name {
+    color: #137cd7;
+    font-weight: 700;
+}

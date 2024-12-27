@@ -1,0 +1,29 @@
+<!--
+  @description       : 
+  @author            : Ankita
+  @group             : 
+  @last modified on  : 
+  @last modified by  : Ankita
+  Modifications Log
+  Ver   Date         Author          Modification
+-->
+<apex:page showHeader="false" sidebar="false">
+  
+    <apex:includeLightning /> 
+      <div id="LightningComponentid" /> 
+      <!-- <script  type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'> -->
+         <script >
+            
+           $Lightning.use("c:feedbackformauraapp", function() {
+            $Lightning.createComponent("c:FeedbackFormComponent",
+              {token:token },
+              "LightningComponentid",
+              function(cmp) {
+              console.log('Welcome ');
+              });
+           });
+        
+      
+    
+      </script> 
+</apex:page>

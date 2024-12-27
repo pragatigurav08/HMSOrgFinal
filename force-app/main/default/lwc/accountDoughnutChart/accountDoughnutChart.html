@@ -1,0 +1,11 @@
+<template>
+    <template if:true={chartData}>
+        <div class="chart-container">
+            <h2 class="chart-heading">Account Overview</h2>
+            <canvas lwc:dom="manual"></canvas>
+        </div>
+    </template>
+    <template if:false={chartData}>
+        <lightning-spinner alternative-text="Loading Chart Data"></lightning-spinner>
+    </template>
+</template>

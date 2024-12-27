@@ -1,0 +1,24 @@
+.custom-container{
+	color : black;
+}
+.custom-background {
+
+    padding: 16px; /* Adjust padding as needed */
+    border-radius: 8px; /* Rounded corners for a softer look */
+}
+.custom{
+	 background-color: #f5f7f9;
+}
+.bill-card-container {
+    cursor: pointer;
+}
+
+.chevron-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.chevron-icon:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,214 @@
+<template>
+ 
+<div class="main-container">
+  <!-- Sidebar Navigation -->
+  <!-- <div class="sidebar">
+    <ul>
+      <li>Home</li>
+      <li>Attendance</li>
+      <li>Leave</li>
+      <li>Performance</li>
+    </ul>
+  </div> -->
+
+
+
+
+  <!-- Main Content -->
+ <div class="content-area">
+  <!-- Container for Both Cards -->
+  <div class="card-container">
+    <!-- New Employees Section -->
+        <div class="employee-card">
+        <div class="card-header">New Employees</div>
+        <template if:true={newEmployees}>
+            <div class="employee-list">
+                <template for:each={newEmployees} for:item="employee">
+                    <div key={employee.Id} class="employee-item">
+                        <div class="employee-info">
+                          
+
+                            <!-- Row 1 -->
+<div class="slds-grid slds-wrap">
+	<div class="slds-col slds-small-size_12-of-12 slds-medium-size_9-of-12 slds-large-size_11-of-12">
+		<span class="custom-box">
+       <div class="employee-name">{employee.Employee_Name__c}</div>
+      <div class="employee-status">Joined on {employee.Date_of_Joining__c}</div>
+    </span>
+	</div>
+	<div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_1-of-12">
+		<span class="custom-box"> 
+      <div>
+      
+        <lightning-icon icon-name={employee.tickIcon} alternative-text="Status" size="small" class={employee.iconClass}></lightning-icon>   
+      </div>
+    </span>
+	</div>
+</div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template if:false={newEmployees}>
+            <div class="no-employees">No New Joiners in the Past Week</div>
+        </template>
+    </div>
+
+    <!-- Existing Employees Section -->
+    <div class="employee-card">
+        <div class="card-header">Existing Employees</div>
+        <template if:true={existingEmployees}>
+            <div class="employee-list">
+                <template for:each={existingEmployees} for:item="employee">
+                    <div key={employee.Id} class="employee-item">
+                        <div class="employee-info">
+                           
+                            
+                     
+                        <!-- Row 1 -->
+<div class="slds-grid slds-wrap">
+	<div class="slds-col slds-small-size_12-of-12 slds-medium-size_9-of-12 slds-large-size_11-of-12">
+		<span class="custom-box">
+      <div class="employee-name">{employee.Employee_Name__c}</div>
+      <div class="employee-status">Employee Id: {employee.Id}</div>
+    </span>
+	</div>
+	<div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_1-of-12">
+		<span class="custom-box"><div>
+                            
+      <lightning-icon icon-name={employee.tickIcon} alternative-text="Status" size="small" class={employee.iconClass}></lightning-icon>
+  </div></span>
+	</div>
+</div>
+</div>   </div>
+                </template>
+            </div>
+        </template>
+        <template if:false={existingEmployees}>
+            <div class="no-employees">No Existing Employees Found</div>
+        </template>
+    </div>
+
+      <!-- Upcoming Holidays Section as a Card -->
+  <div class="employee-card">
+    <div class="card-header">Upcoming Holidays</div>
+    <div class="holiday-list">
+      <!-- Displaying Holidays for This Year -->
+      <div class="holidays-this-year">
+        <h3>This Year</h3>
+        <template if:true={thisYearHolidays}>
+          <div class="holiday-items">
+            <template for:each={thisYearHolidays} for:item="holiday">
+              <div key={holiday.Id} class="holiday-item">
+                <div class="holiday-date">{holiday.Date__c}</div>
+                <div class="holiday-name">{holiday.Name}</div>
+              </div>
+            </template>
+          </div>
+        </template>
+        <template if:false={thisYearHolidays}>
+          <div class="no-holidays">No Holidays Left This Year</div>
+        </template>
+      </div>
+
+      <!-- Displaying Holidays for Next Year -->
+      <div class="holidays-next-year">
+        <h3>Next Year</h3>
+        <template if:true={nextYearHolidays}>
+          <div class="holiday-items">
+            <template for:each={nextYearHolidays} for:item="holiday">
+              <div key={holiday.Id} class="holiday-item">
+                <div class="holiday-date">{holiday.Date__c}</div>
+                <div class="holiday-name">{holiday.Name}</div>
+              </div>
+            </template>
+          </div>
+        </template>
+        <template if:false={nextYearHolidays}>
+          <div class="no-holidays">No Holidays Scheduled for Next Year</div>
+        </template>
+      </div>
+    </div>
+  </div>
+
+
+  
+  </div>
+<div class="contentt-area" >
+<div class="cardd-container">
+  <!-- Card for Today's Birthdays -->
+  <!-- <div class="employee-card">
+    <div class="card-header">Today's Birthdays</div>
+    <div class="birthday-list">
+      <template if:true={todaysBirthdays}>
+          <div class="employee-list">
+          <template for:each={todaysBirthdays} for:item="birthday">
+            <div key={birthday.Id} class="birthday-item">
+              <div class="birthday-name">{birthday.Employee_Name__c}</div>
+              <div class="birthday-date">{birthday.Date_of_Birth__c}</div>
+            </div>
+          </template>
+        </div>
+      </template>
+      <template if:false={todaysBirthdays}>
+        <div class="no-birthdays">No Birthdays Today</div>
+      </template>
+    </div>
+  </div> -->
+
+ <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+    <template if:false={isLoading}>
+        <!-- Active Employees -->
+        <div class="employee-card">
+            <div class="card-header">Active Users</div>
+            <div class="employee-list">
+                <template if:true={checkedInEmployees}>
+                    <template for:each={checkedInEmployees} for:item="employee">
+                        <div key={employee.Id} class="employee-item">
+                            <div class="employee-name">{employee.EmployeeName}</div>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={checkedInEmployees}>
+                    <div class="no-employees">No Active Users</div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Inactive Employees -->
+        <div class="employee-card">
+            <div class="card-header">Inactive Users</div>
+            <div class="employee-list">
+                <template if:true={onLeaveEmployees}>
+                    <template for:each={onLeaveEmployees} for:item="employee">
+                        <div key={employee.Id} class="employee-item">
+                            <div class="employee-name">{employee.EmployeeName}</div>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={onLeaveEmployees}>
+                    <div class="no-employees">No Inactive Users</div>
+                </template>
+            </div>
+        </div>
+    </template>
+
+
+</div>
+</div>
+  
+
+
+
+
+  
+
+</div>
+
+
+</div>
+ 
+</template>

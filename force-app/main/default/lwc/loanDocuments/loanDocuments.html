@@ -1,0 +1,11 @@
+<template>
+    <template if:true={documents}>
+        <ul>
+            <template for:each={documents} for:item="doc">
+                <li key={doc.documentId}>
+                    <a href={doc.documentUrl} target="_blank">{doc.documentName}</a>
+                </li>
+            </template>
+        </ul>
+    </template>
+</template>

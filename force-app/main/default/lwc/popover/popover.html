@@ -1,0 +1,154 @@
+<template>
+    <div class="dashboard-container">
+       
+        <div class="popover-card" data-id="popoverCards">
+            <div class="content">
+               
+                <img src={logoUrl} alt="Logo" class="custom-logo"   width="40" height="50"  />
+              
+                <button class="slds-button button-close-icon" data-id="topleft">
+                         {userTitle}
+                </button>
+                <template if:true={isExpanded}>
+<div class="slds-grid slds-wrap">
+	<div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+		<span class="custom-box">
+             <p style="text-align:center;font-size: 16px;position: absolute;top: 8px;left: 103px;">Welcome! &nbsp;<b>{loggedInUserName}</b></p>
+        </span>
+	</div>
+</div>
+<div class="slds-grid slds-wrap">
+	<div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+		<span class="custom-box">
+            
+             <!-- <p style="text-align:center"> UserName: &nbsp;<b>{UName}</b> </p> -->
+        
+             <div class="slds-grid slds-wrap" style="margin: 19px;">
+                <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+                    <span class="custom-box">
+                        <lightning-icon icon-name='utility:user' style="position: relative;left: 145px;" alternative-text='user' size='large' class="blue-icon" title='user'></lightning-icon>
+               
+                    </span>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap" style="position: relative;left: 20px;">
+                <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+                    <span class="custom-box">
+                        <p style="text-align:center"> Employee ID: &nbsp;<b>{EmployeeID}</b> </p>     
+                             
+                    </span>
+                </div>
+            </div>
+            <!-- <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+                    <span class="custom-box">
+                             
+                        <p style="text-align:center">Total Employees: &nbsp;<b>{userCount}</b> </p>    
+                    </span>
+                </div>
+            </div> -->
+        </span>
+	</div>
+</div>
+<div class="slds-grid slds-wrap">
+	<div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+		<span class="custom-box">
+                 
+                <button class="slds-button" data-id="topleft"  onclick={showmorebutton} style="
+    left: 253px;">
+                         Show More
+                </button>
+
+                 <!-- <c-employee-Management></c-employee-Management> top: 70px; -->
+                 
+        </span>
+	</div>
+</div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template> 
+
+
+
+<!-- <template>
+    <div class="dashboard-container">
+   
+        <div class="popover-card" data-id="popoverCards">
+            <div class="content">
+                <button class="slds-button button-close-icon" onclick={handleTogglePanel}>
+                    {userTitle}
+                </button>
+               
+                <template if:true={isExpanded}>
+                    <p style="text-align:center; margin-top: 1rem;">
+                        <b>Welcome, {loggedInUserName}!</b>
+                    </p>
+                    <p style="text-align:center; margin-top: 0.5rem;">
+                        <b>Total Count: {userCount} Employees</b>
+                    </p>
+                </template>
+            </div>
+        </div>
+    </div>
+</template> -->
+
+
+
+
+
+
+
+
+<!-- <template>
+    <div class="dashboard-container">
+       
+        <div class="vertical-button" style="background-color: white;
+    width: 10%;
+    height: 6%;
+    text-align: center;
+    transform: rotate(90deg);
+    position: fixed;
+    top: 201px;
+    right: -56px;">
+            <button class="slds-button" onclick={handleOpenRightPanel}>
+                <span class="vertical-label">Employee</span>
+            </button>
+        </div>
+
+        <div class="popover-card" data-id="popoverCards" >
+            <lightning-icon icon-name="utility:close" size="small" onclick={handleClosePopover} style="float:right"
+                class="slds-var-m-around_small closePop"></lightning-icon>
+            <br />
+            <br />
+            <p><b>Total Count: 100 Employees</b></p>
+          
+        </div>
+    </div>
+</template> -->
+
+
+<!-- <template>
+    <div class="dashboard-container">
+
+        <div class="vertical-button" style="background-color:white;width: 3%;height: 31%;text-align: center;border-top-left-radius: 73px;border-bottom-left-radius: 77px;">
+            <button class="slds-button" onclick={handlePopover}>
+                <span class="vertical-label">Employee</span>
+            </button>
+        </div>
+
+        <template if:true={isPopoverOpen}>
+            
+            <div style="background-color:white;width: 19%;position: absolute;top: 46px;right: -15px;height: 6rem;">
+                <p style="text-align: center;position: relative;top: 56px;">Total Count: <strong>100 Employees</strong></p>
+
+                <div class="second-vertical-button">
+                    <button class="slds-button" onclick={handleClosePopover}>
+                <span style="font-size: 12px;font-weight: bold;">Employee</span>
+            </button>
+                </div>
+            </div>
+        </template>
+    </div>
+</template> -->

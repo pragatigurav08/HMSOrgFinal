@@ -1,0 +1,77 @@
+.custom-container{
+	color : black;
+}
+.white-utility-icon {
+    --sds-c-icon-color-foreground-default: white;
+	    padding: 10%;
+}
+.passbook-container {
+    width: 600px;
+    border: 2px solid #900;
+    padding: 20px;
+    background-color: white;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+.passbook-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: darkblue;
+    color: white;
+    /* padding: 10px; */
+}
+
+.passbook-body {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.customer-details {
+    width: 60%;
+}
+
+.customer-details p {
+    margin: 5px 0;
+}
+
+.photo-section {
+    text-align: center;
+}
+
+.photo-placeholder {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #333;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.passbook-footer {
+    background-color:darkblue;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+.parallelogram-container {
+    display: flex;
+
+}
+
+.parallelogram {
+    /* width: 200px;
+    height: 100px;
+    background-color: white;
+    transform: skew(20deg);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); Optional shadow effect */
+
+	    width: 33%;
+    height: 58px;
+    background-color: white;
+    transform: skew(-58deg);
+    border-top-left-radius: 20px;
+}

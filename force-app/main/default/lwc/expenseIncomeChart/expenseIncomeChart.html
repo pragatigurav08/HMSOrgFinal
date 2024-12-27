@@ -1,0 +1,15 @@
+<template>
+    <template if:true={isDataAvailable}>
+        <div class="chart-container" >
+            <!-- Heading for the Chart -->
+            <h2 class="chart-heading">Financial Overview</h2>
+
+            <!-- Canvas for the Donut Chart -->
+            <canvas lwc:dom="manual"></canvas>
+        </div>
+    </template>
+    <template if:false={isDataAvailable}>
+        <!-- Spinner for Loading State -->
+        <lightning-spinner alternative-text="Loading Data"></lightning-spinner>
+    </template>
+</template>

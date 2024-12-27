@@ -1,0 +1,45 @@
+.back-button {
+    margin-bottom: 20px;
+}
+ 
+.back-button button {
+    padding: 10px 20px;
+    background-color: #004d99;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+ 
+.back-button button:hover {
+    background-color: #003366;
+}
+.input-group{
+  display: flex;
+  border-radius:7px;
+  overflow: hidden;
+}
+.btn{
+  height:40px;
+  border: none;
+  outline:none;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 0 5%;
+  background: #393e46;
+  transition: .3s ease;
+  color: #4ecca3;
+}
+ 
+.loanbutton{
+border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    background-color: #004d99;
+    border-radius: 5px;
+}

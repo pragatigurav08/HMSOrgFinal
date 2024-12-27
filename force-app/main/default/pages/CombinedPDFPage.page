@@ -1,0 +1,8 @@
+<apex:page showHeader="false" controller="CombinedPDFController"  renderAs="pdf">
+    <!-- Embed Prescription PDF -->
+    <apex:iframe src="/apex/PrintPrescription?patientId={!patientId}" width="100%" height="800px" scrolling="no"/>
+
+   
+    <!-- Embed Invoice PDF -->
+    <apex:iframe src="/apex/printinvoice?patientId={!patientId}&savedRecordIds={!savedRecordIds}" width="100%" height="800px" scrolling="no"/>
+</apex:page>

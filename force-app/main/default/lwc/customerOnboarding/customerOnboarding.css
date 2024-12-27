@@ -1,0 +1,53 @@
+.custom-container{
+	color : black;
+}
+@media (max-width: 478px) {
+ 
+
+}
+.white-utility-icon {
+    --sds-c-icon-color-foreground-default: white;
+}
+.custom-box{
+	margin:12%;
+}
+.slds-listbox {
+    /* border: 1px solid #d8dde6;
+    background-color: #ffffff;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%; */
+	border: 1px solid #d8dde6;
+    background-color: #ffffff;
+    max-height: 20%;
+    overflow-y: auto;
+    position: absolute;
+    width: 20%;
+  	z-index: 1;
+}
+
+.slds-listbox__item {
+    cursor: pointer;
+}
+
+.slds-listbox__item:hover {
+    background-color: #f4f6f9;
+}
+.green-tick {
+    color: green;
+    margin-left: 10px;
+    --sds-c-icon-color-foreground-default: green;
+}
+.aadhaar-container {
+    display: flex;
+    align-items: center;
+}
+
+.aadhaar-container p {
+    margin-right: 10px; /* Adjust spacing between text and button */
+}
+
+.slds-m-top_medium {
+    margin-top: 1rem;
+}

@@ -1,0 +1,26 @@
+<template>
+    <div class="card">
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-1" >
+                <div class="card-header slds-align--absolute-center" style="height: 3.4rem;background-color:lightgrey;">
+                   <b>Journey Plan Progress</b> 
+                </div>
+                <div class="card-body" style="text-align:center">
+                    <div class="slds-col slds-size_3-of-3" style="margin-bottom:2em;">
+                        <div class="progress" style="margin:auto;font-size: 11px;">
+                            <div class="progress-done1" data-done={completedVisitswidth}>
+                                {completedVisitswidth}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_3-of-3" style="display:inline">
+                        <h2>Completed Visits : <span class="text-green"><b>{completedVisits}</b></span> </h2>
+                    </div>
+                    <div class="slds-col slds-size_3-of-3" style="display:inline">
+                        <h2>Total Visits : <span class="text-green"><b>{totalVisits}</b></span> </h2>
+                    </div>                                                
+                </div>
+            </div>
+        </div>       
+    </div>    
+</template>

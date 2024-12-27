@@ -1,0 +1,333 @@
+.custom-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+}
+.blue-utility-icon {
+    --sds-c-icon-color-foreground-default: #2196f3;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #333333;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.color-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    margin-right: 8px;
+    border: 2px solid black; 
+}
+
+
+.pie-slice {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    clip-path: polygon(50% 50%, 100% 0%, 100% 100%, 0% 100%, 0% 0%); 
+}
+.pie-chart {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: inline-block;
+    
+        border: 1px solid black;
+}
+.card-container {
+    width: 95%;
+    max-width: 800px;
+    margin: 16px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.custom-card {
+    margin: 16px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: #007bff;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+       height: 205px;
+    width: 215px;
+}
+
+.pie-chart {
+    height: 100%;
+    width: 100%;
+    background: conic-gradient(
+        #FF7900 0% 40%, 
+        #2196f3 40% 70%, 
+        #4caf50 70% 100%
+    );
+    border-radius: 50%;
+    border: 2px solid black; /* Black border for the chart */
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.color-box {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border-radius: 3px;
+}
+
+.icon-container {
+    position: relative;
+}
+
+.dropdown {
+    /* position: absolute;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1000;
+    padding: 8px; */
+    position: absolute;
+    top: 24px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    padding: 10px;
+    width: 150px;
+}
+
+.dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.dropdown ul li {
+  
+    padding: 5px 5px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown ul li:hover {
+    background-color: #f1f1f1;
+}
+.card-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for card effect */
+    width: 600px; /* Card width */
+    padding: 15px;
+}
+.scalable {
+    cursor: pointer;
+    transition: transform 0.2s ease; /* Smooth transition for the scaling effect */
+}
+
+.scalable:hover {
+    transform: scale(1.1); /* Scale up slightly on hover */
+}
+
+
+
+
+
+/*
+.custom-container {
+    padding: 1rem;
+    text-align: center;
+}
+
+.chart-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+
+.y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    height: 200px;
+    width: 50%;
+    gap: 10px;
+}
+
+.bar {
+    width: 50px;
+    background-color: rgb(199, 189, 255);
+    border-radius: 5px 5px 0 0;
+    transition: height 0.3s ease;
+}
+
+.x-axis {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pie-chart {
+    width: 100px;
+    height: 100px;
+    transform: rotate(-90deg);
+}
+
+.background-circle {
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: 2;
+}
+
+.accounts-circle {
+    fill: none;
+    stroke: rgb(102, 178, 255);
+    stroke-width: 2;
+    stroke-dasharray: 0 100; 
+    transition: stroke-dasharray 0.3s ease;
+}
+
+.contacts-circle {
+    fill: none;
+    stroke: rgb(255, 153, 153);
+    stroke-width: 2;
+    stroke-dasharray: 0 100; 
+    transition: stroke-dasharray 0.3s ease;
+}
+
+.line-chart {
+    width: 100%;
+    height: 200px;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+}
+
+.line {
+    fill: none;
+    stroke: rgb(255, 102, 102);
+    stroke-width: 2;
+}
+.chart-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.pie-chart {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+}
+
+.label-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.label {
+    position: absolute;
+    transform-origin: center center;
+    font-size: 12px;
+    font-weight: bold;
+}
+.chart-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.pie-chart {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    background-color: white; 
+}
+
+.label-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.color-box {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border-radius: 4px;
+} */

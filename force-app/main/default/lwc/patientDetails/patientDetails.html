@@ -1,0 +1,41 @@
+<template>
+    <lightning-card>
+    <div class="patient-details">
+        <!-- Calendar Section -->
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button onclick={handlePreviousMonth} class="nav-button">❮</button>
+                <h2>{formattedMonth}</h2>
+                <button onclick={handleNextMonth} class="nav-button">❯</button>
+            </div>
+            <div class="calendar-grid">
+                <template for:each={calendarDays} for:item="day">
+                    <div 
+                        key={day.date} 
+                        data-date={day.date} 
+                        class="calendar-day {day.date === selectedDate ? 'selected-day' : ''}" 
+                        onclick={handleDateClick}>
+                        {day.dateLabel}
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Appointments Section -->
+        <div class="appointment-container">
+            <template if:true={hasAppointments}>
+                <template for:each={appointments} for:item="appointment">
+                    <div key={appointment.id} class="appointment-card">
+                        <div class="appointment-title">{appointment.Dr__r.Name}</div>
+                        <div class="appointment-details">{appointment.formattedStartTime}-{appointment.formattedEndTime}</div>
+                        <div class="appointment-details">{appointment.Reason_To_Visit__c}</div>
+                    </div>
+                </template>
+            </template>
+            <template if:false={hasAppointments} >
+                <p class="appointment-card">No appointments found for the selected date.</p>
+            </template>
+        </div>
+    </div>
+</lightning-card>
+</template>

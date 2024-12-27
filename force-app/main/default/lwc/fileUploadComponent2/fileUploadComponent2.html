@@ -1,0 +1,34 @@
+<template>
+    <lightning-card title="Upload File" icon-name="doctype:image">
+        <div class="slds-m-around_medium">
+            <lightning-input type="file" label="Upload File" accept=".pdf, .png, .jpg, .jpeg"
+                onchange={handleFileChange}></lightning-input>
+        </div>
+
+        <template if:true={isFileSelected}>
+            <div class="slds-m-around_medium">
+                <lightning-button label="Upload File" variant="brand" onclick={uploadFile}></lightning-button>
+                <lightning-button label="Save" variant="neutral" onclick={saveRecord} class="slds-m-left_small">
+                </lightning-button>
+            </div>
+        </template>
+
+        <template if:true={uploadedFileUrl}>
+            <div class="slds-m-around_medium">
+                <p>File uploaded successfully! <a href={uploadedFileUrl} target="_blank">View File</a></p>
+            </div>
+        </template>
+        <template if:true={successMessage}>
+            <div class="slds-m-around_medium">
+                <p class="slds-text-color_success">{successMessage}</p> <!-- Display success message -->
+            </div>
+        </template>
+
+
+        <template if:true={errorMessage}>
+            <div class="slds-m-around_medium">
+                <p class="slds-text-color_error">{errorMessage}</p>
+            </div>
+        </template>
+    </lightning-card>
+</template>

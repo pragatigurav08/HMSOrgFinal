@@ -1,0 +1,90 @@
+.patient-details {
+    display: flex;
+    font-family: Arial, sans-serif;
+}
+
+.calendar-container {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+
+.nav-button {
+    background-color: #f9f9f9;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    background-color: #1d68a9;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-day {
+    text-align: center;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+    color: #333;
+}
+
+.calendar-day:hover {
+    background-color: #0070d2;
+    color: white;
+}
+
+.selected-day {
+    background-color: #0070d2;
+    color: white;
+    font-weight: bold;
+}
+
+.appointment-container {
+    width: 100%;
+    max-width: 400px;
+    padding-left: 10px;
+}
+
+.appointment-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    border-left: 4px solid #0070d2;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.appointment-details {
+    margin-top: 0.5rem;
+    font-size: 14px;
+    color: #666;
+}

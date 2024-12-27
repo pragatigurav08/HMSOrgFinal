@@ -1,0 +1,23 @@
+<template>
+    <lightning-card>
+        <div class="top-selling-medicines">
+            <h3>Top Selling Medications</h3>
+            <template if:true={medicines}>
+                <div class="medicines-container">
+                    <template for:each={medicines} for:item="medicine">
+                        <div key={medicine.Id} class="medicine-card">
+                            <img src={medicineurl} alt={medicine.Name} class="medicine-image" />
+                            <div class="medicine-details">
+                                <h4 class="medicine-name">{medicine.Name}</h4>
+                                <p class="medicine-units">{medicine.TotalSold} Units Sold</p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template if:true={error}>
+                <p class="error-message">Error: {error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

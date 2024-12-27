@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Related Records" icon-name="standard:account">
+        <template if:true={treeItems}>
+            <lightning-tree
+                items={treeItems}
+                header="Related Records"
+            ></lightning-tree>
+        </template>
+        <template if:true={error}>
+            <p class="slds-text-color_error">{error}</p>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Sales Overview" icon-name="custom:custom63">
+        <div class="sales-data">
+            <template if:true={sales}>
+                <div class="sales-data-item">
+                    <h3>Daily Sales</h3>
+                    <p>₹{sales.DailySales}</p>
+                </div>
+                <div class="sales-data-item">
+                    <h3>Weekly Sales</h3>
+                    <p>₹{sales.WeeklySales}</p>
+                </div>
+                <div class="sales-data-item">
+                    <h3>Monthly Sales</h3>
+                    <p>₹{sales.MonthlySales}</p>
+                </div>
+            </template>
+            <template if:true={error}>
+                <p class="error-message">Error: {error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

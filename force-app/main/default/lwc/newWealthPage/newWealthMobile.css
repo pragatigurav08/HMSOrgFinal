@@ -1,0 +1,1507 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+.header {
+    background: linear-gradient(90deg, #1a73e8, #0053b3);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.header p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.date-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.date-picker {
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.5rem;
+    min-width: 150px;
+}
+
+.welcome-card {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: -3rem; /* Adjust for overlap effect */
+    z-index: 0;
+    margin-bottom: -3rem; /* Adjust spacing below */
+}
+.welcomee-card {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: -3rem; /* Adjust for overlap effect */
+    z-index: 0;
+    margin-bottom: -3rem; /* Adjust spacing below */
+}
+.e-card {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-content h2 {
+    color: #1a73e8;
+    font-size: 20px;
+    margin: -2px;
+}
+.cards-content h2 {
+    color: #1a73e8;
+    font-size: 1.7rem;
+    margin: 12px;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.image-container {
+    max-width: 100px;
+}
+
+.image-placeholder {
+    width: 100px;
+    height: 100px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.image-container {
+    max-width: 250px; /* Adjust as needed */
+    text-align: center;
+    padding-top: 10px;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px; /* Optional: rounded corners */
+}
+.table-container {
+    margin-top: 1rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.data-table th, .data-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    color: white;
+    font-size: 0.875rem;
+}
+
+.full-time { background-color: #007aff; }
+.pending { background-color: #f0ad4e; }
+.part-time { background-color: #5e5ce6; }
+.contract { background-color: #28a745; }
+
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.table-controls lightning-combobox,
+.table-controls lightning-input {
+    margin-right: 0.5rem;
+}
+.timeline-container {
+    padding: 20px;
+  
+    gap: 20px;
+}
+
+/* Overall grid structure to mimic Windows symbol layout */
+.windows-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  grid-template-rows: 1fr 1fr; /* Two rows */
+  gap: 16px; /* Space between tiles */
+  justify-items: center; /* Center tiles horizontally */
+  align-items: center; /* Center tiles vertically */
+
+  box-sizing: border-box;
+}
+
+/* Individual tiles */
+.windows-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #f4f4f4; /* Light gray background */
+  border-radius: 16px; /* Slight rounding for tile edges */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add depth with shadow */
+  padding: 16px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.windows-tile:hover {
+  transform: scale(1.05); /* Enlarge slightly on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+/* Circular image styling */
+.windows-circle-image {
+  width: 100px; /* Size of the circle */
+  height: 100px;
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image fills the circle properly */
+  border: 3px solid #ddd; /* Optional border around the image */
+  margin-bottom: 8px; /* Space between the image and title */
+}
+
+/* Title below each image */
+.windows-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  text-align: center;
+}
+
+
+.timeline-card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #ffffff;
+     width: 48%;
+         margin-top: 33px;
+}
+
+.timeline-content {
+    padding: 10px 0;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
+}
+
+.timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.timeline-dot.green {
+    background-color: #27ae60;
+        margin-left: 10px;
+}
+
+.timeline-dot.blue {
+    background-color: #3498db;
+        margin-left: 10px;
+}
+
+.timeline-dot.purple {
+    background-color: #9b59b6;
+        margin-left: 10px;
+}
+
+.timeline-dot.orange {
+    background-color: #f39c12;
+        margin-left: 10px;
+}
+
+.timeline-dot.red {
+    background-color: #e74c3c;
+        margin-left: 10px;
+}
+
+.timeline-dot.yellow {
+    background-color: #f1c40f;
+        margin-left: 10px;
+}
+
+.timeline-text {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 16px;
+    text-align: center;
+}
+.tracker-card {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f4f6f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+.progress-list {
+    list-style: none;
+    padding: 0;
+}
+
+.progress-list li {
+    margin: 15px 0;
+}
+
+.progress-bar {
+    height: 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+}
+ .flex-container {
+        display: flex;
+        justify-content: space-between; /* Ensure there's space between the cards */
+        gap: 20px; /* Space between the cards */
+    }
+
+   
+
+.progress-card, .timeline-card {
+    
+    min-width: 45%; /* Minimum width to ensure the cards don’t shrink too much */
+}
+
+.timeline-content {
+    padding: 10px;
+}
+
+.timeline-item {
+    margin-bottom: 10px;
+}
+
+.timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.timeline-dot.green { background-color: green; }
+.timeline-dot.blue { background-color: blue; }
+.timeline-dot.purple { background-color: purple; }
+.timeline-dot.orange { background-color: orange; }
+.timeline-dot.red { background-color: red; }
+.timeline-dot.yellow { background-color: yellow; }
+
+.progress-bar {
+    height: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+}
+.dashboard {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 220px;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.card.blue {
+    background-color: #007bff;
+}
+
+.card.yellow {
+    background-color: #f4c542;
+}
+
+.card.green {
+    background-color: #28a745;
+}
+
+.card.red {
+    background-color: #dc3545;
+}
+.card.aqua {
+    background-color: orange;;
+}
+
+.card.pink {
+     background-color: aqua;
+}
+@media (max-width: 768px) {
+    .windows-grid {
+        grid-template-columns: 1fr; /* Stack cards in one column */
+    }
+}
+
+.title {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.link {
+    color: white;
+    text-decoration: underline;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+.timelinee-card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #ffffff;
+     width: 48%;
+    padding-left: 75px;
+    padding-top: 60px;
+        margin-top: 33px;
+    
+}
+
+
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card.blue {
+    background-color: #007bff;
+}
+
+.card.yellow {
+    background-color: #f4c542;
+}
+
+.card.green {
+    background-color: #28a745;
+}
+
+.card.red {
+    background-color: #dc3545;
+}
+
+.title {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.link {
+    margin-top: 0.5rem;
+    text-decoration: underline;
+    color: white;
+    font-size: 0.9rem;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .windows-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically on smaller screens */
+        grid-template-rows: auto;
+    }
+    .timelinee-card {
+        padding-left: 20px; /* Adjust padding for smaller screens */
+        padding-top: 20px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .windows-grid {
+        grid-template-columns: repeat(2, 1fr); /* Keep two columns for tablets */
+    }
+    .timelinee-card {
+        padding-left: 50px;
+        padding-top: 20px;
+    }
+}
+.card:hover {
+    transform: scale(1.05); /* Slightly enlarge the card */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Add a stronger shadow */
+}
+.bill-card-container {
+  
+    margin-bottom    : 20px;
+    background-color : #f9f9f9;
+    border-radius    : 10px;
+  
+}
+
+.bill-card {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.loan-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between loan cards */
+    margin-top: 15px;
+}
+
+.loan-card {
+    width: calc(33.33% - 20px); /* Adjust width to display 3 cards per row */
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.loan-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 10px; /* Space between grid items */
+}
+
+.loan-details-grid p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.cta-button {
+    display: inline-block;
+  
+    padding: 7px 15px;
+    background-color: #0070d2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.cta-button:hover {
+    background-color: #005bb5;
+}
+
+/* .bill-card {
+    background-color : #fff;
+    border           : 1px solid #ddd;
+    padding          : 15px;
+    cursor           : pointer;
+    border-radius    : 8px;
+    transition       : 0.3s;
+} */
+
+.bill-card:hover {
+    box-shadow       : 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bill-card-summary {
+    display          : flex;
+    justify-content  : space-between;
+    align-items      : center;
+    font-size        : 16px;
+}
+
+.bill-card-details {
+    margin-top       : 15px;
+    display          : flex;
+    flex-direction   : column;
+    gap              : 10px;
+    font-size        : 14px;
+} 
+.lightning-icon {
+    margin-left      : 10px;
+}
+.loan-card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    margin-top: 15px;
+}
+
+.individual-loan-card {
+    width: calc(33.33% - 20px); /* 3 cards per row */
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.loan-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns inside each card */
+    gap: 10px; /* Space between grid items */
+}
+
+.loan-details-grid p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Places items at opposite ends */
+    align-items: center; /* Aligns items vertically in the center */
+    margin: 10px 0; /* Optional: Adds spacing around the container */
+}
+
+.card-content {
+    font-size: 28px;
+    color: #1a73e8;
+    margin: -7px; /* Remove default margin for better alignment */
+}
+
+/* Main Container */
+.dash-card-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+/* Cards */
+.dash-card-box {
+    flex: 1;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dash-card-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dash-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dash-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+.dash-insurance-icon {
+    background-image: url('path/to/insurance-icon.png'); /* Replace with your image */
+    background-color: #0078d7;
+}
+
+.dash-loan-icon {
+    background-image: url('path/to/loan-icon.png'); /* Replace with your image */
+    background-color: #6c63ff;
+}
+
+.dash-advisor-icon {
+    background-image: url('path/to/advisor-icon.png'); /* Replace with your image */
+    background-color: #28a745;
+}
+
+/* Details Section */
+.dash-card-details {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.dash-card-detail-box {
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dash-card-detail-box:last-child {
+    border-bottom: none;
+}
+
+.dash-card-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 70%;
+    object-fit: cover;
+}
+
+h3.shru {
+    margin: 0.5rem 0 0.3rem 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+p.shru {
+    margin: 0;
+    font-size: 1rem;
+    color: #555;
+}
+.image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-image {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+.background-container {
+    
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Optional: To cover full height */
+}
+.dash-card-section {
+    margin-bottom: 20px;
+}
+
+.dash-card {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.card-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    color: #fff;
+}
+
+.insurance-icon {
+    background-color: #007bff; /* Blue */
+}
+
+.loan-icon {
+    background-color: #28a745; /* Green */
+}
+
+.advisor-icon {
+    background-color: #6f42c1; /* Purple */
+}
+
+.card-content {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.no-data {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.dash-card-section {
+    display: flex; /* Use flexbox for horizontal layout */
+    gap: 16px; /* Space between cards */
+    overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+    padding: 16px;
+    white-space: nowrap; /* Prevent cards from wrapping to the next line */
+}
+
+.dash-card {
+    flex: 0 0 auto; /* Prevent cards from shrinking and specify a fixed size */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    background-color: #fff;
+    text-align: left;
+    min-width: 250px; /* Minimum width for each card */
+}
+
+.card-content {
+    font-family: Arial, sans-serif;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.no-data {
+    text-align: center;
+    font-size: 16px;
+    color: #888;
+}
+
+/* Optional Styling for Scrollbar */
+.dash-card-section::-webkit-scrollbar {
+    height: 8px;
+}
+
+.dash-card-section::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.dash-card-section::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dash-card-section {
+        grid-template-columns: 1fr; /* Stack cards vertically on smaller screens */
+    }
+}
+
+
+
+.dash-card-section {
+    width: 100%; /* Ensure the section spans the full width */
+    overflow-x: auto; /* Add horizontal scrolling for small screens */
+    padding: 0; /* Remove extra padding */
+}
+
+.insurance-table {
+    width: 100%; /* Table spans the full width of its container */
+    border-collapse: collapse;
+    margin: 0; /* Remove default margin */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+}
+
+.insurance-table th, 
+.insurance-table td {
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+}
+
+.insurance-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.insurance-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.no-data {
+    text-align: center;
+    font-size: 16px;
+    color: #888;
+    margin: 16px 0;
+}
+.loan-table {
+    width: 100%; /* Full width table */
+    border-collapse: collapse;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+}
+
+.loan-table th, 
+.loan-table td {
+    padding: 12px 16px; /* Padding inside cells */
+    border: 1px solid #ddd; /* Cell borders */
+}
+
+.loan-table th {
+    background-color: #f4f4f4; /* Header background color */
+    font-weight: bold;
+}
+
+.loan-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternating row colors */
+}
+
+.no-data {
+    text-align: center;
+    font-size: 16px;
+    color: #888;
+    margin: 16px 0;
+}
+
+/* Optional Scrollbar Styling */
+.dash-card-section::-webkit-scrollbar {
+    height: 8px;
+}
+
+.dash-card-section::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.dash-card-section::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+}
+.advisor-table {
+    width: 100%; /* Full width table */
+    border-collapse: collapse;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+}
+
+.advisor-table th, 
+.advisor-table td {
+    padding: 12px 16px; /* Padding inside cells */
+    border: 1px solid #ddd; /* Cell borders */
+}
+
+.advisor-table th {
+    background-color: #f4f4f4; /* Header background color */
+    font-weight: bold;
+}
+
+.advisor-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternating row colors */
+}
+/* Gradient background for the container */
+.advi-container {
+  background: linear-gradient(135deg, #007bff, #6c63ff);
+  color: white;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //height: 70vh;
+  text-align: left; /* Ensures text is left-aligned */
+}
+
+/* Left Content Section */
+.advi-content {
+  flex: 1;
+  //max-width: 50%;
+}
+
+.advi-heading {
+  font-size: 2.2rem; /* Reduced font size for smaller height */
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.advi-subheading {
+  font-size: 1.5rem;
+  font-weight: semi-bold;
+  margin-bottom: 0.8rem;
+}
+
+.advi-description {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+/* Buttons */
+.advi-button-container {
+  display: flex;
+  gap: 0.8rem; /* Adjust spacing between buttons */
+}
+
+.advi-btn-primary {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.advi-btn-primary:hover {
+  background-color: #218838;
+}
+
+.advi-btn-secondary {
+  background-color: transparent;
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid white;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.advi-btn-secondary:hover {
+  background-color: white;
+  color: #007bff;
+}
+
+/* Right Image Section */
+.advi-illustration {
+  flex: 1; /* Takes up equal space on the right */
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.advi-hero-image {
+  width: 100%;
+  //max-width: 250px; /* Ensure responsive size */
+  object-fit: contain;
+  border-radius: 15px;
+ //margin-left: 223px;
+}
+.advii-hero-image {
+  width: 100%;
+  max-width: 312px; /* Ensure responsive size */
+  object-fit: contain;
+  border-radius: 15px;
+ margin-left: 223px;
+}
+/* Gradient background for the container */
+.end-container {
+  background: linear-gradient(135deg, #007bff, #6c63ff);
+  color: white;
+  text-align: center;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60vh;
+}
+.endd-container {
+  background: linear-gradient(135deg,  #007bff, #f9f9fa);
+  /* color: white;
+  text-align: center;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  //height: 60vh;
+}
+
+
+/* Left Content Section */
+.end-content {
+  flex: 1;
+  max-width: 50%;
+  text-align: left;
+}
+
+.end-heading {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.end-subheading {
+  font-size: 1.8rem;
+  font-weight: semi-bold;
+  margin-bottom: 1rem;
+}
+
+.end-description {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Right Image Section */
+.end-illustration {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.end-hero-image {
+  width: 100%;
+  max-width: 300px;
+  object-fit: contain;
+  border-radius: 15px;
+//margin-left: 266px;
+}
+.scrollable-table {
+    max-height: 400px; /* Set the height as per your requirements */
+    overflow-y: auto;
+    border: 1px solid #ddd; /* Optional: Add border for better appearance */
+}
+
+.data-table {
+    width: 100%; /* Ensure the table takes the full width of the container */
+    border-collapse: collapse; /* Optional: Better table layout */
+}
+
+.data-table th, 
+.data-table td {
+    padding: 8px 12px; /* Add some padding for better readability */
+    text-align: left; /* Align text to the left */
+}
+
+.data-table th {
+    background-color: #f4f4f4; /* Optional: Add background color to header */
+    position: sticky; /* Keep header fixed during scroll */
+    top: 0; /* Necessary when using sticky positioning */
+}
+.assets-table {
+    width: 100%; /* Full width table */
+    border-collapse: collapse;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+}
+
+.assets-table th, 
+.assets-table td {
+    padding: 12px 16px; /* Padding inside cells */
+    border: 1px solid #ddd; /* Cell borders */
+}
+
+.assets-table th {
+    background-color: #f4f4f4; /* Header background color */
+    font-weight: bold;
+}
+
+.assets-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternating row colors */
+}
+.asset-form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.asset-form-heading {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.slds-button_brand {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #0070d2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.slds-button_brand:hover {
+    background-color: #005bb5;
+}
+.advi-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.advi-content,
+.advi-illustration {
+  flex: 1 1 45%; /* Flex basis for responsive layout */
+  margin: 10px;
+}
+
+.advi-heading {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.advi-subheading {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.advi-description {
+  font-size: 1rem;
+}
+
+.advi-button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Add space between buttons */
+}
+
+.advi-btn-primary,
+.advi-btn-secondary {
+  flex: 1 1 auto; /* Ensure buttons are responsive */
+  padding: 10px 20px;
+}
+
+.advi-hero-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Timeline Cards */
+.timeline-card {
+  margin: 20px;
+}
+
+.timeline-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.windows-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap:2px;
+}
+
+.card {
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.card.blue { background-color: #007bff; color: white; }
+.card.yellow { background-color: #ffc107; color: black; }
+.card.green { background-color: #28a745; color: white; }
+.card.red { background-color: #dc3545; color: white; }
+
+/* Dash Card Container */
+.dash-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.dash-card-box {
+  flex: 1 1 45%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.dash-card-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.end-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.end-content {
+  flex: 1 1 45%;
+  margin: 10px;
+}
+
+.end-illustration {
+  flex: 1 1 45%;
+  margin: 10px;
+}
+
+.end-hero-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Media Queries for Mobile */
+@media screen and (max-width: 768px) {
+  .advi-container,
+  .end-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .advi-content,
+  .advi-illustration,
+  .end-content,
+  .end-illustration {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .advi-button-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .advi-btn-primary,
+  .advi-btn-secondary {
+    width: 100%;
+  }
+
+  .dash-card-box {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+/* Container Styling */
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Card Styling */
+.dashboard-card {
+  flex: 1 1 calc(50% - 20px); /* Adjust to two columns */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  max-width: 300px; /* Restrict maximum width */
+}
+
+.dashboard-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling */
+.dashboard-image {
+  width: 80%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+/* Title and Description */
+.dashboard-title {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 8px 0;
+}
+
+.dashboard-description {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .dashboard-card {
+    flex: 1 1 100%; /* Full width on mobile */
+  }
+
+  .dashboard-container {
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .dashboard-image {
+    width: 90%; /* Slightly larger for mobile screens */
+  }
+}
+.timeline-header{
+    margin-left: 10px;
+}
+/* Container Styling */
+.small-dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+ 
+}
+
+/* Card Styling */
+.small-dashboard-card {
+  flex: 1 1 calc(50% - 10px); /* Two cards per row */
+  
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+ 
+  transition: transform 0.3s, box-shadow 0.3s;
+  max-width: 140px; /* Restrict maximum width for smaller appearance */
+  aspect-ratio: 1/1; /* Ensures cards are square */
+}
+
+.small-dashboard-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling */
+.small-dashboard-image {
+  width: 60%;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+/* Title Styling */
+.small-dashboard-title {
+  font-size: 0.9rem;
+  color: #333;
+  margin: 5px 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .small-dashboard-card {
+    flex: 1 1 45%; /* Slightly smaller cards on mobile */
+  }
+
+  .small-dashboard-container {
+    gap: 8px;
+    
+  }
+
+  .small-dashboard-image {
+    width: 70%; /* Slightly larger image on smaller screens */
+  }
+}

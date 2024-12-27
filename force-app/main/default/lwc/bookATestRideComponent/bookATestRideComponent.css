@@ -1,0 +1,35 @@
+.container{
+    padding: 0;
+    margin: 0;
+    height: 465px;
+    width: 100%;
+    background-color: aliceblue;
+    box-shadow: 0cqb;
+}
+.header-title{
+    height: 10%;
+    width: 100%;
+    border: 1px solid black;
+}
+.progress-step{
+    height: 20%;
+    width: 100%;
+    border: 1px solid blue;
+    /* newly Added */
+    padding-bottom: 4rem;
+    padding-top: 3rem;
+}
+
+.child-components{
+    height: 58%;
+    width: 100%;
+    border: 1px solid green;
+}
+.footer-components{
+    height: 10%;
+    width: 100%;
+    border: 1px solid red;
+}
+.position-relative{
+    position:relative;
+}

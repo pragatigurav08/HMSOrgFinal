@@ -1,0 +1,13 @@
+.custom-container{
+	color : black;
+}
+.custom-background {
+    
+    padding: 16px; /* Adjust padding as needed */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    background-color: white;
+}
+
+.custom{
+    background-color: white;
+}

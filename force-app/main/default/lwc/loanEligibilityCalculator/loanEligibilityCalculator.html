@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="Loan Eligibility Calculator" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            <!-- Input field to enter the Account ID -->
+            <lightning-input 
+                label="Search by Account ID" 
+                type="text" 
+                value={accountId} 
+                onchange={handleAccountSearch}>
+            </lightning-input>
+
+            <!-- Display Annual Income (Auto-Populated) -->
+            <lightning-input 
+                label="Annual Income (INR)" 
+                type="number" 
+                value={annualIncome} 
+                onchange={handleIncomeChange} 
+                readonly>
+            </lightning-input>
+
+            <!-- Display Loan Eligibility Amount -->
+            <p class="slds-m-top_medium">
+                <strong>Eligible Loan Amount:</strong> ₹{loanAmount}
+            </p>
+
+            <!-- Error Message -->
+            <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,42 @@
+<!-- <template>
+<lightning-card title="Loan Eligibility Checker" icon-name="action:approval">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Account ID" value={accountId} onchange={handleAccountIdChange}></lightning-input>
+            <lightning-input label="Loan Amount" value={loanAmount} type="number" onchange={handleLoanAmountChange}></lightning-input>
+            <lightning-button label="Check Eligibility" onclick={checkEligibility} class="slds-m-top_medium"></lightning-button>
+
+            <template if:true={customerDetails}>
+                <p class="slds-m-top_medium">
+                    <strong>Customer Name:</strong> {customerDetails.customerName}
+                </p>
+                <p><strong>Annual Income:</strong> ₹{customerDetails.annualIncome}</p>
+                <p><strong>Interest Rate:</strong> {customerDetails.interestRate}%</p>
+                <p><strong>Eligibility Message:</strong> {customerDetails.message}</p>
+                <p><strong>EMI:</strong> ₹{customerDetails.emi}</p>
+            </template>
+
+            <template if:true={errorMessage}>
+                <p class="slds-text-color_error slds-m-top_medium">{errorMessage}</p>
+            </template>
+        </div>
+    </lightning-card> 
+</template> -->
+<template>
+    <lightning-card title="Loan Eligibility Checker" icon-name="action:following">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Account ID" value={accountId} onchange={handleAccountIdChange}></lightning-input>
+            <lightning-input label="Loan Amount" value={loanAmount} type="number" onchange={handleLoanAmountChange}></lightning-input>
+            <lightning-button label="Check Eligibility" onclick={checkEligibility} class="slds-m-top_medium"></lightning-button>
+
+            <template if:true={customerDetails}>
+                <p class="slds-m-top_medium"><strong>Customer Annual Income:</strong> ₹{customerDetails.annualIncome}</p>
+                <p><strong>Interest Rate:</strong> {customerDetails.interestRate}%</p>
+                <p><strong>Eligibility:</strong> {customerDetails.eligibilityMessage}</p>
+            </template>
+
+            <template if:true={errorMessage}>
+                <p class="slds-text-color_error slds-m-top_medium">{errorMessage}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

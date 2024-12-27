@@ -1,0 +1,172 @@
+<template>
+     <div style="display: flex;
+    justify-content: center;
+    align-items: center;padding-top: 17px;">
+            <div class="card-container">
+                <!-- Heading -->
+                <div class="slds-box" style="margin-bottom: 32px;border-color:#007bff">
+
+
+                    <!-- Row 1 -->
+                    <div class="slds-grid slds-wrap">
+                        <div
+                            class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_11-of-12">
+                            <span class="custom-box">
+
+<template if:true={weekly}>
+    <h2 style="color: #007bff;
+    font-weight: bold;
+    font-size: 13px;">Accounts, Insurance, and Loans: Past 7-Days Trends</h2>
+</template>
+<template if:false={weekly}>
+    <h2 style="color: #007bff;
+    font-weight: bold;
+    font-size: 13px;">Accounts, Insurance, and Loans: Today's Trends</h2>
+</template>
+
+        </span>
+                        </div>
+                        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_1-of-12">
+                            <span class="custom-box">
+            <!-- <lightning-icon icon-name='utility:threedots_vertical' alternative-text='dots' size='small' class="blue-utility-icon"></lightning-icon> -->
+             <div class="icon-container">
+        <!-- Icon that triggers the dropdown -->
+        <lightning-icon 
+            icon-name="utility:threedots_vertical" 
+            alternative-text="dots" 
+            size="small" 
+            class="blue-utility-icon" 
+            onclick={toggleDropdown}>
+        </lightning-icon>
+
+        <!-- Dropdown menu -->
+        <template if:true={isDropdownOpen}>
+            <div class="dropdown">
+                <ul>
+                    <!-- <li onclick={selectTotalTrends}>Total Trends</li> -->
+                    <li  onclick={selectWeeklyTrends}>Past 7Days Trends</li>
+                    <li onclick={selectTodayTrends}>Today's Trends</li>
+                   
+                </ul>
+            </div>
+        </template>
+    </div>
+        </span>
+                        </div>
+                    </div>
+                </div>
+
+<template if:true={today}>
+                <!-- Card Content -->
+                <div class="card-content">
+                    <div class="chart-container">
+                        <!-- Y-axis Labels -->
+                        <div class="y-axis" style="border-right: 1px solid black;">
+                            <span>100</span>
+                            <span>75</span>
+                            <span>50</span>
+                            <span>25</span>
+                            <span>0</span>
+                        </div>
+
+                        <div class="bar-chart" style="border-bottom: 1px solid black;
+    position: relative;
+    right: 24px;
+    top: 0;">
+                            <div class="bar account-bar">
+                                <span class="bar-value">{todaysaccountHeight}</span>
+                            </div>
+                            <div class="bar insurance-bar">
+                                <span class="bar-value">{todaysinsuranceHeight}</span>
+                            </div>
+                            <div class="bar loan-bar">
+                                <span class="bar-value">{todaysloansHeight}</span>
+                            </div>
+                        </div>
+
+                        <!-- X-axis Label -->
+                        <div class="x-axis">
+                            <span>Accounts</span>
+                            <span>Insurances</span>
+                            <span>Loans</span>
+                        </div>
+                    </div>
+                </div>
+                    </template>
+                    <template if:true={total}>
+        <!-- Card Content -->
+                <div class="card-content">
+                    <div class="chart-container">
+                        <!-- Y-axis Labels -->
+                        <div class="y-axis" style="border-right: 1px solid black;">
+                            <span>100</span>
+                            <span>75</span>
+                            <span>50</span>
+                            <span>25</span>
+                            <span>0</span>
+                        </div>
+                        <div class="bar-chart" style="border-bottom: 1px solid black;
+    position: relative;
+    right: 24px;
+    top: 0;">
+                            <div class="bar account-bar">
+                                <span class="bar-value">{accountHeight}</span>
+                            </div>
+                            <div class="bar insurance-bar">
+                                <span class="bar-value">{insuranceHeight}</span>
+                            </div>
+                            <div class="bar loan-bar">
+                                <span class="bar-value">{loansHeight}</span>
+                            </div>
+                        </div>
+
+                        <!-- X-axis Label -->
+                        <div class="x-axis">
+                            <span>Accounts</span>
+                            <span>Insurances</span>
+                            <span>Loans</span>
+                        </div>
+                    </div>
+                </div>
+    </template>
+     <template if:true={weekly}>
+        <!-- Card Content -->
+                <div class="card-content">
+                    <div class="chart-container">
+                        <!-- Y-axis Labels -->
+                        <div class="y-axis" style="border-right: 1px solid black;">
+                            <span>100</span>
+                            <span>75</span>
+                            <span>50</span>
+                            <span>25</span>
+                            <span>0</span>
+                        </div>
+                        <div class="bar-chart" style="border-bottom: 1px solid black;
+    position: relative;
+    right: 24px;
+    top: 0;">
+                            <div class="bar account-bar">
+                                <span class="bar-value">{weeklyaccountHeight}</span>
+                            </div>
+                            <div class="bar insurance-bar">
+                                <span class="bar-value">{weeklyinsuranceHeight}</span>
+                            </div>
+                            <div class="bar loan-bar">
+                                <span class="bar-value">{weeklyloansHeight}</span>
+                            </div>
+                        </div>
+
+                        <!-- X-axis Label -->
+                        <div class="x-axis">
+                            <span>Accounts</span>
+                            <span>Insurances</span>
+                            <span>Loans</span>
+                        </div>
+                    </div>
+                </div>
+    </template>
+            </div>
+        </div>
+
+ 
+</template>

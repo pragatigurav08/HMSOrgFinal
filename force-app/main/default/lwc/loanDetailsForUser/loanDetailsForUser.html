@@ -1,0 +1,74 @@
+<!-- <template>
+    <template if:true={loanRecords}>
+        <lightning-card title="Loan Details" icon-name="standard:forecasts">
+            <div class="slds-m-around_medium">
+                <template for:each={loanRecords} for:item="loan">
+                    <div key={loan.Id} class="slds-box slds-theme_default slds-m-bottom_small">
+                        <p><strong>Borrower's Name:</strong> {loan.Borrower_s_Name__c}</p>
+                        <p><strong>Loan Amount:</strong> {loan.Loan_Amount__c}</p>
+                        Uncomment if Uploaded Documents is implemented 
+                         <p><strong>Uploaded Documents:</strong> {loan.Uploaded_Documents__c}</p> 
+                         <p><strong>Email Address:</strong> {loan.EmailAddress__c}</p> 
+                        Buttons for Approve and Reject 
+                         <div class="slds-m-top_small">
+                            <lightning-button 
+                                label="Approve" 
+                                variant="brand" 
+                                onclick={handleApprove} 
+                                data-id={loan.Id}>
+                            </lightning-button>
+                            <lightning-button 
+                                label="Reject" 
+                                variant="destructive" 
+                                onclick={handleReject} 
+                                data-id={loan.Id}>
+                            </lightning-button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </lightning-card>
+    </template>
+    <template if:false={loanRecords}>
+        <lightning-card title="Loan Details" icon-name="standard:forecasts">
+            <div class="slds-m-around_medium">
+                <p>You are not authorized to view loan details.</p>
+            </div>
+        </lightning-card>
+    </template>
+</template> --> 
+<template>
+    <template if:true={accountData}>
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
+            <thead>
+                <tr>
+                    <th scope="col">Account Name</th>
+                    <th scope="col">Loans</th>
+                    <th scope="col">Files</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={accountData} for:item="account">
+                    <tr key={account.accountName}>
+                        <td>{account.accountName}</td>
+                        <td>
+                            <template for:each={account.loans} for:item="loan">
+                                <p key={loan.loanAmount}>
+                                    Amount: {loan.loanAmount}, Interest: {loan.interestRate}%
+                                </p>
+                            </template>
+                        </td>
+                        <td>
+                            <template for:each={account.files} for:item="file">
+                                <p key={file}>{file}</p>
+                            </template>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </template>
+    <template if:true={error}>
+        <p class="slds-text-color_error">Error: {error}</p>
+    </template>
+</template>

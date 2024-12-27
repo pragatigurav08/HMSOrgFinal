@@ -1,0 +1,30 @@
+<template>
+    <section class="bill-card-container">
+    <lightning-card title="Verfications and Details" class="bill-card" onclick={toggleDetails}>
+        <div slot="actions" class="chevron-container">
+                <lightning-icon icon-name={chevronIcon} alternative-text="Toggle Details" size="xx-small" class="chevron-icon"></lightning-icon>
+            </div>
+            <template if:true={showDetails}>
+        <template if:true={newAccount}>
+            <div class="slds-box slds-box_xx-small custom-background" style="margin-left: 8px; margin-right: 8px;">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>Document Verfication Status:</strong> <span class="slds-m-left_xx-small">{newAccount.Document_Verification_Status__c}</span></p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>Credit Card:</strong> <span class="slds-m-left_xx-small">{newAccount.Credit_Card__c}</span></p>
+                    </div>
+                   
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>Debit Card:</strong> <span class="slds-m-left_xx-small">{newAccount.Debit_Card__c}</span></p>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template if:false={newAccount}>
+            <p>No associated Account</p>
+        </template>
+            </template>
+    </lightning-card>
+    </section>
+</template>

@@ -1,0 +1,73 @@
+<apex:page controller="PrintPrescriptionController" showHeader="false" contentType="application/pdf" renderAs="pdf">
+    <apex:outputPanel rendered="{!hasRecords}">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="text-align: left;">
+        <h2 style="margin: 0;"> <img src="/resource/Healthcare" alt="Clinic Logo" style="height: 50px;"/>&nbsp;&nbsp;Healthcare Clinic</h2>
+   
+        <p style="margin: 0;">2nd Main road, near Axis Bank, Bangalore, Karnataka - 561038</p>
+        <p style="margin: 0;">Ph: 094233 80390 | Timing: 09:00 AM - 02:00 PM | Closed: Friday </p>
+    </div>
+        </div>
+
+    <hr style="border-top: 1px solid black;"/>
+      
+
+        <!-- Clinic Information Section -->
+        <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 10px;">
+            <div>
+            <h3 style="margin: 0;">{!doctorName}</h3>
+            <p style="margin: 0;">Reg. No: 270988 | Mob. No: 8983390126</p>
+            </div>
+            
+        </div>
+
+        <!-- Patient Details Section -->
+<div style="font-size: 14px; margin-bottom: 10px;">
+    <p style="margin: 0;">
+        <strong>ID:</strong> {!todayPrescriptions[0].Patient_Registration__r.patientID__c} &nbsp;&nbsp;
+        <strong>Name:</strong> {!todayPrescriptions[0].Patient_Registration__r.Name} ({!todayPrescriptions[0].Patient_Registration__r.Gender__c}) {!todayPrescriptions[0].Patient_Registration__r.Age__c} years
+    </p>
+    <p style="margin: 0;"><strong>Address:</strong> {!todayPrescriptions[0].Patient_Registration__r.Address__c}</p>
+</div>
+
+
+<apex:page controller="PrintPrescriptionController">
+    <!-- Date Section -->
+    <div style="font-size: 14px; text-align: right; margin-bottom: 10px;">
+        <p style="margin: 0;"><strong>Date:</strong> {!formattedCreatedDate}</p>
+    </div>
+</apex:page>
+
+
+
+        <!-- Prescription Table Section -->
+        <table style="width: 100%; font-size: 14px; border-collapse: collapse; margin-top: 10px;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 6px; text-align: left;">Medicine Name</th>
+                    <th style="padding: 6px; text-align: left;">Dosage</th>
+                    <th style="padding: 6px; text-align: left;">Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:repeat value="{!todayPrescriptions}" var="prescription">
+                    <tr>
+                        <td style="padding: 6px;">{!prescription.Drug__r.Name}</td>
+                        <td style="padding: 6px;">1 tablet {!prescription.Frequency__c} {!prescription.Intake__c}</td>
+                        <td style="padding: 6px;">{!prescription.Duration__c} Days<br/>(Tot: {!prescription.Dosage__c} tablets)</td>
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table>
+        <div style="font-size: 14px; margin-top: 20px;">
+    <p style="margin: 0;"><strong>Next Visit Date:</strong> {!formattedNextVisitDate}</p>
+</div>
+
+    </apex:outputPanel>
+
+    <apex:outputPanel rendered="{!NOT(hasRecords)}">
+        <p style="text-align: center; font-size: 16px; color: red;">
+            No prescription records found for today.
+        </p>
+    </apex:outputPanel>
+</apex:page>

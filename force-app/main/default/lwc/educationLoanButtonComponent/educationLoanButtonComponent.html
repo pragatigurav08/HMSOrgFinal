@@ -1,0 +1,73 @@
+<template>
+    <!-- Render the Education Loan button conditionally -->
+    <template if:true={showEducationLoanButton}>
+        <lightning-button label="Education Loan"
+                          onclick={openEligibilityChecker}
+                          class="slds-m-bottom_medium">
+        </lightning-button>
+    </template>
+ 
+    <!-- Render the Loan Eligibility Checker conditionally -->
+    <template if:true={showEligibilityChecker}>
+       
+       <lightning-card title="Loan Eligibility Checker" icon-name="action:following">
+               
+                <div class="slds-m-around_medium">
+                    <lightning-input label="Account ID" value={accountId} onchange={handleAccountIdChange}>
+                    </lightning-input>
+                    <lightning-input label="Loan Amount" value={loanAmount} type="number" onchange={handleLoanAmountChange}>
+                    </lightning-input>
+                    <lightning-button label="Check Eligibility" onclick={checkEligibility} class="slds-m-top_medium">
+                    </lightning-button>
+ 
+                    <template if:true={customerDetails}>
+                        <p class="slds-m-top_medium">
+                            <strong>Customer Name:</strong> {customerDetails.customerName}
+                        </p>
+                        <p><strong>Annual Income:</strong> ₹{customerDetails.annualIncome}</p>
+                        <p><strong>Interest Rate:</strong> {customerDetails.interestRate}%</p>
+                        <p><strong>Eligibility Message:</strong> {customerDetails.message}</p>
+                        <p><strong>EMI:</strong> ₹{customerDetails.emi}</p>
+ 
+                        <template if:true={errorMessage}>
+                            <p class="slds-text-color_error slds-m-top_medium">{errorMessage}</p>
+                        </template>
+                    </template>
+                </div>
+ 
+                <div class="slds-grid">
+                    <div>
+                        <span></span>
+                    </div>
+                    <div>
+                        <span class="back-button"><button onclick={handleBackClick}>Back</button></span>
+                    </div>
+                    <div>
+                        <span></span>
+                    </div>
+                    <div>
+                        <span></span>
+                    </div>
+                    <div class="slds-col_bump-left">
+                        <span><button class="loanbutton" onclick={handleButtonClick}>Apply for Personal Loan</button></span>
+                    </div>
+                    <div>
+                        <span></span>
+                    </div>
+                </div>
+            </lightning-card>
+           
+    </template>
+ 
+ 
+ 
+    <template if:true={isFormVisible}>
+        <form>
+            <lightning-input label="Loan Amount" type="number" required></lightning-input>
+            <lightning-input label="Loan Purpose" type="text" required></lightning-input>
+            <lightning-input label="Name" type="text" required></lightning-input>
+            <lightning-button variant="brand" label="Submit" type="submit"></lightning-button>
+            <lightning-button label="Cancel" onclick={handleButtonClick}></lightning-button>
+        </form>
+    </template>
+</template>

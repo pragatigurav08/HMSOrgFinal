@@ -1,0 +1,868 @@
+.custom-container {
+    padding: 1rem;
+    text-align: center;
+    color : black;
+}
+
+.chart-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+.popover-card {
+    width: 15rem; /* Adjust as needed */
+    position: absolute; /* Use absolute positioning */
+    background-color: #fafafa;
+    overflow: hidden;
+    z-index: 15;
+    top: 12rem;
+    height: 20rem;
+    left: 75rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for a popover effect */
+    border-radius: 8px; /* Rounded corners for better design */
+    padding: 1rem; /* Internal spacing */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth animation */
+}
+
+
+
+.y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    height: 200px;
+    width: 100%;
+    gap: 20px;
+}
+
+.bar {
+    width: 50px;
+    background-color:  #0070d2;
+    border-radius: 5px 5px 0 0;
+    transition: height 0.3s ease;
+    color:black;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 5px;
+}
+
+.x-axis {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.container {
+   
+    margin-top: -1rem;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    /* width: 22%;
+    background-color: #f4f6f9;
+    padding: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); */
+	
+    background-color: #e5f0fa;
+    padding-top: 30px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    width: 18%;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+}
+.selected {
+    background-color: #b3d4fc; /* Light blue to show selection */
+    color: #000; /* Optional: change text color */
+    font-weight: bold;
+    border: 2px solid #0070d2; /* Optional: Add a border for more emphasis */
+}
+.nav_selected_removed{
+        padding: 13px 27px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: #ffffff;
+    border-top-left-radius: 20px;
+    box-shadow: 0px 4px 8px rgb(0 0 0 / 8%);
+    color: #000;
+    border-bottom-left-radius: 20px;
+    border-right: 3px solid #0070d2;
+}
+
+.nav-button_removed {
+    /* display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    background-color: #e0e0e0;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+	border-radius: 11px;
+     background-color: #ffffff63; */
+	display: block;
+    width: 101%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+   background-color: #e5f0fa;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    /* border-radius: 168px; */
+    font-size: 121%;
+    /* border-top-right-radius: 168px;
+    border-bottom-right-radius: 168px; */
+}
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 12px;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+.header {
+    background: linear-gradient(90deg, #1a73e8, #0053b3);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.header p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.date-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.date-picker {
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.5rem;
+    min-width: 150px;
+}
+
+.welcome-card {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: -3rem; /* Adjust for overlap effect */
+    z-index: 0;
+    margin-bottom: -3rem; /* Adjust spacing below */
+}
+.e-card {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-content h2 {
+    color: #1a73e8;
+    font-size: 1.5rem;
+    margin-right: 2rem;
+}
+.card-wealth  {
+    color: #1a73e8;
+    font-size: 1.5rem;
+    margin-right: 5rem;
+
+}
+.card-con{
+    color: #1a73e8;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+.card-cons{
+    color: #1a73e8;
+    font-size: 1.5rem;
+    margin-right:11rem;
+}
+.cards-content h2 {
+    color: #1a73e8;
+    font-size: 1.7rem;
+    margin: 0;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.image-container {
+    max-width: 100px;
+}
+
+.image-placeholder {
+    width: 100px;
+    height: 100px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.image-container {
+    max-width: 250px; /* Adjust as needed */
+    text-align: center;
+    padding-top: 30px;
+}
+
+.image {
+    width: 78%;
+    height: auto;
+    border-radius: 5px; /* Optional: rounded corners */
+}
+.table-container {
+    margin-top: 1rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.data-table th, .data-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    color: white;
+    font-size: 0.875rem;
+}
+
+.full-time { background-color: #007aff; }
+.pending { background-color: #f0ad4e; }
+.part-time { background-color: #5e5ce6; }
+.contract { background-color: #28a745; }
+
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.table-controls lightning-combobox,
+.table-controls lightning-input {
+    margin-right: 0.5rem;
+}
+.timeline-container {
+    padding: 20px;
+  
+    gap: 20px;
+}
+
+.timeline-card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #ffffff;
+     width: 48%;
+}
+
+.timeline-content {
+    padding: 10px 0;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
+}
+
+.timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.timeline-dot.green {
+    background-color: #27ae60;
+        margin-left: 10px;
+}
+
+.timeline-dot.blue {
+    background-color: #3498db;
+        margin-left: 10px;
+}
+
+.timeline-dot.purple {
+    background-color: #9b59b6;
+        margin-left: 10px;
+}
+
+.timeline-dot.orange {
+    background-color: #f39c12;
+        margin-left: 10px;
+}
+
+.timeline-dot.red {
+    background-color: #e74c3c;
+        margin-left: 10px;
+}
+
+.timeline-dot.yellow {
+    background-color: #f1c40f;
+        margin-left: 10px;
+}
+
+.timeline-text {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 16px;
+    text-align: center;
+}
+.tracker-card {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f4f6f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+.progress-list {
+    list-style: none;
+    padding: 0;
+}
+
+.progress-list li {
+    margin: 15px 0;
+}
+
+.progress-bar {
+    height: 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+}
+ .flex-container {
+        display: flex;
+        justify-content: space-between; /* Ensure there's space between the cards */
+        gap: 20px; /* Space between the cards */
+    }
+
+   
+
+.progress-card, .timeline-card {
+    flex: 1; /* Each card will take equal width */
+    min-width: 45%; /* Minimum width to ensure the cards don’t shrink too much */
+}
+
+.timeline-content {
+    padding: 10px;
+}
+
+.timeline-item {
+    margin-bottom: 10px;
+}
+
+.timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.timeline-dot.green { background-color: green; }
+.timeline-dot.blue { background-color: blue; }
+.timeline-dot.purple { background-color: purple; }
+.timeline-dot.orange { background-color: orange; }
+.timeline-dot.red { background-color: red; }
+.timeline-dot.yellow { background-color: yellow; }
+
+.progress-bar {
+    height: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+}
+.dashboard {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 220px;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card.blue {
+    background-color: #007bff;
+}
+
+.card.yellow {
+    background-color: #f4c542;
+}
+
+.card.green {
+    background-color: #28a745;
+}
+
+.card.red {
+    background-color: #dc3545;
+}
+.card.aqua {
+    background-color: orange;;
+}
+
+.card.pink {
+     background-color: aqua;
+}
+
+.title {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.link {
+    color: white;
+    text-decoration: underline;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+.timelinee-card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #ffffff;
+     width: 48%;
+    padding-left: 75px;
+    padding-top: 28px;
+/*justify-content: center;*/
+}
+
+
+.windows-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(2, 1fr);    /* 2 rows */
+    gap: 1rem; /* Space between the cards */
+    width: 400px; /* Adjust width */
+    height: 400px; /* Adjust height to make it a square grid */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card.blue {
+    background-color: #007bff;
+}
+
+.card.yellow {
+    background-color: #f4c542;
+}
+
+.card.green {
+    background-color: #28a745;
+}
+
+.card.red {
+    background-color: #dc3545;
+}
+
+.title {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.link {
+    margin-top: 0.5rem;
+    text-decoration: underline;
+    color: white;
+    font-size: 0.9rem;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .windows-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically on smaller screens */
+        grid-template-rows: auto;
+    }
+    .timelinee-card {
+        padding-left: 20px; /* Adjust padding for smaller screens */
+        padding-top: 20px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .windows-grid {
+        grid-template-columns: repeat(2, 1fr); /* Keep two columns for tablets */
+    }
+    .timelinee-card {
+        padding-left: 50px;
+        padding-top: 20px;
+    }
+}
+.card:hover {
+    transform: scale(1.05); /* Slightly enlarge the card */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Add a stronger shadow */
+}
+.nav-button {
+   
+    cursor: pointer;
+    background-color: #e5f0fa;
+	display: block;
+ 
+    /* padding: 1rem; */
+    padding: 4%;
+    margin-bottom: 4%;   /* background-color: #e5f0fa; */
+    border: none;
+    text-align: left;
+ 
+    /* border-radius: 168px; */
+    /* font-size: 121%; */
+    transition: background-color 0.3s, color 0.3s;
+    padding-left: 10%;
+    font-size: 16px;
+    width: 100%;
+}
+
+.nav-button.nav_selected {
+    background-color: white;
+    /* border-radius: 20px; Adjust to make the curve smoother */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(251, 248, 248, 0.2); /* Adds subtle shadow for emphasis */
+    color: #000; /* Ensures contrast on white background */
+     border-right: 4px solid #0070d2;
+     font-weight: bold;
+}
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+
+.chart {
+    width: 100%;
+    height: 100%;
+}
+
+.white-utility-icon {
+    --sds-c-icon-color-foreground-default: white;
+}
+.main-content {
+    /* width: 70%;
+    padding: 2rem; */
+    margin-left: 18%;
+    width: 82%;
+    padding: 1rem;
+    overflow-y: auto;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+
+/* @media only screen and  (max-width: 1440px) {
+.main-content {
+    width: 70%;
+    padding: 2rem;
+}
+.tabAccount{
+    margin-right:43rem;
+    margin-top:4px;
+}
+.tab-margin{
+    margin-right: 49rem;
+    margin-top:4px;
+}
+.tabLoan{
+    margin-right: 51rem;
+    margin-top:4px;
+}
+.tabWealth{
+margin-right: 51rem;
+    margin-top:4px;
+}} */
+
+/* Tablet view: Adjust layout for medium-sized screens */
+@media only screen and (max-width: 768px) {
+    .tab-margin{
+    margin-right: 15rem;
+    margin-top:4px;
+}
+.tabAccount{
+    margin-right:9rem;
+    margin-top:4px;
+}
+.tabLoan{
+    margin-right: 18rem;
+    margin-top:4px;
+}
+.tabWealth{
+    margin-right:16rem;
+    margin-top:4px;
+}
+}
+
+.scalable {
+    cursor: pointer;
+    transition: transform 0.2s ease; /* Smooth transition for the scaling effect */
+}
+
+.scalable:hover {
+    transform: scale(1.1); /* Scale up slightly on hover */
+}
+/* General Reset */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Timeline Card */
+.timelinee-card {
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.windows-grid {
+  display: flex;
+  gap: 25px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+/* Card Design */
+.card {
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  padding: 20px;
+  border-radius: 15px;
+  width: 220px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05); /* Lift and scale effect */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card.blue {
+  background: linear-gradient(145deg, #007bff, #0056b3);
+  color: white;
+}
+
+.card.yellow {
+  background: linear-gradient(145deg, #ffc107, #e0a800);
+  color: black;
+}
+
+.card.green {
+  background: linear-gradient(145deg, #28a745, #1e7e34);
+  color: white;
+}
+
+/* Title Styles */
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* SubTitle and Icon Container */
+.subTitle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.subTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-right: 10px;
+}
+
+.calendar-pic {
+  width: 24px; /* Adjust size as needed */
+  height: 24px;
+  object-fit: contain; /* Ensures the image doesn't get distorted */
+}
+
+/* Value Text */
+.value {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .windows-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%; /* Full width for small screens */
+    max-width: 350px; /* Optional: limit card width */
+  }
+}
+/* Parent container for horizontal alignment */
+.timeline-card-horizontal {
+ 
+  justify-content: space-around; /* Center the cards */
+  align-items: stretch; /* Ensure equal height */
+  gap: 20px; /* Space between cards */
+  padding: 20px;
+  width: 100%; /* Full-width container */
+  box-sizing: border-box;
+}
+
+/* Card container styling */
+.card-container {
+  display: flex;
+  gap: 20px;
+}
+
+/* Individual card styling */
+.card {
+  flex: 1; /* Allow cards to grow and shrink equally */
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card.blue {
+  background-color: #007bff; /* Blue color for the Account card */
+}
+
+.card.yellow {
+  background-color: #ffc107; /* Yellow color for the Insurance card */
+}
+
+.card.green {
+  background-color: #28a745; /* Green color for the Loans card */
+}
+
+/* Subtitle container styling */
+.subTitle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.subTitle {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.calendar-pic {
+  width: 20px;
+  height: 20px;
+}
+
+/* Value styling */
+.value {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+}

@@ -1,0 +1,314 @@
+body {
+    font-family: 'Nunito', 'Avenir', sans-serif;
+    font-size: 20px;
+    padding: 20px;
+  }
+  
+  .container {
+    width: 70%;
+    margin: 3em auto;
+  }
+  
+  a {
+    color: #406753;
+    text-decoration: none;
+    border-bottom: 1px dotted #999;
+  }
+  
+  a:hover {
+    color: black;
+    border-color: black;
+  }
+  
+  hr {
+    opacity: 0.3;
+  }
+  
+  h1 {
+    font-size: 50px;
+  }
+  
+  h3 {
+    border-left: 12px solid #f1f1f1;
+    text-indent: 1em;
+    color: #999;
+    margin-top: 2em;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0.4em;
+    list-style-type: square;
+  }
+  
+  li {
+    padding-left: 0.5em;
+    line-height: 2.4em;
+  }
+  
+  code {
+    font-family: Monaco, Consolas, "Lucida Console", monospace;
+    background-color: #f1f1f1;
+    font-size: 70%;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .subdued {
+    font-size: 80%;
+    opacity: 0.6;
+  }
+  
+  .flexer,
+  .progress-indicator {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex
+  }
+  
+  .no-flexer,
+  .progress-indicator.stacked {
+    display: block
+  }
+  
+  .no-flexer-element {
+    -ms-flex: 0;
+    -webkit-flex: 0;
+    -moz-flex: 0;
+    flex: 0
+  }
+  
+  .flexer-element,
+  .progress-indicator>li {
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    flex: 1
+  }
+  
+  .progress-indicator {
+    margin: 0 0 1em;
+    padding: 0;
+    font-size: 80%;
+  }
+  
+  .progress-indicator>li {
+    list-style: none;
+    text-align: center;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    text-overflow: ellipsis;
+    color: #bbb;
+    display: block
+  }
+  
+  .progress-indicator>li:hover {
+    color: #6f6f6f
+  }
+  
+  .progress-indicator>li.completed {
+    color: #45851B
+  }
+  
+  .progress-indicator>li .bubble {
+    border-radius: 1000px;
+    width: 35px;
+    height: 35px;
+    background-color: #bbb;
+    display: block;
+    margin: 0 auto .5em;
+    border-bottom: 1px solid #888;
+    font-size: 19px;
+  }
+  
+  .progress-indicator>li .bubble:after,
+  .progress-indicator>li .bubble:before {
+    display: block;
+    position: absolute;
+    top: 18px;
+    width: 100%;
+    height: 4px;
+    content: '';
+    background-color: #bbb;
+    z-index: -1;
+  }
+  
+  .progress-indicator>li.completed .bubble,
+  .progress-indicator>li.active .bubble,
+  .progress-indicator>li .bubble {
+    color: white;
+  }
+  
+  .progress-indicator>li.completed .bubble:after {
+    content: "\2714";
+    color: white;
+    z-index: 1;
+    line-height: 0;
+  }
+  
+  .progress-indicator>li.active .bubble:after {
+    content: "\25CF";
+    color: white;
+    z-index: 1;
+    line-height: 0;
+  }
+  
+  .progress-indicator>li.danger .bubble:after {
+    content: "!";
+    color: white;
+    z-index: 1;
+    line-height: 0;
+  }
+  
+  .progress-indicator>li .bubble:after {
+    content: "\22EF";
+    color: black;
+    z-index: 1;
+    line-height: 0;
+  }
+  
+  .progress-indicator>li.completed .bubble,
+  .progress-indicator>li.completed .bubble:after,
+  .progress-indicator>li.completed .bubble:before {
+    background-color: #45851B;
+    border-color: #45851B;
+  }
+  
+  .progress-indicator>li .bubble:before {
+    left: 0
+  }
+  
+  .progress-indicator>li .bubble:after {
+    right: 0
+  }
+  
+  .progress-indicator>li.active {
+    color: #337AB7
+  }
+  
+  .progress-indicator>li.active .bubble,
+  .progress-indicator>li.active .bubble:after,
+  .progress-indicator>li.active .bubble:before {
+    background-color: #337AB7;
+    border-color: #122a3f
+  }
+  
+  .progress-indicator>li a:hover .bubble,
+  .progress-indicator>li a:hover .bubble:after,
+  .progress-indicator>li a:hover .bubble:before {
+    background-color: #5671d0;
+    border-color: #1f306e
+  }
+  
+  .progress-indicator>li a:hover .bubble {
+    color: #5671d0
+  }
+  
+  .progress-indicator>li.danger {
+    color: #d3140f;
+  }
+  
+  .progress-indicator>li.danger .bubble,
+  .progress-indicator>li.danger .bubble:after,
+  .progress-indicator>li.danger .bubble:before {
+    background-color: #d3140f;
+    border-color: #440605;
+  }
+  
+  .progress-indicator>li.danger .bubble {
+    color: white
+  }
+  
+  .progress-indicator>li.warning .bubble,
+  .progress-indicator>li.warning .bubble:after,
+  .progress-indicator>li.warning .bubble:before {
+    background-color: #edb10a;
+    border-color: #5a4304
+  }
+  
+  .progress-indicator>li.warning .bubble {
+    color: #edb10a
+  }
+  
+  .progress-indicator>li.info .bubble,
+  .progress-indicator>li.info .bubble:after,
+  .progress-indicator>li.info .bubble:before {
+    background-color: #5b32d6;
+    border-color: #25135d
+  }
+  
+  .progress-indicator>li.info .bubble {
+    color: #5b32d6
+  }
+  
+  
+  /*vertical progress indicator*/
+  
+  .progress-indicator.stacked>li {
+    text-indent: -5px;
+    display: block;
+  }
+  
+  .progress-indicator.stacked>li .bubble:after
+  /* .progress-indicator.stacked>li .bubble:before { */
+  
+  {
+    margin-left: 0.5%;
+    width: 3px;
+    height: 83%;
+    left: 10px;
+  }
+  
+  .progress-indicator.stacked>li:last-child .bubble:after,
+  .progress-indicator.stacked>li .bubble:before {
+    width: 0;
+  }
+  
+  .progress-indicator.stacked>li .bubble {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .progress-indicator.stacked {
+    display: block;
+    width: 100%;
+  }
+  
+  .progress-indicator.stacked > li {
+    min-height: 100px;
+  }
+  
+  .text-row {
+    display: block;
+    clear: both;
+    line-height: 1.2;
+  }
+  
+  .step-title {
+    text-transform: uppercase;
+  }
+  
+  .text-group {
+    display: block;
+    text-align: left;
+    list-style-type: none;
+    width: 100%;
+    margin-left: 35px;
+    margin-top: -45px;
+    line-height: 1;
+    overflow: hidden;
+  }
+  
+  .text-group li.span-title {
+    font-weight: bold;
+    line-height: 1;
+  }
+  
+  .text-group li.data-item {
+    line-height: 1;
+  }

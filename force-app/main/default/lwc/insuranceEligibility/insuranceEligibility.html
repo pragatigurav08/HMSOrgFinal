@@ -1,0 +1,974 @@
+<template>
+    <lightning-card>
+        <!-- Progress Bar -->
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12"
+                style="background-color: white;">
+            </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12"
+                style="background-color: white;">
+                <span class="custom-box">
+               <lightning-progress-indicator current-step={currentStep} type="base">
+            <template for:each={steps} for:item="step">
+                <lightning-progress-step
+                    label={step.label}
+                    value={step.value}
+                    key={step.label}>
+                </lightning-progress-step>
+            </template>
+
+        </lightning-progress-indicator>
+        </span>
+            </div>
+        </div>
+        <template if:true={isStep1}>
+            <div class="slds-grid ">
+                <div class="slds-col">
+                    <span>
+
+                <h3 style="font-size: 16px;padding-left: 16px;">
+                        <lightning-icon icon-name="utility:meet_focus_presenter" 
+                                        alternative-text="meet_focus_presenter" 
+                                        size="medium" 
+                                        title="meet_focus_presenter">
+                        </lightning-icon> 
+                       <b style="padding-left: 10px;"> Personal Information
+                    </b></h3> 
+            
+            </span>
+                </div>
+            </div>
+            <div class="slds-p-around_medium">
+                <!-- Account ID Input -->
+                <lightning-input label="New Account" type="text" value={searchKey} onchange={handleSearchTermChange}
+                    placeholder="Search New Account..." data-id="searchKey"></lightning-input>
+
+                <!-- Search Results -->
+                <template if:true={accounts}>
+                    <ul class="slds-listbox slds-listbox_vertical" role="listbox" aria-label="Suggested for you">
+                        <template for:each={accounts} for:item="account">
+                            <li key={account.Id} class="slds-listbox__item" role="presentation" data-id={account.Id}
+                                onclick={handleAccountSelect}>
+                                <div class="slds-media slds-listbox__option slds-listbox__option_plain" role="option">
+                                    <span class="slds-media__body">
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">{account.Name}</span>
+                                    </span>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+
+                <!-- First Name Display (Auto-Populated) -->
+                <template if:true={firstName}>
+                    <p><strong>First Name:</strong> {firstName}</p>
+                </template>
+
+                <!-- Annual Income Display (Auto-Populated) -->
+                <lightning-input label="Annual Income" value={annualIncome} disabled
+                    placeholder="Annual Income will be auto-populated" required>
+                </lightning-input>
+                <div class="slds-col">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12"
+                            style="background-color: white">
+                            <lightning-combobox label="Select Type Of Insurance" value={recordType}
+                                options={recordTypeOptions} onchange={handleRecordTypeChange} data-id="recordType"
+                                required>
+                            </lightning-combobox>
+                        </div>
+                    </div>
+                </div>
+                <!-- Insurance Amount Input -->
+                <lightning-input label="Enter Insurance Amount" value={insuranceAmount}
+                    onchange={handleInsuranceAmountChange} type="number" placeholder="Enter desired insurance amount"
+                    required>
+                </lightning-input>
+
+                <!-- Required Annual Income Display -->
+                <template if:true={requiredIncome}>
+                    <p><strong>Required Annual Income:</strong> {requiredIncome}</p>
+                </template>
+
+                <!-- Eligibility Status -->
+                <template if:true={isEligible}>
+                    <p class="slds-text-color_success">You are eligible for this insurance amount.</p>
+                </template>
+                <template if:false={isEligible}>
+                    <p class="slds-text-color_error">Your annual income does not meet the required threshold.</p>
+                </template>
+
+                <div class="slds-grid slds-grid_align-end">
+
+                    <div class="slds-col">
+                        <!-- Know Policy Plans Button (Popup Trigger) -->
+                        <lightning-button label="Know Policy Plans" variant="brand" onclick={handleKnowPolicyPlansClick}
+                            class="button-spacing button-blue">
+                        </lightning-button>
+                    </div>
+                    <div class="slds-col">
+                        <!-- Next Button (Disabled if not eligible) -->
+                        <lightning-button label="Next" variant="brand" disabled={isNextButtonDisabled}
+                            onclick={handleNextButtonClick}>
+                        </lightning-button>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </template>
+
+        <!-- Step 2: Child Component for Additional Information -->
+        <template if:true={isStep2}>
+            <div class="slds-grid slds-grid_vertical">
+                <div class="slds-col">
+                    <template if:true={islifeinsurance}>
+                        <c-new-insurance-form onsave={handleSaveAccount} onclose={closeInsuranceForm}
+                            account-id={accountId} record-id={recordType}>
+                        </c-new-insurance-form>
+                    </template>
+
+                    <template if:true={isautomobileinsurance}>
+                        <!-- <c-vehicle-insurance-form onsave={handleSaveAccount} onclose={closeInsuranceForm}
+                            account-id={accountId} record-id={recordType}>
+                        </c-vehicle-insurance-form> -->
+
+                        <template if:true={accounts}>
+                            <div class="vehicle-modal">
+                                <div class="header">
+                                    <h2>Can you specify the type of vehicle you’d like to insure?</h2>
+                                </div>
+                                <div class="Vehicle-types">
+                                    <template for:each={TypesOfVehicles} for:item="Vehicle">
+                                        <div key={Vehicle.id} class="Vehicle-type" onclick={selectVehicleType}
+                                            data-id={Vehicle.id}>
+                                            <img class={Vehicle.darkBorder} src={Vehicle.imageUrl} alt={Vehicle.name} />
+                                            <template if:false={Vehicle.canAddMore}>
+                                                <p>{Vehicle.name}</p>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </div>
+
+
+
+                                <div class="header">
+                                    <p>Enter Your Vehicle Registration Number</p>
+                                </div>
+                                <div class="dob-section">
+                                    <template for:each={selectedVehicle} for:item="selected">
+                                        <div key={selected.id} class="dob-input">
+                                            <img src={selected.imageUrl} alt={selected.name} />
+                                            <input type="text" placeholder="Vehicle Make and Model" value={selected.VehicleModel} data-id={selected.id} onchange={updateVehicleModel} required />
+                                                            &nbsp; &nbsp;
+                                            <input type="text" placeholder="Registration No" value={selected.VehicleRegistrationNumber} data-id={selected.id} onchange={updateRegistrationNo} required />
+                                                           &nbsp; &nbsp;
+                                             <input type="text" placeholder="Vehicle Identification Number (VIN)" value={selected.VehicleIdentificationNumber} data-id={selected.id} onchange={updateVIN} required />
+                                                            &nbsp; &nbsp;
+                                              <input type="date" placeholder="Year of Manufacture" value={selected.YearofManufacture} data-id={selected.id} onchange={updateYearofManufacture} required />     
+                                            <!-- &nbsp;
+                                            <template if:true={openself}>
+                                                <button class="remove-btn" title="Remove" data-id={selected.id} onclick={removeMember}>-</button>
+                                            </template> -->
+                                        </div>
+                                    </template>
+                                    <template if:true={errorMessage}>
+                                        <div class="error-message">
+                                            <p>{errorMessage}</p>
+                                        </div>
+                                    </template>
+                                </div>
+
+
+                            </div>
+                        </template>
+                    </template>
+                    <template if:true={ispropertyinsurance}>
+                        <c-property-insurance-form onsave={handleSaveAccount} onclose={closeInsuranceForm}
+                            account-id={accountId} record-id={recordType}>
+                        </c-property-insurance-form>
+                    </template>
+                    <template if:true={isdisabilityinsurance}>
+                        <c-insurance-disability-form onsave={handleSaveAccount} onclose={closeInsuranceForm}
+                            account-id={accountId} record-id={recordType}>
+                        </c-insurance-disability-form>
+                    </template>
+                    <template if:true={ishealthinsurance}>
+                        <template if:true={accounts}>
+                            <div class="modal">
+                                <div class="header">
+                                    <h2>Who would you like to insure today?</h2>
+                                </div>
+                                <div class="family-members">
+                                    <template for:each={displayedFamilyMembers} for:item="member">
+                                        <div key={member.id} class="family-member" onclick={selectFamilyMember}
+                                            data-id={member.id}>
+
+                                            <!-- Bind the precomputed darkBorder property -->
+                                            <img class={member.darkBorder} src={member.imageUrl} alt={member.name} />
+
+                                            <template if:false={member.canAddMore}>
+                                                <p>{member.name}</p>
+                                            </template>
+                                            <template if:true={member.canAddMore}>
+                                                <p>{member.name} ({member.count})</p>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </div>
+
+
+                                <div class="header">
+                                    <p>Input Date of Birth</p>
+                                </div>
+                                <div class="dob-section">
+                                    <template for:each={selectedMembers} for:item="selected">
+                                        <div key={selected.id} class="dob-input">
+                                            <img src={selected.imageUrl} alt={selected.name} />
+                                            <input type="text" placeholder="Name" value={selected.fullname} data-id={selected.id} onchange={updateName} required />
+                                                            &nbsp;
+                                            <input type="date" value={selected.dob} data-id={selected.id} onchange={updateDob} required />
+                                                             &nbsp;
+                                             <input type="text" placeholder="AadharNo" value={selected.AadharNo} data-id={selected.id} onchange={updateaadhar} required />
+                                                             &nbsp;
+                                            <template if:true={openself}>
+                                                <button class="remove-btn" title="Remove" data-id={selected.id} onclick={removeMember}>-</button>
+                                            </template>
+                                        </div>
+                                    </template>
+                                    <template if:true={errorMessage}>
+                                        <div class="error-message">
+                                            <p>{errorMessage}</p>
+                                        </div>
+                                    </template>
+                                </div>
+
+
+                            </div>
+                        </template>
+                    </template>
+                </div>
+
+                <div class="slds-grid">
+                    <div class="slds-col slds-m-top_medium">
+                        <lightning-button label="Previous" variant="brand" disabled={isPreviousButtonDisabled}
+                            onclick={handlePreviousButtonClick}>
+                        </lightning-button>
+                    </div>
+                    <template if:true={ishealthinsurance}>
+                        <div class="slds-col slds-col_bump-right slds-m-top_medium" style="margin-left: 67rem;">
+                            <lightning-button label="Next" variant="brand" disabled={isNextButtonDisabl}
+                                onclick={handleNextButton}>
+                            </lightning-button>
+                        </div>
+                    </template>
+                    <template if:true={isautomobileinsurance}>
+                        <div class="slds-col slds-col_bump-right slds-m-top_medium" style="margin-left: 67rem;">
+                            <lightning-button label="Next" variant="brand" disabled={isNextButtonDisablautomoblie}
+                                onclick={handleNextButtonAutomobile}>
+                            </lightning-button>
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+        </template>
+
+        <!-- plan page -->
+        <template if:true={ishealthinsurance}>
+            <template if:true={isStep3}>
+                <div class="container">
+                    <h2>We have tailored 2 plans for you!</h2>
+                    <div class="plans">
+                        <!-- Super Health Insurance Card -->
+                        <div class={card1Class} onclick={plan1}>
+                            <div class="card-header popular">
+                                <span>Super Health Insurance</span>
+                                <span class="tag">Most Popular</span>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>In-Patient Hospitalization Treatment</li>
+                                    <li>Pre-hospitalization Medical Expenses</li>
+                                    <li>Post-hospitalization Medical Expenses</li>
+                                    <li>Day Care Treatment</li>
+                                    <li>Domiciliary Hospitalization</li>
+                                    <li>Home Health Care</li>
+                                    <li>Emergency Road Ambulance Cover</li>
+                                    <li>Bariatric Surgery Cover</li>
+                                </ul>
+                                <p class="price">₹{monthlyamount}/Month</p>
+                            </div>
+                        </div>
+
+                        <!-- Health Edge Insurance Card -->
+                        <div class={card2Class} onclick={plan2}>
+                            <div class="card-header">
+                                <span>Health Edge Insurance</span>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>In-Patient Hospitalization Treatment</li>
+                                    <li>Pre-hospitalization Medical Expenses</li>
+                                    <li>Post-hospitalization Medical Expenses</li>
+                                    <li>Day Care Treatment</li>
+                                    <li>Emergency Road Ambulance Cover</li>
+                                    <li>Bariatric Surgery Cover</li>
+                                </ul>
+                                <p class="price" style="margin-top: 81px;">₹{monthlyamountp2}/Month</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <template if:true={p1}>
+                        <div class="container">
+                            <!-- Coverage Selection -->
+                            <div class="coverage-section">
+                                <h2>Choose Coverage</h2>
+                                <span class="coverage-label">{coverageamt} Lacs Cover</span>
+                                <div class="slider-container">
+                                    <input
+                    type="range"
+                    min="0"
+                    max="10"
+                    step="1"
+                    value={coveragep1}
+                    class="slider"
+                    onchange={handleCoverageChange}
+                />
+                                    <div class="coverage-values">
+                                        <span class="clickable" data-value="0" coverage-amount="5" onclick={setCoveragep1}>5 Lacs</span>
+                                        <span class="clickable" data-value="5" coverage-amount="7" onclick={setCoveragep1}>7 Lacs</span>
+                                        <span class="clickable" data-value="10" coverage-amount="10" onclick={setCoveragep1}>10 Lacs</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Policy Tenure Section -->
+                            <div class="policy-tenure-section">
+                                <h2>Select Policy Tenure</h2>
+                                <div class="tenure-options">
+                                    <div class={tenure1Class} data-tenure="1" onclick={selectTenures}>
+                                        <p data-tenure="1">1 Year Plan</p>
+                                        <p class="price" data-tenure="1">₹{plan1Original}</p>
+                                    </div>
+                                    <div class={tenure2Class} data-tenure="2" onclick={selectTenures}>
+                                        <span class="discount">Discount 4%</span>
+                                        <p data-tenure="2">2 Years Plan</p>
+                                        <p class="price" data-tenure="2">
+                                            <span class="strike">₹{plan2Original}</span> ₹{plan2Discounted}
+                                        </p>
+                                    </div>
+                                    <div class={tenure3Class} data-tenure="3" onclick={selectTenures}>
+                                        <span class="discount">Discount 6%</span>
+                                        <p data-tenure="3">3 Years Plan</p>
+                                        <p class="price" data-tenure="3">
+                                            <span class="strike">₹{plan3Original}</span> ₹{plan3Discounted}
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="total-premium-container">
+                                <div class="premium-details">
+
+                                    <div class="premium-amount">
+                                        ₹<span id="premiumAmount">{premimumAmount}</span>
+                                        <span class="dropdown-icon" onclick={togglePremiumBill}>▼</span>
+                                    </div>
+
+                                    <div class={accordionClass}>
+                                        <div class="slds-col">
+                                            <!-- <div class="image-container">
+                                        <img src={Totalbreakdown} alt="Dashboard Illustration" class="image">
+                                    </div> -->
+                                            <h1><b style="font-size: 17px;">Premium Breakup</b></h1>
+                                        </div>
+                                        <div class="slds-col hr">
+                                            <br>
+                                            <span class="total" style="margin-left: 59rem;">Base Premimum</span>
+                                            <span id="premAmounts" style="margin-left: 8px;" >: ₹{premAmount}</span>
+                                        </div>
+                                        <br>
+                                        <div class="slds-col">
+                                            <span class="gst"  style="margin-left: 59rem;">GST (18%)</span>
+                                            <span id="gst" style="margin-left: 40px;">: ₹{gstp1}</span>
+                                        </div>
+                                        <br>
+                                        <div class="slds-col hr">
+                                            <br>
+                                            <span class="TotalPremimum" style="margin-left: 59rem;"><b>TotalPremimum </b></span>
+                                            <span id="tp" class="amobill">: ₹{premimumAmount}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="premium-description">
+                                        Total Premium (Including 18% GST)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:true={p2}>
+                        <div class="container">
+                            <!-- Coverage Selection -->
+                            <div class="coverage-section">
+                                <h2>Choose Coverage</h2>
+                                <span class="coverage-label">{coverageamtp2} Lacs Cover</span>
+                                <div class="slider-container">
+                                    <input
+                    type="range"
+                    min="0"
+                    max="20"
+                    step="1"
+                    value={coveragep2}
+                    class="slider"
+                    onchange={handleCoverageChange2}
+                />
+                                    <div class="coverage-values">
+                                        <span class="clickable" data-value="0" coverage-amount="5" onclick={setCoveragep2}>5 Lacs</span>
+                                        <span class="clickable" data-value="5" coverage-amount="7" onclick={setCoveragep2}>7 Lacs</span>
+                                        <span class="clickable" data-value="10" coverage-amount="10" onclick={setCoveragep2}>10 Lacs</span>
+                                        <span class="clickable" data-value="15" coverage-amount="15" onclick={setCoveragep2}>15 Lacs</span>
+                                        <span class="clickable" data-value="20" coverage-amount="20" onclick={setCoveragep2}>20 Lacs</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Policy Tenure Section -->
+                            <div class="policy-tenure-section">
+                                <h2>Select Policy Tenure</h2>
+                                <div class="tenure-options">
+                                    <div class={tenurep1Class} data-tenure="1" onclick={selectTenure}>
+                                        <p data-tenure="1">1 year Plan</p>
+                                        <p class="price" data-tenure="1">₹{p2y1}</p>
+                                    </div>
+                                    <div class={tenurep2Class} data-tenure="2" onclick={selectTenure}>
+                                        <span class="discount">Discount 4%</span>
+                                        <p data-tenure="2">2 years Plan</p>
+                                        <p class="price" data-tenure="2"><span class="strike">₹{p2y2o}</span> ₹{p2y2d}
+                                        </p>
+                                    </div>
+                                    <div class={tenurep3Class} data-tenure="3" onclick={selectTenure}>
+                                        <span class="discount">Discount 6%</span>
+                                        <p data-tenure="3">3 years Plan</p>
+                                        <p class="price" data-tenure="3"><span class="strike">₹{p2y3o}</span> ₹{p2y3d}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="total-premium-container">
+                                <div class="premium-details">
+                                    <div class="premium-amount">
+                                        ₹<span id="premiumAmountp2">{premimumAmounts}</span>
+                                        <span class="dropdown-icon" onclick={togglePremiumBill}>▼</span>
+                                    </div>
+
+                                    <div class={accordionClass}>
+                                        <div class="slds-col">
+                                            <!-- <div class="image-container">
+                                        <img src={Totalbreakdown} alt="Dashboard Illustration" class="image">
+                                    </div> -->
+                                            <h1><b style="font-size: 17px;">Premium Breakup</b></h1>
+                                        </div>
+                                        <div class="slds-col hr">
+                                            <br>
+                                            <span class="total" style="margin-left: 59rem;">Base Premimum</span>
+                                            <span id="preAmounts" style="margin-left: 8px;" >: ₹{premAmounts}</span>
+                                        </div>
+                                        <br>
+                                        <div class="slds-col">
+                                            <span class="gst"  style="margin-left: 59rem;">GST (18%)</span>
+                                            <span id="gstp2" style="margin-left: 40px;">: ₹{gstp2}</span>
+                                        </div>
+                                        <br>
+                                        <div class="slds-col hr">
+                                            <br>
+                                            <span class="TotalPremimum" style="margin-left: 59rem;"><b>TotalPremimum </b></span>
+                                            <span id="tp2" class="amobill">: ₹{premimumAmounts}</span>
+                                        </div>
+                                    </div>
+                                    <div class="premium-description">
+                                        Total Premium (Including 18% GST)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+
+                <div class="slds-grid">
+                    <div class="slds-col slds-m-top_medium">
+                        <lightning-button label="Previous" variant="brand" disabled={isPreviousButtonDisabled}
+                            onclick={handlePreviousButtonClick}>
+                        </lightning-button>
+                    </div>
+                    <div class="slds-col slds-col_bump-right slds-m-top_medium" style="margin-left: 67rem;">
+                        <!-- Next Button (Disabled if not eligible) -->
+                        <lightning-button label="Next" variant="brand" disabled={NextButtonDisable}
+                            onclick={handleNextClick}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </template>
+            <template if:true={isStep4}>
+                <template if:true={p1}>
+                    <c-health-insurance-policy-form onsave={handleSaveAccount} onclose={closeInsuranceForm}
+                        account-id={accountId} record-id={recordType} coverage-amount={coverageamt}
+                        premimum-amount={premimumAmount} selected-mebers={selectedMembers} policy-planyear={planyears}>
+                    </c-health-insurance-policy-form>
+                </template>
+                <template if:true={p2}>
+                    <c-health-insurance-policy-form onsave={handleSaveAccount} onclose={closeInsuranceForm}
+                        account-id={accountId} record-id={recordType} coverage-amount={coverageamtp2}
+                        premimum-amount={premimumAmounts} selected-mebers={selectedMembers} policy-planyear={planyear}>
+                    </c-health-insurance-policy-form>
+                </template>
+                <lightning-button label="Previous" variant="brand" disabled={isPreviousButtonDisabled}
+                    onclick={handlePreviousButtonClick}>
+                </lightning-button>
+            </template>
+        </template>
+        <template if:true={isautomobileinsurance}>
+            <template if:true={isStep3}>
+                 <div class="container">
+                    <h2>We have tailored 2 plans for you!</h2>
+                    <div class="plans">
+                        <!-- Super Health Insurance Card -->
+                        <div class={type1Class} onclick={type1}>
+                            <div class="card-header popular">
+                                <span>Comprehensive</span>
+                                <!-- <span class="tag">Most Popular</span> -->
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Wide Protection(collision and non-collision damages)</li>
+                                    <li>Manmade acts like vandalism, strikes or riots</li>
+                                    <li>Theft, Burglary or Housebreaking</li>
+                                    <li>Damages caused by a bird or an animal or rat bite causing electrical damage</li>
+                                    <li>Accidental damages when the insured car was in transit via roadways, railways, airways, etc</li>
+                                    <li>Fire, self-ignition or explosion of the insured vehicle</li>
+                                    <li>Damages caused by natural disasters like floods,hurricanes,earthquakes,etc.</li>
+                                    <li>Third-party liabilities (death, injury and property damage)</li>
+                                </ul>
+                                <!-- <p class="price">₹{monthlyamount}/Month</p> -->
+                            </div>
+                        </div>
+                        <div class={type2Class} onclick={type2}>
+                            <div class="card-header popular">
+                                <span>Third Party</span>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>This insurance type is the legal requirement by the Motor insurance law.</li>
+                                    <li>To legally drive on the roads of India, it is mandatory to purchase this policy.</li>
+                                    <li>It does not cover the losses or damages sustained by the insured car.</li>
+                                    <li>Provides coverage against losses and damages caused to third-party property, person, or vehicle due to the insured car</li>
+                                </ul>
+                                <!-- <p class="price">₹{monthlyamount}/Month</p> -->
+                            </div>
+                        </div>
+
+                        <!-- Health Edge Insurance Card -->
+                        <div class={type3Class} onclick={type3}>
+                            <div class="card-header">
+                                <span>Collision</span>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>In-Patient Hospitalization Treatment</li>
+                                    <li>Pre-hospitalization Medical Expenses</li>
+                                    <li>Post-hospitalization Medical Expenses</li>
+                                    <li>Day Care Treatment</li>
+                                    <li>Provides coverage against losses and damages caused to third-party property, person, or vehicle due to the insured car</li>
+                                    <li>Bariatric Surgery Cover</li>
+                                </ul>
+                                <!-- <p class="price" style="margin-top: 81px;">₹{monthlyamountp2}/Month</p> -->
+                            </div>
+                        </div>
+                    </div>
+                    <template if:true={t1}>
+                        <div class="container">
+                            <!-- Coverage Selection -->
+                            <div class="coverage-section">
+                                <h2>Choose Coverage</h2>
+                                <span class="coverage-label">{coverageamtt1} Lacs Cover</span>
+                                <div class="slider-container">
+                                    <input
+                    type="range"
+                    min="0"
+                    max="10"
+                    step="1"
+                    value={coveraget1}
+                    class="slider"
+                    onchange={handleCoverageChange}
+                />
+                                    <div class="coverage-values">
+                                        <span class="clickable" data-value="0" coverage-amount="5" onclick={setCoveraget1}>5 Lacs</span>
+                                        <span class="clickable" data-value="5" coverage-amount="7" onclick={setCoveraget1}>7 Lacs</span>
+                                        <span class="clickable" data-value="10" coverage-amount="10" onclick={setCoveraget1}>10 Lacs</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Policy Tenure Section -->
+                            <div class="policy-tenure-section">
+                                <h2>Select Policy Tenure</h2>
+                                <div class="tenure-options">
+                                    <div class={tenure1Class} data-tenure="1" onclick={selectTenures}>
+                                        <p data-tenure="1">1 Year Plan</p>
+                                        <p class="price" data-tenure="1">₹{plan1Original}</p>
+                                    </div>
+                                    <div class={tenure2Class} data-tenure="2" onclick={selectTenures}>
+                                        <span class="discount">Discount 4%</span>
+                                        <p data-tenure="2">2 Years Plan</p>
+                                        <p class="price" data-tenure="2">
+                                            <span class="strike">₹{plan2Original}</span> ₹{plan2Discounted}
+                                        </p>
+                                    </div>
+                                    <div class={tenure3Class} data-tenure="3" onclick={selectTenures}>
+                                        <span class="discount">Discount 6%</span>
+                                        <p data-tenure="3">3 Years Plan</p>
+                                        <p class="price" data-tenure="3">
+                                            <span class="strike">₹{plan3Original}</span> ₹{plan3Discounted}
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="total-premium-container">
+                                <div class="premium-details">
+
+                                    <div class="premium-amount">
+                                        ₹<span id="motorpremiumAmount">{premimumAmount}</span>
+                                        <span class="dropdown-icon" onclick={togglePremiumBill}>▼</span>
+                                    </div>
+
+                                    <div class={accordionClass}>
+                                        <div class="slds-col">
+                                            <!-- <div class="image-container">
+                                        <img src={Totalbreakdown} alt="Dashboard Illustration" class="image">
+                                    </div> -->
+                                            <h1><b style="font-size: 17px;">Premium Breakup</b></h1>
+                                        </div>
+                                        <div class="slds-col hr">
+                                            <br>
+                                            <span class="total" style="margin-left: 59rem;">Base Premimum</span>
+                                            <span id="motorPremAmounts" style="margin-left: 8px;" >: ₹{premAmount}</span>
+                                        </div>
+                                        <br>
+                                        <div class="slds-col">
+                                            <span class="gst"  style="margin-left: 59rem;">GST (18%)</span>
+                                            <span id="gstMotor" style="margin-left: 40px;">: ₹{gstp1}</span>
+                                        </div>
+                                        <br>
+                                        <div class="slds-col hr">
+                                            <br>
+                                            <span class="TotalPremimum" style="margin-left: 59rem;"><b>TotalPremimum </b></span>
+                                            <span id="tpMotor" class="amobill">: ₹{premimumAmount}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="premium-description">
+                                        Total Premium (Including 18% GST)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:true={t2}>
+                         <div class="container">
+                            <!-- Coverage Selection -->
+                            <div class="coverage-section">
+                                <h2>Choose Coverage</h2>
+                                <span class="coverage-label">{coverageamtt2} Lacs Cover</span>
+                                <div class="slider-container">
+                                    <input
+                    type="range"
+                    min="0"
+                    max="10"
+                    step="1"
+                    value={coveraget2}
+                    class="slider"
+                    onchange={handleCoverageChange}
+                />
+                                    <div class="coverage-values">
+                                        <span class="clickable" data-value="0" coverage-amount="5" onclick={setCoveraget2}>5 Lacs</span>
+                                        <span class="clickable" data-value="10" coverage-amount="7" onclick={setCoveraget2}>7 Lacs</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Policy Tenure Section -->
+                            <div class="policy-tenure-section">
+                                <h2>Select Policy Tenure</h2>
+                                <div class="tenure-options">
+                                    <div class={tenure1Class} data-tenure="1" onclick={selectTenures}>
+                                        <p data-tenure="1">1 Year Plan</p>
+                                        <p class="price" data-tenure="1">₹{plan1Original}</p>
+                                    </div>
+                                    <div class={tenure2Class} data-tenure="2" onclick={selectTenures}>
+                                        <span class="discount">Discount 4%</span>
+                                        <p data-tenure="2">2 Years Plan</p>
+                                        <p class="price" data-tenure="2">
+                                            <span class="strike">₹{plan2Original}</span> ₹{plan2Discounted}
+                                        </p>
+                                    </div>
+                                    <div class={tenure3Class} data-tenure="3" onclick={selectTenures}>
+                                        <span class="discount">Discount 6%</span>
+                                        <p data-tenure="3">3 Years Plan</p>
+                                        <p class="price" data-tenure="3">
+                                            <span class="strike">₹{plan3Original}</span> ₹{plan3Discounted}
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="total-premium-container">
+                                <div class="premium-details">
+
+                                    <div class="premium-amount">
+                                        ₹<span id="motorpremiumAmount2">{premimumAmount}</span>
+                                        <span class="dropdown-icon" onclick={togglePremiumBill}>▼</span>
+                                    </div>
+
+                                    <div class={accordionClass}>
+                                        <div class="slds-col">
+                                            <!-- <div class="image-container">
+                                        <img src={Totalbreakdown} alt="Dashboard Illustration" class="image">
+                                    </div> -->
+                                            <h1><b style="font-size: 17px;">Premium Breakup</b></h1>
+                                        </div>
+                                        <div class="slds-col hr">
+                                            <br>
+                                            <span class="total" style="margin-left: 59rem;">Base Premimum</span>
+                                            <span id="motorPremAmounts2" style="margin-left: 8px;" >: ₹{premAmount}</span>
+                                        </div>
+                                        <br>
+                                        <div class="slds-col">
+                                            <span class="gst"  style="margin-left: 59rem;">GST (18%)</span>
+                                            <span id="gstMotor2" style="margin-left: 40px;">: ₹{gstp1}</span>
+                                        </div>
+                                        <br>
+                                        <div class="slds-col hr">
+                                            <br>
+                                            <span class="TotalPremimum" style="margin-left: 59rem;"><b>TotalPremimum </b></span>
+                                            <span id="tpMotor2" class="amobill">: ₹{premimumAmount}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="premium-description">
+                                        Total Premium (Including 18% GST)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:true={t3}>
+                         <div class="container">
+                            <!-- Coverage Selection -->
+                            <div class="coverage-section">
+                                <h2>Choose Coverage</h2>
+                                <span class="coverage-label">{coverageamtt3} Lacs Cover</span>
+                                <div class="slider-container">
+                                    <input
+                    type="range"
+                    min="0"
+                    max="10"
+                    step="1"
+                    value={coveraget3}
+                    class="slider"
+                />
+                                    <div class="coverage-values">
+                                        <span class="clickable" data-value="0" coverage-amount="2" onclick={setCoveraget3}>2 Lacs</span>
+                                        <span class="clickable" data-value="10" coverage-amount="5" onclick={setCoveraget3}>5 Lacs</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Policy Tenure Section -->
+                            <div class="policy-tenure-section">
+                                <h2>Select Policy Tenure</h2>
+                                <div class="tenure-options">
+                                    <div class={tenure1Class} data-tenure="1" onclick={selectTenures}>
+                                        <p data-tenure="1">1 Year Plan</p>
+                                        <p class="price" data-tenure="1">₹{plan1Original}</p>
+                                    </div>
+                                    <div class={tenure2Class} data-tenure="2" onclick={selectTenures}>
+                                        <span class="discount">Discount 4%</span>
+                                        <p data-tenure="2">2 Years Plan</p>
+                                        <p class="price" data-tenure="2">
+                                            <span class="strike">₹{plan2Original}</span> ₹{plan2Discounted}
+                                        </p>
+                                    </div>
+                                    <div class={tenure3Class} data-tenure="3" onclick={selectTenures}>
+                                        <span class="discount">Discount 6%</span>
+                                        <p data-tenure="3">3 Years Plan</p>
+                                        <p class="price" data-tenure="3">
+                                            <span class="strike">₹{plan3Original}</span> ₹{plan3Discounted}
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="total-premium-container">
+                                <div class="premium-details">
+
+                                    <div class="premium-amount">
+                                        ₹<span id="motorpremiumAmount3">{premimumAmount}</span>
+                                        <span class="dropdown-icon" onclick={togglePremiumBill}>▼</span>
+                                    </div>
+
+                                    <div class={accordionClass}>
+                                        <div class="slds-col">
+                                            <!-- <div class="image-container">
+                                        <img src={Totalbreakdown} alt="Dashboard Illustration" class="image">
+                                    </div> -->
+                                            <h1><b style="font-size: 17px;">Premium Breakup</b></h1>
+                                        </div>
+                                        <div class="slds-col hr">
+                                            <br>
+                                            <span class="total" style="margin-left: 59rem;">Base Premimum</span>
+                                            <span id="motorPremAmounts3" style="margin-left: 8px;" >: ₹{premAmount}</span>
+                                        </div>
+                                        <br>
+                                        <div class="slds-col">
+                                            <span class="gst"  style="margin-left: 59rem;">GST (18%)</span>
+                                            <span id="gstMotor3" style="margin-left: 40px;">: ₹{gstp1}</span>
+                                        </div>
+                                        <br>
+                                        <div class="slds-col hr">
+                                            <br>
+                                            <span class="TotalPremimum" style="margin-left: 59rem;"><b>TotalPremimum </b></span>
+                                            <span id="t3Motor" class="amobill">: ₹{premimumAmount}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="premium-description">
+                                        Total Premium (Including 18% GST)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+               <!-- <c-vehicle-insurance-form onsave={handleSaveAccount} onclose={closeInsuranceForm}
+                            account-id={accountId} record-id={recordType}>
+                        </c-vehicle-insurance-form> -->
+                 <div class="slds-grid">
+                    <div class="slds-col slds-m-top_medium">
+                        <lightning-button label="Previous" variant="brand" disabled={isPreviousButtonDisabled}
+                            onclick={handlePreviousButtonClick}>
+                        </lightning-button>
+                    </div>
+                    <div class="slds-col slds-col_bump-right slds-m-top_medium" style="margin-left: 67rem;">
+                      
+                        <lightning-button label="Next" variant="brand" disabled={NextButtonDisable}
+                            onclick={handleNextClickinsurancestep4}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </template>
+            <template if:true={isStep4}>
+                <c-vehicle-insurance-form onsave={handleSaveAccount} onclose={closeInsuranceForm}
+                            account-id={accountId} record-id={recordType}>
+                        </c-vehicle-insurance-form>
+            </template>
+        </template>
+
+    </lightning-card>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Header -->
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                title="Close" onclick={closeModal}>
+                                <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                    <h2 class="slds-text-heading_medium">Policy Plans Information</h2>
+                </div>
+                <!-- Modal/Popup Body -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <!-- Modal/Popup Body -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <!-- Table for Policy Plans Information -->
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                                <tr class="slds-text-title_bold">
+                                    <th scope="col">Policy Name</th>
+                                    <th scope="col">Annual Income </th>
+                                    <th scope="col">Eligible for Premium Amount(Minimum)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Life Insurance</td>
+                                    <td>
+                                        Rs.1,50,000
+                                    </td>
+                                    <td>
+                                        Rs.1,00,000
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Health Insurance</td>
+                                    <td>
+                                        Rs.1,00,000
+                                    </td>
+                                    <td>
+                                        Rs.1,00,000
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Auto-Mobile Insurance</td>
+                                    <td>
+                                        Rs.1,50,000
+                                    </td>
+                                    <td>
+                                        Rs.1,00,000
+                                        <!-- <br>
+                                        Rs.2,00,000 -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Property Insurance</td>
+                                    <td>
+                                        Rs.3,00,000
+                                    </td>
+                                    <td>
+                                        Rs.1,50,000
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Disability Insurance</td>
+                                    <td>
+                                        Rs.1,00,000
+                                    </td>
+                                    <td>
+                                        Rs.1,00,000
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Modal/Popup Footer -->
+                    <div class="slds-modal__footer">
+                        <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

@@ -1,0 +1,672 @@
+<template>
+
+    <!-- Home Loan Box -->
+    <template if:false={accountDetails}>
+
+        <template if:true={showEligibilityChecker}>
+            <lightning-card title="Loan Eligibility Checker" icon-name="action:following">
+                <div class="slds-m-around_medium">
+            <lightning-input label="Account ID" value={accountId} onchange={handleAccountIdChange}></lightning-input>
+            <lightning-input label="Loan Amount" value={loanAmount} type="number" onchange={handleLoanAmountChange}></lightning-input>
+            <lightning-button label="Check Eligibility" onclick={checkEligibility} class="slds-m-top_medium"></lightning-button>
+
+            <template if:true={customerDetails}>
+                <p class="slds-m-top_medium"><strong>Customer Annual Income:</strong> ₹{customerDetails.annualIncome}</p>
+                <p><strong>Interest Rate:</strong> {customerDetails.interestRate}%</p>
+                <p><strong>Eligibility:</strong> {customerDetails.eligibilityMessage}</p>
+            </template>
+
+                    <!-- Error message -->
+                    <template if:true={errorMessage}>
+                        <p class="slds-text-color_error slds-m-top_medium">{errorMessage}</p>
+                    </template>
+                </div>
+
+                <div class="slds-grid">
+                    <div>
+                        <span></span>
+                    </div>
+                    <div>
+                        <span class="back-button"><button onclick={handleBackClick}>Back</button></span>
+                    </div>
+                    <div>
+                        <span></span>
+                    </div>
+                    <div>
+                        <span></span>
+                    </div>
+                    <div class="slds-col_bump-left">
+                        <span><button class="loanbutton" onclick={handleApplyButtonClick}>Apply for Home Loan</button></span>
+                    </div>
+                    <div>
+                        <span></span>
+                    </div>
+                </div>
+            </lightning-card>
+        </template>
+        <template if:true={showApplicationForm}>
+            <lightning-card title="Loan Application Form" icon-name="standard:form">
+                <p style="font-size: medium; padding-left: 15px;">
+                    Fill out the details to apply for a personal loan.
+                </p>
+                <div class="slds-p-around_medium">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <!-- New Account Search -->
+                        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                            style="padding-right:2%">
+                            <lightning-input label="New Account" type="search" value={searchKey}
+                                onchange={handleSearchTermChange} placeholder="Search New Account..."
+                                data-id="searchKey" required>
+                            </lightning-input>
+                            <!-- Search Results -->
+                            <template if:true={accounts}>
+                                <ul class="slds-listbox slds-listbox_vertical" role="listbox"
+                                    aria-label="Suggested for you">
+                                    <template for:each={accounts} for:item="account">
+                                        <li key={account.Id} class="slds-listbox__item" role="presentation"
+                                            data-id={account.Id} onclick={handleAccountSelect}>
+                                            <div class="slds-media slds-listbox__option slds-listbox__option_plain"
+                                                role="option">
+                                                <span class="slds-media__body">
+                                                <span class="slds-listbox__option-text slds-listbox__option-text_entity">{account.Name}</span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+                        </div>
+
+                        <!-- Personal Information Section -->
+                        <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                            <h3 class="MainText">Personal Information</h3>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Customer Full Name" type="text" value={borrowerName}
+                                onchange={handleInputChangees} data-id="borrowerName" required>
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Email Address" type="email" value={emailaddress}
+                                onchange={handleInputChangees} data-id="emailaddress">
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Phone Number" type="text" value={phoneNumber}
+                                onchange={handleInputChangees} data-id="phoneNumber">
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Date Of Birth" type="date" value={dob}
+                                onchange={handleInputChangees} data-id="dob" required>
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Nationality" type="text" value={nationality}
+                                onchange={handleInputChangees} data-id="nationality">
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Permanent Address" type="Text" value={address}
+                                onchange={handleInputChangees} data-id="address" required>
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-p-top_medium slds-p-horizontal_small">
+                            <lightning-radio-group label="Marital Status" options={maritalStatusOptions}
+                                value={maritail} onchange={handleInputChangees} data-id="maritail">
+                            </lightning-radio-group>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                            <h3 class="MainText">Occupation and Employment</h3>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <!-- Occupation -->
+                            <div class="slds-p-top_medium slds-p-horizontal_small">
+                                <lightning-combobox label="Occupation" options={occupationOptions} value={occupation}
+                                    onchange={handleInputChangees} data-id="occupation">
+                                </lightning-combobox>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                            <h3 class="MainText">Identity and Address Proof</h3>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-checkbox-group label="Select Identity and Address Proof" name="idProofs"
+                                options={idProofOptions} value={selectedIdProofs} onchange={handleIdProofChange}>
+                            </lightning-checkbox-group>
+                        </div>
+                    </div>
+
+                    <!-- Loan Details Section -->
+                    <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                        <h3 class="MainText">Loan Details</h3>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Loan Amount Required" type="number" value={loanamount}
+                            onchange={handleInputChangees} data-id="loanamount" required>
+                        </lightning-input>
+                    </div>
+
+                    <div class="slds-p-top_medium slds-p-horizontal_small">
+                        <lightning-radio-group label="Loan Purpose" options={loanPurposeOptions} value={loanpurpose}
+                            onchange={handleInputChangees} data-id="loanpurpose">
+                        </lightning-radio-group>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Loan Tenure" type="number" value={loantenure}
+                            onchange={handleInputChangees} data-id="loantenure" placeholder="(in months)">
+                        </lightning-input>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Annual Income" type="number" value={income}
+                            onchange={handleInputChangees} data-id="income" required>
+                        </lightning-input>
+                    </div>
+                    <!-- Property Details Section -->
+                    <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                        <h3 class="MainText">Property Details</h3>
+                    </div>
+
+                    <!-- Property Address -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Property Address" type="text" value={propertyAddress}
+                            onchange={handleInputChangees} data-id="propertyAddress" required>
+                        </lightning-input>
+                    </div>
+
+                    <!-- Type of Property -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-combobox label="Type of Property" options={propertyTypeOptions} value={propertyType}
+                            onchange={handleInputChangees} data-id="propertyType" required>
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Estimated Property Value -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Estimated Property Value" type="number" value={propertyValue}
+                            onchange={handleInputChangees} data-id="propertyValue" required>
+                        </lightning-input>
+                    </div>
+
+                    <!-- Builder/Developer Name -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Builder/Developer Name (if applicable)" type="text" value={builderName}
+                            onchange={handleInputChangees} data-id="builderName">
+                        </lightning-input>
+                    </div>
+
+                    <!-- Stage of Property -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-combobox label="Stage of Property" options={propertyStageOptions}
+                            value={propertyStage} onchange={handleInputChangees} data-id="propertyStage"
+                            placeholder="Select Property Stage" required>
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Property Ownership (Picklist) -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-combobox label="Property Ownership" options={ownershipOptions}
+                            value={propertyOwnership} onchange={handleInputChangees} data-id="propertyOwnership"
+                            placeholder="Select Ownership" required>
+                        </lightning-combobox>
+                    </div>
+                </div>
+
+
+
+                <!-- Button to go back to eligibility checker -->
+
+
+                <div class="slds-p-around_medium">
+                    <div class="slds-grid slds-gutters_direct">
+                        <div class="slds-col">
+                            <div class="back-button">
+                                <lightning-button label="Back" variant="brand" onclick={handleformBackClick}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                        <div class="slds-col">
+                            <lightning-button label="Next" variant="brand" onclick={handlereviewinfo}>
+                            </lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </lightning-card>
+        </template>
+        <template if:true={reviewinfo}>
+            <lightning-card class="slds-m-around_medium">
+                <h3 style="font-size: 16px;padding: 1%;">
+                    <!-- <lightning-icon icon-name='utility:shift_pattern_entry' alternative-text='shift_pattern_entry' size='small' title='shift_pattern_entry'></lightning-icon> -->
+                    <b style="padding-left: 10px;">Review Loan Application Information</b>
+                </h3>
+
+                <div class="slds-p-around_medium">
+                    <!-- Account Information Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Account
+                        Information</h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>New Account: </strong>{searchKey}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loan Details Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Loan Details</h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Loan Amount: </strong>{loanamount}</p>
+                                <p><strong>Loan Term (Months): </strong>{loantenure}</p>
+                                <p><strong>Loan Purpose: </strong>{loanpurpose}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Personal
+                        Information</h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Borrower's Name: </strong>{borrowerName}</p>
+                                <p><strong>Email Address: </strong>{emailaddress}</p>
+                                <p><strong>Phone Number: </strong>{phoneNumber}</p>
+                                <p><strong>Date of Birth: </strong>{dob}</p>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Nationality: </strong>{nationality}</p>
+                                <p><strong>Marital Status: </strong>{maritail}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Employment and Income Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Employment and
+                        Income</h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Occupation: </strong>{occupation}</p>
+                                <p><strong>Annual Income: </strong>{income}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Residential Address Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Residential
+                        Address</h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Address: </strong>{address}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents Provided Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Documents Provided
+                    </h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Documents: </strong>{selectedIdProofs}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="slds-grid">
+                    <div>
+                        <span>  <lightning-button label="Back" variant="brand" onclick={handleBackToForm}></lightning-button></span>
+                    </div>
+                    <div class="slds-col_bump-left">
+                        <span> <lightning-button label="Submit Loan Application" variant="brand" onclick={handleHomeLoanSubmitButtonClick}></lightning-button>
+                    </span>
+                    </div>
+
+                </div>
+            </lightning-card>
+        </template>
+    </template>
+    <template if:true={accountDetails}>
+        <template if:true={showEligibilityChecker}>
+            <lightning-card title="Loan Eligibility Checker" icon-name="action:following">
+                <div class="slds-m-around_medium">
+            <lightning-input label="Account ID" value={accountId} onchange={handleAccountIdChange}></lightning-input>
+            <lightning-input label="Loan Amount" value={loanAmount} type="number" onchange={handleLoanAmountChange}></lightning-input>
+            <lightning-button label="Check Eligibility" onclick={checkEligibility} class="slds-m-top_medium"></lightning-button>
+
+            <template if:true={customerDetails}>
+                <p class="slds-m-top_medium"><strong>Customer Annual Income:</strong> ₹{customerDetails.annualIncome}</p>
+                <p><strong>Interest Rate:</strong> {customerDetails.interestRate}%</p>
+                <p><strong>Eligibility:</strong> {customerDetails.eligibilityMessage}</p>
+            </template>
+
+                    <!-- Error message -->
+                    <template if:true={errorMessage}>
+                        <p class="slds-text-color_error slds-m-top_medium">{errorMessage}</p>
+                    </template>
+                </div>
+
+                <div class="slds-grid">
+                    <div>
+                        <span></span>
+                    </div>
+                    <div>
+                        <span class="back-button"><button onclick={handleBackClick}>Back</button></span>
+                    </div>
+                    <div>
+                        <span></span>
+                    </div>
+                    <div>
+                        <span></span>
+                    </div>
+                    <div class="slds-col_bump-left">
+                        <span><button class="loanbutton" onclick={handleApplyButtonClick}>Apply for Home Loan</button></span>
+                    </div>
+                    <div>
+                        <span></span>
+                    </div>
+                </div>
+            </lightning-card>
+        </template>
+        <template if:true={showApplicationForm}>
+            <lightning-card title="Loan Application Form" icon-name="standard:form">
+                <p style="font-size: medium; padding-left: 15px;">
+                    Fill out the details to apply for a personal loan.
+                </p>
+                <div class="slds-p-around_medium">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <!-- New Account Search -->
+                        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                            style="padding-right:2%">
+                            <lightning-input label="New Account" type="text" value={accountDetails.Name}
+                                onchange={handleSearchTermChange} disabled
+                                data-id="searchKey" required>
+                            </lightning-input>
+                        </div>
+
+                        <!-- Personal Information Section -->
+                        <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                            <h3 class="MainText">Personal Information</h3>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Customer Full Name" type="text" value={borrowerName}
+                                onchange={handleInputChangees} data-id="borrowerName" required>
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Email Address" type="email" value={emailaddress}
+                                onchange={handleInputChangees} data-id="emailaddress">
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Phone Number" type="text" value={phoneNumber}
+                                onchange={handleInputChangees} data-id="phoneNumber">
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Date Of Birth" type="date" value={dob}
+                                onchange={handleInputChangees} data-id="dob" required>
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Nationality" type="text" value={nationality}
+                                onchange={handleInputChangees} data-id="nationality">
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-input label="Permanent Address" type="Text" value={address}
+                                onchange={handleInputChangees} data-id="address" required>
+                            </lightning-input>
+                        </div>
+
+                        <div class="slds-p-top_medium slds-p-horizontal_small">
+                            <lightning-radio-group label="Marital Status" options={maritalStatusOptions}
+                                value={maritail} onchange={handleInputChangees} data-id="maritail">
+                            </lightning-radio-group>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                            <h3 class="MainText">Occupation and Employment</h3>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <!-- Occupation -->
+                            <div class="slds-p-top_medium slds-p-horizontal_small">
+                                <lightning-combobox label="Occupation" options={occupationOptions} value={occupation}
+                                    onchange={handleInputChangees} data-id="occupation">
+                                </lightning-combobox>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                            <h3 class="MainText">Identity and Address Proof</h3>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                            <lightning-checkbox-group label="Select Identity and Address Proof" name="idProofs"
+                                options={idProofOptions} value={selectedIdProofs} onchange={handleIdProofChange}>
+                            </lightning-checkbox-group>
+                        </div>
+                    </div>
+
+                    <!-- Loan Details Section -->
+                    <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                        <h3 class="MainText">Loan Details</h3>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Loan Amount Required" type="number" value={loanamount}
+                            onchange={handleInputChangees} data-id="loanamount" required>
+                        </lightning-input>
+                    </div>
+
+                    <div class="slds-p-top_medium slds-p-horizontal_small">
+                        <lightning-radio-group label="Loan Purpose" options={loanPurposeOptions} value={loanpurpose}
+                            onchange={handleInputChangees} data-id="loanpurpose">
+                        </lightning-radio-group>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Loan Tenure" type="number" value={loantenure}
+                            onchange={handleInputChangees} data-id="loantenure" placeholder="(in months)">
+                        </lightning-input>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Annual Income" type="number" value={income}
+                            onchange={handleInputChangees} data-id="income" required>
+                        </lightning-input>
+                    </div>
+                    <!-- Property Details Section -->
+                    <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                        <h3 class="MainText">Property Details</h3>
+                    </div>
+
+                    <!-- Property Address -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Property Address" type="text" value={propertyAddress}
+                            onchange={handleInputChangees} data-id="propertyAddress" required>
+                        </lightning-input>
+                    </div>
+
+                    <!-- Type of Property -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-combobox label="Type of Property" options={propertyTypeOptions} value={propertyType}
+                            onchange={handleInputChangees} data-id="propertyType" required>
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Estimated Property Value -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Estimated Property Value" type="number" value={propertyValue}
+                            onchange={handleInputChangees} data-id="propertyValue" required>
+                        </lightning-input>
+                    </div>
+
+                    <!-- Builder/Developer Name -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-input label="Builder/Developer Name (if applicable)" type="text" value={builderName}
+                            onchange={handleInputChangees} data-id="builderName">
+                        </lightning-input>
+                    </div>
+
+                    <!-- Stage of Property -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-combobox label="Stage of Property" options={propertyStageOptions}
+                            value={propertyStage} onchange={handleInputChangees} data-id="propertyStage"
+                            placeholder="Select Property Stage" required>
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Property Ownership (Picklist) -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-horizontal_small">
+                        <lightning-combobox label="Property Ownership" options={ownershipOptions}
+                            value={propertyOwnership} onchange={handleInputChangees} data-id="propertyOwnership"
+                            placeholder="Select Ownership" required>
+                        </lightning-combobox>
+                    </div>
+                </div>
+
+
+
+                <!-- Button to go back to eligibility checker -->
+
+
+                <div class="slds-p-around_medium">
+                    <div class="slds-grid slds-gutters_direct">
+                        <div class="slds-col">
+                            <div class="back-button">
+                                <lightning-button label="Back" variant="brand" onclick={handleformBackClick}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                        <div class="slds-col">
+                            <lightning-button label="Next" variant="brand" onclick={handlereviewinfo}>
+                            </lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </lightning-card>
+        </template>
+        <template if:true={reviewinfo}>
+            <lightning-card class="slds-m-around_medium">
+                <h3 style="font-size: 16px;padding: 1%;">
+                    <!-- <lightning-icon icon-name='utility:shift_pattern_entry' alternative-text='shift_pattern_entry' size='small' title='shift_pattern_entry'></lightning-icon> -->
+                    <b style="padding-left: 10px;">Review Loan Application Information</b>
+                </h3>
+
+                <div class="slds-p-around_medium">
+                    <!-- Account Information Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Account
+                        Information</h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>New Account: </strong>{searchKey}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loan Details Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Loan Details</h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Loan Amount: </strong>{loanamount}</p>
+                                <p><strong>Loan Term (Months): </strong>{loantenure}</p>
+                                <p><strong>Loan Purpose: </strong>{loanpurpose}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Personal
+                        Information</h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Borrower's Name: </strong>{borrowerName}</p>
+                                <p><strong>Email Address: </strong>{emailaddress}</p>
+                                <p><strong>Phone Number: </strong>{phoneNumber}</p>
+                                <p><strong>Date of Birth: </strong>{dob}</p>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Nationality: </strong>{nationality}</p>
+                                <p><strong>Marital Status: </strong>{maritail}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Employment and Income Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Employment and
+                        Income</h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Occupation: </strong>{occupation}</p>
+                                <p><strong>Annual Income: </strong>{income}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Residential Address Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Residential
+                        Address</h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Address: </strong>{address}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents Provided Section -->
+                    <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Documents Provided
+                    </h2>
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium" style="background-color: white;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                <p><strong>Documents: </strong>{selectedIdProofs}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="slds-grid">
+                    <div>
+                        <span>  <lightning-button label="Back" variant="brand" onclick={handleBackToForm}></lightning-button></span>
+                    </div>
+                    <div class="slds-col_bump-left">
+                        <span> <lightning-button label="Submit Loan Application" variant="brand" onclick={handleHomeLoanSubmitButtonClick}></lightning-button>
+                    </span>
+                    </div>
+
+                </div>
+            </lightning-card>
+        </template>
+    </template>
+</template>

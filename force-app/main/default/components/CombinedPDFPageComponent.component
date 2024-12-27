@@ -1,0 +1,10 @@
+<apex:component controller="CombinedPDFController">
+    <!-- Attributes to accept parameters -->
+    <apex:attribute name="patientId" description="Patient ID" type="String" required="true" />
+    <apex:attribute name="savedRecordIds" description="Saved Record IDs" type="String" required="true" />
+
+    <!-- Panel rendering the iframe -->
+    <apex:outputPanel style="width: 100%; height: 800px;">
+        <apex:iframe src="{!pdfUrl}" width="100%" height="800px" scrolling="yes" frameborder="0" />
+    </apex:outputPanel>
+</apex:component>

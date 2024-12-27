@@ -1,0 +1,29 @@
+<template>
+    <section class="bill-card-container">
+    <lightning-card title="Joint Applicants" class="bill-card" onclick={toggleDetails}>
+         <div slot="actions" class="chevron-container">
+                <lightning-icon icon-name={chevronIcon} alternative-text="Toggle Details" size="xx-small" class="chevron-icon"></lightning-icon>
+            </div>
+             <template if:true={showDetails}>
+        <template if:true={newAccount}>
+            <div class="slds-box slds-box_xx-small custom-background" style="margin-left: 8px; margin-right: 8px;">
+               <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+    <p><strong>Joint Applicant 1:</strong> <span class="slds-m-left_xx-small">{newAccount.X1st_Joint_Application_Name__c}</span></p>
+</div>
+<div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+    <p><strong>Joint Applicant 2:</strong> <span class="slds-m-left_xx-small">{newAccount.X2nd_Joint_Application_Name__c}</span></p>
+</div>
+<div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+    <p><strong>Joint Applicant 3:</strong> <span class="slds-m-left_xx-small">{newAccount.X3rd_Joint_Application_Name__c}</span></p>
+</div>
+
+                </div>
+            
+        </template>
+        <template if:false={newAccount}>
+            <p>No associated Account</p>
+        </template>
+             </template>
+    </lightning-card>
+    </section>
+</template>

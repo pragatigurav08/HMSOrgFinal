@@ -1,0 +1,760 @@
+<!-- https://developer.salesforce.com/docs/component-library/bundle/lightning-progress-indicator/example -->
+
+<template>
+    <div style="background-color:white">
+
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12"
+                style="background-color: white;">
+                <span class="custom-box">
+            <!-- <h1 style="text-align:center;font-size: 130%;"><b>Open an Account</b></h1> -->
+        </span>
+            </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12"
+                style="background-color: white;">
+                <span class="custom-box">
+               <lightning-progress-indicator current-step={currentStep} type="base">
+            <template for:each={steps} for:item="step">
+                <lightning-progress-step
+                    label={step.label}
+                    value={step.value}
+                    key={step.label}>
+                </lightning-progress-step>
+            </template>
+
+        </lightning-progress-indicator>
+        </span>
+            </div>
+        </div>
+
+
+        <template if:true={isStep1}>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12"
+                    style="background-color: white;padding:1%">
+                    <span class="custom-box">
+                <lightning-combobox 
+                    label="Select Account Type" 
+                    value={accountType} 
+                    options={accountTypeOptions} 
+                    onchange={handleAccountTypeChange} 
+                    data-id="accountType" 
+                    required>
+                </lightning-combobox>
+            </span>
+                </div>
+            </div>
+
+            <template if:false={isDepositAccountType}>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12"
+                        style="background-color: white;height: 45px;padding-bottom: 6%;">
+                        <!-- height: 43px; -->
+                        <span class="custom-box">
+                  <div class="slds-box" style="width: 21%;
+    border-bottom-right-radius: 121px;
+    border-top-right-radius: 142px;
+    background-color: rgb(1 118 211 / 84%);
+    height: 60px;"> 
+                     <h3 style="font-size: 16px;padding-left: 16px;">
+                        <lightning-icon icon-name="utility:meet_focus_presenter" 
+                                        alternative-text="meet_focus_presenter" 
+                                        size="medium" 
+                                        title="meet_focus_presenter" class="white-utility-icon">
+                        </lightning-icon> 
+                       <b style="padding-left: 10px;color:white"> Personal Information
+                    </b></h3> 
+                  </div>
+                    <!-- Row 1 -->
+                <!-- Row 1 -->
+<!-- <div class="slds-grid slds-wrap">
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_1-of-12">
+        <span class="custom-box">
+            <lightning-icon icon-name="utility:meet_focus_presenter" 
+                                        alternative-text="meet_focus_presenter" 
+                                        size="small" 
+                                        title="meet_focus_presenter">
+                        </lightning-icon> 
+        </span>
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_2-of-12">
+                        <span class="custom-box">
+            <h3 style="font-size: 16px;"><b>
+                     Personal Information
+                    </b></h3>
+        </span>
+                    </div>
+                </div> -->
+
+                </span>
+    </div>
+    </div>
+
+    <div class="slds-grid slds-wrap" style="padding:1%">
+        <!-- First Name -->
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-right:2%">
+            <lightning-input label="First Name" value={firstName} onchange={handleInputChange}
+                message-when-value-missing="First Name is required" data-id="firstName" required>
+            </lightning-input>
+        </div>
+
+        <!-- Last Name -->
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-left:2%">
+            <lightning-input label="Last Name" value={lastName} onchange={handleInputChange}
+                message-when-value-missing="Last Name is required" data-id="lastName" required>
+            </lightning-input>
+        </div>
+
+        <!-- Father's Name -->
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-right:2%">
+            <lightning-input label="Father's Name" value={fathersName} onchange={handleInputChange}
+                data-id="fathersName"></lightning-input>
+        </div>
+
+        <!-- Mother's Name -->
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-left:2%">
+            <lightning-input label="Mother's Name" value={mothersName} onchange={handleInputChange}
+                data-id="mothersName"></lightning-input>
+        </div>
+
+        <!-- Mother's Maiden Name -->
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-right:2%">
+            <lightning-input label="Mother's Maiden Name" value={mothersMaidenName} onchange={handleInputChange}
+                data-id="mothersMaidenName"></lightning-input>
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-left:2%">
+            <lightning-input label="Date of Birth" value={dateOfBirth} onchange={handleInputChange}
+                data-id="dateOfBirth" type="date" required></lightning-input>
+        </div>
+
+        <!-- Gender -->
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-right:2%">
+            <lightning-combobox label="Gender" value={gender} options={GenderOptions} onchange={handleInputChange}
+                message-when-value-missing="Gender field  is required" data-id="gender" required></lightning-combobox>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-left:2%">
+            <lightning-input label="Phone number" value={phoneNumber} onchange={handleInputChange} data-id="phoneNumber"
+                required></lightning-input>
+        </div>
+
+        <!-- Nationality -->
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-right:2%">
+            <lightning-input label="Nationality" value={nationality} onchange={handleInputChange} data-id="nationality"
+                required></lightning-input>
+        </div>
+
+        <!-- Marital Status -->
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-left:2%">
+            <lightning-combobox label="Marital Status" value={maritalStatus} options={MaritalStatusOptions}
+                onchange={handleInputChange} data-id="maritalStatus"></lightning-combobox>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap" style="padding:1%">
+        <!-- Country, State, City, PinCode, Landmark -->
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-right:2%">
+            <lightning-input label="Residentaddress" value={communicationaddress} onchange={handleInputChange}
+                data-id="communicationaddress" required></lightning-input>
+        </div>
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-left:2%">
+            <lightning-input label="Landmark" value={landmark} onchange={handleInputChange} data-id="landmark" required>
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-right:2%">
+            <lightning-input label="City" value={city} onchange={handleInputChange} data-id="city" required>
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-left:2%">
+            <lightning-input label="State" value={state} onchange={handleInputChange} data-id="state" required>
+            </lightning-input>
+        </div>
+
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-right:2%">
+            <lightning-input label="PinCode" value={pinCode} onchange={handleInputChange} data-id="pinCode" required>
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-left:2%">
+            <lightning-input label="Country" value={country} onchange={handleInputChange} data-id="country" required>
+            </lightning-input>
+        </div>
+
+    </div>
+
+    <!-- Checkbox for Same as Resident Address -->
+    <div style="padding:1%">
+        <lightning-input type="checkbox" label="Same as Resident Address" checked={isSameAsResident}
+            onchange={handleCheckboxChange}></lightning-input>
+    </div>
+    <div class="slds-grid slds-wrap" style="padding:1%">
+        <!-- Permanent Address (if not the same) -->
+
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-right:2%">
+            <lightning-input label="Permanentaddress" value={permanentaddress} onchange={handleInputChange}
+                data-id="permanentaddress"></lightning-input>
+        </div>
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-left:2%">
+            <lightning-input label="Landmark" value={landmarkP} onchange={handleInputChange} data-id="landmarkP">
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-right:2%">
+            <lightning-input label="City" value={cityP} onchange={handleInputChange} data-id="cityP">
+            </lightning-input>
+        </div>
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-left:2%">
+            <lightning-input label="State" value={stateP} onchange={handleInputChange} data-id="stateP">
+            </lightning-input>
+        </div>
+
+
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-right:2%">
+            <lightning-input label="PinCode" value={pinCodeP} onchange={handleInputChange} data-id="pinCodeP">
+            </lightning-input>
+        </div>
+
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+            style="padding-left:2%">
+            <lightning-input label="Country" value={countryP} onchange={handleInputChange} data-id="countryP">
+            </lightning-input>
+        </div>
+
+
+    </div>
+</template>
+</template>
+
+
+<template if:true={isStep2}>
+    <!-- Account Selection -->
+    <div style="background-color:white;padding: 1%;padding-bottom: 6%;">
+         <div class="slds-box" style="width: 21%;
+    border-bottom-right-radius: 121px;
+    border-top-right-radius: 142px;
+    background-color: rgb(1 118 211 / 84%);
+    height: 55px;    margin-bottom: 13px;"> 
+        <h3 style="font-size: 16px;">
+  
+            <!-- <lightning-icon icon-name='utility:meet_focus_presenter' alternative-text='meet_focus_presenter' size='small' title='meet_focus_presenter'></lightning-icon>  -->
+            <lightning-icon icon-name='utility:identity' alternative-text='identity' size='medium' title='identity' class="white-utility-icon">
+            </lightning-icon>
+            <b style="padding-left: 10px;color:white"> Account Details
+            </b>
+        </h3>
+    </div>
+        <div class="slds-grid slds-wrap">
+            <!-- Branch Input -->
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="padding-right:2%">
+                <lightning-input label="Branch" value={searchK} onchange={handleBranchChange} data-id="searchK">
+                </lightning-input>
+
+                <!-- Search Results -->
+                <template if:true={branches}>
+                    <ul class="slds-listbox slds-listbox_vertical" role="listbox" aria-label="Suggested for you">
+                        <template for:each={branches} for:item="branch">
+                            <li key={branch.Id} class="slds-listbox__item" role="presentation" data-id={branch.Id}
+                                onclick={handleBranchSelect}>
+                                <div class="slds-media slds-listbox__option slds-listbox__option_plain" role="option">
+                                    <span class="slds-media__body">
+                                        <span class="slds-listbox__option-text slds-listbox__option-text_entity">{branch.Name}</span>
+                                    </span>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+            </div>
+
+            <!-- PAN Card No Input -->
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="padding-left:2%">
+
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-3">
+                        <span>
+    <lightning-input label="PAN Card No" maxlength="10" value={panCardNo} onchange={handleInputChange} data-id="panCardNo" required></lightning-input>
+                
+                <!-- OTP Input and Verification Button -->
+                <template if:true={otpSent}>
+                    <!-- <lightning-input data-id="enteredOtp" label="Enter OTP" value={enteredOtp} onchange={handleInputChange}></lightning-input>
+                    <lightning-button label="Verify OTP" onclick={verifyOtp} class="slds-m-top_small"></lightning-button> -->
+                    <!-- Row 1 -->
+<div class="slds-grid slds-wrap">
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12" style="padding: 0px;">
+        <span class="custom-box"> <lightning-input data-id="enteredOtp" label="Enter OTP" value={enteredOtp} onchange={handleInputChange}> </lightning-input></span>
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                        style="padding: 0px;margin-top: 22%;font-size: 11px;">
+                        <span class="custom-box">   <lightning-button label="Verify OTP" onclick={verifyOtp} class="slds-m-top_small"></lightning-button> </span>
+                    </div>
+                </div>
+</template>
+</span>
+</div>
+<div class="slds-col slds-size_2-of-3" style="margin-top: 10px;">
+    <span>
+    <!-- <lightning-button label="Send OTP" onclick={generateOtp} class="slds-m-top_medium"  disabled={disableOtpButton} ></lightning-button> -->
+<!-- Row 1 -->
+<div class="slds-grid slds-wrap">
+	<div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12" style="width: 30%;">
+		<span class="custom-box">
+            <template if:true={isVerified}>
+        <!-- <lightning-icon icon-name="utility:check" alternative-text="Verified" size="small" class="green-tick" style="padding: 3%;"></lightning-icon> -->
+         <h3  class="green-tick">
+           Verified  <lightning-icon icon-name='utility:success' alternative-text='success' size='small' title='success'></lightning-icon>
+           
+       </h3>
+
+    </template>
+        </span>
+	</div>
+	<div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12" style="    padding-top: 3%;">
+		<span class="custom-box">
+              <template if:false={sendotpbutton}>
+        <lightning-button label="Send OTP" onclick={generateOtp} class="slds-m-top_medium"  disabled={disableOtpButton} ></lightning-button>
+    </template>
+    <template if:true={sendotpbutton}>
+        <lightning-button label="Re-SendOTP" onclick={generateOtp} class="slds-m-top_medium"  disabled={disableOtpButton} ></lightning-button>
+    </template>
+        </span>
+	</div>
+</div>
+</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="slds-grid slds-wrap">
+    <!-- Open Date Input -->
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+        style="padding-right:2%">
+        <lightning-input label="Open Date" type="date" value={openDate} onchange={handleInputChange} data-id="openDate"
+            required></lightning-input>
+    </div>
+
+    <!-- Aadhar Card No Input -->
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+        style="padding-left:2%">
+
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-3">
+                <span>
+                <lightning-input label="Aadhar Card No" maxlength="12" value={AadharCardno} onchange={handleInputChange} data-id="AadharCardno" required></lightning-input>
+
+                <!-- OTP Input and Verification Button -->
+                <template if:true={otpSent1}>
+                    <!-- <lightning-input data-id="enteredAadharOtp" label="Enter OTP" value={enteredAadharOtp} onchange={handleInputChange}></lightning-input>
+                    <lightning-button label="Verify OTP" onclick={VerifyAadharOtp} class="slds-m-top_small"></lightning-button> -->
+                    <div class="slds-grid slds-wrap">
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12" style="padding: 0px;">
+        <span class="custom-box"> <lightning-input data-id="enteredAadharOtp" label="Enter OTP" value={enteredAadharOtp} onchange={handleInputChange}></lightning-input> </span>
+            </div>
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="margin-top: 22%;padding: 0px;font-size: 11px;">
+                <span class="custom-box">  <lightning-button label="Verify OTP" onclick={VerifyAadharOtp} class="slds-m-top_small"></lightning-button> </span>
+            </div>
+        </div>
+        </template>
+        </span>
+    </div>
+    <div class="slds-col slds-size_2-of-3" style="margin-top: 10px;">
+        <span>
+               
+                <!-- <lightning-button label="Send OTP" onclick={generateAadharOtp} class="slds-m-top_medium"  ></lightning-button> -->
+
+                
+
+    <div class="slds-grid slds-wrap">
+	<div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12" style="width: 30%;">
+		<span class="custom-box">
+                <template if:true={isAadharVerified}>
+                    <!-- <lightning-icon icon-name="utility:check" alternative-text="Verified" size="small" class="green-tick" style="padding: 3%;"></lightning-icon> -->
+                      <h3  class="green-tick">
+           Verified  <lightning-icon icon-name='utility:success' alternative-text='success' size='small' title='success'></lightning-icon>
+           
+       </h3>
+        </template>
+        </span>
+	</div>
+	<div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12" style="    padding-top: 3%;">
+		<span class="custom-box">
+             <template if:false={sendaadharotpbutton}>
+       <lightning-button label="Send OTP" onclick={generateAadharOtp} class="slds-m-top_medium"  ></lightning-button>
+    </template>
+    <template if:true={sendaadharotpbutton}>
+        <!-- <lightning-button label="Re-SendOTp" onclick={generateOtp} class="slds-m-top_medium"  disabled={disableOtpButton} ></lightning-button> -->
+        <lightning-button label="Re-SendOTP" onclick={generateAadharOtp} class="slds-m-top_medium"  ></lightning-button>
+    </template>
+        </span>
+	</div>
+</div>
+            </span>
+    </div>
+</div>
+</div>
+
+
+
+</div>
+
+<div class="slds-grid slds-wrap">
+    <!-- Mode of Operation Combobox -->
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+        style="padding-right:2%">
+        <lightning-combobox label="Mode of Operation" value={modeOfOperation} options={modeOfOperationOptions}
+            onchange={handleInputChange} data-id="modeOfOperation">
+        </lightning-combobox>
+    </div>
+
+    <!-- 1st Joint Application Name Input -->
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+        style="padding-left:2%">
+        <lightning-input label="1st Joint Application Name" value={jointAppName1} onchange={handleInputChange}
+            data-id="jointAppName1"></lightning-input>
+            <template if:true={phonenofieldofjointapp}>
+                <lightning-input label="Phone number" value={phoneNoo} onchange={handleInputChange} data-id="phoneNoo"
+                required></lightning-input>
+            </template>
+    </div>
+
+</div>
+
+<div class="slds-grid slds-wrap">
+    <!-- Mode of Payment Combobox -->
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+        style="padding-right:2%">
+        <lightning-combobox label="Mode of Payment" value={modeOfPayment} options={modeOfPaymentOptions}
+            onchange={handleInputChange} data-id="modeOfPayment"></lightning-combobox>
+    </div>
+
+    <!-- 2nd Joint Application Name Input -->
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+        style="padding-left:2%">
+        <lightning-input label="2nd Joint Application Name" value={jointAppName2} onchange={handleInputChange}
+            data-id="jointAppName2"></lightning-input>
+             <template if:true={phonenofieldofjointapp2}>
+                <lightning-input label="Phone number" value={phoneNoo2} onchange={handleInputChange} data-id="phoneNoo2"
+                required></lightning-input>
+            </template>
+    </div>
+
+
+</div>
+
+<div class="slds-grid slds-wrap">
+    <!-- Total Deposit Amount -->
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+        style="padding-right:2%">
+        <lightning-input label="Total Deposit Amount" type="number" value={totalDepositAmount}
+            onchange={handleInputChange} data-id="totalDepositAmount"></lightning-input>
+    </div>
+
+    <!-- 3rd Joint Application Name Input -->
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+        style="padding-left:2%">
+        <lightning-input label="3rd Joint Application Name" value={jointAppName3} onchange={handleInputChange}
+            data-id="jointAppName3"></lightning-input>
+             <template if:true={phonenofieldofjointapp3}>
+                <lightning-input label="Phone number" value={phoneNoo3} onchange={handleInputChange} data-id="phoneNoo3"
+                required></lightning-input>
+            </template>
+    </div>
+
+
+</div>
+
+<div class="slds-grid slds-wrap">
+    <!-- Annual Income -->
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+        style="padding-right:2%">
+        <lightning-input label="Annual Income" type="number" value={annualIncome} onchange={handleInputChange}
+            data-id="annualIncome" required></lightning-input>
+    </div>
+    <!-- Physical Ability Status Combobox -->
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+        style="padding-left:2%">
+        <lightning-combobox label="Physical Ability Status" value={physicalAbilityStatus}
+            options={physicalAbilityStatusOptions} onchange={handleInputChange} data-id="physicalAbilityStatus">
+        </lightning-combobox>
+    </div>
+</div>
+</div>
+</template>
+
+
+
+
+
+<template if:true={isStep3}>
+    <!-- Document Upload -->
+    <!-- <lightning-card title="Step 4: Document Verification"> -->
+    <!-- <c-document-Verification></c-document-Verification> Assuming this is the document upload component -->
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12"
+            style="background-color: white;">
+            <span class="custom-box">
+                   <div class="slds-box" style="width: 21%;
+    border-bottom-right-radius: 121px;
+    border-top-right-radius: 142px;
+    background-color: rgb(1 118 211 / 84%);
+    height: 60px;"> 
+                         <h3 style="font-size: 16px;padding:1%">
+                            <lightning-icon icon-name='utility:meet_focus_presenter' alternative-text='meet_focus_presenter' size='medium' title='meet_focus_presenter' class="white-utility-icon"></lightning-icon> 
+                            <b style="padding-left: 10px;color:white">Document Verification</b></h3> 
+                   </div>
+                   </span>
+        </div>
+    </div>
+    <!-- Row 2 -->
+    <!-- <div class="slds-grid slds-wrap" style="padding:1%">
+                <div class="slds-col slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_12-of-12"
+                    style="background-color: white;">
+                    <span class="custom-box">
+     <lightning-combobox label="Verification Status" value={Docverifystatus} options={DocverifystatusOptions} onchange={handleInputChange} data-id="Docverifystatus" required></lightning-combobox>
+      
+        </span>
+                </div>
+            </div> -->
+    <!-- Row 1 -->
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+            <span class="custom-box">
+                        <div class="slds-m-around_medium" style="margin-top: 0px;">
+                            <!-- Display the file name and size -->
+                            <lightning-input label="File Name" value={fileName} disabled></lightning-input>
+                            <!-- <lightning-input label="File Size" value={fileSize} disabled></lightning-input> -->
+                           
+                            <!-- File upload input -->
+                            <div class="slds-grid">
+                                <div>
+                                    <lightning-input
+                                        type="file"
+                                        onchange={handleFileUpload}
+                                        accept="image/*"
+                                         value={uploadedFile}
+                                        disabled={isFileUploaded}>
+                                    </lightning-input>
+                                </div>
+                                <div style="padding-top: 22px">
+                                    <lightning-button-icon
+                                        icon-name="utility:preview"
+                                        alternative-text="Preview File"
+                                        class="slds-m-left_small"
+                                        onclick={handlePreviewClick}>
+                                    </lightning-button-icon>    
+                                </div>
+                                <div style="padding-top: 22px">
+                                    <lightning-button-icon
+                                        icon-name="utility:delete"
+                                        alternative-text="Delete File"
+                                        class="slds-m-left_small"
+                                        onclick={handleDeleteClick}>
+                                    </lightning-button-icon>  
+                                </div>
+                            </div>
+                            <div>
+                                <span>{fileSize}</span>
+        </div>
+
+        <!-- Modal for file preview -->
+        <template if:true={isModalOpen}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container" style="width: 100%; max-width: 800px;">
+                    <!-- Modal/Popup header -->
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                                                <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                                                <span class="slds-assistive-text">Close</span>
+                                            </button>
+                        <h2 class="slds-text-heading_medium">File Preview</h2>
+                    </header>
+                    <!-- Modal/Popup body -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <!-- Image preview -->
+                        <template if:true={isImage}>
+                            <img src={fileUrl} alt="Uploaded File Preview" />
+                        </template>
+                        <!-- PDF preview -->
+                        <template if:true={isPdf}>
+                            <iframe src={fileUrl} width="100%" height="600px" style="border: none;"></iframe>
+                        </template>
+                        <!-- Fallback for unsupported files -->
+                        <template if:true={isUnsupportedFile}>
+                            <p>File cannot be previewed.</p>
+                        </template>
+                    </div>
+                    <!-- Modal/Popup footer -->
+                    <footer class="slds-modal__footer">
+                        <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+    </span>
+    </div>
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+        <span class="custom-box">
+                        <lightning-combobox label="Verification Status" value={Docverifystatus}
+                            options={DocverifystatusOptions} onchange={handleInputChange} data-id="Docverifystatus" style="margin-right: 18px;"
+                            required></lightning-combobox>
+                    </span>
+    </div>
+    </div>
+
+</template>
+
+<template if:true={isStep4}>
+    <!-- Review Information -->
+    <lightning-card class="slds-m-around_medium">
+           <div class="slds-box" style="width: 21%;
+    border-bottom-right-radius: 121px;
+    border-top-right-radius: 142px;
+    background-color: rgb(1 118 211 / 84%);
+    height: 57px;"> 
+        <h3 style="font-size: 16px;padding: 1%;">
+            <lightning-icon icon-name='utility:shift_pattern_entry' alternative-text='shift_pattern_entry' size='small'
+                title='shift_pattern_entry' class="white-utility-icon"></lightning-icon>
+            <b style="padding-left: 10px;color:white">Review Information</b>
+        </h3>
+           </div>
+        <div class="slds-p-around_medium">
+            <!-- Personal Information Section -->
+            <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Personal Information</h2>
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>First Name: </strong>{firstName}</p>
+                        <p><strong>Father's Name: </strong>{fathersName}</p>
+                        <p><strong>Mother's Maiden Name: </strong>{mothersMaidenName}</p>
+                        <p><strong>Gender: </strong>{gender}</p>
+                        <p><strong>Nationality: </strong>{nationality}</p>
+                        <p><strong>Residentaddress: </strong>{communicationaddress}</p>
+                        <p><strong>Landmark: </strong>{landmark}</p>
+                        <p><strong>City: </strong>{city}</p>
+                        <p><strong>PinCode: </strong>{pinCode}</p>
+                        <p><strong>State: </strong>{state}</p>
+                        <p><strong>Country: </strong>{country}</p>
+                       
+
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>Last Name: </strong>{lastName}</p>
+                        <p><strong>Mother's Name: </strong>{mothersName}</p>
+                        <p><strong>Date of Birth: </strong>{dateOfBirth}</p>
+                        <p><strong>Phone Number: </strong>{phoneNumber}</p>
+                        <p><strong>Marital Status: </strong>{maritalStatus}</p>
+                        <p><strong>PermanentAddress: </strong>{permanentaddress}</p>
+                        <p><strong>Landmark: </strong>{landmarkP}</p>
+                        <p><strong>City: </strong>{cityP}</p>
+                        <p><strong>PinCode: </strong>{pinCodeP}</p>
+                        <p><strong>State: </strong>{stateP}</p>
+                        <p><strong>Country: </strong>{countryP}</p>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Information Section -->
+            <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Account Information</h2>
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>Branch: </strong>{searchK}</p>
+                        <p><strong>PAN Card No: </strong>{panCardNo}</p>
+                        <div class="aadhaar-container">
+                            <p><strong>Aadhaar Number: </strong>{displayAadharCardno}</p>
+                            <template if:false={showAadhar}>
+                                <lightning-icon icon-name="utility:preview" title="Show" size='x-small'
+                                    onclick={toggleAadharVisibility}>
+                                </lightning-icon>
+                            </template>
+                            <template if:true={showAadhar}>
+                                <lightning-icon icon-name="utility:hide" title="Hide" size='x-small'
+                                    onclick={toggleAadharVisibility}>
+                                </lightning-icon>
+                            </template>
+                        </div>
+
+
+
+
+
+                        <p><strong>Mode of Operation: </strong>{modeOfOperation}</p>
+                        <p><strong>Account Open Date: </strong>{openDate}</p>
+                        <p><strong>Total Deposit Amount: </strong>{totalDepositAmount}</p>
+                        <p><strong>Mode of Payment: </strong>{modeOfPayment}</p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>Joint Applicant 1: </strong>{jointAppName1}</p>
+                        <p><strong>Joint Applicant 2: </strong>{jointAppName2}</p>
+                        <p><strong>Joint Applicant 3: </strong>{jointAppName3}</p>
+                        <p><strong>Physical Ability Status: </strong>{physicalAbilityStatus}</p>
+                        <p><strong>Annual Income: </strong>{annualIncome}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>
+
+
+
+
+<!-- Navigation Buttons
+<div class="slds-m-top_medium">
+    <lightning-button label="Previous" onclick={handlePrevious} class="slds-m-right_small" disabled={isFirstStep}>
+    </lightning-button>
+    <lightning-button label="Next" onclick={handleNext} disabled={isLastStep}></lightning-button>
+    <template if:true={isLastStep}>
+        <lightning-button label="Save" onclick={handleSave}></lightning-button>
+    </template>
+</div>
+</div> -->
+<div class="slds-m-top_medium" style="padding: 1%;">
+
+    <div class="slds-grid">
+        <div class="slds-col_bump-right">
+            <lightning-button label="Previous" onclick={handlePrevious} class="slds-m-right_small"
+                disabled={isFirstStep}></lightning-button>
+        </div>
+        <div>
+            <lightning-button label="Next" class="main-content"  onclick={handleNext} disabled={isLastStep}></lightning-button>
+            <template if:true={isLastStep}>
+                <lightning-button label="Save" onclick={handleSave} style="margin-left: 10px;">
+                </lightning-button>
+            </template>
+        </div>
+    </div>
+</div>
+</div>
+</template>

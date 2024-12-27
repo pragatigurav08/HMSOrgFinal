@@ -1,0 +1,63 @@
+.image-icon{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+/* div{
+    text-align: center;
+} */
+p{
+    font-size: 200%;
+    color:white;
+}
+.btn-light{
+    color: #000;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa
+}
+.bttn-light{
+    color: #000;
+    background-color: #e6e7e9;
+    border-color: #f8f9fa
+}
+.bttn-selc{
+    background-color: #c5def7;
+    color: #0d6efd;
+    border-color: lightskyblue;
+}
+.tab-css:hover{
+    background-color: #c5def7;
+    /* color: #0d6efd; */
+}
+.box-css{
+    background-color: #d5dadf;
+    /* color: #0d6efd; */
+}
+.btn-selc{
+    background-color: #c5def7;
+    color: #0d6efd;
+    border-color: lightskyblue;
+}
+.icon-color{
+    --sds-c-icon-color-foreground-default: #0d6efd;
+}
+.popover-card {
+    /*display: none;*/
+    /* top: 0%; */
+    bottom: -10%;
+    /*100%*/
+    width: 0%;
+    position: fixed;
+    /*border-radius: 15px 15px 0px 0px;*/
+    height: 100vh;
+    /*0%*/
+    background-color: #fafafa;
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidepanel */
+    /*transform: translateY(100%); Old*/
+    transform: translateX(-100%);
+    z-index: 15;
+    left: 0%;
+    right: 0%;
+    overflow: hidden;
+}

@@ -1,0 +1,38 @@
+<template>
+    <div class="container">
+        <h1>Home Loan EMI Calculator</h1>
+        
+        <!-- Loan Amount Slider -->
+        <div class="slider-container">
+            <label>Loan Amount: ₹ {loanAmount}</label>
+            <input type="range" min="500000" max="10000000" step="100000" value={loanAmount} oninput={handleLoanAmountChange} />
+            <div class="range-values">₹5,00,000 - ₹1,00,00,000</div>
+        </div>
+
+        <!-- Loan Tenure Slider -->
+        <div class="slider-container">
+            <label>Tenure (Months): {tenure} months</label>
+            <input type="range" min="60" max="360" step="1" value={tenure} oninput={handleTenureChange} />
+            <div class="range-values">5 - 30 Years (60 - 360 Months)</div>
+        </div>
+
+        <!-- Interest Rate Slider -->
+        <div class="slider-container">
+            <label>Interest Rate: {interestRate}%</label>
+            <input type="range" min="6.50" max="9.50" step="0.01" value={interestRate} oninput={handleInterestRateChange} />
+            <div class="range-values">6.50% - 9.50% p.a.</div>
+        </div>
+
+        <!-- Result Box -->
+        <div class="result-box">
+            <div class="result-section">
+                <h2>Monthly EMI</h2>
+                <p>₹ {emi}</p>
+            </div>
+            <div class="result-section">
+                <h2>Total Interest Payable</h2>
+                <p>₹ {totalInterestPayable}</p>
+            </div>
+        </div>
+    </div>
+</template>

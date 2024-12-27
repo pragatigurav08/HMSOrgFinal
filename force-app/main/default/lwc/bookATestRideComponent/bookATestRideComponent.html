@@ -1,0 +1,84 @@
+<!--
+  @description       : 
+  @author            : Saurav Kashyap
+  @group             : SK Group
+  @last modified on  : 01-09-2024
+  @last modified by  : Saurav Kashyap
+  Modifications Log
+  Ver   Date         Author           Modification
+  1.0   21-08-2023   Saurav Kashyap   Initial Version
+-->
+<template>
+  <div class="container slds-grid slds-wrap">
+    <!-- Header at the Top of Every Page -->
+    <div class="header-title slds-col slds-size--1-of-1">Book A Test Ride</div>
+
+    <!-- Progress Step For Each  Progress of The Test ride Journey-->
+    <div class="progress-step slds-col slds-size--1-of-1">
+      <!-- Progress Bar Code -->
+      <div class="slds-progress">
+        <ol class="slds-progress__list">
+
+          <template for:each={progressBarList} for:item="progressItem">
+
+            <li key={progressItem} class={progressItem.css}>
+
+              <button class={progressItem.buttonCSS} style="transition: border-color 1s;">
+
+                <template if:true={progressItem.isSuccess}>
+                  <svg class="slds-button__icon" aria-hidden="true">
+                    <use xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#success"></use>
+                  </svg>
+                </template>
+
+                <template if:true={progressItem.isError}>
+                  <svg class="slds-button__icon" aria-hidden="true">
+                    <use xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#clear"></use>
+                  </svg>
+                </template>
+                <span class="slds-assistive-text">{progressItem.name}</span>
+              </button>
+              <span class="step-label">{progressItem.name}</span>
+            </li>
+
+          </template>
+
+        </ol>
+        <div class="slds-progress-bar slds-progress-bar_x-small" aria-valuemin="0" aria-valuemax="100"
+          aria-valuenow={progressPercentWidthCSS} role="progressbar">
+          <span class="slds-progress-bar__value progressBarCSS" style={progressPercentWidthCSS}>
+            <span class="slds-assistive-text">Progress: </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inside This we'll be calling different different Child Components -->
+    <div class="child-components slds-col slds-size--1-of-1">
+      <!--City & Dealer Selection Component -->
+
+      <!-- Vehicle Selection Component -->
+
+      <!-- Calendar/Select A Date Component -->
+
+      <!-- Select Available Slots Component -->
+
+      <!-- Fill your Details Components -->
+
+      <!-- Verify All Details Components -->
+
+      <!-- Successfully Test Ride Booked template -->
+      <div class="success-test-ride">
+        <!-- need a good image or svg -->
+        Thank You for Visiting.Your Test Ride is Booked.
+      </div>
+    </div>
+
+    <!-- Inside This we'll be switching between different footers -->
+    <div class="footer-components slds-col slds-size--1-of-1">
+      <div class="save-button"></div>
+      <div class="next-button"></div>
+      <div class="cancel-button"></div>
+    </div>
+  </div>
+</template>

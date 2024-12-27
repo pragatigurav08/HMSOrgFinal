@@ -1,0 +1,38 @@
+<template>
+    <lightning-card title="Preview Prescription & Invoice" icon-name="custom:custom14">
+        <div class="slds-p-around_medium">
+            <!-- Prescription Section -->
+            <template if:true={todayPrescriptionDetails}>
+                <p class="slds-text-heading_small">Today's Prescription</p>
+                <div class="slds-box slds-theme_default">
+                    <p><strong>Patient Name:</strong> {todayPrescriptionDetails.patientName}</p>
+                    <p><strong>Gender:</strong> {todayPrescriptionDetails.gender}</p>
+                    <p><strong>Age:</strong> {todayPrescriptionDetails.age}</p>
+                    <p><strong>Address:</strong> {todayPrescriptionDetails.address}</p>
+                    <p><strong>Drug Name:</strong> {todayPrescriptionDetails.drugName}</p>
+                    <p><strong>Dosage:</strong> {todayPrescriptionDetails.dosage}</p>
+                    <p><strong>Frequency:</strong> {todayPrescriptionDetails.frequency}</p>
+                    <p><strong>Intake:</strong> {todayPrescriptionDetails.intake}</p>
+                    <p><strong>Created Date:</strong> {createdDate}</p>
+                </div>
+                <lightning-button label="Print Prescription" onclick={handlePrintPrescription} class="slds-m-top_medium"></lightning-button>
+            </template>
+            <template if:false={todayPrescriptionDetails}>
+                <p>No prescriptions found for today.</p>
+            </template>
+
+            <!-- Next Visit Section -->
+            <template if:true={nextVisitDate}>
+                <p class="slds-text-heading_small slds-m-top_large">Next Visit</p>
+                <p>Scheduled Date: {nextVisitDate}</p>
+            </template>
+            <template if:false={nextVisitDate}>
+                <p class="slds-m-top_large">No next visit scheduled for today.</p>
+            </template>
+
+            <!-- Invoice Section -->
+            <p class="slds-text-heading_small slds-m-top_large">Invoice</p>
+            <lightning-button label="Print Invoice" onclick={handlePrintInvoice} class="slds-m-top_medium"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

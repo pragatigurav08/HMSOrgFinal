@@ -1,0 +1,133 @@
+<template>
+    <template if:true={accountDetails}>
+    <lightning-card title={accountDetails.Name} icon-name="utility:meet_focus_presenter">
+        <h1 style="padding-left:14px;font-size: medium;">Related Insurances</h1>
+        <div slot="actions" class="slds-var-m-around_small slds-grid slds-grid_align-end searchmobileend">
+            <div class="slds-col searchmobile">
+                <div class="slds-form-element ">
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                        <lightning-icon size="x-small"
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            icon-name="utility:search">
+                        </lightning-icon>
+                        <lightning-input type="text" placeholder="search account" variant="label-hidden"
+                            data-field-name="AccountNumber" onchange={handleSearchInsurance}>
+                        </lightning-input>
+
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="slds-col">
+               <lightning-button label="Apply Wealth" onclick={handleNavigate} class="slds-m-top_medium"></lightning-button>
+            </div>
+            <div class="slds-col">
+               <lightning-button label="Apply Loan" onclick={handleNavigate1} class="slds-m-top_medium"></lightning-button>
+            </div>
+            <div class="slds-col">
+               <lightning-button label="Apply Insurance" onclick={handleNavigate2} class="slds-m-top_medium"></lightning-button>
+            </div> -->
+            <!-- <div class="slds-col">
+                <lightning-icon icon-name="utility:filterList" size="small" onclick={handleOpenRightPanel}
+                    style="margin-left: 2rem;"></lightning-icon>
+            </div> -->
+
+
+            <!-- <div class="slds-col">
+                <lightning-icon class="mobileicon" icon-name="utility:filterList" size="small"
+                    onclick={handleOpenRightPanel}>
+                </lightning-icon>
+            </div> -->
+        </div>
+        <!-- <template if:true={isPopoverOpen}>
+            <div class="popover-card" data-id="popoverCards">
+                <lightning-icon icon-name="utility:close" size="x-small" onclick={handleClosePopover}
+                    style="float:right" class="slds-var-m-around_small closePop">
+                </lightning-icon>
+                <br /><br />
+                <div class="slds-var-m-around_medium">
+                    <lightning-combobox label="Record Type" value={accountType} data-field-name="RecordType"
+                        options={accountTypeOptions} onchange={handleFilterChange}>
+                    </lightning-combobox>
+                </div>
+                <div class="slds-var-m-around_medium">
+                    <lightning-button variant="brand" label="Apply" onclick={handleFilterApply}
+                        class="slds-float_right">
+                    </lightning-button>
+                </div>
+            </div>
+        </template> -->
+        
+
+        <div class="slds-p-around_small">
+            <template if:true={InsuranceDetails}>
+                <div class="slds-table slds-table_bordered slds-table_cell-buffer">
+                    <table aria-label="New Accounts" class="slds-table_bordered slds-table_fixed-layout">
+                        <thead>
+                            <tr class="slds-line-height_reset fontsizemobile">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="AccountId">InsuranceId</div>
+                                </th>
+                                <th scope="col" class="bodymobile">
+                                    <div class="slds-truncate" title="AccountId">Record Type</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="AccountId">Policy Premium Amount</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Record Types">policy End Date</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Actions">Actions</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={InsuranceDetails} for:item="account">
+                                <tr key={account.Id} class="slds-hint-parent">
+                                    <!-- <td>
+                                        <a href="javascript:void(0);" class="slds-truncate" title={account.Name}
+                                            data-id={account.Id} onclick={handleAccountDetails}>
+                                            {account.Name}
+                                        </a>
+                                    </td> -->
+                                    <td>
+                                        <a href="javascript:void(0);" class="slds-truncate" title={account.Name}
+                                            data-id={account.Id} onclick={handleAccountDetails}>
+                                            {account.Name}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div class="slds-truncate" title={account.RecordType.Name}>
+                                            {account.RecordType.Name}</div>
+                                    </td>
+
+                                    <td>
+                                        <div class="slds-truncate" title={account.Policy_Premium_Amount__c}
+                                            data-id={account.Policy_Premium_Amount__c}>
+                                            {account.Policy_Premium_Amount__c}
+                                        </div>
+                                    </td>
+                                    <td class="bodymobile">
+                                        <div class="slds-truncate" title={account.Policy_End_Date__c}
+                                            data-id={account.Policy_End_Date__c}>
+                                            {account.Policy_End_Date__c}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <lightning-button label="View More" variant="base"
+                                            onclick={handleAccountClick} data-id={account.Id} data-name={account.Name}>
+                                        </lightning-button>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+            <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
+</template>

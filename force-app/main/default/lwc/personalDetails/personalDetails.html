@@ -1,0 +1,50 @@
+<template>
+    <section class="bill-card-container">
+        <lightning-card title="Personal Information" class="bill-card" onclick={toggleDetails}>
+            <div slot="actions" class="chevron-container" >
+                <lightning-icon icon-name={chevronIcon} alternative-text="Toggle Details" size="xx-small" class="chevron-icon"></lightning-icon>
+            </div>
+
+            <!-- Conditionally display the details when detailsVisible is true -->
+            <template if:true={detailsVisible}>
+                <div class="slds-box slds-box_xx-small custom-background" style="margin-left: 8px; margin-right: 8px;">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                            <p><strong>First Name:</strong> <span class="slds-m-left_xx-small">{newAccount.FirstName__c}</span></p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                            <p><strong>Last Name:</strong> <span class="slds-m-left_xx-small">{newAccount.Last_Name__c}</span></p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                            <p><strong>Father's Name:</strong> <span class="slds-m-left_xx-small">{newAccount.Father_sName__c}</span></p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                            <p><strong>Mother's Name:</strong> <span class="slds-m-left_xx-small">{newAccount.Mother_sName__c}</span></p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                            <p><strong>Date of Birth:</strong> <span class="slds-m-left_xx-small">{newAccount.DateOfBirth__c}</span></p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                            <p><strong>Country:</strong> <span class="slds-m-left_xx-small">{newAccount.Country__c}</span></p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                            <p><strong>City:</strong> <span class="slds-m-left_xx-small">{newAccount.City__c}</span></p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                            <p><strong>State:</strong> <span class="slds-m-left_xx-small">{newAccount.State__c}</span></p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                            <p><strong>Marital Status:</strong> <span class="slds-m-left_xx-small">{newAccount.MaritalStatus__c}</span></p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                            <p><strong>Gender:</strong> <span class="slds-m-left_xx-small">{newAccount.Gender__c}</span></p>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                            <p><strong>Account Type:</strong> <span class="slds-m-left_xx-small">{newAccount.RecordType.Name}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </lightning-card>
+    </section>
+</template>

@@ -1,0 +1,64 @@
+.dashboard-container {
+    padding: 1rem;
+    text-align: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 300px; /* Set a fixed width for the card */
+    margin: auto; /* Center the card */
+    padding: 1rem; /* Padding inside the card */
+}
+
+.card-header {
+    margin-bottom: 1rem; /* Space below header */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column; /* Stack chart vertically */
+}
+
+.chart-container {
+    display: flex;
+    align-items: flex-end; /* Align items at the bottom */
+}
+
+.y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px; /* Set height according to your design */
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.bar-chart-container {
+    display: flex;
+    flex-direction: column; /* Stack bars and labels */
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end; /* Align bars at the bottom */
+    height: 200px; /* Set height according to your design */
+}
+
+.bar {
+    width: 50px; /* Ensure this matches the width of x-axis labels */
+    border-radius: 5px 5px 0 0;
+    transition: height 0.3s ease;
+    color: black;
+    font-weight: bold;
+}
+
+.x-axis {
+    display: flex;
+    justify-content: space-around; /* Space out labels evenly */
+}
+
+.x-axis-label {
+    margin-left: 5px; /* Add left margin for spacing between labels */
+}

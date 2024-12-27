@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Home Loan Eligibility Checker" icon-name="action:follow_up">
+        <div class="slds-m-around_medium">
+            <!-- Account ID Input -->
+            <lightning-input label="Account ID" value={accountId} onchange={handleAccountIdChange}></lightning-input>
+
+            <!-- Loan Amount Input -->
+            <lightning-input label="Loan Amount" value={loanAmount} type="number" onchange={handleLoanAmountChange}></lightning-input>
+
+            <!-- Check Eligibility Button -->
+            <lightning-button label="Check Eligibility" onclick={handleHomeLoanClick} class="slds-m-top_medium"></lightning-button>
+
+            <!-- Display Eligibility Details -->
+            <template if:true={customerDetails}>
+                <p class="slds-m-top_medium"><strong>Customer Annual Income:</strong> ₹{customerDetails.annualIncome}</p>
+                <p><strong>Interest Rate:</strong> {customerDetails.interestRate}%</p>
+                <p><strong>Eligibility:</strong> {customerDetails.eligibilityMessage}</p>
+            </template>
+
+            <!-- Error Message -->
+            <template if:true={errorMessage}>
+                <p class="slds-text-color_error slds-m-top_medium">{errorMessage}</p>
+            </template>
+
+            <!-- EMI Calculation (Optional) -->
+            <template if:true={isFocalculateEMIrmVisible}>
+                <div class="slds-m-top_medium">
+                    <!-- Add EMI calculation logic here -->
+                    <lightning-input label="EMI" value="10000" disabled></lightning-input>
+                    <lightning-button label="Calculate EMI" onclick={calculateEMI} class="slds-m-top_medium"></lightning-button>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

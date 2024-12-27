@@ -1,0 +1,167 @@
+<template>
+    <div class="mainContainer">
+        <div class="childContainer">
+            <div style="height: 100vh; background-image: linear-gradient( 90.3deg,  rgba(255,118,118,1) 0.9%, rgba(114,0,0,1) 99.9% );">
+                <div class="slds-grid slds-grid_vertical">
+                    <div class="slds-col">
+                        <div class="slds-align_absolute-center" style="height:20rem; color: white; font-size: 40px;">
+                            <b></b>
+                        </div>
+                    </div>
+                    <div class="slds-col">
+                        <div class="slds-grid slds-grid_vertical" style="padding: 0px 50px 50px 50px;">
+                            <div class="slds-col">
+                                <div class="slds-grid">
+                                    <!-- PLan A Visit -->
+                                    <div class="slds-col slds-size_1-of-2" onclick={handlePlanVisit}>
+                                        <div style="padding: 10px;">
+                                            <div class="slds-box slds-box_x-small" style="background: rgb(248 137 98); border: transparent; color: white;">
+                                                <div class="slds-grid slds-grid_vertical">
+                                                    <div class="slds-col">
+                                                        <div class="slds-align_absolute-center">
+                                                            <lightning-icon icon-name="standard:lead" alternative-text="New Route" title="New Route" size="large"></lightning-icon>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <div class="slds-align_absolute-center">
+                                                            <b>Plan a Visit</b>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Visits -->
+                                    <div class="slds-col slds-size_1-of-2" data-type-holder="Unplanned" onclick={handlemapRedirectOption}>
+                                        <div style="padding: 10px;">
+                                            <div class="slds-box slds-box_x-small" style="background: #00d2be; border: transparent; color: white;">
+                                                <div class="slds-grid slds-grid_vertical">
+                                                    <div class="slds-col">
+                                                        <div class="slds-align_absolute-center">
+                                                            <lightning-icon icon-name="standard:client" alternative-text="Visits" title="Visits" size="large"></lightning-icon>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <div class="slds-align_absolute-center">
+                                                            <b>Visits</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col">
+                                <div class="slds-grid">
+                                    <!--Beat Plan  -->
+                                    <div class="slds-col" data-type-holder="Home" onclick={handleBeatOption}>
+                                        <div style="padding: 10px;">
+                                            <div class="slds-box slds-box_x-small" style="background: rgb(239 126 173); border: transparent; color: white;">
+                                                <div class="slds-grid slds-grid_vertical">
+                                                    <div class="slds-col">
+                                                        <div class="slds-align_absolute-center">
+                                                            <lightning-icon icon-name="standard:home" alternative-text="Home" size="large" title="Beat Plan"></lightning-icon>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <div class="slds-align_absolute-center">
+                                                            <b>Beat Plan</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Dashboard >> -->
+                                    <div class="slds-col slds-size_1-of-2" data-type-holder="Dashboard" onclick={handleBeatOption}>
+                                        <div style="padding: 10px;">
+                                            <div class="slds-box slds-box_x-small" style="background: rgb(86, 170, 223); border: transparent; color: white;">
+                                                <div class="slds-grid slds-grid_vertical">
+                                                    <div class="slds-col">
+                                                        <div class="slds-align_absolute-center">
+                                                            <lightning-icon icon-name="standard:metrics" alternative-text="Dashboard" size="large" title="Dashboard"></lightning-icon>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <div class="slds-align_absolute-center">
+                                                            <b>Beat Plan</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div if:true={isDesktop} class="frame-class popover-card" data-id="popoverCard">
+                <div style="background: white; height: 100vh">
+                    <div class="slds-grid slds-grid_vertical" style="padding: 5px;">
+                        <div class="slds-col"> 
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size_1-of-2"></div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <!-- <div class="slds-float_right">
+                                        <lightning-button-icon icon-name="utility:close"  
+                                            variant="bare" 
+                                            alternative-text="Close"
+                                            title="Close"
+                                            size="large"
+                                            onclick={handleClosePopover}>
+                                        </lightning-button-icon>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-p-top_medium slds-scrollable" style="max-height: 90vh;">
+                            <template if:true={beatOn}>
+                                <c-journey-beat-plan-component onclose={handleClosePopover}></c-journey-beat-plan-component>
+                            </template>
+                            <template if:true={planOn}>
+                                <c-journey-plan-visit-component onclose={handleClosePopover}></c-journey-plan-visit-component>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div if:false={isDesktop} class="frame-class popover-card popover-card-top" data-id="popoverCard">
+                <div style="background: white; height: 100vh">
+                    <div class="slds-grid slds-grid_vertical" style="padding: 5px;">
+                        <div class="slds-col"> 
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size_1-of-2"></div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <!-- <div class="slds-float_right">
+                                        <lightning-button-icon icon-name="utility:close"  
+                                            variant="bare" 
+                                            alternative-text="Close"
+                                            title="Close"
+                                            size="large"
+                                            onclick={handleClosePopover}>
+                                        </lightning-button-icon>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col  slds-scrollable" style="max-height: 90vh;">
+                            <template if:true={beatOn}>
+                                <c-journey-beat-plan-component onclose={handleClosePopover}></c-journey-beat-plan-component>
+                            </template>
+                            <template if:true={planOn}>
+                                <c-journey-plan-visit-component onclose={handleClosePopover}></c-journey-plan-visit-component>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

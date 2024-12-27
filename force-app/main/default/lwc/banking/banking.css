@@ -1,0 +1,37 @@
+.custom-container{
+	color : black;
+}
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.box {
+    width: 200px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.box h2 {
+    font-size: 18px;
+    text-align: center;
+}
+
+.deposit-box {
+    background-color:white;
+}
+
+.withdraw-box {
+    background-color:white;
+}
+
+.box:hover {
+    background-color:whitesmoke;
+}

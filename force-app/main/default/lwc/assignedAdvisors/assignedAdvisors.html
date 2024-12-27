@@ -1,0 +1,38 @@
+<template>
+    <section class="bill-card-container">
+    <lightning-card title="Assigned Adivisors" class="bill-card" onclick={toggleDetails}>
+        <div slot="actions" class="chevron-container">
+                <lightning-icon icon-name={chevronIcon} alternative-text="Toggle Details" size="xx-small" class="chevron-icon"></lightning-icon>
+            </div>
+             <template if:true={showDetails}>
+        <div class="assigned-advisors-container">
+        
+            <!-- If assigned advisors are found, display them in a table -->
+            <template if:true={assignedAdvisors.length}>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr>
+                            <th class="slds-text-title_bold">Advisor Name</th>
+                            <th class="slds-text-title_bold">Specialization</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={assignedAdvisors} for:item="advisor">
+                            <tr key={advisor.id}>
+                                <td>{advisor.advisorName}</td>
+                                <td>{advisor.specialization}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <!-- If no advisors are assigned, display a message -->
+            <template if:true={noAdvisorResults}>
+                <p>No advisors are assigned to this account.</p>
+            </template>
+        </div>
+             </template>
+    </lightning-card>
+    </section>
+</template>

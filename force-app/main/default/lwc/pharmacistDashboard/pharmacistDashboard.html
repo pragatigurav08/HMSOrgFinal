@@ -1,0 +1,819 @@
+<template>
+     
+    <template if:true={openDashboard}>
+       <lightning-card>
+          
+   
+      <div class="slds-grid ">
+               <!-- Left Sidebar -->
+           
+               <div class="slds-col slds-size_1-of-5 slds-small-size_1-of-4 slds-p-around_medium sidebar" style="padding-top: 5px !important; margin-top: -25px; background:#71a6d25c;">        
+                      <div class="slds-page-header" style="text-align: center; background: #71a6d203;">
+                    <div class="header-container receptionRightSiteBarcl">
+                        <!-- Profile Image -->
+                        <img src={receptionImageUrl} alt="Doctor Image" class="profile-image" />
+                
+                        <!-- Health Care Title -->
+                        <h1 class="header-title">Health Care</h1>
+                    </div>
+                </div>
+               
+                   <br>
+                   <div class="slds-nav-vertical">
+                       <div class="slds-nav-vertical__section">
+                           <ul>
+                               <span class="slds-nav-vertical__item">
+                                   <input type="radio" id="dashboard" value="dashboard" name="navigation" onclick={handleNavigationChange} />
+                                   <label class="slds-nav-vertical__action custom-label" for="dashboard">
+                                       <lightning-icon class="acon_abc" icon-name="utility:apps" size="small"></lightning-icon>
+                                       <span class="slds-nav-vertical_radio-faux" style="font-size: 14px;">Dashboard</span>
+                                   </label>
+                               </span>
+                               <span class="slds-nav-vertical__item">
+                                   <input type="radio" id="prescription" value="prescription" name="navigation" onclick={handleNavigationChange} />
+                                   <label class="slds-nav-vertical__action custom-label" for="prescription">
+                                       <lightning-icon class="acon_abc" icon-name="utility:user" size="small"></lightning-icon>
+                                       <span class="slds-nav-vertical_radio-faux" style="font-size: 14px;">Patients</span>
+                                   </label>
+                               </span>
+                               <span class="slds-nav-vertical__item">
+                                   <input type="radio" id="medicine" value="medicine" name="navigation" onclick={handleNavigationChange} />
+                                   <label class="slds-nav-vertical__action custom-label" for="medicine">
+                                       <lightning-icon class="acon_abc" icon-name="utility:note" size="small"></lightning-icon>
+                                       <span class="slds-nav-vertical_radio-faux" style="font-size: 14px;">Medicine</span>
+                                   </label>
+                               </span>
+                               <span class="slds-nav-vertical__item">
+                                   <input type="radio" id="purchase" value="purchase" name="navigation" onclick={handleNavigationChange} />
+                                   <label class="slds-nav-vertical__action custom-label" for="purchase">
+                                       <lightning-icon class="acon_abc" icon-name="utility:company" size="small"></lightning-icon>
+                                       <span class="slds-nav-vertical_radio-faux" style="font-size: 14px;">Manufacturer</span>
+                                   </label>
+                               </span>
+                           </ul>
+                       </div>
+                   </div>
+               </div>
+   
+               
+           
+   
+               <div class="slds-col slds-size_4-of-5 widthclass" >
+
+                <div class="slds-page-header" style="padding-bottom: 4px; padding-bottom:0px; margin-top: -99px;margin-left: 0px;margin-right: -17px; background-color: #71a6d25c;">
+                    <div class="slds-page-header__row slds-grid slds-wrap">
+                        <!-- Title Section -->
+                        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-1 slds-p-around_small" style="padding-top: 0px;">
+                            <div class="slds-media">
+                                   <div class="slds-media__figure">
+                                    <img src={receptionProfile} alt="Doctor Image" class="slds-m-bottom_small" style="width: 50px; height: 50px; border-radius: 50%;" />
+                                        
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-grid slds-wrap">
+                                        <!-- Left side (Welcome Message) -->
+                                          <div class="slds-col slds-size_1-of-2 slds-text-align_left">
+                                            <h1 class="slds-text-heading_medium slds-m-bottom_medium" style="font-size:26px; margin-top:9px;">{welcomeMessage}</h1>
+                                        </div>
+                                        <!-- Right side (Register Button) -->
+                                        <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+                                            <!-- <lightning-button class="slds-p-around_small " variant="brand" label="Register" onclick={openModal}></lightning-button> -->
+                                            <div class="greeting-container" style="background:#71a6d200;">
+                                                <img class="greeting-icon" src={iconUrl} alt="Greeting Icon">
+                                                <div class="greeting-text">
+                                                  <div class="greeting-message">{greetingMessage}</div>
+                                                  <div class="current-time">
+                                                    <span>{formattedDate}</span> · <span>{formattedTime}</span>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+
+                            </div>
+                        </div>
+                
+        
+                    </div>
+                </div>
+                  
+                   <template if:true={homepage}>
+                   <!-- Content Section -->
+                   <template if:true={isDashboard}>
+                    <!-- <div class="welcome-card slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+                        <div class="card-content">
+                            <h2>Welcome to Health Care!</h2>
+                            <p>We are dedicated to providing exceptional medical services to improve your well-being.</p>
+                            <p>Our team of experts ensures personalized care tailored to your health needs.</p>
+                            <p>Your health and comfort are our top priorities every step of the way.</p>
+                        </div>
+                        <div class="image-container">
+                            <img alt="Dashboard Illustration" class="image" src="/resource/receptionClinic" />
+                        </div>
+                    </div> -->
+
+                     <div class="welcome-card slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+    <div class="card-content">
+       <h2>Welcome to Your Pharmacy!</h2>
+<p>We are committed to ensuring your access to safe, effective, and high-quality medications.</p>
+<p>Our team of pharmacy professionals is here to provide expert guidance, personalized consultations, and reliable support for your medication needs.</p>
+<p>Your health, safety, and satisfaction are at the heart of everything we do. Thank you for trusting us with your pharmaceutical care!</p>
+
+    </div>
+    <div class="image-container">
+        <img alt="Dashboard Illustration" class="image" src="/resource/pharmacy" />
+    </div>
+</div>
+
+                    <div class="slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium" style="margin-top: 26px; margin-right: 0px;">
+    <lightning-card title="Overview" icon-name="standard:dashboard_component" class="overview">
+        <div class="slds-grid slds-wrap slds-m-around_medium">
+            <!-- Box for Total Medicines -->
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-p-around_small">
+                <div class="card hover-box medicine-card">
+                    <div class="icon">💊</div>
+                    <div class="label">Total Medicines</div>
+                    <div class="value">{totalMedicines}</div>
+                </div>
+            </div>
+
+            <!-- Box for Total Manufacturers -->
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-p-around_small">
+                <div class="card hover-box manufacturer-card">
+                    <div class="icon">🏭</div>
+                    <div class="label">Total Manufacturers</div>
+                    <div class="value">{totalManufacturers}</div>
+                </div>
+            </div>
+
+            <!-- Box for Total Invoices -->
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-p-around_small">
+                <div class="card hover-box invoice-card">
+                    <div class="icon">🧾</div>
+                    <div class="label">Total Invoices</div>
+                    <div class="value">{totalInvoices}</div>
+                </div>
+            </div>
+
+            <!-- Box for Total Sale -->
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-p-around_small">
+                <div class="card hover-box sales-card">
+                    <div class="icon">💰</div>
+                    <div class="label">Total Sale</div>
+                    <div class="value">{totalSales}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Handling -->
+        <template if:true={error}>
+            <p class="slds-text-color_error slds-m-around_medium">Error: {error}</p>
+        </template>
+    </lightning-card>
+</div>
+
+<div class="slds-grid">
+<div class="slds-col slds-p-horizontal_medium">
+<span>
+    <lightning-card title="Sales Overview" icon-name="custom:custom63">
+        <div class="sales-data">
+            <template if:true={sales}>
+                <div class="sales-data-item">
+                    <h3>Daily Sales</h3>
+                    <p>₹{sales.DailySales}</p>
+                </div>
+                <div class="sales-data-item">
+                    <h3>Weekly Sales</h3>
+                    <p>₹{sales.WeeklySales}</p>
+                </div>
+                <div class="sales-data-item">
+                    <h3>Monthly Sales</h3>
+                    <p>₹{sales.MonthlySales}</p>
+                </div>
+            </template>
+            <template if:true={error}>
+                <p class="error-message">Error: {error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</span>
+</div>
+<div class="slds-col slds-p-horizontal_medium">
+<span>
+  <lightning-card>
+         <c-expense-income-chart></c-expense-income-chart>
+    </lightning-card>  
+</span>
+</div>
+</div>
+
+<div class="slds-grid">
+<div class="slds-col">
+<span>
+    <lightning-card>
+        <div class="top-selling-medicines-container">
+            <h3 class="top-selling-heading">Top Selling Medications</h3>
+            <template if:true={medicines}>
+                <div class="top-medicines-wrapper">
+                    <template for:each={medicines1} for:item="medicine">
+                        <div key={medicine.Id} class="top-medicine-card">
+                            <img src={medicineurl} alt={medicine.Name} class="top-medicine-image" />
+                            <div class="top-medicine-details">
+                                <h4 class="top-medicine-name">{medicine.Name}</h4>
+                                <p class="top-medicine-units">{medicine.TotalSold} Units Sold</p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template if:true={error}>
+                <p class="top-error-message">Error: {error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</span>
+</div>
+<div class="slds-col">
+<span>
+    <div class="graph-card monthly-sales-card">
+            <c-monthly-sales-dashboard></c-monthly-sales-dashboard>
+        </div>
+</span>
+</div>
+<div class="slds-col">
+<span>
+    <div class="graph-card medicine-dashboard-card">
+            <c-medicine-dashboard></c-medicine-dashboard>
+        </div>
+</span>
+</div>
+</div>
+
+                       <!-- ****Dashboardstuff***** -->
+
+    <!-- <lightning-card>
+         <c-expense-income-chart></c-expense-income-chart>
+    </lightning-card> -->
+
+  <!-- <lightning-card>
+    <div class="dashboardd-wrapper"> -->
+        <!-- Monthly Sales Dashboard -->
+        <!-- <div class="graph-card monthly-sales-card">
+            <c-monthly-sales-dashboard></c-monthly-sales-dashboard>
+        </div> -->
+        <!-- Medicine Dashboard -->
+        <!-- <div class="graph-card medicine-dashboard-card">
+            <c-medicine-dashboard></c-medicine-dashboard>
+        </div> -->
+    <!-- </div>
+</lightning-card> -->
+
+
+       
+
+
+
+
+                        
+
+                        
+                            
+                            
+                                
+                            
+                        
+                      <!-- ******Dashboardstuff****** -->
+                    
+                   </template>
+                   <!--part...  -->
+   
+   
+                   
+                       
+               <template if:true={isPrescription}>
+                  
+                               <div class="slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium margin-top: 26px; margin-right: 0px;">
+                                   <div class="slds-grid slds-wrap slds-p-horizontal_small slds-m-bottom_small">
+                                       
+                                       <!-- Total Patients on the left, full width on mobile, half on desktop -->
+                                       <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-align_left">
+                                           <div class="slds-grid slds-align_left">
+                                               <lightning-icon title="Total Patients" icon-name="custom:custom63" alternative-text="Total Patients" size="medium" class="slds-m-right_small"></lightning-icon>
+                                               <h2 class="slds-text-heading_medium">Total Patients</h2>
+                                           </div>
+                                       </div>
+                               
+                                       <!-- Search bar on the right, full width on mobile, half on desktop -->
+                                       <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-text-align_right">
+                                           <lightning-input class="searchh" type="search" value={searchQuery} onchange={handleSearchChange} placeholder="Search Patient"></lightning-input>
+                                       </div>
+                                   </div>
+                               
+                                   <!-- Datatable, responsive to mobile and desktop views -->
+                                   <template if:true={filteredPatients}>
+            <div class="table-wrapper">
+        <div class="slds-scrollable_x slds-scrollable_y table-scroll-container">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr>
+                        <th scope="col" style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Name</th>
+                        <th scope="col" style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Age</th>
+                        <th scope="col" style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Mobile Number</th>
+                        <th scope="col" style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Gender</th>
+                        <th scope="col" style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">View Prescription</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={filteredPatients} for:item="patient">
+                        <tr key={patient.Id}>
+                            <td>
+                                <button class="slds-button slds-button_reset slds-text-link" 
+                                        data-name={patient.Name} 
+                                        onclick={handleViewProfile}>
+                                    {patient.Name}
+                                </button>
+                            </td>
+                            <td>{patient.Age__c}</td>
+                            <td>{patient.phone_number__c}</td>
+                            <td>{patient.Gender__c}</td>
+                            <td>
+                                <button class="slds-button slds-button_brand" 
+                                        data-id={patient.Id} 
+                                        onclick={handleRowAction1}>
+                                    View Prescription
+                                </button>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+        </template>
+                               
+                                   <!-- Error panel if there's an error -->
+                                   <template if:true={error}>
+                                       <c-error-panel message={error}></c-error-panel>
+                                   </template>
+                                   
+                               </div>
+                               
+                   
+                   </template>   
+                   
+                        
+                   
+                           <template if:true={isMedicine}>
+                               <div class="slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium margin-top: 26px; margin-right: 0px;">
+                                <lightning-card title="Medicines" icon-name="custom:custom63">
+                                   <div class="slds-grid slds-nowrap slds-p-horizontal_small slds-m-bottom_small">
+                                       <!-- Medicine List on the left -->
+                                       <div class="slds-col slds-size_1-of-2 slds-align_left" >
+                                           <div class="slds-grid slds-align_left">
+                                               <!-- Icon for Medicine List -->
+                                               <lightning-icon title="Medicine List" icon-name="medication_statement" alternative-text="Medicine List" size="medium" class="slds-m-right_small"></lightning-icon>
+                                               
+                                               <!-- Medicine List Text next to the icon -->
+                                               <!-- <h2 class="slds-text-heading_medium">Medicine List</h2> -->
+                                               <div class="button-container">
+                                                   <lightning-button 
+                                                       label="Add Medicine" 
+                                                       icon-name="utility:add" 
+                                                       variant="neutral" 
+                                                       class="import-button"
+                                                       onclick={handleImportClick}
+                                                       style ="margin-left: 8px">
+                                                   </lightning-button>
+                                               </div>
+                                           </div>
+                                       </div>
+                               
+                                       <!-- Search bar on the right -->
+                                       <div class="slds-col slds-size_1-of-2 slds-text-align_right" >
+                                           <lightning-input 
+                                           type="text" 
+                                            label="Search by Medicine Name" 
+                                               placeholder="Enter medicine name..."
+                                            onchange={handleSearch}>
+                                            </lightning-input>
+                                       </div>
+                                   </div>
+           
+           
+                                   
+                                   
+                                    <div class="scrollable-container">
+                                      <table class="responsive-table">
+                                        <thead>
+                                          <tr>
+                                            <th style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Medicine Name</th>
+                                            <th style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Generic Name</th>
+                                            <th style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Medicine Type</th>
+                                            <th style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Batch Number</th>
+                                            <th style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Expiry Date</th>
+                                            <th style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Manufacturer</th>
+                                            <th style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Selling Price</th>
+                                            <th style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Manufacturer Price</th>
+                                            <th style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Stock</th>
+                                            <th style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Unit</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <!-- Iterate through medicines array -->
+                                          <template for:each={medicines} for:item="medicine">
+                                            <tr key={medicine.Id}>
+                                              <td>{medicine.Name}</td>
+                                              <td>{medicine.Generic_Name__c}</td>
+                                              <td>{medicine.Medicine_Type__c}</td>
+                                              <td>{medicine.Batch_Number__c}</td>
+                                              <td>{medicine.Expiry_Date__c}</td>
+                                              <td>{medicine.ManufacturerName}</td>
+                                              <td>{medicine.Selling_Price__c}</td>
+                                              <td>{medicine.Manufacturer_Price__c}</td>
+                                              <td>{medicine.Stock__c}</td>
+                                              <td>{medicine.Unit__c}</td>
+                                            </tr>
+                                          </template>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  
+                                  
+                                  
+                                  
+                   
+                                    <!-- Error message if any -->
+                                    <template if:true={error}>
+                                     <div class="slds-text-color_error">
+                                       {error}
+                                       </div>
+                                   </template>
+                                </lightning-card>
+                               </div>
+   
+                              
+                              
+                           </template>
+                           <template if:true={ismanufacturer}>
+                               <div class="slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium margin-top: 26px; margin-right: 0px;">
+                                   <lightning-card title="Manufacturers" icon-name="custom:custom63">
+                                       
+                                       <!-- Action Row: Add Button and Search Bar -->
+                                       <div class="action-row" style="margin-top: -28px; margin-bottom: -23px;">
+                                        <div class="slds-col slds-size_1-of-2 slds-text-align_left" >
+                                        <div class="button-container">
+                                            <lightning-button 
+                                                label="Add Manufacturer" 
+                                                icon-name="utility:add" 
+                                                variant="neutral" 
+                                                class="import-button"
+                                                onclick={showAddManufacturerModal}
+                                                style ="margin-left: 48px">
+                                            </lightning-button>
+                                        </div>
+                                         </div>
+                                           <!-- <button onclick={showAddManufacturerModal} class="add-manufacturer-btn">+ Add Manufacturer</button> -->
+                                           <!-- <input type="search" placeholder="Search Manufacturers" onchange={handleSearch} class="search-bar"> -->
+                                           <div class="slds-col slds-size_1-of-2 slds-text-align_right" >
+                                            <lightning-input 
+                                            type="search" 
+                                             label="Search by Manufacturer Name" 
+                                                placeholder="Enter Manufacturer name..."
+                                             onchange={handleSearch}>
+                                             </lightning-input>
+                                        </div>
+                                       </div>
+                                   
+                           
+                                       <!-- Manufacturer Table -->
+                                       <table class="manufacturer-table">
+                                           <thead>
+                                               <tr>
+                                                   <th style="background: linear-gradient(182deg, #1a86e8d1, #cecece);">Manufacturer Name</th>
+                                               </tr>
+                                           </thead>
+                                           <tbody>
+                                               <template for:each={manufacturers} for:item="manufacturer">
+                                                   <tr key={manufacturer.Id}>
+                                                       <td>{manufacturer.Name}</td>
+                                                   </tr>
+                                               </template>
+                                           </tbody>
+                                       </table>
+                                   </lightning-card>
+                               </div>
+                           
+                               <!-- Modal for Adding Manufacturer -->
+                               <template if:true={showModal}>
+                                   <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                                       <div class="slds-modal__container">
+                                           <!-- Modal/Popup Header -->
+                                           <header class="slds-modal__header">
+                                               <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                                                   <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                                                   <span class="slds-assistive-text">Close</span>
+                                               </button>
+                                               <h2 class="slds-text-heading_medium">Add Manufacturer</h2>
+                                           </header>
+                           
+                                           <!-- Modal/Popup Body -->
+                                           <div class="slds-modal__content slds-p-around_medium">
+                                               <lightning-input label="Manufacturer Name" value={newManufacturerName} onchange={handleNameChange}></lightning-input>
+                                           </div>
+                           
+                                           <!-- Modal/Popup Footer -->
+                                           <footer class="slds-modal__footer">
+                                               <lightning-button variant="neutral" label="Cancel" onclick={closeModal}></lightning-button>
+                                               <lightning-button variant="brand" label="Save" onclick={addManufacturer}></lightning-button>
+                                           </footer>
+                                       </div>
+                                   </section>
+                                   <div class="slds-backdrop slds-backdrop_open"></div>
+                               </template>
+                               
+                           </template>
+                       
+                   
+               
+               
+   
+   
+   </template>
+                               
+                       </div>
+        
+   
+   
+   
+       
+       </div>
+          
+       </lightning-card>
+    </template>
+    <template if:true={isModalOpen1}>
+           <div style="position: relative;">
+               <lightning-button-icon
+                   icon-name="utility:close"
+                   alternative-text="Close"
+                   onclick={openModal}
+                   class="slds-p-around_small"
+                   style="position: absolute;       top: -93px; right: -9px;">
+               </lightning-button-icon>
+           </div>
+          
+               <lightning-card title="Prescription Details">
+                   <div>
+                       <template if:true={nocontents}>
+                           <lightning-card>     
+                            <p style="margin-left: 11px;font-size: 17px;">There is no prescriptions today</p></lightning-card>
+                             <lightning-button style="margin-left: 764px;" label="Back" variant="brand" onclick={openModalss}></lightning-button>
+                       </template>
+                   </div>
+                   
+                  <div>
+                   <template if:true={contents}>
+                   <div class="slds-p-around_medium">
+                       
+                      
+                       <div class="slds-grid slds-wrap">
+                           <div class="slds-col slds-size_1-of-2">
+                               
+                              
+                               <strong>Name:</strong> {patientNames}  {patientAge} years / {patientGender}
+                           </div>
+                           <div class="slds-col slds-size_1-of-2">
+                               <!--<strong>Referred By:</strong> {ReferredBy1}-->
+                               <strong>Date:</strong> <span> {todayDate}</span>
+   
+                               <div style="position: relative;">
+                                   <lightning-button-icon
+                                       icon-name="utility:close"
+                                       alternative-text="Close"
+                                       onclick={openModal}
+                                       class="slds-p-around_small"
+                                       style="position: absolute;    top: -90px; right: -25px;">
+                                   </lightning-button-icon>
+                               </div>
+                           </div>
+                       </div>
+           
+                       <!-- Prescription Section -->
+                       <template if:true={prescriptions}>
+                           <div class="slds-m-top_medium">
+                               
+                               <table class="slds-table slds-table_bordered">
+                                   
+                                   <thead>
+                                       <tr>
+                                           <th scope="col">Medicine</th>
+                                           <th scope="col">Quantity</th>
+                                           <th scope="col">Dosage</th>
+                                           <th scope="col">Duration</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                       <template for:each={prescriptions} for:item="prescription">
+                                           <tr key={prescription.Id}>
+                                               <td>{prescription.Drug__r.Name}</td>
+                                               <td>{prescription.Dosage__c} Tablets</td>
+                                               <td>1 Tablet <br/> {prescription.Frequency__c} <br/>{prescription.Intake__c} </td>
+                                               <td>{prescription.Duration__c} Days</td>
+                                           </tr>
+                                       </template>
+                                   </tbody>
+                               </table>
+                           </div>
+                           <div>
+                              <!--<strong>Revisit Date:</strong> {nextVisits}-->
+                           </div>
+                           
+                       </template>
+           
+                       <!-- Error Message -->
+                       <template if:true={error}>
+                           <p class="error-message">{error}</p>
+                       </template>
+                   </div>
+                   <div class=" slds-text-align_right">
+                       <lightning-button style=" margin-right: 26px;" label="Print" variant="brand" onclick={Printprescription}></lightning-button>
+                   </div>
+                   
+               </template>
+               </div>
+               
+               </lightning-card>
+         <!--  </div>-->
+           
+         <div>
+           <template if:false={nocontents}>
+           <lightning-card title="Invoice">
+               <div class="slds-m-around_medium">
+                   <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                       <thead>
+                           <tr>
+                               <th>Items</th>
+                               <th>Stock</th>
+                               <th>Batch No</th>
+                               <th>Expiry Date</th>
+                               <th>Discount %</th><br/>
+                               <th>Rate</th>
+                               <th>Quantity</th>
+                               <th>Total</th>
+                               <th>Action</th>
+                           </tr>
+                           
+                       </thead>
+                       <tbody>
+                           <template for:each={products} for:item="product">
+                               <tr key={product.id}>
+                                   <td>
+                                       <lightning-combobox 
+                                           placeholder="Select Product"
+                                           options={productOptions} 
+                                           value={product.selectedProductId} 
+                                           onchange={handleProductChange} 
+                                           data-id={product.id}>
+                                       </lightning-combobox>
+                                   </td>
+                                   <td>{product.availableQuantity}</td>
+                                   <td>{product.batchNo}</td>
+                                   <td>{product.expiryDate}</td>
+                                   <td>
+                                       <lightning-input style="width:70px" type="number" value={product.discount} data-id={product.id} onchange={handleDiscountChange}></lightning-input>
+                                       <!--  <lightning-input type="number" value={product.quantity} data-id={product.id} onchange={handleQuantityChange}></lightning-input>-->
+                                   </td>
+                                   <td>
+                                     <!--  <lightning-input type="number" value={product.rate} data-id={product.id} onchange={handleRateChange}></lightning-input>-->
+                                     {product.rate} ₹
+                                   </td>
+                                   <td>
+                                       <lightning-input style="width:70px" type="number" value={product.quantity} data-id={product.id} onchange={handleQuantityChange}></lightning-input>
+                                      <!-- <lightning-input type="number" value={product.discount} data-id={product.id} onchange={handleDiscountChange}></lightning-input>-->
+                                   </td>
+                                   <td>{product.total} ₹</td>
+                                   <td>
+                                      
+                           
+                                   <lightning-button-icon 
+                                       icon-name="utility:delete" 
+                                       alternative-text="Delete"
+                                       data-id={product.id}
+                                       onclick={handleDelete}
+                                       class="delete-icon">
+                                   </lightning-button-icon>
+                                   </td>
+                               </tr>
+                           </template>
+                       </tbody>
+                   </table>
+                   <br/>
+                  <!-- <div class="grand-total-section">
+                       <h3>Grand Total: <span>{grandTotal}</span></h3>
+                   </div><br/>-->
+                   <div class=" slds-grid slds-grid_align-spread slds-m-top_medium">
+                       <div>
+                           <lightning-button 
+                               label="New Item" 
+                               variant="brand" 
+                               onclick={addNewItem}>
+                           </lightning-button>
+                       </div>
+                      <div>
+                       <h3>Grand Total: <span>{grandTotal}</span></h3><br/>
+                      
+                       </div>
+                   </div>
+                   
+                  <!-- <div class="slds-grid slds-grid_align-spread slds-m-top_medium">
+                       <div></div>
+                       <div>
+                           <lightning-button 
+                               label="Save" 
+                               variant="brand" 
+                               onclick={saveBillingRecords}>
+                           </lightning-button>
+                       </div>
+                   </div>
+                   <div class="slds-m-top_medium slds-text-align_right">
+                       <lightning-button style="margin-right: 10px;" label="Print" variant="brand" onclick={PrintInvoice}></lightning-button>
+                   </div>-->
+                    <div class="slds-m-top_medium slds-grid slds-wrap slds-grid_align-end">
+                    <lightning-button label="Save" variant="brand" onclick={saveBillingRecords} ></lightning-button>
+                    <lightning-button label="Print" variant="brand" onclick={PrintInvoice} class="slds-m-left_small"></lightning-button>
+                   </div>
+                   
+       
+                  
+       
+                  <!-- <div class="slds-m-top_medium">
+                       <lightning-button label="Create Invoice" variant="brand" onclick={saveBillingRecords}></lightning-button>
+                   </div>-->
+               </div>
+           </lightning-card> 
+       </template>
+       </div>
+       </template>
+   
+     <template if:true={openMedical}>
+                                   <lightning-card title="New Medicine" icon-name="custom:custom14">
+                                       <div class="slds-p-horizontal_medium">
+                                           <!-- Grid Layout for two columns -->
+                                           <div class="slds-grid slds-wrap">
+                                               <!-- First Column -->
+                                               <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                                   <lightning-input name="Name" class="slds-form-element_large" label="Medicine Name" onchange={handleChange} required></lightning-input>
+                                               </div>
+                                               <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                                   <lightning-input name="Generic_Name__c" class="slds-form-element_large" label="Generic Name" onchange={handleChange} required></lightning-input>
+                                               </div>
+                               
+                                               <!-- Medicine Type and Expiry Date -->
+                                               <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                                   <lightning-combobox name="Medicine_Type__c" label="Medicine Type" class="slds-form-element_large" 
+                                                       onchange={handleChange} options={medicineTypeOptions} required>
+                                                   </lightning-combobox>
+                                               </div>
+                                               <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                                   <lightning-input name="Expiry_Date__c" label="Expiry Date" type="date" class="slds-form-element_large" onchange={handleChange}></lightning-input>
+                                               </div>
+                               
+                                               <!-- Manufacturer Lookup and Unit -->
+                                               <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                                   <lightning-combobox name="Manufacturer__c" label="Manufacturer" class="slds-form-element_large"
+                                                       onchange={handleChange} options={manufacturerOptions} required>
+                                                   </lightning-combobox>
+                                               </div>
+                                               <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                                   <lightning-combobox name="Unit__c" label="Unit" class="slds-form-element_large"
+                                                       onchange={handleChange} options={unitOptions} required>
+                                                   </lightning-combobox>
+                                               </div>
+                               
+                                               <!-- Selling Price and Manufacturer Price -->
+                                               <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                                   <lightning-input name="Selling_Price__c" label="Selling Price" type="currency" class="slds-form-element_large" onchange={handleChange} required></lightning-input>
+                                               </div>
+                                               <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                                   <lightning-input name="Manufacturer_Price__c" label="Manufacturer Price" type="currency" class="slds-form-element_large" onchange={handleChange} required></lightning-input>
+                                               </div>
+                               
+                                               <!-- Stock -->
+                                               <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                                                   <lightning-input name="Stock__c" label="Stock" type="number" class="slds-form-element_large" onchange={handleChange}></lightning-input>
+                                               </div>
+                                           </div>
+                               
+                                           <!-- Save Button, full width under form fields -->
+                                           <div class="slds-m-top_medium slds-grid slds-align_absolute-center">
+                                               <lightning-button variant="brand" label="Save" onclick={handleSave1}></lightning-button>
+                                           </div>
+                                           <div class="slds-m-top_medium slds-grid slds-align_absolute-center">
+                                               <lightning-button variant="brand" label="Back" onclick={handleback}></lightning-button>
+                                           </div>
+                                       </div>
+                                   </lightning-card>
+                               </template>
+   
+   </template>

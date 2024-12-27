@@ -1,0 +1,92 @@
+.header-section .slds-card__header {
+    text-align: center; /* Center the title text only */
+}
+
+.slds-card__header {
+    background-color: #f4f6f9; /* Light gray for the title */
+    padding: 20px;
+    border-radius: 5px;
+}
+.important-field-section h2 {
+    text-align: center; /* Center the "Important field" heading */
+	    font-weight: bold; /* Make the text bold */
+
+}
+.important-field-section {
+    background-color: #f4f6f9; /* Light gray for important fields */
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.checkbox-padding {
+    padding-top: 32px; /* Apply padding to the checkbox */
+}
+
+
+.button-section {
+    background-color: #f4f6f9; /* Light gray for button section */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center; /* This can be removed if not needed */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    padding: 10px 0; /* Adjust padding if needed */
+}
+
+
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.slds-p-around_small {
+    padding-top: 74px;
+    margin-top: -71px;
+}
+
+
+.checkbox1 {
+	 padding-top: 22px;
+
+}
+
+.slds-listbox {
+    background-color: #ffffff;
+    max-height: 200px; /* Adjust as per your requirement */
+    overflow-y: auto;
+    position: absolute;
+    width: 44%; /* Full width of the container */
+    z-index: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+
+.slds-listbox__item {
+    cursor: pointer;
+}
+
+.slds-listbox__item:hover {
+    background-color: #f4f6f9;
+}
+
+.slds-modal__header {
+    background-color: #0070d2;
+    color: white;
+    
+}
+
+
+.slds-modal__footer {
+    display: flex;
+    justify-content: center; /* Center the footer buttons */
+   
+}
+.button-spacing {
+    margin-right: 1rem; /* Add margin to the right of each button */
+}

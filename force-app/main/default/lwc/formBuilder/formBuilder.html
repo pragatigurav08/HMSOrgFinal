@@ -1,0 +1,28 @@
+<!--
+  @description       : 
+  @author            : Saurav Kashyap
+  @group             : 
+  @last modified on  : 10-08-2023
+  @last modified by  : Saurav Kashyap
+-->
+<template>
+  <div class="form-builder">
+      <!-- Left compartment for Salesforce data types -->
+      <div class="data-types" ondragover={allowDrop} ondrop={handleDropDataType}>
+          <div class="form-element" draggable="true" ondragstart={handleDragStart} data-type="Text">Text Field (Salesforce)</div>
+          <div class="form-element" draggable="true" ondragstart={handleDragStart} data-type="Checkbox">Checkbox (Salesforce)</div>
+          <!-- Add more Salesforce field types as needed -->
+      </div>
+
+      <!-- Right compartment for the drop zone -->
+      <div class="drop-zone" ondragover={allowDrop} ondrop={handleDrop}>
+          <template for:each={formElements} for:item="element" key={element.id}>
+              <c-dynamic-form-element key={element.id} element={element}></c-dynamic-form-element>
+          </template>
+          <div class="undo-save-buttons">
+              <div class="undo-button" onclick={handleUndo}>Undo</div>
+              <button class="save-button" onclick={handleSave}>Save</button>
+          </div>
+      </div>
+  </div>
+</template>

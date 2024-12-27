@@ -1,0 +1,180 @@
+<template>
+
+   <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+            <span class="custom-box">
+                        <div class="slds-m-around_medium" style="margin-top: 0px;">
+                            <!-- Display the file name and size -->
+                            <lightning-input label="File Name" value={fileName} disabled></lightning-input>
+                            <!-- <lightning-input label="File Size" value={fileSize} disabled></lightning-input> -->
+                           
+                            <!-- File upload input -->
+                            <div class="slds-grid">
+                                <div>
+                                    <lightning-input
+                                        type="file"
+                                        onchange={handleFileUpload}
+                                        accept="image/*"
+                                         value={uploadedFile}
+                                        disabled={isFileUploaded}>
+                                    </lightning-input>
+                                </div>
+                                <div style="padding-top: 22px">
+                                    <lightning-button-icon
+                                        icon-name="utility:preview"
+                                        alternative-text="Preview File"
+                                        class="slds-m-left_small"
+                                        onclick={handlePreviewClick}>
+                                    </lightning-button-icon>    
+                                </div>
+                                <div style="padding-top: 22px">
+                                    <lightning-button-icon
+                                        icon-name="utility:delete"
+                                        alternative-text="Delete File"
+                                        class="slds-m-left_small"
+                                        onclick={handleDeleteClick}>
+                                    </lightning-button-icon>  
+                                </div>
+                            </div>
+                            <div>
+                                <span>{fileSize}</span>
+        </div>
+
+        <!-- Modal for file preview -->
+        <template if:true={isModalOpen}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container" style="width: 100%; max-width: 800px;">
+                    <!-- Modal/Popup header -->
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                                                <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                                                <span class="slds-assistive-text">Close</span>
+                                            </button>
+                        <h2 class="slds-text-heading_medium">File Preview</h2>
+                    </header>
+                    <!-- Modal/Popup body -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <!-- Image preview -->
+                        <template if:true={isImage}>
+                            <img src={fileUrl} alt="Uploaded File Preview" />
+                        </template>
+                        <!-- PDF preview -->
+                        <template if:true={isPdf}>
+                            <iframe src={fileUrl} width="100%" height="600px" style="border: none;"></iframe>
+                        </template>
+                        <!-- Fallback for unsupported files -->
+                        <template if:true={isUnsupportedFile}>
+                            <p>File cannot be previewed.</p>
+                        </template>
+                    </div>
+                    <!-- Modal/Popup footer -->
+                    <footer class="slds-modal__footer">
+                        <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+    </span>
+    </div>
+    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+        <span class="custom-box">
+                        <lightning-combobox label="Verification Status" value={Docverifystatus}
+                            options={DocverifystatusOptions} onchange={handleInputChange} data-id="Docverifystatus" style="margin-right: 18px;"
+                            required></lightning-combobox>
+                    </span>
+    </div>
+    </div>
+<template if:true={isStep4}>
+    <!-- Review Information -->
+    <lightning-card class="slds-m-around_medium">
+        <h3 style="font-size: 16px;padding: 1%;">
+            <lightning-icon icon-name='utility:shift_pattern_entry' alternative-text='shift_pattern_entry' size='small'
+                title='shift_pattern_entry'></lightning-icon>
+            <b style="padding-left: 10px;">Review Information</b>
+        </h3>
+
+        <div class="slds-p-around_medium">
+            <!-- Personal Information Section -->
+            <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Personal Information</h2>
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>First Name: </strong>{firstName}</p>
+                        <p><strong>Father's Name: </strong>{fathersName}</p>
+                        <p><strong>Mother's Maiden Name: </strong>{mothersMaidenName}</p>
+                        <p><strong>Gender: </strong>{gender}</p>
+                        <p><strong>Nationality: </strong>{nationality}</p>
+                        <p><strong>Residentaddress: </strong>{communicationaddress}</p>
+                        <p><strong>Landmark: </strong>{landmark}</p>
+                        <p><strong>City: </strong>{city}</p>
+                        <p><strong>PinCode: </strong>{pinCode}</p>
+                        <p><strong>State: </strong>{state}</p>
+                        <p><strong>Country: </strong>{country}</p>
+                       
+
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>Last Name: </strong>{lastName}</p>
+                        <p><strong>Mother's Name: </strong>{mothersName}</p>
+                        <p><strong>Date of Birth: </strong>{dateOfBirth}</p>
+                        <p><strong>Phone Number: </strong>{phoneNumber}</p>
+                        <p><strong>Marital Status: </strong>{maritalStatus}</p>
+                        <p><strong>PermanentAddress: </strong>{permanentaddress}</p>
+                        <p><strong>Landmark: </strong>{landmarkP}</p>
+                        <p><strong>City: </strong>{cityP}</p>
+                        <p><strong>PinCode: </strong>{pinCodeP}</p>
+                        <p><strong>State: </strong>{stateP}</p>
+                        <p><strong>Country: </strong>{countryP}</p>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Information Section -->
+            <h2 class="slds-text-heading_medium slds-p-bottom_small" style="font-size: 14px;">Account Information</h2>
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>Branch: </strong>{searchK}</p>
+                        <p><strong>PAN Card No: </strong>{panCardNo}</p>
+                        <div class="aadhaar-container">
+                            <p><strong>Aadhaar Number: </strong>{displayAadharCardno}</p>
+                            <template if:false={showAadhar}>
+                                <lightning-icon icon-name="utility:preview" title="Show" size='x-small'
+                                    onclick={toggleAadharVisibility}>
+                                </lightning-icon>
+                            </template>
+                            <template if:true={showAadhar}>
+                                <lightning-icon icon-name="utility:hide" title="Hide" size='x-small'
+                                    onclick={toggleAadharVisibility}>
+                                </lightning-icon>
+                            </template>
+                        </div>
+
+
+
+
+
+                        <p><strong>Mode of Operation: </strong>{modeOfOperation}</p>
+                        <p><strong>Account Open Date: </strong>{openDate}</p>
+                        <p><strong>Total Deposit Amount: </strong>{totalDepositAmount}</p>
+                        <p><strong>Mode of Payment: </strong>{modeOfPayment}</p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>Joint Applicant 1: </strong>{jointAppName1}</p>
+                        <p><strong>Joint Applicant 2: </strong>{jointAppName2}</p>
+                        <p><strong>Joint Applicant 3: </strong>{jointAppName3}</p>
+                        <p><strong>Physical Ability Status: </strong>{physicalAbilityStatus}</p>
+                        <p><strong>Annual Income: </strong>{annualIncome}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>
+
+
+</template>

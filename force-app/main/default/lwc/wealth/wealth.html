@@ -1,0 +1,302 @@
+<template>
+    <template if:true={showWealth}>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Wealth Management Services</h1>
+                <p>Helping you grow, manage, and protect your wealth.</p>
+                <button class="cta-button" onclick={showHome}>Explore Now</button>
+                
+            </div>
+        </section>
+        
+        <section class="services">
+            <h2>Our Wealth Management Solutions</h2>
+            <div class="service-cards slds-grid slds-wrap">
+                <div class="card slds-col slds-size_1-of-3">
+                    <h3>Investment Guidance</h3>
+                    <p>Your money goals, our tailored investment help.</p>
+                </div>
+                <div class="card slds-col slds-size_1-of-3">
+                    <h3>Estate Planning</h3>
+                    <p>Ensure your wealth is distributed as per your wishes.</p>
+                </div>
+                <div class="card slds-col slds-size_1-of-3">
+                    <h3>Tax Optimization</h3>
+                    <p>Minimize taxes and maximize your financial potential.</p>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template if:true={isSearchVisible}>
+        <lightning-input 
+            type="text" 
+            label="Search by Account Number" 
+            onchange={handleSearch} 
+            placeholder="Enter Account Number">
+        </lightning-input><br>
+    </template>
+
+    <template if:true={selectedAccount.Name}>
+        <!-- Account Information -->
+        <section class="bill-card-container">
+            <div class="bill-card" onclick={toggleDetails}>
+                <div class="bill-card-summary">
+                    <h3>Personal Information</h3>
+                    <lightning-icon icon-name="utility:chevronright" alternative-text="Expand" size="small"></lightning-icon>
+                </div>
+                <template if:true={detailsVisible}>
+                    <div class="bill-card-details">
+                        <p><strong>First Name : </strong>{selectedAccount.FirstName__c}</p>
+                        <p><strong>Father's Name :</strong>{selectedAccount.Father_sName__c}</p>
+                        <p><strong>Last Name :</strong>{selectedAccount.Last_Name__c}</p>
+                        <p><strong>Mother's Name :</strong>{selectedAccount.Mother_sName__c}</p>
+                        <p><strong>Date of Birth :</strong>{selectedAccount.DateOfBirth__c}</p>
+                        <p><strong>Phone Number :</strong>{selectedAccount.Phone_number__c}</p>
+                        <p><strong>Gender :</strong>{selectedAccount.Gender__c}</p>
+                        <p><strong>Nationality :</strong>{selectedAccount.Nationality__c}</p>
+                        <p><strong>Marital Status :</strong>{selectedAccount.MaritalStatus__c}</p>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+         <section class="bill-card-container">
+            <div class="bill-card" onclick={toggleAccountDetails}>
+                <div class="bill-card-summary">
+                    <h3>Account Details</h3>
+                    <lightning-icon icon-name="utility:chevronright" alternative-text="Expand" size="small"></lightning-icon>
+                </div>
+                <template if:true={detailsAccountVisible}>
+                    <div class="bill-card-details">
+                        <p class="aligned-content"><strong>Account Number :</strong> {selectedAccount.Name}</p>
+                        <p class="aligned-content"><strong>Open Date :</strong> {selectedAccount.Open_Date__c}</p>
+                        <p class="aligned-content"><strong>Status :</strong> {selectedAccount.Status__c}</p>
+                        <p class="aligned-content"><strong>IFSC Code :</strong> {selectedAccount.IFSC_Code__c}</p>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <section class="bill-card-container">
+            <div class="bill-card" onclick={toggleFinDetails}>
+                <div class="bill-card-summary">
+                    <h3>Financial Information</h3>
+                    <lightning-icon icon-name="utility:chevronright" alternative-text="Expand" size="small"></lightning-icon>
+                </div>
+                <template if:true={detailsFinVisible}>
+                    <div class="bill-card-details">
+                        <p><strong>Total Balance Amount :</strong> ₹{selectedAccount.Total_Balance__c}</p>
+                        <p><strong>Total Deposit Amount :</strong> ₹{selectedAccount.Total_Deposit_Amount__c}</p>
+                        <p><strong>Annual Income :</strong> ₹{selectedAccount.Annual_Income__c}</p>
+                        <!--<p><strong>Interest Rate :</strong> {selectedAccount.Interest_Rate__c}%</p>-->
+                        <p><strong>Amount :</strong> ₹{selectedAccount.Amount__c}</p>
+                        <p><strong>Personalized Suggestion :</strong> {financialSuggestion}</p>
+                         <!--<button class="cta-button" onclick={openAssetModal}>New Assets</button>-->
+                        <button class="cta-button"  onclick={openAdvisorModal} >Assign Advisor</button>
+
+                    </div>
+                   
+                </template>
+            </div>
+        </section>
+
+
+        <!-- <section class="bill-card-container">
+        <div class="bill-card" onclick={toggleAssetDetails}>
+            <div class="bill-card-summary">
+                <h3>Assets</h3>
+                <lightning-icon icon-name="utility:chevronright" alternative-text="Expand" size="small"></lightning-icon>
+            </div>
+            <template if:true={assetDetailsVisible}>
+                <div class="bill-card-details">
+                    <div class="asset-grid">
+                       <template for:each={assets} for:item="asset">
+    <div key={asset.Id} class="asset-item">
+        <p><strong>Asset Name:</strong> {asset.Asset_or_Liability_Name__c}</p>
+        <p><strong>Description:</strong> {asset.Description__c}</p>
+        <p><strong>Asset Value:</strong> ₹{asset.Amount__c}</p>
+    </div>
+</template>
+
+<template if:true={noAssetResults}>
+    <p>No assets found.</p> 
+                    </div>
+                    
+                </div><br>
+                 <button class="cta-button" onclick={openAssetModal}>New Assets</button>
+            </template>
+        </div>
+    </section>-->
+
+   <section class="bill-card-container">
+    <div class="bill-card" onclick={toggleAdvisorDetails}>
+        <div class="bill-card-summary">
+            <h3>Advisor Details</h3>
+            <lightning-icon icon-name="utility:chevronright" alternative-text="Expand" size="small"></lightning-icon>
+        </div>
+        <template if:true={advisorDetailsVisible}>
+            <div class="bill-card-details">
+                <div class="advisor-grid">
+                    <template for:each={advisors} for:item="advisor">
+                        <div key={advisor.Id} class="advisor-item">
+                            <p><strong>Advisor Name :</strong> {advisor.Advisor_Name__c}</p>
+                            <p><strong>Email Address :</strong> {advisor.Email_Address__c}</p>
+                            <p><strong>Specialization :</strong> {advisor.Specialization__c}</p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <template if:true={noAssetResults}>
+                <p>No advisors found.</p>
+            </template>
+            <br>
+            <button class="cta-button" onclick={openAdvisorModal}>Assign Advisor</button>
+        </template>
+    </div>
+</section>
+
+
+
+
+        <section class="bill-card-container">
+            <div class="bill-card" onclick={toggleVerDetails}>
+                <div class="bill-card-summary">
+                    <h3>Verification & Cards</h3>
+                    <lightning-icon icon-name="utility:chevronright" alternative-text="Expand" size="small"></lightning-icon>
+                </div>
+                <template if:true={detailsVerVisible}>
+                    <div class="bill-card-details">
+                        <p><strong>Document Verification Status :</strong> {selectedAccount.Document_Verification_Status__c}</p>
+                        <p><strong>Credit Card :</strong> {selectedAccount.Credit_Card__c}</p>
+                        <p><strong>Debit Card :</strong> {selectedAccount.Debit_Card__c}</p>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <section class="bill-card-container">
+            <div class="bill-card" onclick={toggleJointDetails}>
+                <div class="bill-card-summary">
+                    <h3>Joint Applicants</h3>
+                    <lightning-icon icon-name="utility:chevronright" alternative-text="Expand" size="small"></lightning-icon>
+                </div>
+                <template if:true={detailsJointVisible}>
+                    <div class="bill-card-details">
+                        <p><strong>1st Joint Application Name :</strong> {selectedAccount.X1st_Joint_Application_Name__c}</p>
+                        <p><strong>2nd Joint Application Name :</strong> {selectedAccount.X2nd_Joint_Application_Name__c}</p>
+                        <p><strong>3rd Joint Application Name :</strong> {selectedAccount.X3rd_Joint_Application_Name__c}</p>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- Insurance Policies Section -->
+        <template if:true={insurancePolicies.length}>
+            <section class="bill-card-container">
+                <div class="bill-card" onclick={toggleInsuranceDetails}>
+                    <div class="bill-card-summary">
+                        <h3>Insurance Policies</h3>
+                        <lightning-icon icon-name="utility:chevronright" alternative-text="Expand" size="small"></lightning-icon>
+                    </div>
+                    <template if:true={insuranceDetailsVisible}>
+                        <div class="bill-card-details">
+                            <div class="policy-grid">
+                                <template for:each={insurancePolicies} for:item="policy">
+                                    <div key={policy.Id} class="policy-item">
+                                        <p><strong>Policy Name :</strong> {policy.RecordType.Name}</p>
+                                        <p><strong>Policy Id :</strong> {policy.Name}</p>
+                                        <p><strong>Coverage Amount :</strong> ₹{policy.Coverage_Amount__c}</p>
+                                        <p><strong>Policy Premium Amount :</strong> ₹{policy.Policy_Premium_Amount__c}</p>
+                                        <p><strong>Status :</strong> {policy.Status__c}</p>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                         <button class="cta-button" onclick={navigateToInsurancePage}>Apply for Insurances</button>
+                    </template>
+                </div>
+            </section>
+        </template>
+
+       <template if:true={isModalOpen}>
+    <section class="modal">
+        <div class="modal-content">
+            <span class="close" onclick={closeAssetModal}>&times;</span>
+            <h2>New Asset</h2>
+            
+            <!-- Asset Name -->
+            <lightning-input label="Asset Name" value={assetName} 
+                onchange={handleInputChange} data-field="assetName" required></lightning-input>
+
+            <!-- Description -->
+            <lightning-input label="Description" value={description} 
+                onchange={handleInputChange} data-field="description" type="text"></lightning-input>
+
+            <!-- Amount -->
+            <lightning-input label="Amount" value={amount} 
+                onchange={handleInputChange} data-field="amount" type="number" required></lightning-input>
+            
+            <!-- Save Button -->
+            <lightning-button variant="brand" label="Save" onclick={handleSaveAssets}></lightning-button>
+        </div>
+    </section>
+</template>
+
+<template if:true={isAdvisorModalOpen}>
+    <section class="modal">
+        <div class="modal-content">
+            <span class="close" onclick={closeAdvisorModal}>&times;</span>
+            <h2>New Advisor</h2>
+
+            <!-- Advisor Name -->
+            <lightning-input label="Advisor Name" value={advisorName}
+                onchange={handleInputChange} data-field="advisorName" required></lightning-input>
+
+            <!-- Email Address -->
+            <lightning-input label="Email Address" value={emailAddress}
+                onchange={handleInputChange} data-field="emailAddress" type="email"></lightning-input>
+
+            <!-- Specialization (Picklist) -->
+            <lightning-combobox label="Specialization" value={specialization}
+                onchange={handleInputChange} data-field="specialization"
+                options={specializationOptions}></lightning-combobox>
+
+            <!-- Save Button -->
+            <lightning-button variant="brand" label="Save" onclick={handleSaveAdvisor}></lightning-button>
+        </div>
+    </section>
+</template>
+
+        <!-- Loans Section -->
+        <template if:true={loans.length}>
+            <section class="bill-card-container">
+                <div class="bill-card" onclick={toggleLoanDetails}>
+                    <div class="bill-card-summary">
+                        <h3>Loans</h3>
+                        <lightning-icon icon-name="utility:chevronright" alternative-text="Expand" size="small"></lightning-icon>
+                    </div>
+                    <template if:true={loanDetailsVisible}>
+                        <div class="bill-card-details">
+                            <div class="loan-grid">
+                                <template for:each={loans} for:item="loan">
+                                    <div key={loan.Id} class="loan-item">
+                                        <p><strong>Loan Name :</strong> {loan.Types_Of_Loans__c}</p>
+                                        <p><strong>Loan Id :</strong> {loan.Name}</p>
+                                        <p><strong>Loan Amount :</strong> ₹{loan.Loan_Amount__c}</p>
+                                        <p><strong>EMI Amount :</strong> ₹{loan.EMI_Amount__c}</p>
+                                        <p><strong>Borrower's Name :</strong> {loan.Borrower_s_Name__c}</p>
+                                        <p><strong>Interest Rate :</strong> {loan.Interest_Rate__c}%</p>
+                                        <p><strong>Loan End Date :</strong> {loan.Loan_End_Date__c}</p>
+                                    </div>
+                                </template><br>
+                            </div>
+                        </div><br>
+                        <p><strong>Total Amount to Repay :</strong> ₹{totalRepayment}</p>
+                        <button class="cta-button" onclick={navigateToNewPage}>Apply for Loans</button>
+                    </template>
+                </div>
+            </section>
+        </template>
+    </template>
+</template>

@@ -1,0 +1,354 @@
+<!--
+  @description       : 
+  @author            : Surendra Muthyala
+  @group             : 
+  @last modified on  : 26-08-2022
+  @last modified by  : Surendra Muthyala
+-->
+<template>
+    <template if:true={firstPage}>
+        <div class="bottom-top-padding-class">
+            <div class="sidewise-padding">
+                <div class="slds-grid slds-grid_vertical frame-class frame-color-class frame-border-radius">
+                    <div class="slds-col header-background" style="border-radius: 10px 10px 0px 0px;">
+                        <div class="slds-grid" style="padding: 10px;">
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="your-lead-styling">
+                                    <h1 class="slds-text-heading_medium form-header">New Plan</h1>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="slds-float_right your-lead-styling">
+                                    <h1 class="next-form-header-page-number">1/2</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col" style="padding: 15px;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12">
+                                <lightning-input type="text" label="Plan Name" value={journeyDetails.planItemName} onchange={planname} class="slds-align_absolute-center" required></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12">
+                                <lightning-input type="date" label="Plan Start Date" value={journeyDetails.startDateValue} onchange={startdate}  ></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12">
+                                <lightning-input type="date" label="Plan End Date" value={journeyDetails.endDateValue} onchange={enddate} ></lightning-input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-align--absolute-center slds-col slds-p-around--small">
+                        <button class="slds-button slds-button_brand action-button"
+                            onclick={handleCancel}>
+                            Cancel
+                        </button>
+                        <button class="slds-button slds-button_brand action-button"
+                            onclick={handleStart}>
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={secondPage}>
+        <div class="bottom-top-padding-class toppadd">
+            <div class="sidewise-padding">
+                <div class="slds-grid slds-grid_vertical frame-class frame-color-class frame-border-radius">
+                    <div class="slds-col header-background" style="border-radius: 10px 10px 0px 0px;">
+                        <div class="slds-grid" style="padding: 10px;">
+                            <div class="slds-align--absolute-center slds-col slds-size_3-of-4">
+                                <div class="your-lead-styling">
+                                    <span style="font-size:20px"><b>Plan Your Visits</b></span>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-4">
+                                <div class="slds-float_right your-lead-styling">
+                                    <h1 class="next-form-header-page-number">2/2</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col" style="padding: 15px;">
+                        <div class="slds-scope">
+                            <div class="slds-card slds-theme_default">
+                                <!-- Header Bar -->
+                                <div class="slds-p-around_medium slds-border_bottom">
+                                    <div>
+                                        
+                                        <div>
+                                            <!-- Title -->
+                                            <div>
+                                                <h1 class="slds-text-heading_medium slds-truncate slds-align--absolute-center">
+                                                    {journeyDetails.planItemName}
+                                                </h1>
+                                            </div>
+                                            <!-- /Title -->
+                                        </div>
+                                        <div>
+                                            <div class="slds-align--absolute-center" >
+                                                <b><h1>Visits Scheduled:{counterlength}</h1></b>
+                                            </div>                    
+                                        </div>
+                                        <div>
+                                            <!-- Search Button -->
+                                            <div class="slds-combobox_container slds-combobox">                    
+                                                <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                                                    <input type="text" class="slds-input slds-combobox__input" role="textbox" 
+                                                    placeholder="Search Accounts..." onkeyup={handleSearch}/>
+                                                    <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                                                        <lightning-icon icon-name="utility:search" size="x-small">
+                                                        </lightning-icon>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <!-- /Search Button -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Header Bar -->
+                    
+                                <!-- Table Chart -->
+                                <div class="slds-scrollable slds-p-top_small" style="max-height: 15rem;">
+                                    <table class="slds-table slds-table_bordered slds-table_col-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">
+                                                    <div class="slds-truncate slds-text-title_caps table-header-text" title="Part Number">
+                                                        Accounts
+                                                    </div>
+                                                </th>
+                                                <template if:true={SchRec}>
+                                                    <template for:each={SchRec} for:item="period">
+                                                        <th scope="col" key={period}>
+                                                            <div class="slds-truncate slds-text-title_caps table-header-text slds-align--absolute-center" style="width: 90px;" title={period}>
+                                                                {period.dateString}
+                                                            </div>
+                                                        </th>
+                                                    </template>
+                                                </template>
+                    
+                                                <!--<th scope="col"></th>-->
+                                            </tr>
+                                        </thead>
+                                        <tbody> 
+                                            <template for:each={AccData} for:item="row" for:index="rowIndex">
+                                                <tr key={row.Id}>
+                                                    <td>
+                                                        <div class="slds-truncate" title={row.Name} style="width:150px;">
+                                                            <a data-id={row.Id} onclick={handleNavigation}>{row.Name}</a>
+                                                        </div>
+                                                    </td>
+                                                    <template for:each={SchRec} for:item="val" for:index="columnIndex">
+                                                        <td key={val}>
+                                                            <div class="textalign" >
+                                                            <lightning-button 
+                                                            class="slds-align--absolute-center" 
+                                                            variant="Base" 
+                                                            icon-name="utility:add" 
+                                                            data-accid ={row.Id}
+                                                            
+                                                            data-colindex={columnIndex}
+                                                            data-rowindex={rowIndex}
+                                                            data-actions="bttns"
+                                                            data-nameacc={row.Name}
+                                                            data-date ={val.dateValue} 
+                                                            onclick={handleAddVisit}>
+                                                            </lightning-button>
+                                                        </div>
+                                                            <div class="textalign" if:false={SchRec.show}>
+                                                            <lightning-icon style="display:none;" class="textalign" 
+                                                             icon-name="utility:check" data-accid ={row.Id}
+                                                             data-date ={val.dateValue} 
+                                                             data-action="icon"
+                                                             data-actionval="icons"
+                                                             alternative-text="Scheduled!" size="x-small"
+                                                             variant="success" title="Scheduled"></lightning-icon>
+
+                                                             <lightning-icon style="display:none;" class="textalign1" 
+                                                             icon-name="utility:delete" data-accid ={row.Id}
+                                                             data-date ={val.dateValue} 
+                                                             onclick={deltedClicked}
+                                                             data-delete="deleted"
+                                                             data-action="icon"
+                                                             alternative-text="Scheduled!" size="x-small"
+                                                             variant="error" title="Scheduled"></lightning-icon>
+                                                            </div>
+                                                        </td>
+                                                    </template>
+                                                </tr>
+                                            </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /Table Chart -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col" style="padding: 0px 15px 15px 15px;">
+                        <div class="slds-align--absolute-center slds-col slds-p-around--small">
+                            <button class="slds-button slds-button_brand action-button"
+                            onclick={clickedDetailsView}>
+                            Next
+                            </button>
+                            <button class="slds-button slds-button_brand action-button"
+                                onclick={handleCancel}>
+                                Cancel
+                            </button>
+                        </div>
+                        <!-- <button class="slds-button slds-button_brand slds-button_stretch action-button"
+                            onclick={saveClicked}>
+                            Save
+                        </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={thirdPage}>
+        <div class="bottom-top-padding-class toppadd">
+            <div class="sidewise-padding">
+                <div class="slds-grid slds-grid_vertical frame-class frame-color-class frame-border-radius">
+                    <div class="slds-col header-background" style="border-radius: 10px 10px 0px 0px;">
+                        <div class="slds-grid" style="padding: 10px;">
+                            <div class="slds-col slds-size_1-of-1">
+                                <div class="your-lead-styling slds-align--absolute-center">
+                                    <h1 class="slds-text-heading_medium form-header">Plan Details</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-align--absolute-center slds-col slds-p-around--small">
+                        <button class="slds-button slds-button_brand action-button"
+                            onclick={previousClicked}>
+                            Previous
+                        </button>
+                        <button class="slds-button slds-button_brand action-button"
+                            onclick={handleCancel}>
+                            Cancel
+                        </button>
+                        <button class="slds-button slds-button_brand action-button"
+                            onclick={saveDetailsCliked}>
+                            Save
+                        </button>
+                    </div>
+                    <div class="slds-scrollable slds-p-top_small">
+                        <template for:each={visitList} for:item="row" for:index="columnIndex">
+                            <div class="slds-card cardprop" key={row}>
+                                <div class="slds-align--absolute-center">
+                                    <b>Account Name:</b>{row.AccountName}
+                                </div>
+                               
+                                <div class="slds-grid">
+                                    <div class="slds-col">
+                                        <b>Start Date:</b><lightning-formatted-date-time value={row.PlannedVisitStartTime__c} year="numeric" month="short" day="numeric" hour="2-digit"
+                                        minute="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+                                      </div>
+                                      <div class="slds-col">
+                                        <b>End Date:</b><lightning-formatted-date-time value={row.PlannedVisitEndTime__c} year="numeric" month="short" day="numeric" hour="2-digit"
+                                        minute="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+                                      </div>
+                                </div>
+                                
+                               
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={showModal} >
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open ">
+            <div class="slds-modal__container" style="width:80%;">
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+                        title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            variant="inverse" 
+                            size="small">
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <!--<h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+                        Set Plan for <lightning-formatted-date-time value={selectedDate}></lightning-formatted-date-time>
+                    </h2>-->
+                </header>
+                
+                <div class="slds-modal__content slds-p-around_medium " style="height: 18rem;">
+                    <div class="slds-align--absolute-center">
+                        <h1><b>Edit Plan Details</b></h1>
+                    </div>
+                    <div class="slds-grid slds-wrap ">
+                        <!-- <div class="slds-col slds-size_1-of-1">
+                            <lightning-record-edit-form object-api-name="Visit__c">
+                                <lightning-input-field field-name="Name">
+                                </lightning-input-field>
+                            </lightning-record-edit-form>
+                        </div> -->
+                        <div class="slds-col slds-size_1-of-1">
+                            
+                                <lightning-input  label="Account Name"  style="width:60%" name="Account__c" value={selectedAccnameacc} disabled>
+                                </lightning-input>
+                            
+
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 ">
+                            <lightning-input
+                                label="Planned Visit StartTime"
+                                type="datetime"
+                                dropdown-alignment="auto"
+                                name="PlannedVisitStartTime__c"
+                                value={selectedDate}
+                                required
+                                onchange={handleVisitChange}>
+                            </lightning-input>
+                            <!-- <lightning-record-edit-form object-api-name="Visit__c">
+                                <lightning-input-field
+                                    field-name="PlannedVisitStartTime__c"
+                                    align-dropdown="auto"
+                                    value={selectedDate}
+                                    required
+                                    dropdown-alignment="auto"
+                                    onchange={handleVisitChange}>
+                                </lightning-input-field>
+                            </lightning-record-edit-form> -->
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 ">
+                            <lightning-input
+                                label="Planned Visit EndTime"
+                                type="datetime"
+                                dropdown-alignment="auto"
+                                name="PlannedVisitEndTime__c"
+                                value={selectedDate}
+                                required
+                                onchange={handleVisitChange}>
+                            </lightning-input>
+                            <!-- <lightning-record-edit-form object-api-name="Visit__c">
+                                <lightning-input-field field-name="PlannedVisitEndTime__c"
+                                    align-dropdown="auto"
+                                    value={selectedDate}
+                                    required
+                                    dropdown-alignment="auto"
+                                    onchange={handleVisitChange}>
+                                </lightning-input-field>
+                            </lightning-record-edit-form> -->
+                        </div> 
+                    </div>
+
+                </div>
+                <footer class="slds-modal__footer">
+                    <div class="slds-align--absolute-center">
+                        <button class="slds-button slds-button_neutral" onclick={closeModal}>Cancel</button>
+                        <button class="slds-button slds-button_brand" onclick={handleModalSave}>Save</button>
+               
+                    </div>
+                     </footer>
+        
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

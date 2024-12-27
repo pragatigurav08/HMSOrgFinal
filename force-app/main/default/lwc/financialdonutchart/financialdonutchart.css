@@ -1,0 +1,31 @@
+.slds-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px; /* Adjust height as needed */
+}
+
+.donut {
+    max-width: 100%;
+}
+
+.legend {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.legend ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.legend li {
+    display: flex;
+    align-items: center;
+}
+
+.color-box {
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+}

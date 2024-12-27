@@ -1,0 +1,107 @@
+/* General Layout */
+.form-container {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Input Fields */
+.custom-input {
+    width: 93%;
+   margin-left: 10px;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 1px solid #d8dde6;
+    border-radius: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+/* .custom-input:disabled {
+    background-color: #f4f6f9;
+    color: #6c757d;
+} */
+
+/* Labels */
+.input-label {
+    font-weight: bold;
+    margin-bottom: -1.5rem;
+    color: #4d4d4d;
+    font-size: 16px;
+    margin-left: 20px;
+}
+
+/* Section Heading */
+.section-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4d4d4d;
+    margin-bottom: 1rem;
+        margin-left: 10px;
+}
+
+/* Custom Table */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid #d8dde6;
+}
+
+.custom-table th {
+    background-color: #f4f6f9;
+    font-weight: bold;
+    color: #4d4d4d;
+}
+
+.custom-table tr:hover {
+    background-color: #f1f5fc;
+}
+
+/* Buttons */
+.preview-button,
+.reject-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.preview-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.reject-button {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.preview-button:hover {
+    background-color: #0056b3;
+}
+
+.reject-button:hover {
+    background-color: #b32d39;
+}

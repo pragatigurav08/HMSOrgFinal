@@ -1,0 +1,83 @@
+h1{
+    font-size: 1rem;
+}
+
+h2{
+    font-size : 0.8rem;
+    color:#727E8C;
+}
+
+.text-green {
+    color: #379696;
+}
+
+.text-blue{
+    color:  #5A8DEE;
+}
+
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid #DFE3E7;
+    border-radius: 0.267rem;
+    /* box-shadow: -8px 12px 18px 10px rgba(25, 42, 70, 0.13); */
+	/* margin-bottom: 1.5rem; */
+	max-height :300px;
+	/* height : 300px; */
+}
+
+.card-header {
+    padding: 0.8rem 1.1rem;
+    margin-bottom: 0;
+    background-color: #fff;
+    border-bottom: 0 solid #DFE3E7;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.card-body{
+	padding: 2rem 1.3rem 0rem 1.3rem;
+	
+}
+
+.progress {
+	background-color: #d8d8d8;
+	border-radius: 20px;
+	position: relative;
+	margin: 15px 0;
+	height: 30px;
+	width: auto;
+}
+
+.progress-done {
+	background: linear-gradient(to left, #F2709C, #FF9472);
+	box-shadow: 0 3px 3px -5px #F2709C, 0 2px 5px #F2709C;
+	border-radius: 20px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 0;
+	opacity: 0;
+	transition: 1s ease 0.3s;
+}
+
+.progress-done1 {
+	background: linear-gradient(to left,  #39539E,#0084ff); 
+	box-shadow: 0 3px 3px -5px #39539E, 0 2px 5px #39539E;
+	border-radius: 20px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 0;
+	opacity: 0;
+	transition: 1s ease 0.3s;
+}

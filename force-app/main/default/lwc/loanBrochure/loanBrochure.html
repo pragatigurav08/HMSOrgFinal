@@ -1,0 +1,84 @@
+<template>
+    <!-- <lightning-button label="View Loan Information" onclick={handleOpenModal}></lightning-button> -->
+
+    <!-- <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium">Elite Bank of India</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="banner">
+                        <div class="header">
+                            <h1>Elite Bank of India</h1>
+                            <h2>Your Trusted Partner for Loans</h2>
+                        </div>
+
+                        <div class="loan-types">
+                            <div class="loan-type personal-loan">
+                                <h3>Personal Loan</h3>
+                                <ul>
+                                    <li>₹1L to ₹3L: <strong>5%</strong> ROI</li>
+                                    <li>₹3L to ₹6L: <strong>8%</strong> ROI</li>
+                                    <li>₹6L to ₹12L: <strong>12%</strong> ROI</li>
+                                    <li>Above ₹12L: <strong>15%</strong> ROI</li>
+                                </ul>
+                            </div>
+                            <div class="loan-type home-loan">
+                                <h3>Home Loan</h3>
+                                <ul>
+                                    <li>₹1L to ₹3L: <strong>5%</strong> ROI</li>
+                                    <li>₹3L to ₹6L: <strong>8%</strong> ROI</li>
+                                    <li>₹6L to ₹12L: <strong>12%</strong> ROI</li>
+                                    <li>Above ₹12L: <strong>15%</strong> ROI</li>
+                                </ul>
+                            </div>
+                            <div class="loan-type education-loan">
+                                <h3>Education Loan</h3>
+                                <ul>
+                                    <li>₹1L to ₹3L: <strong>5%</strong> ROI</li>
+                                    <li>₹3L to ₹6L: <strong>8%</strong> ROI</li>
+                                    <li>₹6L to ₹12L: <strong>12%</strong> ROI</li>
+                                    <li>Above ₹12L: <strong>15%</strong> ROI</li>
+                                </ul>
+                            </div>
+                            <div class="loan-type gold-loan">
+                                <h3>Gold Loan</h3>
+                                <ul>
+                                    <li>₹1L to ₹3L: <strong>5%</strong> ROI</li>
+                                    <li>₹3L to ₹6L: <strong>8%</strong> ROI</li>
+                                    <li>₹6L to ₹12L: <strong>12%</strong> ROI</li>
+                                    <li>Above ₹12L: <strong>15%</strong> ROI</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>Get in touch with us today to learn more!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button variant="neutral" label="Close" onclick={handleCloseModal}></lightning-button>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template> -->
+     <!-- <lightning-spinner if:true={isLoading} alternative-text="Loading" size="small"></lightning-spinner> -->
+    <div class="slds-m-around_small">
+        <lightning-input label="" name="file uploader" onchange={handleFilesChange} type="file" multiple></lightning-input>
+    </div>
+    <div class="slds-m-around_small">
+        <template if:true={fileName}>
+            {fileName} &nbsp; &nbsp; {fileSize}
+        </template>
+    </div>
+    <div class="slds-m-around_small">
+        <lightning-button variant="success" label="Upload" title="Upload" onclick={saveFile}></lightning-button>
+    </div>
+</template>

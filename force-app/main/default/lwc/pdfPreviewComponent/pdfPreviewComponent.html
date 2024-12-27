@@ -1,0 +1,15 @@
+<template>
+    <div class="preview-container">
+        <lightning-button label="Preview PDFs" onclick={handlePreview} class="preview-button"></lightning-button>
+        <template if:true={showPreview}>
+            <iframe
+                src={combinedPdfUrl}
+                width="100%"
+                height="800px"
+                frameborder="0"
+                scrolling="yes"
+                class="pdf-preview-iframe"
+            ></iframe>
+        </template>
+    </div>
+</template>

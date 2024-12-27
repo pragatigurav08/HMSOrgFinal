@@ -1,0 +1,223 @@
+<template>
+        <template if:true={accountDetail}>
+        <lightning-card>
+            <div>
+                <div class="slds-m-top_medium important-field-section">
+                    <h2 class="slds-text-heading_small">Vehicle Insurance Policy Form</h2>
+
+                    <div class="slds-grid slds-wrap important-field-section">
+                        <!-- Left Column -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                            <div class="section">
+                               
+                                <lightning-input name="account" label="account" value={accountDetail.Name}
+                                    onchange={handleInputChange} data-field="Account">
+                                </lightning-input>
+                            </div>
+                            <div class="section">
+                               
+                                <lightning-input name="firstName" label="First Name" value={firstName}
+                                    onchange={handleInputChange} data-field="firstName">
+                                </lightning-input>
+                            </div>
+                            <div class="section">
+                                
+                                <lightning-input name="lastName" label="Last Name" value={lastName}
+                                    onchange={handleInputChange} data-field="lastName">
+                                </lightning-input>
+                            </div>
+                            <div class="section">
+                             
+                                <lightning-input name="customerEmail" label="Customer Email" type="email"
+                                    value={customerEmail} onchange={handleInputChange} data-field="customerEmail">
+                                </lightning-input>
+                            </div>
+                            <div class="section">
+                               
+                                <lightning-input name="phoneNo" label="Phone No" type="tel" value={phoneNo}
+                                    onchange={handleInputChange} data-field="phoneNo"></lightning-input>
+                            </div>
+                            <div class="section">
+                             <lightning-input name="gender" label="Gender" value={gender} 
+                                    onchange={handleInputChange} data-field="gender">
+                                </lightning-input>
+                            </div>
+                            <div class="section">
+                               
+                                <lightning-input name="nominee" label="Nominee" value={nominee}
+                                    onchange={handleInputChange} data-field="nominee">
+                                </lightning-input>
+                            </div>
+                            <div class="section">
+                               
+                                <lightning-input name="policyBeneficiary" label="Policy Beneficiary"
+                                    value={policyBeneficiary} onchange={handleInputChange}
+                                    data-field="policyBeneficiary">
+                                </lightning-input>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                            <div class="section">
+                               
+                                <lightning-input name="policyPremiumAmount" label="Policy Premium Amount" type="number"
+                                    value={policyPremiumAmount} onchange={handleInputChange}
+                                    data-field="policyPremiumAmount"></lightning-input>
+                            </div>
+                            <div class="section">
+                              
+                                <lightning-input name="coverageAmount" label="Coverage Amount" type="number"
+                                    value={coverageAmount} onchange={handleInputChange} data-field="coverageAmount">
+                                </lightning-input>
+                            </div>
+                            <div class="section">
+                                
+                                <lightning-combobox name="status" label="Status" value={status} placeholder="--None--"
+                                    options={statusOptions} onchange={handleInputChange} data-field="status">
+                                </lightning-combobox>
+                            </div>
+                            <div class="section">
+                                
+                                <lightning-combobox name="paymentFrequency" label="Payment Frequency"
+                                    value={paymentFrequency} placeholder="--None--" options={paymentOptions}
+                                    onchange={handleInputChange} data-field="paymentFrequency">
+                                </lightning-combobox>
+                            </div>
+                            <div class="section">
+                              
+                                <lightning-combobox name="underwritingStatus" label="Underwriting Status"
+                                    value={underwritingStatus} placeholder="--None--"
+                                    options={underwritingStatusOptions} onchange={handleInputChange}
+                                    data-field="underwritingStatus"></lightning-combobox>
+                            </div>
+                            <div class="section">
+                                
+                                <lightning-input name="policyStartDate" label="Policy Start Date" type="date"
+                                    value={policyStartDate} onchange={handleInputChange} data-field="policyStartDate">
+                                </lightning-input>
+                            </div>
+                            <div class="section">
+                                
+                                <lightning-input name="policyEndDate" label="Policy End Date" type="date"
+                                    value={policyEndDate} onchange={handleInputChange} data-field="policyEndDate">
+                                </lightning-input>
+                            </div>
+                            <div class="section">
+                                <lightning-input class="checkbox-padding" name="claimable" type="checkbox"
+                                    label="Claimable" checked={claimable} onchange={handleInputChange}
+                                    data-field="claimable">
+                                </lightning-input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Important Fields Section -->
+                <div class="slds-m-top_medium important-field-section">
+                    <h2 class="slds-text-heading_small">Important field</h2>
+
+                    <div class="slds-grid slds-wrap form-container">
+                        <!-- Left Column -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                            <lightning-input label="Vehicle Identification Number (VIN)" type="text" value={vin}
+                                onchange={handleInputChange} data-field="vin"></lightning-input>
+                            <lightning-input label="Vehicle Make and Model" type="text" value={vehicleMakeModel}
+                                onchange={handleInputChange} data-field="vehicleMakeModel"></lightning-input>
+                            <lightning-input label="Year of Manufacture" type="date" value={yearOfManufacture}
+                                onchange={handleInputChange} data-field="yearOfManufacture"></lightning-input>
+                            <lightning-combobox name="coverageType" label="Coverage Type" placeholder="--None--"
+                                options={coverageOptions} value={coverageType} onchange={handleCoverageChange}
+                                data-field="coverageType">
+                            </lightning-combobox>
+
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                            <lightning-input label="Liability Coverage" type="text" value={liabilityCoverage}
+                                onchange={handleInputChange} data-field="liabilityCoverage"></lightning-input>
+                            <lightning-input label="Personal Injury Protection" type="checkbox"
+                                checked={personalInjuryProtection} onchange={handleInputChange}
+                                data-field="personalInjuryProtection"></lightning-input>
+                            <lightning-input label="Roadside Assistance" type="checkbox" checked={roadsideAssistance}
+                                onchange={handleInputChange} data-field="roadsideAssistance"></lightning-input>
+                            <lightning-input label="Vehicle Value" type="text" value={vehicleValue}
+                                onchange={handleInputChange} data-field="vehicleValue"></lightning-input>
+                            <lightning-input label="No-Claim Bonus" type="checkbox" checked={noClaimBonus}
+                                onchange={handleInputChange} data-field="noClaimBonus"></lightning-input>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons Section -->
+                <div class="slds-m-top_medium button-group button-sec">
+                    <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+                </div>
+            </div>
+        </lightning-card>
+    </template>
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                    title="Close" onclick={handleCloseModal}>
+                    <lightning-icon icon-name="utility:close" alternative-text="Close" size="small"></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                    <h2 class="slds-text-heading_medium">Confirm Entered Details</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2">
+                                <ul>
+                                    <li><strong>First Name:</strong> {firstName}</li>
+                                    <li><strong>Last Name:</strong> {lastName}</li>
+                                    <li><strong>Email:</strong> {customerEmail}</li>
+                                    <li><strong>Phone No:</strong> {phoneNo}</li>
+                                    <li><strong>Gender:</strong> {gender}</li>
+                                    <li><strong>Nominee:</strong> {nominee}</li>
+                                    <li><strong>Policy Beneficiary:</strong> {policyBeneficiary}</li>
+                                    <li><strong>Policy Premium Amount:</strong> {policyPremiumAmount}</li>
+                                    <li><strong>Coverage Amount:</strong> {coverageAmount}</li>
+                                    <li><strong>Status:</strong> {status}</li>
+                                    <li><strong>Payment Frequency:</strong> {paymentFrequency}</li>
+                                    <li><strong>Underwriting Status:</strong> {underwritingStatus}</li>
+
+                                </ul>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <ul>
+                                    <li><strong>Policy Start Date:</strong> {policyStartDate}</li>
+                                    <li><strong>Policy End Date:</strong> {policyEndDate}</li>
+                                    <li><strong>Claimable:</strong> {claimable}</li>
+                                    <li><strong>VIN:</strong> {vin}</li>
+                                    <li><strong>Liability Coverage:</strong> {liabilityCoverage}</li>
+                                    <li><strong>Vehicle Make/Model:</strong> {vehicleMakeModel}</li>
+                                    <li><strong>Year of Manufacture:</strong> {yearOfManufacture}</li>
+                                    <li><strong>Personal Injury Protection:</strong> {personalInjuryProtection}</li>
+                                    <li><strong>Roadside Assistance:</strong> {roadsideAssistance}</li>
+                                    <li><strong>Vehicle Value:</strong> {vehicleValue}</li>
+                                    <li><strong>No Claim Bonus:</strong> {noClaimBonus}</li>
+                                    <li><strong>Coverage Type:</strong> {coverageType}</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button label="Cancel" variant="neutral" onclick={handleCloseModal}
+                        class="button-spacing">
+                    </lightning-button>
+                    <lightning-button label="Commit" variant="brand" onclick={handleCommit} class="button-spacing">
+                    </lightning-button>
+
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

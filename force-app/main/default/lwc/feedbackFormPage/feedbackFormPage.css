@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url(pexels-james-wheeler-1486974.jpg);
+}
+form{
+    width: 80%;
+    padding: 20px 20px 30px 20px;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    background: #000000;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group select{
+    margin-top: 10px;
+    padding: 10px 0px;
+    border-radius: 4px;
+}
+.form-group input[type="radio"],
+.form-group input[type="checkbox"]{
+    margin: 10px;
+}
+.form-group textarea{
+    margin:  10px 0px;
+}
+
+.form-group input[type="submit"]{
+    padding: 10px 0px;
+    color: #ffffff;
+    background: #008000;
+}
+
+.feedback-form{
+    padding: 5px;
+    margin: 2px;
+}
+.rating-section{
+    /* font-size:small;
+    font-weight: 100;
+    font-family: 'Times New Roman', Times, serif; */
+    height: 100%;
+}
+.col-css{
+    width: 48%;
+    margin: 5px;
+    padding: 5px;
+    border:1px solid #008000;
+    /* text-wrap: balance;
+    word-wrap: break-word;
+    overflow-wrap: break-word; */
+}
+.button-css{
+    margin-top: 20px;
+}
+.title-header{
+    font-size: 20px;
+    font-weight: 700;
+}
+.title-sub-header{
+    font-size: medium;
+    font-weight: 400;
+}
+.questions-css{
+    height: fit-content;
+}
+lightning-button{
+    animation: wiggle 1.5s linear infinite;
+    font-weight: 700;
+}
+/* Keyframes */
+@keyframes wiggle {
+    0%, 7% {
+      transform: rotateZ(0);
+    }
+    15% {
+      transform: rotateZ(-15deg);
+    }
+    20% {
+      transform: rotateZ(10deg);
+    }
+    25% {
+      transform: rotateZ(-10deg);
+    }
+    30% {
+      transform: rotateZ(6deg);
+    }
+    35% {
+      transform: rotateZ(-4deg);
+    }
+    40%, 100% {
+      transform: rotateZ(0);
+    }
+}

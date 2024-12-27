@@ -1,0 +1,256 @@
+/* Hero Section */
+
+:host {
+    display: block;
+}
+.hero {
+    background-color : #f8f9fa;
+    padding          : 40px;
+    text-align       : center;
+}
+
+.hero-content h1 {
+    font-size    : 36px;
+    font-weight  : bold;
+    color        : #333;
+}
+
+.hero-content p {
+    font-size    : 18px;
+    margin-top   : 10px;
+    color        : #666;
+}
+
+.cta-button {
+    background-color : #0070d2;
+    color            : #fff;
+    padding          : 10px 20px;
+    border           : none;
+    cursor           : pointer;
+    font-size        : 16px;
+    margin-top       : 20px;
+}
+
+.cta-button:hover {
+    background-color : #005bb5;
+}
+
+/* Services Section */
+.services {
+    padding          : 40px;
+    text-align       : center;
+}
+
+.services h2 {
+    font-size        : 28px;
+    margin-bottom    : 20px;
+    color            : #333;
+}
+
+.service-cards {
+    display          : flex;
+    justify-content  : space-between;
+}
+
+.card {
+    background-color : #fff;
+    border           : 1px solid #ddd;
+    padding          : 20px;
+    margin           : 10px;
+    border-radius    : 5px;
+    width            : 30%;
+}
+
+.card h3 {
+    font-size        : 20px;
+    color            : #0070d2;
+    margin-bottom    : 10px;
+}
+
+.card p {
+    color            : #666;
+}
+
+/* Bill Card Section */
+.bill-card-container {
+    padding          : 20px;
+    margin-bottom    : 20px;
+    background-color : #f9f9f9;
+    border-radius    : 10px;
+}
+
+.bill-card {
+    background-color : #fff;
+    border           : 1px solid #ddd;
+    padding          : 15px;
+    cursor           : pointer;
+    border-radius    : 8px;
+    transition       : 0.3s;
+}
+
+.bill-card:hover {
+    box-shadow       : 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bill-card-summary {
+    display          : flex;
+    justify-content  : space-between;
+    align-items      : center;
+    font-size        : 16px;
+}
+
+.bill-card-details {
+    margin-top       : 15px;
+    display          : flex;
+    flex-direction   : column;
+    gap              : 10px;
+    font-size        : 14px;
+}
+
+
+
+    .aligned-card strong {
+        width: 200px; /* Adjust width as needed */
+    }
+
+.bill-card-details p {
+    margin           : 0;
+    
+}
+
+.policy-grid, .loan-grid, .asset-grid {
+    display          : flex;
+    flex-wrap        : wrap;
+    gap              : 20px;
+}
+
+.policy-item, .loan-item, .asset-item {
+    background-color : #fff;
+    border           : 1px solid #ddd;
+    padding          : 15px;
+    border-radius    : 8px;
+    width            : calc(33.333% - 20px);
+}
+
+.policy-item p, .loan-item p, .asset-item p {
+    margin           : 0;
+    font-size        : 14px;
+}
+
+
+
+.lightning-icon {
+    margin-left      : 10px;
+}
+
+/* Responsiveness */
+@media (max-width : 768px) {
+    .service-cards {
+        flex-direction : column;
+    }
+
+    .card {
+        width : 100%;
+    }
+
+    .policy-item, .loan-item, .asset-item {
+        width : 100%;
+    }
+}
+ .aligned-content  {
+        
+        justify-content: space-between;
+    }
+
+    .bill-card-details {
+    padding: 1rem;
+}
+
+.advisor-grid {
+    display: flex; /* Use flexbox for horizontal layout */
+    flex-wrap: wrap; /* Allow items to wrap to the next line if necessary */
+    gap: 1rem; /* Space between items */
+}
+
+.advisor-item {
+    flex: 1; /* Allow items to grow */
+    min-width: 200px; /* Minimum width for each advisor item */
+    background:white; /* Light background for advisor items */
+    border: 1px solid #ddd; /* Border for visual separation */
+    border-radius: 5px; /* Rounded corners */
+    padding: 1rem; /* Padding for content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+.ai-predictions {
+    margin: 1rem 0;
+}
+
+.ai-predictions h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.ai-predictions ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.ai-predictions li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it appears on top */
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 500px;
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow for depth */
+    animation: modalFadeIn 0.3s ease; /* Optional: fade-in animation */
+    position: relative; /* To position the close button */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lightning-button {
+    margin-top: 20px; /* Add space between inputs and button */
+}
+.uploaded-image {
+    max-width: 100%; /* Ensure the image fits inside the card */
+    height: auto; /* Maintain aspect ratio */
+}

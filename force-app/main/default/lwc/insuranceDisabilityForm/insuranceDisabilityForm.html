@@ -1,0 +1,265 @@
+<template>
+    <template if:true={accountDetails}>
+        <lightning-card>
+        <div>
+            <div class="slds-m-top_medium important-field-section">
+                <h2 class="slds-text-heading_small">Disability Insurance Policy Form</h2>
+
+                <div class="slds-grid slds-wrap important-field-section">
+                    <!-- Left Column -->
+                    <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                        <div class="section">
+                            
+                        <lightning-input name="account" label="Account" value={accountDetails.Name}
+                                onchange={handleInputChange} data-field="searchKey" disabled>
+                            </lightning-input>
+                           
+                        </div>
+                        <div class="section">
+                         
+                            <lightning-input name="firstName" label="First Name" value={firstName}
+                                onchange={handleInputChange} data-field="firstName">
+                            </lightning-input>
+                        </div>
+                        <div class="section">
+                          
+                            <lightning-input name="lastName" label="Last Name" value={lastName}
+                                onchange={handleInputChange} data-field="lastName">
+                            </lightning-input>
+                        </div>
+                        <div class="section">
+                           
+                            <lightning-input name="customerEmail" label="Customer Email" type="email"
+                                value={customerEmail} onchange={handleInputChange} data-field="customerEmail">
+                            </lightning-input>
+                        </div>
+                        <div class="section">
+                           
+                            <lightning-input name="phoneNo" label="Phone No" type="tel" value={phoneNo}
+                                onchange={handleInputChange} data-field="phoneNo"></lightning-input>
+                        </div>
+                        <div class="section">
+                           
+                            <lightning-input name="Gender" label="Gender" value={gender}
+                                onchange={handleInputChange} data-field="Gender" ></lightning-input>
+                        </div>
+                        <div class="section">
+                            <!-- <h3>
+                                <lightning-icon icon-name="utility:user" alternative-text="Nominee"></lightning-icon>
+                                Nominee
+                            </h3> -->
+                            <lightning-input name="nominee" label="Nominee" value={nominee} onchange={handleInputChange}
+                                data-field="nominee">
+                            </lightning-input>
+                        </div>
+                        <div class="section">
+                            <!-- <h3>
+                                <lightning-icon icon-name="utility:user" alternative-text="Policy Beneficiary">
+                                </lightning-icon>
+                                Policy Beneficiary
+                            </h3> -->
+                            <lightning-input name="policyBeneficiary" label="Policy Beneficiary"
+                                value={policyBeneficiary} onchange={handleInputChange} data-field="policyBeneficiary">
+                            </lightning-input>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                        <div class="section">
+                            <!-- <h3>
+                                <lightning-icon icon-name="utility:money" alternative-text="Policy Premium Amount">
+                                </lightning-icon>
+                                Policy Premium Amount
+                            </h3> -->
+                            <lightning-input name="policyPremiumAmount" label="Policy Premium Amount" type="number"
+                                value={policyPremiumAmount} onchange={handleInputChange}
+                                data-field="policyPremiumAmount"></lightning-input>
+                        </div>
+                        <div class="section">
+                            <!-- <h3>
+                                <lightning-icon icon-name="utility:money" alternative-text="Coverage Amount">
+                                </lightning-icon>
+                                Coverage Amount
+                            </h3> -->
+                            <lightning-input name="coverageAmount" label="Coverage Amount" type="number"
+                                value={coverageAmount} onchange={handleInputChange} data-field="coverageAmount">
+                            </lightning-input>
+                        </div>
+                        <div class="section">
+                            <!-- <h3>
+                                <lightning-icon icon-name="utility:record" alternative-text="Status"></lightning-icon>
+                                Status
+                            </h3> -->
+                            <lightning-combobox name="status" label="Status" value={status} placeholder="--None--"
+                                options={statusOptions} onchange={handleInputChange} data-field="status">
+                            </lightning-combobox>
+                        </div>
+                        <div class="section">
+                            <!-- <h3>
+                                <lightning-icon icon-name="utility:clock" alternative-text="Payment Frequency">
+                                </lightning-icon>
+                                Payment Frequency
+                            </h3> -->
+                            <lightning-combobox name="paymentFrequency" label="Payment Frequency"
+                                value={paymentFrequency} placeholder="--None--" options={paymentOptions}
+                                onchange={handleInputChange} data-field="paymentFrequency">
+                            </lightning-combobox>
+                        </div>
+                        <div class="section">
+                            <!-- <h3>
+                                <lightning-icon icon-name="utility:record" alternative-text="Underwriting Status">
+                                </lightning-icon>
+                                Underwriting Status
+                            </h3> -->
+                            <lightning-combobox name="underwritingStatus" label="Underwriting Status"
+                                value={underwritingStatus} placeholder="--None--" options={underwritingStatusOptions}
+                                onchange={handleInputChange} data-field="underwritingStatus"></lightning-combobox>
+                        </div>
+                        <div class="section">
+                            <!-- <h3>
+                                <lightning-icon icon-name="utility:date_input" alternative-text="Policy Start Date">
+                                </lightning-icon>
+                                Policy Start Date
+                            </h3> -->
+                            <lightning-input name="policyStartDate" label="Policy Start Date" type="date"
+                                value={policyStartDate} onchange={handleInputChange} data-field="policyStartDate">
+                            </lightning-input>
+                        </div>
+                        <div class="section">
+                            <!-- <h3>
+                                <lightning-icon icon-name="utility:date_input" alternative-text="Policy End Date">
+                                </lightning-icon>
+                                Policy End Date
+                            </h3> -->
+                            <lightning-input name="policyEndDate" label="Policy End Date" type="date"
+                                value={policyEndDate} onchange={handleInputChange} data-field="policyEndDate">
+                            </lightning-input>
+                        </div>
+                        <div class="section">
+                            <lightning-input class="checkbox-padding" name="claimable" type="checkbox" label="Claimable"
+                                checked={claimable} onchange={handleInputChange} data-field="claimable">
+                            </lightning-input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Fields Section -->
+            <div class="slds-m-top_medium important-field-section">
+                <h2 class="slds-text-heading_small">Important field</h2>
+
+                <div class="slds-grid slds-wrap form-container">
+                    <!-- Left Column -->
+                    <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                        <lightning-combobox label="Disability Type" value={disabilityType} data-field="disabilityType"
+                            placeholder="--None--" options={disabilityOptions} onchange={handleInputChange}>
+                        </lightning-combobox>
+
+                        <lightning-input label="Income Replacement Percentage" type="number"
+                            value={incomeReplacementPercentage} data-field="incomeReplacementPercentage"
+                            onchange={handleInputChange}>
+                        </lightning-input>
+
+                        <lightning-input label="Waiting Period" type="number" value={waitingPeriod}
+                            data-field="waitingPeriod" onchange={handleInputChange}>
+                        </lightning-input>
+
+                        <lightning-combobox label="Occupation Class" value={occupationClass}
+                            data-field="occupationClass" placeholder="--None--" options={occupationOptions}
+                            onchange={handleInputChange}>
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                        <lightning-combobox label="Benefit Period" value={benefitPeriod} data-field="benefitPeriod"
+                            placeholder="--None--" options={benefitOptions} onchange={handleInputChange}>
+                        </lightning-combobox>
+
+                        <lightning-input label="Maximum Monthly Benefit" type="number" value={maxMonthlyBenefit}
+                            data-field="maxMonthlyBenefit" onchange={handleInputChange}>
+                        </lightning-input>
+
+                        <lightning-input type="checkbox" label="Residual Benefits" checked={residualBenefits}
+                            data-field="residualBenefits" onchange={handleInputChange}>
+                        </lightning-input>
+
+                        <lightning-input type="checkbox" label="Own Occupation Coverage" checked={ownOccupationCoverage}
+                            data-field="ownOccupationCoverage" onchange={handleInputChange}>
+                        </lightning-input>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Buttons Section -->
+            <div class="slds-m-top_medium button-group button-sec">
+                <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+    </template>
+
+    <template if:true={isModalOpen}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                    title="Close" onclick={handleCloseModal}>
+                    <lightning-icon icon-name="utility:close" alternative-text="Close" size="small"></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                        <h2 class="slds-text-heading_medium">Confirm Entered Details</h2>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <div>
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <ul>
+                                        <li><strong>First Name:</strong> {firstName}</li>
+                                        <li><strong>Last Name:</strong> {lastName}</li>
+                                        <li><strong>Email:</strong> {customerEmail}</li>
+                                        <li><strong>Phone No:</strong> {phoneNo}</li>
+                                        <li><strong>Gender:</strong> {gender}</li>
+                                        <li><strong>Nominee:</strong> {nominee}</li>
+                                        <li><strong>Policy Beneficiary:</strong> {policyBeneficiary}</li>
+                                        <li><strong>Policy Premium Amount:</strong> {policyPremiumAmount}</li>
+                                        <li><strong>Coverage Amount:</strong> {coverageAmount}</li>
+                                        <li><strong>Status:</strong> {status}</li>
+                                        <li><strong>Payment Frequency:</strong> {paymentFrequency}</li>
+                                        <li><strong>Underwriting Status:</strong> {underwritingStatus}</li>
+
+                                    </ul>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <ul>
+                                        <li><strong>Policy Start Date:</strong> {policyStartDate}</li>
+                                        <li><strong>Policy End Date:</strong> {policyEndDate}</li>
+                                        <li><strong>Claimable:</strong> {claimable}</li>
+                                        <li><strong>Disability Type:</strong> {disabilityType}</li>
+                                        <li><strong>Benefit Period:</strong> {benefitPeriod}</li>
+                                        <li><strong>Income Replacement Percentage:</strong>{incomeReplacementPercentage}
+                                        </li>
+                                        <li><strong>Residual Benefits:</strong> {residualBenefits}</li>
+                                        <li><strong>Waiting Period:</strong> {waitingPeriod}</li>
+                                        <li><strong>Occupation Class:</strong> {occupationClass}</li>
+                                        <li><strong>Maximum Monthly Benefit:</strong> {maxMonthlyBenefit}</li>
+                                        <li><strong>Own Occupation Coverage:</strong> {ownOccupationCoverage}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <lightning-button label="Cancel" variant="neutral" onclick={handleCloseModal} class="button-spacing">
+                        </lightning-button>
+                        <lightning-button label="Commit" variant="brand" onclick={handleCommit} class="button-spacing"></lightning-button>
+
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+</template>

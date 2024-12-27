@@ -1,0 +1,46 @@
+<template>
+    <div class="main-container">
+        <slot></slot> <!-- Placeholder for other content -->
+
+        <!-- Footer Section -->
+        <footer class="footer-container">
+            <lightning-card title="Terms and Conditions" icon-name="utility:lock">
+                <div class="slds-m-around_medium">
+                    <p>
+                        Please carefully read and accept our Terms and Conditions before proceeding. By accepting, you agree to the following:
+                    </p>
+                    <ul>
+                        <li>1. Your account is subject to approval and verification by the bank.</li>
+                        <li>2. The bank reserves the right to modify interest rates, fees, and other policies with prior notice.</li>
+                        <li>3. You agree to maintain accurate and up-to-date information at all times.</li>
+                        <li>4. All transactions must comply with national and international financial regulations.</li>
+                        <li>5. The bank is not liable for delays or disruptions caused by third-party services.</li>
+                        <li>6. Any suspicious or fraudulent activity will result in immediate account suspension.</li>
+                        <li>7. Overdue loan payments will attract penalties and impact your credit score.</li>
+                        <li>8. Any complaints or disputes will be resolved under applicable banking laws.</li>
+                        <li>9. The bank may monitor account activity to ensure compliance with anti-money laundering (AML) regulations.</li>
+                        <li>10. Failure to adhere to these terms may result in account closure without notice.</li>
+                        <li>11. You agree to receive electronic statements and notifications unless otherwise requested.</li>
+                        <li>12. The bank reserves the right to reject or delay transactions that are flagged as high-risk.</li>
+                    </ul>
+
+                    <!-- Checkbox to accept terms -->
+                    <lightning-input 
+                        type="checkbox" 
+                        label="I accept the Terms and Conditions" 
+                        checked={isAccepted} 
+                        onchange={handleCheckboxChange}>
+                    </lightning-input>
+
+                    <!-- Button to proceed (disabled if not accepted) -->
+                    <lightning-button 
+                        variant="brand" 
+                        label="Proceed" 
+                        onclick={handleProceed} 
+                        disabled={disableButton}>
+                    </lightning-button>
+                </div>
+            </lightning-card>
+        </footer>
+    </div>
+</template>

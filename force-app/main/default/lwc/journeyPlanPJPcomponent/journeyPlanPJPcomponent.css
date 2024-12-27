@@ -1,0 +1,68 @@
+.frame-class {
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+
+.popover-card {
+    /*display: none;*/
+    /* top: 0%; */
+    bottom: -10%;
+    /*100%*/
+    width: 0%;
+    position: fixed;
+    /*border-radius: 15px 15px 0px 0px;*/
+    height: 100vh;
+    /*0%*/
+    background-color: #fafafa;
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidepanel */
+    /*transform: translateY(100%); Old*/
+    transform: translateX(-100%);
+    z-index: 15;
+    left: 0%;
+    right: 0%;
+    overflow: hidden;
+}
+.popover-card-top {
+    top: 0%;
+}
+
+.mainContainer {
+    margin-top: 200px;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0px; /* compensation for the navigation bar */
+    /*border: 3px solid red;  used to highlight border */
+}
+.childContainer {
+    background-color: lightgray;
+    position: absolute;
+    top: 0px; /* compensation for the navigation bar */
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow-y: auto;
+    /*border: 3px solid lightseagreen;  used to highlight border */
+}
+.top-header-segment{
+    height: 40px;
+    border-radius: 4px;
+    box-shadow: 10px 10px 2px lightcyan;
+    /* margin-left: 20px;
+    margin-right: 20px; */
+    /* margin-bottom: 20px; */
+    /* padding: 5px; */
+}
+/* style="background-color: coral;" */
+.top-header-segment-01{
+    height: 40px;
+    border-radius: 4px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 5px;
+    background-color: coral;
+}

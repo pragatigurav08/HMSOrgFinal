@@ -1,0 +1,230 @@
+/* .custom-container {
+    padding: 1rem;
+    text-align: center;
+}
+
+.chart-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    height: 200px;
+    width: 100%;
+    gap: 20px;
+}
+
+.bar {
+    width: 50px;
+    background-color:  #0070d2;
+    border-radius: 5px 5px 0 0;
+    transition: height 0.3s ease;
+    color:black;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 5px;
+}
+
+.x-axis {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+} */
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f6f9;
+    min-height: 100vh; /* Ensures the card is centered */
+}
+
+.card-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for card effect */
+    width: 550px; /* Card width */
+    padding: 15px;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-container {
+    /* display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    position: relative;
+    height: 200px;
+    margin-bottom: 20px;
+    width: 100%;
+    border-left: 2px solid #ccc; 
+    border-bottom: 2px solid #ccc;
+        display: flex; */
+
+    /* flex-direction: column; */
+    /* align-items: baseline; */
+    position: relative;
+    height: 200px;
+    margin-bottom: 20px;
+    width: 70%;
+    /* border-left: 2px solid #ccc; */
+    /* border-bottom: 2px solid #ccc; */
+    display: inline-block;
+}
+
+.y-axis {
+    position: absolute;
+    left: -45px; 
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
+}
+
+.x-axis {
+    display: flex;
+    justify-content: space-between;
+    width: 82%;
+    font-size: 12px;
+    color: #666;
+    padding-top: 10px;
+}
+
+.bar-chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+}
+
+.bar {
+   
+     width: 20%;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    border-radius: 4px;
+    
+    transition: height 0.3s ease;
+}
+
+.account-bar {
+    background-color: #4caf50; /* Green */
+    transition: height 0.3s ease;
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.insurance-bar {
+    background-color: #2196f3; /* Blue */
+    transition: height 0.3s ease;
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.loan-bar {
+    background-color: #f44336; /* Red */
+    transition: height 0.3s ease;
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    padding: 5px 0;
+}
+
+
+.bar-value {
+    position: absolute;
+    top: -20px; /* Position above the bar */
+    font-size: 12px;
+    font-weight: bold;
+    color: #333; /* Text color */
+}
+.scalable {
+    cursor: pointer;
+    transition: transform 0.2s ease; /* Smooth transition for the scaling effect */
+}
+
+.scalable:hover {
+    transform: scale(1.1); /* Scale up slightly on hover */
+}
+.blue-utility-icon {
+    --sds-c-icon-color-foreground-default: #2196f3;
+}
+.icon-container {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: 24px; /* Adjust to align dropdown below the icon */
+    right: 0;
+    background-color: white;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    padding: 10px;
+    width: 150px;
+}
+
+.dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown ul li {
+    /* padding: 8px 12px; */
+        padding: 5px 5px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown ul li:last-child {
+    border-bottom: none;
+}
+
+.dropdown ul li:hover {
+    background-color: #f4f4f4;
+}

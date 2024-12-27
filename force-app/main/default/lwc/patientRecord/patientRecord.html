@@ -1,0 +1,40 @@
+<template>
+    <lightning-card>
+        <div class="header-card">
+            <lightning-icon icon-name="utility:date_input" size="small" alternative-text="Last Visits" class="header-icon"></lightning-icon>
+            <h2 class="header-title">Last Visits</h2>
+        </div>
+
+        
+
+        <div class="appointments-container" style="padding-top: 0px; height: 330px; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
+            <!-- Show cards if appointments are available -->
+            <template if:true={appointments}>
+                <template for:each={appointments} for:item="appointment">
+                    <div key={appointment.Id} class="appointment-card">
+                        <lightning-card>
+                            <div class="appointment-details">
+                                <p><strong>Date:</strong> {appointment.Date__c}</p>
+                                <p><strong>Doctor:</strong> {appointment.Dr__r.Name}</p>
+                                <p><strong>Reason:</strong> {appointment.Reason_To_Visit__c}</p>
+                            </div>
+                        </lightning-card>
+                    </div>
+                </template>
+            </template>
+        
+            <template if:true={noAppointments}>
+                <p class="no-appointments-message">No last visits found.</p>
+            </template>
+
+            <!-- Show error panel if there is an error -->
+            <template if:true={error}>
+                <c-error-panel 
+                    message="Unable to load appointments."
+                    details={error}>
+                </c-error-panel>
+            </template>
+        </div>
+        
+    </lightning-card>
+</template>

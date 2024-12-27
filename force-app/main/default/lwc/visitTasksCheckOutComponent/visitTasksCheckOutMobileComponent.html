@@ -1,0 +1,93 @@
+<template>
+    <h2 id="modal-heading-03" class="slds-modal__title slds-hyphenate slds-align_absolute-center" 
+        style="font-weight:300; height: 50px;font-size:10px"><!--border-bottom: 2px solid #dddbda;-->
+        <!--Check-Out-->
+        <!-- <lightning-formatted-date-time value={leadAndDateTimeWrapperObject.currentDateTime} 
+            year="numeric" month="short" day="2-digit" weekday="long"></lightning-formatted-date-time>
+            &nbsp;-&nbsp; <lightning-formatted-date-time 
+            hour="numeric" minute="2-digit"></lightning-formatted-date-time> -->
+    </h2>
+    <!--<div style="background: linear-gradient(180deg, #3ba5e0 35%, #3fc03ead 93%); padding: 35px 20px 20px 20px;">-->
+        <div class="slds-grid slds-grid_vertical" style="background: white; border-top-left-radius: 30px; border-top-right-radius: 30px;">
+            <div class="slds-col">
+                <div class="slds-grid slds-grid_vertical">
+                    <!--<div class="slds-col">style="padding-top: 10px;" style="padding-top: 10px;"-->
+                        <!--<div class="slds-align_absolute-center">--
+                            <lightning-map
+                                map-markers={lstMarkers}
+                                zoom-level={zoomlevel}>
+                            </lightning-map>
+                        !--</div>
+                    </div>-->
+                    <!--<div class="slds-col slds-align_absolute-center" style="font-size: 18px; font-weight: 200;
+                        padding-top: 8px; padding-bottom: 8px;">
+                        <lightning-formatted-date-time value={leadAndDateTimeWrapperObject.currentDateTime} 
+                        year="numeric" month="short" day="2-digit" weekday="long"></lightning-formatted-date-time>
+                        &nbsp;-&nbsp; <lightning-formatted-date-time value={leadAndDateTimeWrapperObject.currentTime} 
+                        hour="numeric" minute="2-digit"></lightning-formatted-date-time>
+                    </div>-->
+                    <div class="slds-col" style="font-size: 13px; font-weight:300; background: whitesmoke; 
+                        padding-top: 10px;">
+                        <div class="slds-align_absolute-center">
+                            Had Meeting With
+                        </div>
+                    </div>
+                    <div class="slds-col" style="font-size: 20px; font-weight:300; background: whitesmoke; 
+                        padding-bottom: 10px;">
+                        <div class="slds-align_absolute-center">
+                            <!--{leadObject.Account.Name}-->
+                            {accountNameObject.Name}
+                        </div>
+                    </div>
+                    
+                    <div class="slds-col" style="padding-top: 10px;">
+                        <div style="padding: 0px 10px 0px 10px;"><!--style="padding: 0px 150px 0px 150px;"-->
+                            <lightning-input
+                                value={nextFollowUp}
+                                type="date" 
+                                name="input1" 
+                                label="Next Follow-Up" 
+                                onchange={handleFollowUpDate}>
+                            </lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col" style="padding-top: 10px;">
+                        <div style="padding: 0px 10px 0px 10px;"><!--style="padding: 0px 150px 0px 150px;"-->
+                            <lightning-input
+                                value={visitPurposeValue}
+                                type="text" 
+                                name="input1" 
+                                placeholder="Visit Purpose" 
+                                variant="label-hidden" 
+                                label="Next Follow-Up" 
+                                onchange={handleVisitPurpose}>
+                            </lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col" style="padding-top: 10px;">
+                        <div style="padding: 0px 10px 0px 10px;"><!--style="padding: 0px 150px 0px 150px;"-->
+                            <lightning-textarea 
+                                name="input3" 
+                                label="Textarea field with a placeholder" 
+                                placeholder="Comments" 
+                                value={descriptionValue} 
+                                variant="label-hidden" 
+                                onchange={handleCommentsChange}>
+                            </lightning-textarea>
+                        </div>
+                    </div>
+                    <!--<div class="slds-col slds-align_absolute-center" style="padding: 10px 0px 10px 0px;">-->
+                        <div class="slds-col" style="padding: 10px 0px 10px 0px;">
+                        <!--<button class="button-19" role="button" onclick={submitFunction}>Check-Out</button>-->
+                        <div style="padding-right: 10px;">
+                            <button class="slds-button slds-button_brand" onclick={submitFunction} style="float: right;">Check-Out</button>
+                        </div>
+                        <div style="padding-left: 10px;">
+                            <button class="slds-button slds-button_neutral" onclick={cancelFunction} style="float: left;">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--</div>-->
+</template>

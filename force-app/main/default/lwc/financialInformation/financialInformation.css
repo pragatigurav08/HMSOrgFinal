@@ -1,0 +1,29 @@
+.cta-button {
+    background-color: #73b9e8;
+    color: #0a0a0a;
+    padding: 5px 10px; /* Reduced padding for smaller button */
+    border: none;
+    cursor: pointer;
+    font-size: 14px; /* Smaller font size */
+    margin-top: 10px; /* Reduced margin for smaller spacing */
+}
+
+
+.custom-background {
+   
+    padding: 16px; /* Adjust padding as needed */
+    border-radius: 8px; /* Rounded corners for a softer look */
+}
+.bill-card-container {
+    cursor: pointer;
+}
+
+.chevron-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.chevron-icon:hover {
+    cursor: pointer;
+}

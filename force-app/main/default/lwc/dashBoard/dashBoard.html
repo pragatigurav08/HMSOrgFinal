@@ -1,0 +1,32 @@
+<template>
+  <div class="timelinee-card">
+    <div class="header-container">
+      <div class="windows-grid">
+        <div class="card blue">
+          <p class="title">Account</p>
+          <div class="subTitle-container">
+            <p class="subTitle">Openings (Monthly)</p>
+            <img src={calenderPicUrl} alt="Calendar Icon" class="calendar-pic" />
+          </div>
+          <p class="value">{currentMonthAccountCount}</p>
+        </div>
+        <div class="card yellow">
+          <p class="title">Insurance</p>
+          <div class="subTitle-container">
+            <p class="subTitle">Openings (Monthly)</p>
+            <img src={calenderPicUrl} alt="Calendar Icon" class="calendar-pic" />
+          </div>
+          <p class="value">{currentMonthInsuranceCount}</p>
+        </div>
+        <div class="card green">
+          <p class="title">Loans</p>
+          <div class="subTitle-container">
+            <p class="subTitle">Openings (Monthly)</p>
+            <img src={calenderPicUrl} alt="Calendar Icon" class="calendar-pic" />
+          </div>
+          <p class="value">{currentMonthLoanCount}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,434 @@
+<template>
+    <div class="slds-tabs_card">
+        <lightning-tabset>
+            <lightning-tab class="custom-tab" label="Details" active>
+                <!--  details content  -->
+                <lightning-accordion allow-multiple-sections-open active-section-name>
+                    <!-- Personal Details Accordion -->
+                    <lightning-accordion-section name="personalDetails" label="Personal Details" style="font-weight: 500;">
+                        <div>
+                            <!-- Add personal details content here -->
+                            <div class="slds-grid slds-gutters">
+                                <!-- first column -->
+                                <div class="slds-col">
+                                    <!-- first name -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">First Name</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- last name -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Last Name</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- dob -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">DateOfBirth</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Phone Number -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Phone Number</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Nationality -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Nationality</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Home Branch -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Home Branch</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- TotalAmount(Depo) -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">TotalAmount(Depo)</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Total Balance -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Total Balance</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- PANCard -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">PANCard</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <lightning-checkbox-group options={options} value={value} style="border-bottom: 1px solid lightgray;"></lightning-checkbox-group>
+                                        </div>
+                                    </div>
+                                    <!-- AadharCard -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">AadharCard</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <lightning-checkbox-group options={options} value={value} style="border-bottom: 1px solid lightgray;"></lightning-checkbox-group>
+                                        </div>
+                                    </div>
+                                    <!-- DrivingLicense -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">DrivingLicense</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <lightning-checkbox-group options={options} value={value} style="border-bottom: 1px solid lightgray;"></lightning-checkbox-group>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- second column -->
+                                <div class="slds-col">
+                                    <!-- Father'sName -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Father'sName</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Mother'sName -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Mother'sName</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Gender -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Gender</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- MaritalStatus -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">MaritalStatus</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-accordion-section>
+
+                    <!-- Account Details Accordion -->
+                    <lightning-accordion-section name="accountDetails" label="Account details"
+                        style="font-weight: 500;">
+                        <div>
+                            <!-- Add account details content here -->
+                            <div class="slds-grid slds-gutters">
+                                <!-- first column -->
+                                <div class="slds-col">
+                                    <!-- Account Number -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Account Number</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- PANCardNo -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">PANCardNo</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Document Verification Status -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Document Verification Status</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Open Date -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Open Date</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Mode Of Operation -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Mode Of Operation</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Mode Of Payment -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Mode Of Payment</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Total Deposit Amount -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Total Deposit Amount</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- IFSC Code -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">IFSC Code</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- second column -->
+                                <div class="slds-col">
+                                    <!-- Credit Card -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Credit Card</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <lightning-checkbox-group options={options} value={value} style="border-bottom: 1px solid lightgray;"></lightning-checkbox-group>
+                                        </div>
+                                    </div>
+                                    <!-- Debit Card -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Debit Card</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <lightning-checkbox-group options={options} value={value} style="border-bottom: 1px solid lightgray;"></lightning-checkbox-group>
+                                        </div>
+                                    </div>
+                                    <!-- 1st Joint Application Name -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">1st Joint Application Name</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- 2nd Joint Application Name -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">2nd Joint Application Name</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- 3rd Joint Application Name -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">3rd Joint Application Name</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Status -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Status</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Annual Income -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Annual Incomev</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-accordion-section>
+
+                    <!-- Address Details Accordion -->
+                    <lightning-accordion-section name="addressDetails" label="Address details" style="font-weight: 500;">
+                        <div>
+                            <!-- address details content here -->
+                            <div class="slds-grid slds-gutters">
+                                <!-- first column -->
+                                <div class="slds-col" style="width: 125px;">
+                                    <!-- Country -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Country</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- State -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">State</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- City -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">City</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- PinCode -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">PinCode</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Landmark -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Landmark</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- CommunicationResidentAddress -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">CommunicationResidentAddress</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Same as Resident Address -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Same as Resident Address</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <lightning-checkbox-group options={options} value={value} style="border-bottom: 1px solid lightgray;"></lightning-checkbox-group>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- second column -->
+                                <div class="slds-col">
+                                    <!-- Country P -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Country P</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <lightning-checkbox-group options={options} value={value} style="border-bottom: 1px solid lightgray;"></lightning-checkbox-group>
+                                        </div>
+                                    </div>
+                                    <!-- State P -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">State P</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <lightning-checkbox-group options={options} value={value} style="border-bottom: 1px solid lightgray;"></lightning-checkbox-group>
+                                        </div>
+                                    </div>
+                                    <!-- City P -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">City P</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- PinCode P -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">PinCode P</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                    <!-- Landmark P -->
+                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                        <div class="slds-col">
+                                            <p style="font-weight: initial;">Landmark P</p>
+                                        </div>
+                                        <div class="slds-col">
+                                            <h1 style="border-bottom: 1px solid lightgray; font-size: initial;">ABC</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-accordion-section>
+                </lightning-accordion>
+            </lightning-tab>
+        </lightning-tabset>
+    </div>
+</template>

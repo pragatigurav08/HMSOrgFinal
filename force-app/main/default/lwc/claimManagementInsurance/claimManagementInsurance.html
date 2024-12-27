@@ -1,0 +1,234 @@
+<template>
+    <div style="background-color:white; padding: 2%;">
+        <!-- Radio Button Group -->
+        <fieldset class="slds-form-element" role="radiogroup">
+            <legend class="slds-form-element__legend slds-form-element__label">Radio Group</legend>
+            <div class="slds-form-element__control">
+                <div class="slds-radio_button-group">
+                    <span class="slds-button slds-radio_button">
+                        <input type="radio" name="claimType" id="self" value="self" onchange={handleRadioChange} />
+                        <label class="slds-radio_button__label" for="self">
+                            <span class="slds-radio_faux">Self</span>
+                    </label>
+                    </span>
+                    <span class="slds-button slds-radio_button">
+                        <input type="radio" name="claimType" id="beneficiary" value="beneficiary" onchange={handleRadioChange} />
+                        <label class="slds-radio_button__label" for="beneficiary">
+                            <span class="slds-radio_faux">Beneficiary</span>
+                    </label>
+                    </span>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Claim Form -->
+        <template if:true={showForm}>
+            <h3 class="slds-section__title slds-theme--shade" style="margin-top:1rem">
+                Details of Primary Insured
+            </h3>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <!-- First Name -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="First Name" value={pName} onchange={handleInputChange}
+                        data-field="Name__c"></lightning-input>
+                </div>
+                <!-- Last Name -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Last Name" value={pLastName} onchange={handleInputChange}
+                        data-field="Last_Name__c"></lightning-input>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-wrap slds-gutters">
+                <!-- Gender -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-combobox name="gender" label="Gender" value={pgender} data-field="Gender__c"
+                        placeholder="Select Gender" options={genderOptions} onchange={handleInputChange}>
+                    </lightning-combobox>
+                </div>
+                <!-- Date of Birth -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Date of Birth" value={pDob}
+                        onchange={handleInputChange} data-id="Date_of_Birth__c" type="date" required>
+                    </lightning-input>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-wrap slds-gutters">
+                <!-- PAN Number -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="PAN Number" value={pPanCard} onchange={handleInputChange}
+                        data-field="PanNumber__c"></lightning-input>
+                </div>
+                <!-- Mobile Number -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Mobile Number" value={pMobile} onchange={handleInputChange}
+                        data-field="mobile_number__c"></lightning-input>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-wrap slds-gutters">
+                <!-- Address -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Address" value={pAddress}
+                        onchange={handleInputChange} data-id="Address__c" required></lightning-input>
+                </div>
+                <!-- City -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="City" value={pCity} onchange={handleInputChange}
+                        data-id="City__c" required></lightning-input>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-wrap slds-gutters">
+                <!-- State -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="State" value={pState} onchange={handleInputChange}
+                        data-id="State__c" required></lightning-input>
+                </div>
+                <!-- PinCode -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="PinCode" value={pPincode} onchange={handleInputChange}
+                        data-id="pincode__c" required></lightning-input>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-wrap slds-gutters">
+                <!-- Country -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Country" value={pCountry} onchange={handleInputChange}
+                        data-id="Country__c" required></lightning-input>
+                </div>
+            </div>
+        </template>
+
+        <!-- Beneficiary Form -->
+        <template if:true={showbenefiForm}>
+            <h3 class="slds-section__title slds-theme--shade" style="margin-top:1rem">
+                Details of Insured Person Hospitalized
+            </h3>
+            <!-- Beneficiary Lookup -->
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-combobox label="Beneficiary" placeholder="Search Beneficiaries..."
+                        options={beneficiaryOptions} onchange={handleBeneficiaryChange} value={selectedBeneficiaryId}>
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-combobox label="Gender B" options={genderOptions} value={beneficiaryDetails.Gender__c}
+                        onchange={handleInputChange} data-field="Gender_B__c">
+                    </lightning-combobox>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Name B" value={beneficiaryDetails.Name} onchange={handleInputChange}
+                        data-field="Name_B__c">
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Aadhar Number B" value={beneficiaryDetails.Aadhar_Number__c}
+                        onchange={handleInputChange} data-field="Aadhar_Number_B__c">
+                    </lightning-input>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input type="date" label="Date of Birth B" value={beneficiaryDetails.Date_of_Birth__c}
+                        onchange={handleInputChange} data-field="DateOfBirth_B__c">
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-combobox label="Relationship to Primary insured" options={relationshipOptions}
+                        value={claimData.Relationship_to_Insured__c} onchange={handleInputChange}
+                        data-field="Relationship_to_Insured__c">
+                    </lightning-combobox>
+                </div>
+            </div>
+        </template>
+        <template if:true={showForm}>
+            <!-- Header -->
+            <h3 class="slds-section__title slds-theme--shade" style="margin-top:1rem">
+                Details of Claim
+            </h3>
+
+            <!-- Form Layout -->
+            <div class="slds-grid slds-wrap slds-gutters">
+
+                <!-- Claim Details -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-textarea label="Claim Details" value={claimDetails} onchange={handleInputChange}
+                        data-id="claimDetails">
+                    </lightning-textarea>
+                </div>
+
+                <!-- Name of Hospital -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Name of Hospital" value={hospitalName} required onchange={handleInputChange}
+                        data-id="hospitalName">
+                    </lightning-input>
+                </div>
+
+                <!-- Date and Time of Admission -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Date of Admission" type="date" value={admissionDate} required
+                        onchange={handleInputChange} data-id="admissionDate">
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Time of Admission" type="time" value={admissionTime} required
+                        onchange={handleInputChange} data-id="admissionTime">
+                    </lightning-input>
+                </div>
+
+                <!-- Date and Time of Discharge -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label=" Date of Discharge" type="date" value={dischargeDate} required
+                        onchange={handleInputChange} data-id="dischargeDate">
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Time of Discharge" type="time" value={dischargeTime} required
+                        onchange={handleInputChange} data-id="dischargeTime">
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-input label="Amount To Claim" type="text" value={AmountToClaim} required
+                        onchange={handleInputChange} data-id="AmountToClaim">
+                    </lightning-input>
+                </div>
+                <!-- Hospitalization Due To -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-combobox label="Hospitalization due to" placeholder="--None--" options={reson}
+                        value={selectedHospitalizationReason} onchange={handleInputChange}
+                        data-id="hospitalizationReason">
+                    </lightning-combobox>
+                </div>
+                 <!-- Claim Documents Submitted -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+                    <lightning-dual-listbox name="claimDocuments" label="Claim Documents Submitted"
+                        source-label="Available" selected-label="Chosen" options={documentOptions}
+                        value={selectedDocuments} onchange={handleDocumentChange}>
+                    </lightning-dual-listbox>
+
+                    <!-- Conditional Input Field -->
+                    <template if:true={addinput}>
+                        <lightning-input type="text" label="Please specify Others" onchange={handleOtherInputChange}>
+                        </lightning-input>
+                    </template>
+
+
+                </div>
+            </div>
+        </template>
+
+
+        <!-- Actions -->
+        <div class="slds-m-top_medium">
+            <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+            <!-- <lightning-button label="Clear" variant="neutral" onclick={handleClear}></lightning-button> -->
+        </div>
+    </div>
+</template>

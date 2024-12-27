@@ -1,0 +1,84 @@
+h3 {
+    margin-bottom: 10px;
+}
+.back-button {
+    margin-bottom: 20px;
+}
+.back-button button {
+    padding: 10px 20px;
+    background-color: #004d99;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.back-button button:hover {
+    background-color: #003366;
+}
+.loanbutton{
+border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    background-color: #004d99;
+    border-radius: 5px;
+}
+.slds-table {
+    width: 100%;
+}
+
+.slds-truncate {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.slds-grid {
+    margin-bottom: 1rem;
+}
+
+.slds-p-top_medium {
+    padding-top: 1rem;
+}
+.inputboxes{
+    width: 100%;
+    padding: 10px 15px;
+}
+.slds-dropdown {
+    position: absolute;
+    z-index: 1;
+    left: 8%;
+    float: left;
+    width: 11rem;
+    padding-left: 14px;}
+.MainText{
+	font-weight: bold;
+    font-size: 17px;
+    margin-top:1rem;
+}
+.slds-listbox {
+    /* border: 1px solid #d8dde6;
+    background-color: #ffffff;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%; */
+	border: 1px solid #d8dde6;
+    background-color: #ffffff;
+    max-height: 20%;
+    overflow-y: auto;
+    position: absolute;
+    width: 20%;
+  	z-index: 1;
+}
+
+.slds-listbox__item {
+    cursor: pointer;
+}
+
+.slds-listbox__item:hover {
+    background-color: #f4f6f9;
+}

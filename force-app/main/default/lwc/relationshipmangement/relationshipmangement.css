@@ -1,0 +1,79 @@
+.custom-container{
+	color : black;
+}
+/* .popover-card {
+  top: 120px;
+  bottom: 0;
+  width: 100%; 
+  position: fixed;
+  height: 100%;
+  background-color: #fafafa;
+  transition: transform 0.5s;
+  transform: translateX(-100%); 
+  z-index: 15;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  } */
+ .popover-card {
+    transform: translateY(0%);
+    height: 64%;
+    width: 15rem;
+    margin-left: 76rem; /* Adjust as needed */
+    top: 8rem;
+    position: fixed;
+    background-color: #fafafa;
+    overflow: hidden;
+    z-index: 15;
+}
+
+.icon-container lightning-icon {
+    color: black; /* Change icon color to black */
+    font-size: 24px; /* Adjust font size for the icon (change as needed) */
+}
+.searchmobile{
+    margin-right: 2rem;
+}
+.mobileicon{
+    margin-left: 2rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .popover-card {
+        margin-left: 1rem; /* Adjust for smaller screens */
+        width: 83%; /* Make it responsive */
+        top: 5rem; /* Adjust position */
+    }
+    .searchmobile{
+    margin-right: 0rem;
+}
+.searchmobileend{
+     margin-right: 0rem;
+}
+.mobileicon{
+    margin-left: 9px;
+}
+.newhead{
+    font-size: 11px;
+}
+/* .fontsizemobile{
+        font-size: 9px;
+} */
+.bodymobile{
+        padding-left: 30px;
+}
+}
+@media (max-width: 320px) {
+
+    .mobileicon{
+    margin-left: 2px;
+}
+.newhead{
+   font-size: 10px;
+}
+.bodymobile{
+        font-size: 10px;
+        width: 85px;
+}
+}

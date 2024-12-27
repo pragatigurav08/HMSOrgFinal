@@ -1,0 +1,67 @@
+<template>
+    <div class="slds-grid slds-grid_vertical">
+        <div class="slds-col slds-size_1-of-1">
+        <span>
+            <article class="slds-card">
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-col">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_1-of-2" style="padding: 0px 5px 0px 0px;">
+                                <button class="slds-button slds-button_neutral" disabled={spinnerOn}
+                                    style="width: 100%;font-size: 12px;" onclick={handleTimerController} data-showstart={showStartLabel}>
+                                    <lightning-spinner variant="brand" size="small" if:true={spinnerOn}> </lightning-spinner>
+                                    <template if:true={showStartLabel}>
+                                        Start Visit
+                                    </template>
+                                    <template if:false={showStartLabel}>
+                                        Stop Visit
+                                    </template>
+                                </button>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2" style="padding: 0px 0px 0px 5px;">
+                                <button class="slds-button slds-button_neutral" 
+                                    style="width: 100%;font-size: 12px;" onclick={navigateToGoogleMaps}>
+                                    Get Direction
+                                </button>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-p-top_small">
+                            <div class="slds-align_absolute-center slds-text-align--center">
+                                <div style="font-size: 10px; 
+                                    font-weight: 300; color: hsl(208deg 100% 55%);
+                                    border: 1px solid hsl(30deg 4% 89%);
+                                    padding: 3px 30px;
+                                    border-radius: 20px;">
+                                    Time Elapsed : {timeVal}
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </span>
+        </div>
+    </div>
+    <template if:true={checkOutModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container .check-out-width-desktop">
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+                        title="Close" onclick={handleCloseCheckOutModal}>
+                        <lightning-icon icon-name="utility:close" 
+                            variant="inverse" 
+                            size="small">
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </header>
+                <div class="slds-modal__content slds-p-around_none" style="height:auto;">
+                    <c-visit-tasks-check-out-component record-id={recordId} onclose={handleCloseCheckOutModal}
+                    onload={handleLoad}>
+                    </c-visit-tasks-check-out-component>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

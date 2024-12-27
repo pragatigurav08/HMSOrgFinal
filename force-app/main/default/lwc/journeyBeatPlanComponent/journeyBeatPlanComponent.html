@@ -1,0 +1,247 @@
+<!--
+  @description       : 
+  @author            : Tejaswini Gonuru
+  @group             : 
+  @last modified on  : 08-07-2022
+  @last modified by  : Tejaswini Gonuru
+-->
+<template>
+    <template if:true={firstPage}>
+        <div class="bottom-top-padding-class toppadd">
+            <div class="sidewise-padding">
+                <div class="slds-grid slds-grid_vertical frame-class frame-color-class frame-border-radius">
+                    <div class="slds-col header-background" style="border-radius: 10px 10px 0px 0px;">
+                        <div class="slds-grid" style="padding: 10px;">
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="your-lead-styling">
+                                    <h1 class="slds-text-heading_medium form-header">New Plan</h1>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="slds-float_right your-lead-styling">
+                                    <h1 class="next-form-header-page-number">1/2</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col" style="padding: 15px;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12">
+                                <!-- <lightning-record-edit-form object-api-name="Journey_Plan__c">
+                                    <lightning-input-field field-name="Name" required onchange={handleJourneyPlanChange}>
+                                    </lightning-input-field>
+                                </lightning-record-edit-form> -->
+                                <lightning-input type="text" label="Plan Name" value={journeyDetails.planItemName} onchange={planname} class="slds-align_absolute-center" required></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 slds-p-left--large">
+                                <!-- <lightning-record-edit-form object-api-name="Journey_Plan__c">
+                                    <lightning-input-field field-name="Plan_Start_Date__c" required onchange={handleJourneyPlanChange}>
+                                    </lightning-input-field>
+                                </lightning-record-edit-form> -->
+                                <lightning-input type="date" label="Plan Start Date" value={journeyDetails.startDateValue} onchange={startdate}  ></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12">
+                                <!-- <lightning-record-edit-form object-api-name="Journey_Plan__c">
+                                    <lightning-input-field field-name="Plan_End_Date__c" required onchange={handleJourneyPlanChange}>
+                                    </lightning-input-field>
+                                </lightning-record-edit-form> -->
+                                <lightning-input type="date" label="Plan End Date" value={journeyDetails.endDateValue} onchange={enddate} ></lightning-input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-align--absolute-center slds-col slds-p-around--small">
+                        <button class="slds-button slds-button_brand action-button"
+                            onclick={handleCancel}>
+                            Cancel
+                        </button>
+                        <button class="slds-button slds-button_brand action-button"
+                            onclick={handleStart}>
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={secondPage}>
+        <div class="bottom-top-padding-class toppadd">
+            <div class="sidewise-padding">
+                <div class="slds-grid slds-grid_vertical frame-class frame-color-class frame-border-radius">
+                    <div class="slds-col header-background" style="border-radius: 10px 10px 0px 0px;">
+                        <div class="slds-grid" style="padding: 10px;">
+                            <div class="slds-col slds-size_1-of-3">
+                                <div class="your-lead-styling">
+                                    <lightning-icon class="add-icon" icon-name='utility:new' alternative-text='Add Row' size='medium' title='add' onclick={addRow} ></lightning-icon>
+                                </div>
+                            </div>
+                            <div class="slds-align--absolute-center slds-col slds-size_1-of-3">
+                                <div class="your-lead-styling">
+                                    <h1 class="slds-text-heading_medium form-header">Plan Your Visits</h1>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-3">
+                                <div class="slds-float_right your-lead-styling">
+                                    <h1 class="next-form-header-page-number">2/2</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div if:true={tempVar} class="slds-col" style="padding: 15px;">
+                        <template for:each={addRowsFields} for:item="data" for:index="index">
+                            <div  key={data.key} id={data.key}>
+                                <div class="slds-box slds-col; slds-m-vertical_medium slds-p-around_medium">
+                                    <div class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+                                        <span>
+                                            <c-custom-lookup obj-name="Route__c" data-uniqueid={data.uniqueId} input-label="Sales Route" data-id={data.uniqueId}
+                                            icon-name="custom:custom80" default-name={data.beatName} data-indexid={index} data-temp="lookup"
+                                            onlookupselected={handleBeatChange} onnolookupselected={handleBeatNoChange} required>
+                                            </c-custom-lookup>        
+                                        </span>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+                                        <span>
+                                            <div class="slds-float_right">
+                                            <lightning-button-icon icon-name="utility:delete"  
+                                                variant="bare" 
+                                                alternative-text="Delete"
+                                                title="Delete Row"
+                                                size="large"
+                                                data-id={data.uniqueId}
+                                                data-index={index}
+                                                onclick={handleDeleteRow}>
+                                            </lightning-button-icon>
+                                            </div>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="slds-table_edit_container slds-is-relative">
+                                        <table class="slds-table slds-table_bordered slds-table_edit slds-table_resizable-cols" role="grid">
+                                            <thead>
+                                                <tr class="slds-line-height_reset">
+                                                    <th class="slds-cell_action-mode" scope="col" style="width:3.75rem">
+                                                        <div class="slds-truncate slds-assistive-text" title=""></div>
+                                                    </th>
+                                                    <th class="slds-cell_action-mode" scope="col" style="width:2rem">
+                                                        <div class="slds-truncate">
+                                                            <!-- <lightning-input  type="checkbox" onchange={selectAllCheck} name={data.uniqueId} checked={data.isChecked} ></lightning-input> -->
+                                                        </div>
+                                                    </th>
+                                                    <th aria-label="Name" aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col" style="width:8.75rem">
+                                                        <a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="0">
+                                                          <span class="slds-assistive-text">Sort by: </span>
+                                                          <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                                            <span class="slds-truncate" title="Name">Account Name</span>
+                                                            <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                                              <svg class="slds-icon slds-icon-text-default slds-is-sortable__icon " aria-hidden="true">
+                                                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"></use>
+                                                              </svg>
+                                                            </span>
+                                                          </div>
+                                                        </a>
+                                                        <div class="slds-resizable">
+                                                          <input type="range" aria-label="Name column width" class="slds-resizable__input slds-assistive-text"  max="1000" min="20" tabindex="0" />
+                                                          <span class="slds-resizable__handle">
+                                                            <span class="slds-resizable__divider"></span>
+                                                          </span>
+                                                        </div>
+                                                      </th>
+                                                      <th aria-label="Name" aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col" style="width:8.75rem">
+                                                        <a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="0">
+                                                          <span class="slds-assistive-text">Sort by: </span>
+                                                          <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                                            <span class="slds-truncate" title="Name">Start Time</span>
+                                                            <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                                              <svg class="slds-icon slds-icon-text-default slds-is-sortable__icon " aria-hidden="true">
+                                                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"></use>
+                                                              </svg>
+                                                            </span>
+                                                          </div>
+                                                        </a>
+                                                        <div class="slds-resizable">
+                                                          <input type="range" aria-label="Name column width" class="slds-resizable__input slds-assistive-text"  max="1000" min="20" tabindex="0" />
+                                                          <span class="slds-resizable__handle">
+                                                            <span class="slds-resizable__divider"></span>
+                                                          </span>
+                                                        </div>
+                                                      </th>
+                                                      <th aria-label="Name" aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col" style="width:8.75rem">
+                                                        <a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="0">
+                                                          <span class="slds-assistive-text">Sort by: </span>
+                                                          <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                                            <span class="slds-truncate" title="Name">End Time</span>
+                                                            <span class="slds-icon_container slds-icon-utility-arrowdown">
+                                                              <svg class="slds-icon slds-icon-text-default slds-is-sortable__icon " aria-hidden="true">
+                                                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#arrowdown"></use>
+                                                              </svg>
+                                                            </span>
+                                                          </div>
+                                                        </a>
+                                                        <div class="slds-resizable">
+                                                          <input type="range" aria-label="Name column width" class="slds-resizable__input slds-assistive-text"  max="1000" min="20" tabindex="0" />
+                                                          <span class="slds-resizable__handle">
+                                                            <span class="slds-resizable__divider"></span>
+                                                          </span>
+                                                        </div>
+                                                      </th>
+                
+                
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <template for:each={data.accountsRecord} for:item="con">
+                                                    <tr aria-selected="false" class="slds-hint-parent" key={con}>
+                                                        <td class="slds-cell-edit slds-cell_action-mode" role="gridcell">
+                                                            <span class=" slds-row-number slds-align_absolute-center slds-text-body_small slds-text-color_weak"></span>
+                                                        </td>
+                                                        <td class="slds-cell-edit slds-cell_action-mode" role="gridcell">
+                                                            <div>
+                                                                <lightning-input type="checkbox" value={con.Id}  onchange={checkedHandler} name={data.uniqueId} data-id={con.Id} checked={con.checkValue}></lightning-input>
+                                                            </div>
+                                                        </td>
+                                                        <td aria-selected="true" class="slds-cell-edit" role="gridcell">
+                                                            <span class="slds-grid slds-grid_align-spread">
+                                                                <span class="slds-truncate">{con.Name}</span>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <lightning-input type="datetime"  dropdown-alignment="auto" onchange={startDateAccount} value={con.starttime} name={data.uniqueId} data-id={con.Id} disabled={con.isDisabled} required={con.checkValue}></lightning-input>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <lightning-input type="datetime"  dropdown-alignment="auto" onchange={endDateAccount} value={con.endtime} name={data.uniqueId} data-id={con.Id} disabled={con.isDisabled} required ={con.checkValue}></lightning-input>
+                                                            </div>
+                                                        </td>                            
+                                                    </tr>
+                                                </template>
+                                            </tbody>
+                                        </table>
+                                    </div> 
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="slds-col" style="padding: 0px 15px 15px 15px;">
+                        <div class="slds-align--absolute-center slds-col slds-p-around--small">
+                            <button class="slds-button slds-button_brand action-button"
+                            onclick={saveClicked}>
+                            Save
+                            </button>
+                            <button class="slds-button slds-button_brand action-button"
+                                onclick={handleCancel}>
+                                Cancel
+                            </button>
+                        </div>
+                        <!-- <button class="slds-button slds-button_brand slds-button_stretch action-button"
+                            onclick={saveClicked}>
+                            Save
+                        </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

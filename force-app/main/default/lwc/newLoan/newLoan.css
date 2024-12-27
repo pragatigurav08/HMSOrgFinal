@@ -1,0 +1,101 @@
+.slds-card {
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.slds-card:hover {
+    background-color: #007bff; /* Salesforce blue */
+    color: #fff; /* White text */
+}
+
+.slds-card:hover h2,
+.slds-card:hover p,
+.slds-card:hover ul,
+.slds-card:hover ul li {
+    color: #fff;
+}
+
+.slds-card:hover .slds-button_brand {
+    background-color: #fff; /* White button background */
+    color: #007bff; /* Salesforce blue text on button */
+    border: 1px solid #007bff; /* Button border in blue */
+}
+
+.slds-list_dotted li {
+    margin-bottom: 0.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.card-container {
+    display: flex; /* Use flexbox for horizontal alignment */
+    gap: 20px; /* Add space between the cards */
+    justify-content: center; /* Center the cards horizontally */
+    padding: 20px; /* Add padding around the container */
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px; /* Set a fixed width for each card */
+    text-align: center; /* Center align text */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Slightly lift the card on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #0070d2; /* Salesforce Blue */
+}
+
+.card-description {
+    font-size: 1em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.card-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+    color: #555;
+}
+
+.card-list li {
+    margin: 5px 0;
+}
+
+.card-button {
+    background-color: #0070d2; /* Salesforce Blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.card-button:hover {
+    background-color: #005fb2; /* Darker blue on hover */
+}

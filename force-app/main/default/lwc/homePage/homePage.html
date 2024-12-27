@@ -1,0 +1,382 @@
+<template>
+    <!-- <lightning-card> -->
+    <div style="background-color:white">
+        <div class="container" style="margin-top: -1rem;">
+            <!-- Sidebar with options -->
+            <div class="sidebar">
+                <!-- <button onclick={handleNavigation} data-section="home" class="nav-button">
+                    <lightning-icon icon-name="utility:home" alternative-text="home" size="small" title="home" style="padding-right: 11%;"></lightning-icon>
+                    &nbsp;&nbsp;Home&nbsp;&nbsp;
+                </button> -->
+                 <button onclick={handleNavigation} data-section="home" class="nav-button nav_selected" >
+                    <lightning-icon icon-name="utility:home" alternative-text="home" size="small" title="home" style="padding-right: 11%;"></lightning-icon>
+                    &nbsp;&nbsp;Home&nbsp;&nbsp;
+                </button>
+                <button onclick={handleNavigation} data-section="accounts" class="nav-button"  disabled={isDisabled} >
+                    <lightning-icon icon-name="utility:people" alternative-text="people" size="small" title="people" style="padding-right: 11%;"></lightning-icon>
+                    &nbsp;&nbsp;Accounts
+                </button>
+                <button onclick={handleNavigation} data-section="insurance" class="nav-button" disabled={isDisabled}>
+                    <lightning-icon icon-name="utility:promotion_segments" alternative-text="promotion_segments" style="padding-right: 11%;" size="small" title="promotion_segments"></lightning-icon>
+                    &nbsp;&nbsp;Insurance
+                </button>
+                <button onclick={handleNavigation} data-section="loans" class="nav-button"  disabled={isDisabled}>
+                    <lightning-icon icon-name="utility:replace" alternative-text="replace" size="small" style="padding-right: 11%;" title="replace"></lightning-icon>
+                    &nbsp;&nbsp;Loans
+                </button>
+                <button onclick={handleNavigation} data-section="wealth" class="nav-button"  disabled={isDisabled}>
+                    <lightning-icon icon-name="utility:capslock" alternative-text="capslock" size="small" style="padding-right: 11%;" title="capslock"></lightning-icon>
+                    &nbsp;&nbsp;Wealth
+                </button>
+            </div>
+
+            <!-- Main content area -->
+            <div id="mainContent" class="main-content" style="width: 82%;">
+                <template if:true={showHome}>
+                    <div class="slds-grid slds-grid_vertical">
+                        <div class="slds-col">
+
+
+                            <div class="dashboard-container">
+                                <!-- Header Card with Gradient Background -->
+                                <div class="header">
+                                    <div class="header-content">
+                                        <h1>Elite Bank</h1><br> 
+                                        <p>Tailored Financial Solutions for a Brighter Tomorrow.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Overlapping Welcome Card -->
+                                <div class="welcome-card">
+                                    <div class="card-content">
+                                        <br>
+                                        <h2>Welcome to Elite Bank!</h2><br>
+                                        <p>
+                                            We give comprehensive services that provides financial planning, investment
+                                            management, </p><br>
+                                        <p>and personalized advice to help individuals grow and protect their wealth.
+                                        </p>
+                                    </div>
+                                    <div class="image-container">
+                                        <!-- Bind the imported URL to the src attribute of img -->
+                                        <img src={wealthPicUrl} alt="Dashboard Illustration" class="image">
+                                    </div>
+                                </div>
+                            </div>
+                     
+   <div class="timeline-card-horizontal window-grid">
+  <div class="card-container">
+    <div class="card blue" style="height: 10rem;padding-right: 0px;padding-left: 0px;">
+      <p class="title">Account</p>
+      <div class="subTitle-container">
+        <p class="subTitle">Openings (Monthly)</p>
+        <img src={calenderPicUrl} alt="Calendar Icon" class="calendar-pic" />
+      </div>
+      <p class="value">{currentMonthAccountCount}</p>
+    </div>
+    <div class="card yellow" style="height: 10rem;padding-right: 0px;padding-left: 0px;">
+      <p class="title">Insurance</p>
+      <div class="subTitle-container">
+        <p class="subTitle">Openings (Monthly)</p>
+        <img src={calenderPicUrl} alt="Calendar Icon" class="calendar-pic" />
+      </div>
+      <p class="value">{currentMonthInsuranceCount}</p>
+    </div>
+    <div class="card green" style="height: 10rem;padding-right: 0px;padding-left: 0px;">
+      <p class="title">Loans</p>
+      <div class="subTitle-container">
+        <p class="subTitle">Openings (Monthly)</p>
+        <img src={calenderPicUrl} alt="Calendar Icon" class="calendar-pic" />
+      </div>
+      <p class="value">{currentMonthLoanCount}</p>
+    </div>
+  </div>
+</div>
+
+            
+
+ 
+    <div class="dashboard-container">
+
+        <!---- graphs -->
+        <!-- Row 1 -->
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                <span class="custom-box">
+
+        <template if:true={graph}>
+            <div class="dashboard-container">
+
+            <!---- graphs -->
+            <!-- Row 1 -->
+
+        </div>
+        <c-about-Us></c-about-Us>
+        </template>
+
+        </span>
+            </div>
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                <span class="custom-box">
+<template if:true={graph}>
+            <div class="dashboard-container">
+                
+        </div>
+                    <c-chart-1>  </c-chart-1>
+                     </template>
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- </div> -->
+
+    </div>
+    <c-footer></c-footer>
+   
+    
+</template>
+<template if:true={isTemplateVisible}>
+        <div class="extra-template"  style="background-color:white">
+            <c-employee-Management></c-employee-Management> 
+          
+        </div>
+    </template>
+<template if:true={showAccounts}>
+
+    <div class="slds-grid slds-grid_vertical">
+        <div class="dashboard-container">
+            <!-- Header Card with Gradient Background -->
+            <div class="header">
+                <div class="header-content">
+                    <h1>Open an account</h1><br>
+                    <p>Helping you to open an Account.</p>
+                </div>
+            </div>
+
+            <!-- Overlapping Welcome Card -->
+            <div class="welcome-card">
+                <div class="card-content">
+                    <h2>Welcome!!</h2><br>
+                    <p>
+                        We give comprehensive services that provides financial planning, investment management, </p><br>
+                    <p>and personalized advice to help individuals grow and protect their wealth.
+                    </p>
+                </div>
+                <div class="image-container">
+                    <!-- Bind the imported URL to the src attribute of img -->
+                    <img src={accountPicUrl} alt="Dashboard Illustration" class="image">
+                </div>
+            </div>
+        </div>
+        <div class="slds-col">
+            <!-- <lightning-card title="Recently Viewed New Accounts" icon-name="custom:custom63"> -->
+            <template if:true={accounts}>
+                <div class="e-card">
+                    <div class="table-container">
+                        <div class="slds-grid table-controls">
+                            <div class="card-content">
+                                <h2>Recent Accounts </h2>
+                            </div>
+                            <div class="slds-col_bump-left">
+                                <lightning-input style="bottom: 18px;margin-left: 6px;" type="search"
+                                placeholder="Search..." onchange={handleSearchAccount}></lightning-input>
+                            </div>
+                            <div style="margin-right: 5px;">
+                                  <span> <button class="slds-button slds-button_brand iconsacc"  onclick={handleaddaccount}>New Account</button> </span>
+                            </div>
+                            <div>
+                                <span> <button class="slds-button slds-button_brand iconanalysis" onclick={handleReportNavigation}>View Analysis</button> </span>
+                            </div>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Account Id</th>
+                                    <th>Name</th>
+                                    <th>Phone number</th>
+                                    <th>Pan-card</th>
+                                    <!-- <th>Record Type</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={accounts} for:item="account">
+                                    <tr key={account.Id}>
+                                        <td>{account.Name}</td>
+                                        <td>{account.FirstName__c}&nbsp;{account.Last_Name__c}</td>
+                                        <td>{account.Phone_number__c}</td>
+                                        <td>{account.PANCardNo__c}</td>
+                                        <!-- <td>{account.RecordType.Name}</td> -->
+
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+            <!-- </lightning-card> -->
+        </div>
+    </div>
+     <c-footer></c-footer>
+</template>
+<template if:true={showAccountCreation}>
+
+    <c-modal-component title="Open an Account" onclose={closeAccountForm} onsave={handleSaveAccount}>
+        <c-customer-onboarding onsave={handleSaveAccount} onclose={closeAccountForm}>
+        </c-customer-onboarding>
+    </c-modal-component>
+</template>
+
+<template if:true={showInsurance}>
+    <div class="slds-grid slds-grid_vertical">
+        <div class="dashboard-container">
+            <!-- Header Card with Gradient Background -->
+            <div class="header">
+                <div class="header-content">
+                    <h1>Apply For an Insurance</h1><br>
+                    <p>Assisting You in Applying for Necessary Insurance Coverage</p>
+                </div>
+            </div>
+
+            <!-- Overlapping Welcome Card -->
+            <div class="welcome-card">
+                <div class="card-content">
+                    <h2>Welcome!!</h2><br>
+                    <p>
+                        We give comprehensive services that provides financial planning, investment management, </p><br>
+                    <p>and personalized advice to help individuals grow and protect their wealth.
+                    </p>
+                </div>
+                <div class="image-container">
+                    <!-- Bind the imported URL to the src attribute of img -->
+                    <img src={insurancePicUrl} alt="Dashboard Illustration" class="image">
+                </div>
+            </div>
+        </div>
+        <div class="slds-col">
+            <!-- <lightning-card title="Recently Viewed Insurances" icon-name="custom:custom63"> -->
+
+            <template if:true={Insurances}>
+                <div class="e-card">
+                    <div class="table-container">
+                            <div class="slds-grid table-controls">
+                            <div class="card-content">
+                                <h2>Recent Insurances </h2>
+                            </div>
+                            <div class="slds-col_bump-left">
+                                <lightning-input style="bottom: 18px;margin-left: 6px;" type="search"
+                                placeholder="Search..." onchange={handleSearchInsurance}></lightning-input>
+                            </div>
+                            <div style="margin-right: 5px;">
+                                <span> <button class="slds-button slds-button_brand iconsacc"  onclick={handleaddinsurance}>New Insurance</button> </span>
+                            </div>
+                            <div style="margin-right: 5px;">
+                                <span> <button class="slds-button slds-button_brand iconanalysis" onclick={handleinsurancenavigate}>View Analysis</button> </span>
+                            </div>
+                            <!-- <div> <lightning-icon class="mobileicon" icon-name="utility:filterList" size="small"
+                                onclick={handleOpenRightPanel}>
+                            </lightning-icon></div> -->
+                        </div>  
+                        <template if:true={isPopoverOpen}>
+                            <div class="popover-card" data-id="popoverCards">
+                                <lightning-icon icon-name="utility:close" size="x-small" onclick={handleClosePopover}
+                                    style="float: right" class="slds-var-m-around_small closePop">
+                                </lightning-icon>
+                                <br /><br />
+                                <div class="slds-var-m-around_medium">
+                                    <lightning-combobox label="Record Type" value={recordType}
+                                        data-field-name="RecordType" options={recordTypeOptions}
+                                        onchange={handleFilterChange}>
+                                    </lightning-combobox>
+                                </div>
+                                <div class="slds-var-m-around_medium">
+                                    <lightning-input label="PolicyEndDate" value={PolEndDate}
+                                        data-field-name="PolicyEndDate" type="date" onchange={handleFilterChange}>
+                                    </lightning-input>
+                                </div>
+                                <div class="slds-var-m-around_medium">
+                                    <lightning-input label="Claimable" type="checkbox" checked={claimable}
+                                        data-field-name="Claimable" onchange={handleFilterChange}>
+                                    </lightning-input>
+                                </div>
+                                <div class="slds-var-m-around_medium">
+                                    <lightning-button variant="brand" label="Apply" onclick={handleFilterApply}
+                                        class="slds-float_right">
+                                    </lightning-button>
+                                </div>
+                            </div>
+                        </template>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Insurance Name</th>
+                                    <th>Record Type</th>
+                                    <th>policy End Date</th>
+                                    <th>Created Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={Insurances} for:item="account">
+                                    <tr key={account.Id}>
+                                        <td>{account.Name}</td>
+                                        <td>{account.RecordType.Name}</td>
+                                        <td>{account.Policy_End_Date__c}</td>
+                                        <td>{account.CreatedDate}</td>
+
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </template>
+            <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+            <!-- </lightning-card> -->
+        </div>
+    </div>
+     <c-footer></c-footer>
+</template>
+<template if:true={showInsuranceCreation}>
+
+    <c-modal-component title="Apply for Insurance" onclose={closeInsuranceForm} onsave={handleSaveAccount}>
+        <c-insurance-eligibility onsave={handleSaveAccount} onclose={closeInsuranceForm}>
+        </c-insurance-eligibility>
+    </c-modal-component>
+</template>
+
+<template if:true={showLoans}>
+     <!-- <c-modal-component title="Apply for Loan" onclose={closeLoanForm} onsave={handleSaveAccount}> -->
+        <c-loan-Eligibility onclose={closeLoanForm}>
+        </c-loan-Eligibility>
+    <!-- </c-modal-component> -->
+     <c-footer></c-footer>
+</template>
+<template if:true={showLoanCreation}>
+<!-- 
+    <c-modal-component title="Apply for Loan" onclose={closeLoanForm} onsave={handleSaveAccount}>
+        <c-loan-Eligibility onclose={closeLoanForm}>
+        </c-loan-Eligibility>
+    </c-modal-component> -->
+
+
+</template>
+
+
+<template if:true={showWealth}>
+    <c-new-wealth-page></c-new-wealth-page>
+     <c-footer></c-footer>
+</template>
+ <c-popover  onshowmore={handleShowMore}></c-popover>
+
+</div>
+</div>
+<!-- </lightning-card> -->
+</div> <!--  main background white -->
+</template>

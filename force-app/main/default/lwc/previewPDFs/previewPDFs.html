@@ -1,0 +1,19 @@
+<template>
+    <div class="container">
+        <!-- Button Section -->
+        <div class="button-container">
+            <lightning-button label="Preview Invoice" variant="brand" onclick={loadInvoice}></lightning-button>
+            <lightning-button label="Preview Prescription" variant="neutral" onclick={loadPrescription}></lightning-button>
+        </div>
+
+        <!-- PDF Preview Section -->
+        <div class="preview-container">
+            <template if:true={iframeUrl}>
+                <iframe src={iframeUrl} class="iframe-preview" frameborder="0"></iframe>
+            </template>
+            <template if:false={iframeUrl}>
+                <p class="placeholder-text">Click a button to preview the document</p>
+            </template>
+        </div>
+    </div>
+</template>

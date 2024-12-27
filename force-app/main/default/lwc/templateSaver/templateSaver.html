@@ -1,0 +1,12 @@
+<template>
+    <div class="template-saver" style="background-color:yellow;width:400px;height:400px">
+        <div class="saved-templates">
+            <template for:each={savedTemplates} for:item="template" key={template.id}>
+                <div key={template.id} class="saved-template">
+                    <div>{template.name}</div>
+                    <div class="load-button" onclick={handleLoadTemplate} data-template-id={template.id}>Load</div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

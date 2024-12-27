@@ -1,0 +1,45 @@
+.sales-data {
+    display: grid; /* Use grid layout */
+    grid-template-columns: 1fr; /* 1 column layout */
+    gap: 1.5rem; /* Add space between rows */
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+    justify-content: center; /* Center-align the grid */
+    align-items: center; /* Vertically center the items */
+}
+
+.sales-data-item {
+    background: linear-gradient(135deg, #daf8ed, #b7d5f3); /* Gradient background */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sales-data-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.sales-data-item p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0070d2;
+    margin: 0;
+}
+
+.sales-data-item:hover {
+    transform: scale(1.05); /* Slightly enlarge the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a deeper shadow on hover */
+    background: linear-gradient(135deg, #d3f4e6, #aecbe6); /* Slightly brighter gradient on hover */
+}
+
+.error-message {
+    color: red;
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+}

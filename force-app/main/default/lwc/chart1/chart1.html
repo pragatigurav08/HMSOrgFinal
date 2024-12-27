@@ -1,0 +1,187 @@
+<template>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div class="card-container">
+            <!-- Card Header -->
+            <div class="slds-box" style="margin-bottom: 32px;border-color: rgb(0, 123, 255);">
+                <div class="slds-grid slds-wrap">
+                    <!-- Title -->
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_11-of-12">
+                        <span class="custom-box">
+
+                            <template if:true={total}>
+                            <h2 style="color: #007bff; font-weight: bold; font-size: 13px;">
+                                <!-- Accounts, Insurances, Loans Trends -->
+                                Total Trends: A Holistic View
+                            </h2>
+                        </template>
+                        <template if:true={quarter}>
+                            <h2 style="color: #007bff; font-weight: bold; font-size: 13px;">
+                                <!-- Accounts, Insurances, Loans Trends -->
+                                Quarterly Trends: A Holistic View
+                            </h2>
+                        </template>
+                        </span>
+                    </div>
+                    <!-- Dropdown -->
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_1-of-12">
+                        <span class="custom-box">
+                            <div class="icon-container">
+                                <lightning-icon 
+                                    icon-name="utility:threedots_vertical" 
+                                    alternative-text="dots" 
+                                    size="small" 
+                                    class="blue-utility-icon" 
+                                    onclick={toggleDropdown}>
+                                </lightning-icon>
+                                <template if:true={isDropdownOpen}>
+                                    <div class="dropdown">
+                                        <ul>
+                                            <li onclick={selectTotalTrends} >Total Trends</li>
+                                             <li onclick={selectQuarterTrends} style="border-bottom: none;">Quarterly Trends</li>
+                                            <!--<li onclick={selectTodayTrends} style="border-bottom: none;">Today's Trends</li> -->
+                                        </ul>
+                                    </div>
+                                </template>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trends Section -->
+            <template if:true={total}>
+                <div class="slds-grid slds-wrap">
+                    <!-- Pie Chart Section -->
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_8-of-12" style="padding-bottom: 17px;">
+                        <div > 
+                            <!-- class="custom-card" -->
+                            <!-- <div class="card-title">Pie Chart</div> -->
+                            <div class="chart-container">
+                                <div data-id="pieChart" class="pie-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Legend Section -->
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                        <div class="custom-card">
+                            <div class="card-title">Legend</div>
+                            <div class="legend-item">
+                                <div class="color-box" style="background-color: #FF7900; border: 1px solid black;"></div>
+                                <span>Accounts</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="color-box" style="background-color: #2196f3; border: 1px solid black;"></div>
+                                <span>Insurances</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="color-box" style="background-color: #4caf50; border: 1px solid black;"></div>
+                                <span>Loans</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+             <!-- Trends Section -->
+             <template if:true={quarter}>
+                <div class="slds-grid slds-wrap">
+                    <!-- Pie Chart Section -->
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_8-of-12" style="padding-bottom: 17px;">
+                        <div > 
+                            <!-- class="custom-card" -->
+                            <!-- <div class="card-title">Pie Chart</div> -->
+                            <div class="chart-container">
+                                <div data-id="pieChart" class="pie-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Legend Section -->
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                        <div class="custom-card">
+                            <div class="card-title">Legend</div>
+                            <div class="legend-item">
+                                <div class="color-box" style="background-color: #FF7900; border: 1px solid black;"></div>
+                                <span>Accounts</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="color-box" style="background-color: #2196f3; border: 1px solid black;"></div>
+                                <span>Insurances</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="color-box" style="background-color: #4caf50; border: 1px solid black;"></div>
+                                <span>Loans</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>
+
+                <!-- <template if:true={total}>
+    
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_8-of-12">
+            <div class="custom-card">
+                <div class="card-title">Pie Chart</div>
+                <div class="chart-container">
+                    <div data-id="pieChart" class="pie-chart"></div>
+                
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+            <div class="custom-card">
+                <div class="card-title">Legend</div>
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #FF7900;"></div>
+                    <span>Accounts</span>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #2196f3;"></div>
+                    <span>Insurances</span>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #4caf50;"></div>
+                    <span>Loans</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>  -->
+             
+
+
+<!-- <template>
+
+    <div class="slds-grid slds-wrap">
+    
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_10-of-12">
+            <span class="custom-box">
+                <div class="chart-container">
+                    <div data-id="pieChart" class="pie-chart"></div>
+                    <div data-id="labelContainer" class="label-container"></div>
+                </div>
+            </span>
+        </div>
+
+        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_2-of-12">
+            <span class="custom-box">
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: green;"></div>
+                    <span>Accounts</span>
+                </div>
+                <div class=" legend-item">
+                    <div class="color-box" style="background-color: yellow;"></div>
+                    <span>Insurances</span>
+                </div>
+                <div class=" legend-item">
+                    <div class="color-box" style="background-color: gray;"></div>
+                    <span>Loans</span>
+                </div>
+            </span>
+        </div>
+    </div>
+</template> -->

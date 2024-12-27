@@ -1,0 +1,117 @@
+input{
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 80%;
+    margin-left: 37px;
+}
+
+.container{
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+
+    /* to make position @center */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.left-panel{
+    width: 50%;
+    height: 480px;
+    background-color: #FF4B2B;
+    color: #FFFFFF;
+}
+
+.left-panel .left-button{
+    border-radius:20px;
+    border:1px solid #FFFFFF;
+    background-color: #FF4B2B ;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 55px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+.right-panel{
+    width: 50%;
+    height: 480px;
+    background-color: #FFFFFF;
+}
+
+.right-panel .right-button{
+    border-radius:20px;
+    border:1px solid #FF4B2B ;
+    background-color: #FF4B2B ;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 55px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+button:hover{
+    transform: scale(.95);
+}
+
+button:focus{
+    transform: scale(0.95);
+}
+
+button:active{
+    transform: scale(1.15);
+}
+.create-account{
+    font-size: 30px;
+    font-weight: 800;
+    color: black;
+}
+.welcome-back{
+    font-size: 40px;
+    font-weight: 900;
+}
+/* .form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+} */
+
+/* .sign-in-container{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+} */
+
+/* .container.right-panel-active .sign-in-container{
+    transform: translateX(100%);
+} */
+
+/* .sign-in-container{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+} */
+
+/* .container.right-panel-active .sign-up-container{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+} */
+
+.animaTrans:hover{
+    transform: scale(1.6);
+}

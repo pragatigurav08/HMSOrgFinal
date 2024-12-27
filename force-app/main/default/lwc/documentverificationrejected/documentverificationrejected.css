@@ -1,0 +1,36 @@
+.container {
+    padding: 1.5rem;
+    border: 1px solid #d8dde6;
+    border-radius: 0.5rem;
+    background-color: #f4f6f9;
+}
+
+.heading {
+    color: #c23934; /* Soft red */
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+p, ul, ol {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+ul, ol {
+    margin-left: 1.5rem;
+}
+
+a {
+    color: #0070d2; /* Salesforce blue */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.thank-you {
+    margin-top: 1.5rem;
+    font-style: italic;
+}

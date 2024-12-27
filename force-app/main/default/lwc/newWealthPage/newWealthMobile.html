@@ -1,0 +1,594 @@
+<template>
+    <template if:true={openDahboard}>
+   <div class="dashboard-container">
+        <!-- Header Card with Gradient Background -->
+        <div class="header">
+            <div class="header-content">
+                <h1>Wealth Management</h1><br>
+                <p>Helping you grow, manage, and protect your wealth.</p>
+            </div>
+        </div>
+
+        <!-- Overlapping Welcome Card -->
+        <div class="welcome-card">
+            <div class="card-content">
+                <br>
+                <h2>Welcome!!</h2><br>
+                <p>
+                     We give comprehensive services that provides financial planning, investment management,  </p><br>
+                     <p>and personalized advice to help individuals grow and protect their wealth.
+                </p>
+            </div>
+           <div class="image-container">
+                <!-- Bind the imported URL to the src attribute of img -->
+                <img src={wealthPicUrl} alt="Dashboard Illustration" class="image">
+            </div>
+        </div>
+    </div>
+    </template>
+  <template if:true={openTable}>
+   <div class="e-card">
+    <div class="table-container">
+        <div class="table-controls">
+            <div class="card-content">
+                <h2>Account Details</h2>
+            </div>
+            <lightning-input type="search" placeholder="Search..." onchange={handleSearch}></lightning-input>
+        </div>
+        <div class="scrollable-table"> <!-- Added scrollable wrapper -->
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Account Number</th>
+                        <th>Phone Number</th>
+                        <th>Open Date</th>
+                        <th>Gender</th>
+                        <th>IFSC Code</th>
+                        <th>View Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={filteredAccounts} for:item="account">
+                        <tr key={account.Id}>
+                            <td>{account.FirstName__c}</td>
+                            <td>{account.Last_Name__c}</td>
+                            <td>{account.Name}</td>
+                            <td>{account.Phone_number__c}</td>
+                            <td>{account.Open_Date__c}</td>
+                            <td>{account.Gender__c}</td>
+                            <td>{account.IFSC_Code__c}</td>
+                            <td>
+                                <lightning-button-icon icon-name="utility:apps" alternative-text="More Actions" data-name={account.Name} onclick={handleMoreActions}></lightning-button-icon>
+                            </td>
+                        </tr>
+                    </template>
+                    <template if:true={error}>
+                        <tr>
+                            <td colspan="29">{error}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</template>
+<template if:true={openActivity}>
+  <div class="advi-container">
+    <!-- Header Section -->
+    <div class="advi-header">
+      <!-- <img src={profilePicUrl} alt="Profile Picture" class="profile-pic" /> -->
+      <h2 class="welcome-message">
+        Hey <strong>{selectedAccount.FirstName__c} {selectedAccount.Last_Name__c}</strong>, 
+        wanna assign an advisor to secure the wealth?
+      </h2>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="advi-main">
+      <h1 class="advi-heading">Assign Advisors to your Wealth</h1>
+      <p class="advi-description">
+        Easily manage and assign advisors to your projects with our intuitive interface. Boost collaboration and track progress effectively.
+      </p>
+      <div class="advi-buttons">
+        <button class="advi-btn-primary" onclick={openAdviTable}>Add Advisor</button>
+        <br>
+        <br>
+        <button class="advi-btn-secondary" onclick={assignedAdvi}>View Assigned Advisors</button>
+      </div>
+      <!-- <img src={imageeeUrl} alt="Advisors Illustration" class="advi-hero-image" /> -->
+    </div>
+  </div>
+
+  <!-- Timeline Section -->
+  <div class="timeline-container">
+    <lightning-card key={selectedAccount.Id}>
+      <div class="timeline-header">
+        <!-- <img src={profilePicUrl} alt="Timeline Profile" class="profile-pic-small" /> -->
+        <h2>{selectedAccount.FirstName__c} {selectedAccount.Last_Name__c}</h2>
+      </div>
+      <div class="timeline-content">
+        <p>This account was opened on <strong>{selectedAccount.Open_Date__c}</strong>.</p>
+        <p>Total deposit: <strong>{selectedAccount.Total_Deposit_Amount__c}</strong>.</p>
+        <p>Annual income: <strong>{selectedAccount.Annual_Income__c}</strong>.</p>
+        <p>Current balance: <strong>{selectedAccount.Total_Balance__c}</strong>.</p>
+        <p>Joint applicants: <strong>{selectedAccount.X1st_Joint_Application_Name__c}, {selectedAccount.X2nd_Joint_Application_Name__c}, {selectedAccount.X3rd_Joint_Application_Name__c}</strong>.</p>
+        <p>Document verification status: <strong>{selectedAccount.Document_Verification_Status__c}</strong>.</p>
+         <div class="dashboard-container">
+        <button class="slds-button slds-button_neutral" onclick={handleBackToTable}>Back</button>
+        </div>
+      </div>
+    </lightning-card>
+  </div>
+
+  <!-- Dashboard Section -->
+
+<section class="windows-grid">
+  <div class="windows-tile" onclick={toggleInsuranceDetails}>
+    <img src={insurancePicUrl} alt="Insurance Policies" class="windows-circle-image" />
+    <h3 class="windows-title">Insurance</h3>
+  </div>
+  <div class="windows-tile" onclick={toggleLoanDetails}>
+    <img src={loanPicUrl} alt="Loans" class="windows-circle-image" />
+    <h3 class="windows-title">Loans</h3>
+  </div>
+  <div class="windows-tile" onclick={toggleAdvisorDetails}>
+    <img src={advisorPicUrl} alt="Advisors" class="windows-circle-image" />
+    <h3 class="windows-title">Advisors</h3>
+  </div>
+  <div class="windows-tile" onclick={toggleAssetDetails}>
+    <img src={assetPicUrl} alt="Assets" class="windows-circle-image" />
+    <h3 class="windows-title">Assets</h3>
+  </div>
+</section>
+
+<br>
+
+
+
+  <div class="advi-container">
+    <!-- Header Section -->
+    <div class="advi-header">
+      <!-- <img src={profilePicUrl} alt="Profile Picture" class="profile-pic" /> -->
+      <h2 class="welcome-message" style="font-size:20px">
+        Elite Bank
+      </h2>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="advi-main">
+      <h1 class="advi-heading">Helping You Grow Your Wealth</h1>
+      <p class="advi-description">
+        Explore a wide range of options designed to enhance your financial journey, including applying for loans, 
+      securing insurance, consulting with experienced advisors, and efficiently managing your assets.
+      </p>
+      <!-- <div class="advi-buttons">
+        <button class="advi-btn-primary" onclick={openAdviTable}>Add Advisor</button><br>
+        <button class="advi-btn-secondary" onclick={assignedAdvi}>View Assigned Advisors</button>
+      </div> -->
+      <!-- <img src={imageeeUrl} alt="Advisors Illustration" class="advi-hero-image" /> -->
+    </div>
+  </div>
+</template>
+
+   <!-- Insurance Policies -->
+<template if:true={insuranceDetailsVisible}>
+     <div class="dashboard-container">
+        <!-- Header Card with Gradient Background -->
+        <div class="header">
+            <div class="header-content">
+                <h1>Insurance Dashboard</h1><br>
+                <p>Manage your insurance policies effectively to secure your future.</p>
+            </div>
+        </div>
+
+        <!-- Overlapping Welcome Card -->
+        <div class="welcome-card">
+            <div class="card-content">
+                <h2>Insurance Overview</h2><br>
+                <p>
+                Protect what matters most with our comprehensive insurance solutions. From life to health to vehicle  </p><br> 
+                <p>insurance, we ensure you and your loved ones are covered.</p>
+          
+            </div>
+           <div class="image-container">
+            <br>
+                <!-- Bind the imported URL to the src attribute of img -->
+               <img src={inPicUrl} alt="Dashboard Illustration" class="image">
+               
+                
+            </div> 
+            
+      
+        </div>
+        <br>
+        <br>
+         <div class="welcomee-card">
+              <div class="header-container">
+                    <img src={profilePicUrl} alt="Insurance Policies" class="dash-card-image" />
+    <h2 class="card-content">{selectedAccount.FirstName__c} {selectedAccount.Last_Name__c}</h2>
+    
+    <!-- <button class="cta-button" onclick={openAdvisorModal}>Assign Advisor</button> -->
+</div>
+         </div>
+       <div class="welcome-card">
+        
+    <section class="dash-card-section">
+        
+        <template if:true={insurancePolicies.length}>
+            <table class="insurance-table">
+                <thead>
+                    <tr>
+                        <th>Insurance Taken</th>
+                        <th>Policy ID</th>
+                        <th>Coverage Amount</th>
+                        <th>Premium Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={insurancePolicies} for:item="policy" for:index="index">
+                        <tr key={policy.Id}>
+                            <td>{policy.RecordType.Name}</td>
+                            <td>{policy.Name}</td>
+                            <td>₹{policy.Coverage_Amount__c}</td>
+                            <td>₹{policy.Policy_Premium_Amount__c}</td>
+                            <td>{policy.Status__c}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+           
+        </template>
+        
+        <template if:false={insurancePolicies.length}>
+            <p class="no-data">No Insurance Policies found.</p>
+        </template>
+    </section>
+     
+</div>
+
+        
+        
+        
+        <button class="slds-button slds-button_neutral" onclick={backy} >Back</button>    
+    </div>
+  
+    
+   
+</template>
+
+<!-- Loans -->
+<template if:true={loanDetailsVisible}>
+       <div class="dashboard-container">
+        <!-- Header Card with Gradient Background -->
+        <div class="header">
+            <div class="header-content">
+                <h1>Loan Dashboard</h1><br>
+                <p>Manage your loans effectively to achieve financial stability.</p>
+            </div>
+        </div>
+
+        <!-- Overlapping Welcome Card -->
+        <div class="welcome-card">
+            <div class="card-content">
+                <h2>Loan Services</h2><br>
+                <p>
+                     We provide tailored loan services to meet your financial needs. Whether it's home, car, or personal loans, </p><br>
+                     <p>and personalized advice to help individuals grow and protect their wealth.
+                </p>
+            </div>
+           <div class="image-container">
+            <br>
+                <!-- Bind the imported URL to the src attribute of img -->
+               <img src={loanPicUrl} alt="Dashboard Illustration" class="imagee">
+                
+            </div>
+        </div>
+        <br>
+        <br>
+         <div class="welcomee-card">
+              <div class="header-container">
+                    <img src={profilePicUrl} alt="Insurance Policies" class="dash-card-image" />
+    <h2 class="card-content">{selectedAccount.FirstName__c} {selectedAccount.Last_Name__c}</h2>
+    
+    <!-- <button class="cta-button" onclick={openAdvisorModal}>Assign Advisor</button> -->
+</div>
+         </div>
+       <div class="welcome-card">
+    <section class="dash-card-section">
+        <template if:true={loans.length}>
+            <table class="loan-table">
+                <thead>
+                    <tr>
+                        <th>Loans Taken</th>
+                        <th>Loan ID</th>
+                        <th>Loan Amount</th>
+                        <th>EMI Amount</th>
+                        <th>Borrower's Name</th>
+                        <th>Interest Rate</th>
+                        <th>Loan End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={loans} for:item="loan" for:index="index">
+                        <tr key={loan.Id}>
+                            <td>{loan.RecordType.Name}</td>
+                            <td>{loan.Name}</td>
+                            <td>₹{loan.Loan_Amount__c}</td>
+                            <td>₹{loan.EMI_Amount__c}</td>
+                            <td>{loan.Borrower_s_Name__c}</td>
+                            <td>{loan.Interest_Rate__c}%</td>
+                            <td>{loan.Loan_End_Date__c}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        <template if:false={loans.length}>
+            <p class="no-data">No Loans found.</p>
+        </template>
+    </section>
+</div>
+<button class="slds-button slds-button_neutral" onclick={backy} >Back</button>
+    </div>
+    
+    
+  
+</template>
+
+<template if:true={assetsDetailsVisible}>
+        <div class="advi-container">
+    <!-- Left Content Section -->
+
+    <div class="advi-content">
+<div class="header-container">
+                <!-- <img src={profilePicUrl} alt="Insurance Policies" class="dash-card-image" /> -->
+   <h2 class="card-content" style="color: white;">
+        Hey <strong>{selectedAccount.FirstName__c} {selectedAccount.Last_Name__c}</strong>, 
+        add assets to increase your wealth
+       
+      </h2>
+</div>
+      <h1 class="advi-heading">Manage Your Assets</h1>
+      <h2 class="advi-subheading">Optimize Your Financial Portfolio</h2>
+      <p class="advi-description">
+        Effortlessly manage and track your assets with our user-friendly interface. 
+    Stay informed and make data-driven decisions to maximize your investments.
+      </p>
+      <div class="advi-button-container">
+        <button class="advi-btn-primary" onclick={handleOpenAssets}>Add Assets</button>
+        <!-- <button class="advi-btn-secondary" onclick={assignedAdvi}>View Assigned Advisors</button> -->
+      </div>
+    </div>
+
+    <!-- Right Image Section -->
+    <!-- <div class="advi-illustration">
+      <img src={assUrl} alt="Advisors Illustration" class="advii-hero-image" />
+    </div> -->
+  </div>
+  <br>
+
+        <br>
+        <br>
+        <div class="welcomee-card">
+            <div class="header-container">
+                <img src={profilePicUrl} alt="Assets Image" class="dash-card-image" />
+                <h2 class="card-content">{selectedAccount.FirstName__c} {selectedAccount.Last_Name__c}</h2>
+            </div>
+        </div>
+
+        <div class="welcome-card">
+            <section class="dash-card-section">
+                <template if:true={assets.length}>
+                    <table class="assets-table">
+                        <thead>
+                            <tr>
+                                <th>Asset Name</th>
+                                <th>Asset Number</th>
+                                <th>Purchase Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={assets} for:item="asset" for:index="index">
+                                <tr key={asset.Id}>
+                                    <td>{asset.Asset_Name__c}</td>
+                                    <td>{asset.Name}</td>
+                                    <td>{asset.Purchase_Date__c}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+                <template if:true={noassetsResults}>
+                    <p class="no-data">No Assets found.</p>
+                </template>
+            </section>
+            
+        </div>
+        <div class="dashboard-container">
+        <button class="slds-button slds-button_neutral" onclick={backy}>Back</button>
+        </div>
+    
+</template>
+
+
+<!-- Advisors -->
+<template if:true={advisorDetailsVisible}>
+          <div class="dashboard-container">
+        <!-- Header Card with Gradient Background -->
+        <div class="header">
+            <div class="header-content">
+                <h1>Advisory Services</h1><br>
+                <p>Empowering you with expert guidance to grow, manage, and protect your wealth.</p>
+            </div>
+        </div>
+
+        <!-- Overlapping Welcome Card -->
+        <div class="welcome-card">
+            <div class="card-content">
+                <br>
+                <h2>Meet Our Advisors</h2><br>
+                <p>
+                     Our experienced advisors offer personalized financial advice and solutions, helping you make informed decisions </p><br>
+                     <p>to achieve your financial goals with confidence.
+                </p>
+            </div>
+           <div class="image-container">
+            <br>
+                <!-- Bind the imported URL to the src attribute of img -->
+               <img src={advisorPicUrl} alt="Dashboard Illustration" class="imagee">
+                
+            </div>
+        </div>
+        <br>
+        <br>
+         <div class="welcomee-card">
+              <div class="header-container">
+                    <img src={profilePicUrl} alt="Insurance Policies" class="dash-card-image" />
+    <h2 class="card-content">{selectedAccount.FirstName__c} {selectedAccount.Last_Name__c}</h2>
+    
+    <!-- <button class="cta-button" onclick={openAdvisorModal}>Assign Advisor</button> -->
+</div>
+         </div>
+        <div class="welcome-card">
+    <section class="dash-card-section">
+        <template if:true={advisors.length}>
+            <table class="advisor-table">
+                <thead>
+                    <tr>
+                        <th>Advisor Name</th>
+                        <th>Specialization</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={advisors} for:item="advisor" for:index="index">
+                        <tr key={advisor.Id}>
+                            <td>{advisor.Advisor_Name__c}</td>
+                            <td>{advisor.Specialization__c}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        <template if:false={advisors.length}>
+            <p class="no-data">No Advisors found.</p>
+        </template>
+    </section>
+</div>
+<button class="slds-button slds-button_neutral" onclick={backy} >Back</button>
+    </div>
+   
+    
+    
+</template>
+
+<template if:true={advisorTableVisible}>
+    <div class="dashboard-container">
+        <div class="header">
+            <div class="header-content">
+                <h1>Advisory Services</h1><br>
+                <p>Empowering you with expert guidance to grow, manage, and protect your wealth.</p>
+            </div>
+        </div>
+
+        <!-- Overlapping Welcome Card -->
+        <div class="welcome-card">
+            <div class="card-content">
+                <h2>Meet Our Advisors</h2><br>
+                <p>
+                     Our experienced advisors offer personalized financial advice and solutions, helping you make informed decisions </p><br>
+                     <p>to achieve your financial goals with confidence.
+                </p>
+            </div>
+           <div class="image-container">
+            <br>
+                <!-- Bind the imported URL to the src attribute of img -->
+               <img src={advisorPicUrl} alt="Dashboard Illustration" class="imagee">
+                
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="welcome-card">
+            <section class="dash-card-section">
+                <template if:true={advisorss.length}>
+                    <table class="advisor-table">
+                        <thead>
+                            <tr>
+                                <th>Advisor Name</th>
+                                <th>Specialization</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={advisorss} for:item="advisor" for:index="index">
+                                <tr key={advisor.id}>
+                                    <td>{advisor.advisorName}</td>
+                                    <td>{advisor.specialization}</td>
+                                    <td>
+                                        <button
+                                            class="slds-button slds-button_brand"
+                                            data-id={advisor.id}
+                                            onclick={handleAssign}>
+                                            Assign
+                                        </button>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+                <template if:false={advisorss.length}>
+                    <p class="no-data">No Advisors found.</p>
+                </template>
+            </section>
+        </div>
+        <button class="slds-button slds-button_neutral" onclick={backy}>Back</button>
+    </div>
+</template>
+<template if:true={openAssetsss}>
+    <template if:true={selectedAccount.Id}>
+        <div class="asset-form-container">
+            <h1 class="asset-form-heading">Add Asset Details</h1>
+            <form class="asset-form" onsubmit={handleSaveAsset}>
+                <div class="form-group">
+                    <label for="assetName">Asset Name</label>
+                    <input
+                        type="text"
+                        id="assetName"
+                        name="assetName"
+                        class="form-control"
+                        onchange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="purchaseDate">Purchase Date</label>
+                    <input
+                        type="date"
+                        id="purchaseDate"
+                        name="purchaseDate"
+                        class="form-control"
+                        onchange={handleInputChange}
+                        required
+                    />
+                </div>
+                <button type="submit" class="slds-button slds-button_brand">
+                    Save
+                </button>
+                <br /><br />
+                <button class="slds-button slds-button_brand" onclick={backy}>Back</button>
+            </form>
+        </div>
+    </template>
+</template>
+
+
+
+
+
+</template>

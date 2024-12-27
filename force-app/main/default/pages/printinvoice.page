@@ -1,0 +1,68 @@
+<apex:page controller="PatientBillController" renderAs="pdf" showHeader="false">
+    <!-- Header with Logo and Clinic Details -->
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="text-align: left;">
+            <h2 style="margin: 0;">
+                <img src="/resource/Healthcare" alt="Clinic Logo" style="height: 50px;"/>&nbsp;&nbsp;Healthcare Clinic
+            </h2>
+            <p style="margin: 0;">2nd Main road, near Axis Bank, Bangalore, Karnataka - 561038</p>
+            <p style="margin: 0;">Ph: 094233 80390 | Timing: 09:00 AM - 02:00 PM | Closed: Friday</p>
+        </div>
+    </div>
+    <hr style="border-top: 1px solid black;"/>
+
+    <!-- Patient and Bill Details -->
+    <table>
+        <tr>
+            <td style="text-align: left;">
+                <strong>Name/Contact:</strong> {!todayInvoices[0].billing.Patient_Registration__r.Name}/{!todayInvoices[0].billing.Patient_Registration__r.phone_number__c} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>ID:</strong> {!todayInvoices[0].billing.Patient_Registration__r.patientID__c}
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left;">
+                <strong>Age/Sex:</strong> {!todayInvoices[0].billing.Patient_Registration__r.Age__c} / {!todayInvoices[0].billing.Patient_Registration__r.Gender__c} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>Referrer:</strong> <span style="color: #2d87f0;">{!doctorName}</span>
+            </td>
+        </tr>
+    </table>
+    <hr style="border-top: 1px solid black;"/>
+    <div style="text-align: right;">
+        <strong>Date:</strong> {!formattedCreatedDate}
+    </div>
+
+    <!-- Bill/Receipt Details -->
+    <table style="width: 100%; font-size: 14px; border-collapse: collapse; margin-top: 10px; border: 1px solid #d1d1d1;">
+        <tr style="background-color: #f2f2f2; border-bottom: 1px solid #d1d1d1;">
+            <th style="padding: 8px; text-align: left;">SL.No</th>
+            <th style="padding: 8px; text-align: left;">Medicine</th>
+            <th style="padding: 8px; text-align: left;">Price</th>
+            <th style="padding: 8px; text-align: left;">Discount%</th>
+            <th style="padding: 8px; text-align: left;">Quantity</th>
+            <th style="padding: 8px; text-align: left;">Amount</th>
+        </tr>
+        
+        <apex:repeat value="{!todayInvoices}" var="item">
+            <tr style="border-bottom: 1px solid #d1d1d1;">
+                <td style="padding: 8px; text-align: left;">{!item.serialNumber}</td>
+                <td style="padding: 8px; text-align: left;">{!item.billing.Products__r.Name}</td>
+                <td style="padding: 8px; text-align: left;">{!item.billing.Rate__c}</td>
+                <td style="padding: 8px; text-align: left;">{!item.billing.Discount__c}</td>
+                <td style="padding: 8px; text-align: left;">{!item.billing.Quantity__c}</td>
+                <td style="padding: 8px; text-align: left;">{!item.billing.Total__c}</td>
+            </tr>
+        </apex:repeat>
+    </table>
+
+    <!-- Total and Footer Section -->
+    <table style="width: 90%; margin-top: 20px; font-size: 14px; text-align: right;">
+    <tr>
+        <td><strong>Total:</strong> {!FormattedGrandTotal}</td>
+        </tr>   
+</table>
+<table style="width: 100%; margin-top: 20px; font-size: 14px; text-align: right;">
+    <tr>
+        <td> Authorized Signatory<br/>{!username}</td>
+        </tr>   
+</table>
+</apex:page>

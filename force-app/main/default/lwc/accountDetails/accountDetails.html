@@ -1,0 +1,30 @@
+<template>
+    <section class="bill-card-container">
+     <lightning-card title="Account Details" class="bill-card" onclick={toggleDetails}>
+         <div slot="actions" class="chevron-container">
+                <lightning-icon icon-name={chevronIcon} alternative-text="Toggle Details" size="xx-small" class="chevron-icon"></lightning-icon>
+            </div>
+            <template if:true={showDetails}>
+        <template if:true={newAccount}>
+            <div class="slds-box slds-box_xx-small custom-background" style="margin-left: 8px; margin-right: 8px;">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>Account Number:</strong> <span class="slds-m-left_xx-small">{newAccount.Name}</span></p>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>Open Date:</strong> <span class="slds-m-left_xx-small">{newAccount.Open_Date__c}</span></p>
+                    </div>
+                   
+                    <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                        <p><strong>IFSC:</strong> <span class="slds-m-left_xx-small">{newAccount.IFSC_Code__c}</span></p>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template if:false={newAccount}>
+            <p>No associated Account</p>
+        </template>
+            </template>
+    </lightning-card>
+    </section>
+</template>

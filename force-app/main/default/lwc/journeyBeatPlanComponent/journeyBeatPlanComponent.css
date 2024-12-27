@@ -1,0 +1,354 @@
+.bottom-top-padding-class {
+    padding: 10px 0px 10px 0px;
+}
+
+.sidewise-padding {
+    padding: 0px 10px 0px 10px;
+}
+
+.frame-class {
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+.toppadd{
+    padding-top: 50px;
+}
+.frame-color-class {
+    background: #fafafa;
+}
+
+.frame-border-radius {
+    border-radius: 10px;
+}
+
+.header-background {
+    background: #39616f;/*#01B8DD;*/
+    /*background: #ff0000;*/
+}
+
+.your-lead-styling {
+    height: 2.2rem;
+    font-size: 17px;
+    color: white;
+    font-weight: 300;
+}
+
+.progress-ring-graph {
+    /*--lwc-colorBackgroundSuccessDark: rgb(33 160 191);     color: #39616f;*/
+    /*--lwc-colorBackgroundSuccessDark: #ff0000;*/
+    --lwc-progressRingWidth: 4px;
+    --lwc-squareIconLargeContent: 3rem;
+}
+
+.form-header {
+    font-weight: 600;
+}
+
+.next-form-header {
+    font-size: 9px;
+}
+
+.next-form-header-page-number {
+    font-size: 14px;
+}
+
+.progress-text {
+    position: absolute;
+    top: 72px;
+    left: 29px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.action-button {
+    --slds-c-button-brand-color-background: #39616f;/*rgb(33 160 191);*/
+    --slds-c-button-color-border: #39616f;/*rgb(33 160 191);*/
+    /*--slds-c-button-brand-color-background: #ff0000;
+    --slds-c-button-color-border: #ff0000;
+    --slds-c-button-color-background-hover: #9c1a1f;
+    --slds-c-button-color-border-hover: #9c1a1f;*/
+}
+
+.toggle-button {
+    padding-top: 8px;
+}
+
+.quote-box {
+    border-radius: 5px;
+    border: 1px solid #e7eff1;
+}
+
+.label-header {
+    padding: 7px 0px 7px 0px;
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.currency-value-padding {
+    padding-bottom: 10px;
+}
+
+.upload-input {
+    position: relative;
+    top: -4.6rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload-image {
+    max-height: 100%;
+    position: relative;
+    right: -10px;
+}
+
+.upload-action {
+    position: relative;
+    top: 0rem;
+    width: 100%;
+    height: 100%;
+    left: -11px;
+}
+
+.upload-video-action {
+    position: relative;
+    top: 0rem;
+    height: 100%;
+}
+
+.font-weight-section {
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.dropzone {
+    width: 7rem;
+    height: 4rem;
+    border: 1px dashed #999;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.color-for-tabs-font {
+    color: white;
+}
+
+.selected-tab-color {
+    background: #39616f;/*#01B8DD;*/
+    box-shadow: rgba(0, 0, 0, 0.75) 0px 1px 4px;
+    border-radius: 20px;
+}
+
+.botton-popover {
+    height: 0%;
+    /* Specify a height */
+    width: 100%;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 10;
+    /* Stay on top */
+    top: 100%;
+    left: 0;
+    background-color: rgb(0, 0, 0, 81%);
+    /* #111;  Black*/
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    /* padding-top: 7%; Place content 60px from the top */
+
+}
+
+.popover-card {
+    top: 100%;
+    width: 100%;
+    position: fixed;
+    border-radius: 15px 15px 0px 0;
+    height: 0%;
+    background-color: #fafafa;
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidepanel */
+    transform: translateY(100%);
+    z-index: 15;
+}
+
+.display-block {
+    display: none;
+}
+
+.card-section {
+    border: 1px solid #d5cdcd5e;
+    /*#c9c9c9*/
+    border-radius: 7px;
+}
+
+
+/**888888888888888888****/
+.actual-details {
+    font-size: 8px;
+    font-family: inherit;
+    font-style: italic;
+    color: #051e76;
+    font-weight: 600;
+}
+
+/*.price-capsule {
+    /* background: #6fc36f; */
+/* background: #116479; */
+/*background: #6aa9b9;*/
+/* color: white; 
+}*/
+
+.price-text {
+    font-size: 14px;
+}
+
+.popover-position {
+    top: 30%;
+    left: 60%;
+    z-index: 9001;
+    width: 20rem;
+}
+
+.blackout-section {
+    height: 75%;
+    width: 100%;
+    position: fixed;
+    z-index: 9000;
+    top: 7%;
+    background-color: rgb(0, 0, 0, 10%);
+    overflow-x: hidden;
+}
+
+.field-capsule {
+    --lwc-colorBorder: #c9c9c9;
+}
+
+.field-capsule-label {
+    /*border-right: 1px solid;*/
+    border-color: #c9c9c9;
+    padding: 6px 0;
+    width: 130px;
+    color: rgb(1 68 134);
+    height: 32px;
+    /*height: 31px;*/
+    /*height is important to maintain all equal*/
+    /*color: #ff0000;*/
+}
+
+.grey-button {
+    --slds-c-button-color-background: #f3f3f3;
+}
+
+.field-capsule-value {
+    padding: 7px 0px;
+    background: rgb(243, 243, 243);
+    border-radius: 0 5px 5px 0;
+    /*height: 31px;*/
+    /*height is important to maintain all equal*/
+}
+
+.field-capsule-value-input {
+    /*padding: 6px 0px;*/
+    background: rgb(243, 243, 243);
+    border-radius: 0 5px 5px 0;
+    /*height: 31px;*/
+    /*height is important to maintain all equal*/
+}
+
+/************************************/
+
+.fixHeader {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    /*border-bottom: 2px solid #dddbda;*/
+}
+
+.fixHeader:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}
+
+.fancyTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.fancyTable td,
+.fancyTable th {
+    padding: 5px;
+    text-align: center;
+}
+
+.fancyTable tr:nth-child(even) {
+    /*background-color: white*/
+    background-color: transparent;
+}
+
+.fancyTable tr:nth-child(odd) {
+    background-color: white;
+    /*background-color: transparent;*/
+}
+
+.fancyTable tr:hover {
+    background-color: #ddd;
+}
+
+.fancyTable th {
+    /*padding-top: 5px;
+    padding-bottom: 5px;*/
+    padding-top: 9px;
+    padding-bottom: 6px;
+    text-align: center;
+    /*background-color: #45c65a;*/
+    background-color: #f3f3f3;
+    /*color: white;*/
+    color: #514f4d;
+}
+
+.icon-section {
+    width: 32px;
+}
+
+.question-header-class {
+    border-bottom: 1px solid #d5cdcd5e;
+    background: rgb(243, 243, 243);
+    border-radius: 7px 7px 0px 0px;
+}
+
+.input-field-transparent-class {
+    border: transparent;
+    background: transparent;
+    height: auto;
+}
+
+.frame-class {
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+
+.popover-card-right {
+    /*display: none;*/
+    top: 0%;
+    bottom: -10%;
+    /*100%*/
+    width: 0%;
+    position: fixed;
+    /*border-radius: 15px 15px 0px 0px;*/
+    height: 100vh;
+    /*0%*/
+    background-color: #fafafa;
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidepanel */
+    /*transform: translateY(100%); Old*/
+    transform: translateX(-100%);
+    z-index: 15;
+    left: 0%;
+    right: 0%;
+    overflow: hidden
+}
+.add-icon{
+    --sds-c-icon-color-foreground-default: white;
+}

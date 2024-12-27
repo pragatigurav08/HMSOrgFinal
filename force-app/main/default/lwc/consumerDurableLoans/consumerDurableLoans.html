@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Agricultural Loan Application" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Farmer's Name" value={farmerName} onchange={handleChange} name="farmerName"></lightning-input>
+            <lightning-input type="number" label="Area under Cultivation (in Acres)" value={cultivationArea} onchange={handleChange} name="cultivationArea"></lightning-input>
+            <lightning-input type="number" label="Crop Cost per Acre" value={cropCost} onchange={handleChange} name="cropCost"></lightning-input>
+            <lightning-input type="number" label="Farmer's Contribution (Margin Money)" value={marginMoney} onchange={handleChange} name="marginMoney"></lightning-input>
+            <lightning-input type="number" label="Interest Rate (%)" value={interestRate} onchange={handleChange} name="interestRate"></lightning-input>
+            <lightning-input type="number" label="Loan Duration (Years)" value={loanDuration} onchange={handleChange} name="loanDuration"></lightning-input>
+            <lightning-input type="number" label="Projected Income from Crops" value={projectedIncome} onchange={handleChange} name="projectedIncome"></lightning-input>
+            <lightning-input type="number" label="Non-Farm Income" value={nonFarmIncome} onchange={handleChange} name="nonFarmIncome"></lightning-input>
+
+            <lightning-button label="Calculate Loan Eligibility" variant="brand" onclick={calculateLoan}></lightning-button>
+        </div>
+
+        <template if:true={loanAmount}>
+            <p class="slds-m-around_medium">Eligible Loan Amount: {loanAmount}</p>
+            <p class="slds-m-around_medium">EMI: {emi}</p>
+        </template>
+    </lightning-card>
+</template>

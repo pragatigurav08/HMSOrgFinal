@@ -1,0 +1,11 @@
+.slds-page-header.header.flexipageHeader {
+    display: none;
+}
+
+header.flexipageHeader.slds-page-header.uiBlock.oneAnchorHeader { 
+    display: none;
+}
+
+.contentArea .fullheight{
+    margin: -24px;
+}

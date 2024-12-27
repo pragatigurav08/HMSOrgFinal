@@ -1,0 +1,140 @@
+<template>
+    <div style="background-color:white;padding:1%">
+          <h3 style="padding: 1%;"><lightning-icon icon-name='utility:change_request' alternative-text='change_request' size='small' title='change_request'></lightning-icon>
+          <b  style="padding-left: 1%;font-size: 16px;">Withdraw Money</b></h3>
+         
+      
+
+        <!-- Row 1 -->
+        <div class="slds-grid slds-wrap" style="padding:1%">
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="padding-right:2%">
+               
+                <lightning-combobox label="Withdrawal Person" value={withdrawalPerson}
+                    options={withdrawalPersonOptions} onchange={handleInputChange} data-id="withdrawalPerson" required>
+                </lightning-combobox>
+
+            </div>
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="padding-left:2%">
+                <!-- New Account Search -->
+                <lightning-input label="New Account" type="search" value={searchKey} onchange={handleSearchTermChange}
+                    placeholder="Search New Account..." data-id="searchKey" required></lightning-input> 
+
+                <!-- Search Results for Accounts -->
+                <template if:true={accounts}>
+                    <ul class="slds-listbox slds-listbox_vertical" role="listbox" aria-label="Suggested Accounts">
+                        <template for:each={accounts} for:item="account">
+                            <li key={account.Id} class="slds-listbox__item" role="presentation" data-id={account.Id}
+                                onclick={handleAccountSelect}>
+                                <div class="slds-media slds-listbox__option slds-listbox__option_plain" role="option">
+                                    <span class="slds-media__body">
+                                        <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                            {account.Name}
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="slds-grid slds-wrap" style="padding:1%">
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="padding-right:2%">
+
+                 <!-- Home Branch Search -->
+                <lightning-input label="Home Branch" type="search" value={searchK} onchange={handleBranchChange}
+                    placeholder="Search Branch..." data-id="searchBranch" required></lightning-input>
+
+                <!-- Search Results for Branches -->
+                <template if:true={branches}>
+                    <ul class="slds-listbox slds-listbox_vertical" role="listbox" aria-label="Suggested Branches">
+                        <template for:each={branches} for:item="branch">
+                            <li key={branch.Id} class="slds-listbox__item" role="presentation" data-id={branch.Id}
+                                onclick={handleBranchSelect}>
+                                <div class="slds-media slds-listbox__option slds-listbox__option_plain" role="option">
+                                    <span class="slds-media__body">
+                                        <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                            {branch.Name}
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+          
+               
+            </div>
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="padding-left:2%">
+                      <!-- Date of Withdrawal -->
+                <lightning-input label="Date of Withdrawal" type="date" value={withdrawalDate}
+                    onchange={handleInputChange} data-id="withdrawalDate" required></lightning-input>
+            </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="slds-grid slds-wrap" style="padding:1%">
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="padding-right:2%">
+                <!-- Last Name -->
+                <lightning-input label="Last Name" value={lastName} onchange={handleInputChange}
+                    data-id="lastName"></lightning-input>
+            </div>
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="padding-left:2%">
+                <lightning-input label="First Name" value={firstName} onchange={handleInputChange}
+                    data-id="firstName"></lightning-input>
+               
+            </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="slds-grid slds-wrap" style="padding:1%">
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="padding-right:2%">
+                <!-- Amount -->
+                <lightning-input label="Amount" type="number" value={amount} onchange={handleInputChange}
+                    data-id="amount" required></lightning-input>
+            </div>
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="padding-left:2%">
+                <!-- Phone number -->
+                <lightning-input label="Phone number" value={phoneNumber} onchange={handleInputChange}
+                    data-id="phoneNumber"></lightning-input>
+            </div>
+        </div>
+
+        <!-- Row 5 -->
+        <!-- <div class="slds-grid slds-wrap" style="padding:1%">
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12"
+                style="padding-right:2%">
+               
+            </div>
+        </div> -->
+
+        <!-- Buttons: Save and Clear
+        <div class="slds-grid slds-wrap" style="padding:1%">
+            <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                <lightning-button label="Clear" onclick={handleClear} class="slds-m-right_small"></lightning-button>
+                <lightning-button label="Save" onclick={handleSave}></lightning-button>
+            </div>
+        </div> -->
+
+        <!-- Buttons: Save and Clear -->
+        <div class="slds-grid">
+            <div class="slds-col_bump-right">
+                <lightning-button label="Clear" onclick={handleClear} class="slds-m-right_small"></lightning-button>
+            </div>
+            <div>
+                <lightning-button label="Save" onclick={handleSave} style="margin-left: 10px;"></lightning-button>
+            </div>
+        </div>
+    </div>
+    </div>
+</template>

@@ -1,0 +1,672 @@
+.main-container {
+        display: flex;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+        width: 200px;
+         background: linear-gradient(90deg, #1a73e8, #0053b3);
+        color: white;
+        height: 115vh;
+        padding: 20px;
+    }
+
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .sidebar ul li {
+        margin: 20px 0;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    /* Content Area */
+    .content-area {
+        flex: 1;
+        padding: 20px;
+    }
+	 .contentt-area {
+        flex: 1;
+        padding: 20px;
+    }
+
+    /* Employee Card */
+    .employee-card {
+         background: linear-gradient(90deg, #1a73e8, #b4d7ff);
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+		margin-top: 24px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+       background: linear-gradient(90deg, #1a73e8, #b4d7ff);
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+   .employee-list {
+    max-height: 300px; /* Set the maximum height for the scrollable area */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 8px; /* Add some padding for better appearance with a scrollbar */
+    scrollbar-width: thin; /* For modern browsers, make the scrollbar thinner */
+    scrollbar-color: #888 #f1f1f1; /* Customize scrollbar colors */
+}
+    .employee-item {
+      /*  display: flex;
+        align-items: center;*/
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: white;
+        transition: box-shadow 0.3s ease;
+        margin-bottom: 8px;
+    }
+
+    .employee-item:hover {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .employee-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .employee-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .employee-name {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .employee-status {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .no-employees {
+        text-align: center;
+        color: #777;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+	.employee-avatar {
+    width: 50px; /* Set the desired width */
+    height: 50px; /* Set the desired height */
+    border-radius: 50%; /* Makes the image round */
+    object-fit: cover; /* Ensures the image fits within the circle without distortion */
+    border: 2px solid #ddd; /* Optional: Add a border for better visibility */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for effect */
+}
+.employee-details {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Vertically center the content */
+}
+
+.employee-avatar {
+    width: 50px; /* Set the desired width */
+    height: 50px; /* Set the desired height */
+    border-radius: 50%; /* Make the image round */
+    object-fit: cover; /* Ensure the image fits within the circle without distortion */
+    margin-right: 15px; /* Add space between the image and the text */
+}
+
+.employee-info {
+    display: flex;
+    flex-direction: column; /* Stack the employee name and status vertically */
+}
+
+.employee-name {
+    font-size: 16px; /* Adjust the font size for the name */
+    font-weight: bold;
+}
+
+.employee-status {
+    font-size: 14px; /* Adjust the font size for the status */
+    color: #777; /* Lighter color for the status text */
+}
+.top-navbar {
+  display: flex;
+  justify-content: space-between; /* Ensures content is pushed to the ends */
+  align-items: center; /* Vertically aligns content */
+  padding: 10px 20px;
+ background: linear-gradient(90deg, #1a73e8, #0053b3);
+  font-family: Arial, sans-serif;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.app-title {
+          font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+      margin-left: 23px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.greeting-container {
+  display: flex;
+  align-items: center;
+}
+
+.greeting-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px; /* Space between the icon and text */
+}
+
+.greeting-message {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff8f8;
+  margin-right: 20px; /* Space between greeting message and date-time */
+}
+
+.date-time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.date,
+.time {
+  font-size: 14px;
+  color: #fffcfc;
+}
+
+
+.greeting-container {
+    display: flex;
+    align-items: center;
+}
+
+.greeting {
+    font-size: 18px;
+    margin-right: 15px;
+}
+.greeting-container {
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.greeting-details {
+  display: flex;
+  align-items: center;
+}
+
+.greeting-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+}
+
+.greeting-message {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.date-time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.date,
+.time {
+  font-size: 14px;
+}
+/* Overall Layout */
+.main-container {
+  display: flex;
+  height: 125vh;
+   background-color: #ffffffce;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: #fff;
+  /* height: 115vh; */
+  padding: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Top Navbar */
+.top-navbar {
+    position: absolute;
+    top: 0px;
+        left: 0px;
+    right: 0px;
+    padding: 0px;
+}
+
+.greeting-container {
+  display: flex;
+  align-items: center;
+}
+
+.greeting-icon {
+ width: 80px;
+    height: 80px;
+  margin-right: 10px;
+}
+
+.greeting-message {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.date-time {
+  display: flex;
+  flex-direction: column;
+}
+
+.date, .time {
+  font-size: 14px;
+}
+
+/* Content Area */
+.content-area {
+  margin-top: 60px;
+  padding: 20px;
+  width: 100%;
+}
+.contentt-area {
+  margin-top: 60px;
+  padding: 20px;
+  width: 100%;
+}
+
+.employee-card {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background: linear-gradient(90deg, #1a73e8, #0053b3);
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/*.employee-item {
+ display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}*/
+
+.employee-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.employee-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-employees {
+  color: #777;
+  font-size: 14px;
+}
+/* Card Styling for Holidays */
+.holiday-card {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.holiday-list {
+  margin-top: 10px;
+}
+
+.holidays-this-year,
+.holidays-next-year {
+  margin-top: 20px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+  /*color: #0070d2;*/
+  color:black;
+}
+
+.holiday-items {
+  margin-top: 10px;
+}
+
+.holiday-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.holiday-item:last-child {
+  /* border-bottom: none; */
+}
+
+.holiday-date {
+  font-weight: bold;
+  color: #0070d2;
+}
+
+.holiday-name {
+  color: #333;
+}
+
+.no-holidays {
+  color: #ff4d4f;
+  font-style: italic;
+}
+/* Container for Both Cards */
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Add space between the cards */
+       margin-top: -79px;
+}
+.cardd-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Add space between the cards */
+      margin-top: -110px;
+          margin-left: -26px;
+    margin-right: -24px;
+}
+
+/* Style for Each Card */
+.employee-card,
+.holiday-card {
+  flex: 1; /* Ensures both cards take equal width */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px; /* Ensure the cards have at least this height */
+}
+
+/* Header Styling */
+.card-header {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+/* Content inside the holiday and employee cards */
+.employee-list, .holiday-list {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* General styling for items inside the card */
+/*.employee-item, .holiday-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}*/
+
+/* .employee-item:last-child, .holiday-item:last-child {
+  border-bottom: none;
+} */
+
+/* Styling for holiday name and date */
+.holiday-date {
+  font-weight: bold;
+  color: #0070d2;
+}
+
+.holiday-name, .employee-name, .employee-status {
+  color: #333;
+}
+
+/* No employees or holidays message */
+.no-employees, .no-holidays {
+  font-style: italic;
+  color: #ff4d4f;
+}
+.employeee-card {
+     max-width: 491px;
+ /* Restrict the width of the card */
+
+  padding: 16px; /* Add some padding inside the card */
+  border: 1px solid #ccc; /* Add a light border around the card */
+  border-radius: 8px; /* Round the corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+  background-color: #fff; /* Set a white background */
+      min-height: 300px;
+}
+
+.card-header {
+  font-size: 1.5em; /* Make the header stand out */
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-align: center; /* Center the header text */
+}
+
+.birthday-list {
+  font-size: 1em;
+}
+
+.birthday-item {
+  display: flex;
+  justify-content: space-between; /* Distribute name and date evenly */
+  padding: 8px 0; /* Add some spacing between items */
+  border-bottom: 1px solid #f0f0f0; /* Light divider between items */
+}
+
+.birthday-item:last-child {
+  border-bottom: none; /* Remove the divider for the last item */
+}
+
+.birthday-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.birthday-date {
+  color: #777;
+   font-size: 16px;
+}
+
+.no-birthdays {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+.dashboard {
+  display: flex;
+  justify-content: space-between; /* Space cards evenly */
+  gap: 16px; /* Add spacing between cards */
+  padding: 16px;
+}
+
+.employees-card {
+  flex: 1; /* Ensure all cards take up equal space */
+  min-width: 300px; /* Set a minimum width for smaller screens */
+  max-width: 400px; /* Optional: Restrict maximum width */
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.birthday-items, .employee-items {
+  margin-top: 8px;
+}
+
+.birthday-item, .employee-item {
+  padding: 8px 9px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* .birthday-item:last-child, .employee-item:last-child {
+  border-bottom: none;
+} */
+
+.no-birthdays, .no-employees {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover;
+  margin-right: 10px;
+}
+.employees-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 10px;
+  width: 300px; /* Adjust card width as needed */
+  display: inline-block; /* Ensure cards display side by side */
+  vertical-align: top; /* Align cards at the top */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  color:white;
+  /* font-size: 18px; */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.employees-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.employees-item {
+  display: flex; /* Arrange items in a row */
+  align-items: center; /* Center vertically */
+  margin-bottom: 10px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Circular profile picture */
+  object-fit: cover; /* Ensures the image fits well */
+  margin-right: 10px;
+}
+
+.employees-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.no-employees {
+  font-style: italic;
+  color: #999;
+}
+.greeting-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.greeting-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.greeting-text {
+  font-size: 1.5rem; /* Adjust font size as needed */
+  font-weight: bold;
+}
+
+.time {
+  font-size: 1rem; /* Adjust font size as needed */
+  color: #ffffff; /* Optional: Add color to differentiate */
+}
+
+.greeting-icon {
+  width: 80px;
+    height: 80px; /* Adjust icon size as needed */
+  margin-left: 10px; /* Add spacing between text and icon */
+}
+
+.date-time {
+  margin-top: 10px;
+  text-align: left;
+  font-size: 1rem; /* Adjust font size as needed */
+}
+.green-icon {
+  --sds-c-icon-color-foreground-default: green; /* Green icon color */
+}
+
+.yellow-icon {
+  --sds-c-icon-color-foreground-default: yellow; /* Yellow icon color */
+}
+
+.red-icon {
+  --sds-c-icon-color-foreground-default: red; /* Red icon color */
+}

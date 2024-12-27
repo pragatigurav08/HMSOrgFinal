@@ -1,0 +1,718 @@
+<template>
+    <div class="slds-grid slds-grid_vertical">
+        <div class="slds-col">
+            <div lwc-3mmmrd7j9v4="" class="slds-clearfix slds-page-header slds-page-header_record-home fixed-position"
+                style="height: 139.6px; left: 11.0725px; right: 15px; padding-left: 16.9275px; padding-right: 16.9275px; border-radius: 4px; transform: translate3d(0px, -4px, 0px);">
+                <div lwc-3mmmrd7j9v4="" class="slds-grid primaryFieldRow">
+                    <div lwc-3mmmrd7j9v4="" class="slds-grid slds-col slds-has-flexi-truncate">
+                        <div lwc-3mmmrd7j9v4="" class="slds-media slds-no-space">
+                            <slot lwc-3mmmrd7j9v4="" name="icon">
+                                <lightning-icon icon-name='action:new_account' alternative-text='new_account'
+                                    size='x-small' title='new_account'></lightning-icon>
+                            </slot>
+                        </div>
+                        <div lwc-3mmmrd7j9v4="" class="slds-media__body">
+                            <h1 lwc-3mmmrd7j9v4="">
+                                <div lwc-3mmmrd7j9v4="" class="entityNameTitle slds-line-height--reset">
+                                    <slot lwc-3mmmrd7j9v4="" name="entityLabel">
+                                        <h1 class="namemobile">New Account</h1>
+                                    </slot>
+                                </div>
+                                <slot lwc-3mmmrd7j9v4=""
+                                    class="slds-page-header__title slds-m-right--small slds-align-middle slds-line-clamp clip-text"
+                                    name="primaryField">
+                                    <template if:true={accountDetails}>
+                                        <div lwc-47ngqe6rvah="" class="slds-grid">
+                                            <!---->
+                                                <!---->
+                                                <p class="namemobile1">{accountDetails.Name}</p>
+                                                <!---->
+                                                <!---->
+                                            </div>
+                                        </template>
+                                    </slot>
+                                </h1>
+                            </div>
+                            <div lwc-3mmmrd7j9v4="" class="header-right-content">
+                                <slot lwc-3mmmrd7j9v4="" name="headerRightContent">
+
+                                </slot>
+                            </div>
+                        </div>
+
+                    <div class="slds-var-m-around_small slds-grid slds-grid_align-end mobileend" >
+
+                        <!-- <div class="slds-col">
+                            <lightning-button label="Apply Wealth" onclick={handleNavigate}
+                                class="slds-m-top_medium"></lightning-button>
+                        </div> -->
+                        <div class="slds-col">
+                            <lightning-button label="Apply Loan" onclick={handleNavigate1} class="slds-m-top_medium">
+                            </lightning-button>
+                        </div>
+                        <div class="slds-col">
+                            <lightning-button label="Apply Insurance" onclick={handleNavigate2}
+                                class="slds-m-top_medium"></lightning-button>
+                        </div>
+                    </div>
+                </div>
+                <div lwc-3mmmrd7j9v4="" class="secondaryFields" role="presentation"
+                    style="visibility: visible; transform: translate3d(0px, 0px, 0px); opacity: 1;">
+                    <slot lwc-3mmmrd7j9v4="" name="secondaryFields" class="slds-grid slds-page-header__detail-row"
+                        style="height: 53px;margin-top: 0px;margin-left: 0px;margin-right: 0px;">
+                        <template if:true={accountDetails}>
+                            <div class="slds-grid">
+                                <div>
+                                    <p>Pan Card</p>
+                                    <p>{accountDetails.PANCardNo__c}</p>
+                                </div>
+                                <div style="margin-left: 3rem;">
+                                    <p>Total Balance</p>
+                                    <p>{accountDetails.Total_Balance__c}</p>
+                                </div>
+                                <!-- <div>
+                                    <p style="margin-left: 3rem;">3</p>
+                                </div> -->
+                            </div>
+                        </template>
+                    </slot>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col" style="margin-top: 12px;">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-tabs_card slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12">
+                    <lightning-tabset>
+                        <lightning-tab class="custom-tab" label="Details" active>
+                            <!--  details content  -->
+                            <lightning-accordion allow-multiple-sections-open active-section-name="personalDetails">
+                                <!-- Personal Details Accordion -->
+                                <lightning-accordion-section name="personalDetails" label="Personal Details"
+                                    style="font-weight: 500;">
+                                    <template if:true={accountDetails}>
+                                        <div>
+                                            <!-- Add personal details content here -->
+                                            <div class="slds-grid slds-gutters">
+                                                <!-- first column -->
+                                                <div class="slds-col">
+                                                    <!-- first name -->
+                                                    <div class="slds-grid slds-grid_vertical mobilepersonal" >
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">First Name</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={firstNameStyle}>
+                                                                {accountDetails.FirstName__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- last name -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Last Name</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={lastNameStyle}>
+                                                                {accountDetails.Last_Name__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- dob -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">DateOfBirth</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={dobStyle}>
+                                                                {accountDetails.DateOfBirth__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Phone Number -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Phone Number</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={phoneNumberStyle}>
+                                                                {accountDetails.Phone_number__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Nationality -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Nationality</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={nationalityStyle}>
+                                                                {accountDetails.Nationality__c}</h1>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- Total Balance -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Total Balance</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1
+                                                                style="border-bottom: 1px solid lightgray; font-size: initial;">
+                                                                {accountDetails.Total_Balance__c}</h1>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <!-- second column -->
+                                                <div class="slds-col">
+                                                    <!-- Father'sName -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Father'sName</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={fathersNameStyle}>
+                                                                {accountDetails.Father_sName__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Mother'sName -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Mother'sName</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={mothersNameStyle}>
+                                                                {accountDetails.Mother_sName__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Gender -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Gender</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1
+                                                                style="border-bottom: 1px solid lightgray; font-size: initial;">
+                                                                {accountDetails.Gender__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- MaritalStatus -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">MaritalStatus</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={maritalStatusStyle}>
+                                                                {accountDetails.MaritalStatus__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </lightning-accordion-section>
+
+                                <!-- Account Details Accordion -->
+                                <lightning-accordion-section name="accountDetails" label="Account details"
+                                    style="font-weight: 500;">
+                                    <template if:true={accountDetails}>
+                                        <div>
+                                            <!-- Add account details content here -->
+                                            <div class="slds-grid slds-gutters">
+                                                <!-- first column -->
+                                                <div class="slds-col widthrem">
+                                                    <!-- Account Number -->
+                                                    <div class="slds-grid slds-grid_vertical mobilepersonal">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Account Number</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={accountNumberStyle}>
+                                                                {accountDetails.Name}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- PANCardNo -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">PANCardNo</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={panCardNoStyle}>
+                                                                {accountDetails.PANCardNo__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- AadharCardNo -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">AadharCardNo</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <div class="slds-grid slds-grid_align-spread"
+                                                                style={AadharCardNoStyle}>
+                                                                <div class="slds-col">
+                                                                    <h1>
+                                                                        {displayAadharCardno}</h1>
+                                                                </div>
+                                                                <div class="slds-col">
+                                                                    <template if:true={showAadhar}>
+                                                                        <lightning-icon icon-name="utility:preview"
+                                                                            title="Show" size='x-small'
+                                                                            onclick={toggleAadharVisibility}>
+                                                                        </lightning-icon>
+                                                                    </template>
+                                                                    <template if:false={showAadhar}>
+                                                                        <lightning-icon icon-name="utility:hide"
+                                                                            title="Hide" size='x-small'
+                                                                            onclick={toggleAadharVisibility}>
+                                                                        </lightning-icon>
+                                                                    </template>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                    <!-- Document Verification Status -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Document Verification
+                                                                Status</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={documentVerificationStatusStyle}>
+                                                                {accountDetails.Document_Verification_Status__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Open Date -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Open Date</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={openDateStyle}>
+                                                                {accountDetails.Open_Date__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Mode Of Operation -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Mode Of Operation</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={modeOfOperationStyle}>
+                                                                {accountDetails.Mode_Of_Operation__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Mode Of Payment -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Mode Of Payment</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={modeOfPaymentStyle}>
+                                                                {accountDetails.Mode_Of_Payment__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Total Deposit Amount -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Total Deposit Amount</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={totalDepositAmountStyle}>
+                                                                {accountDetails.Total_Deposit_Amount__c}</h1>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <!-- second column -->
+                                                <div class="slds-col">
+
+                                                    <!-- 1st Joint Application Name -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">1st Joint Application Name
+                                                            </p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={firstJointApplicationNameStyle}>
+                                                                {accountDetails.X1st_Joint_Application_Name__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- 2nd Joint Application Name -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">2nd Joint Application Name
+                                                            </p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={secondJointApplicationNameStyle}>
+                                                                {accountDetails.X2nd_Joint_Application_Name__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- 3rd Joint Application Name -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">3rd Joint Application Name
+                                                            </p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={thirdJointApplicationNameStyle}>
+                                                                {accountDetails.X3rd_Joint_Application_Name__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Status -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Status</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={statusStyle}>
+                                                                {accountDetails.Status__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Annual Income -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Annual Income</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1
+                                                                style="border-bottom: 1px solid lightgray; font-size: initial;">
+                                                                {accountDetails.Annual_Income__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </lightning-accordion-section>
+
+                                <!-- Address Details Accordion -->
+                                <lightning-accordion-section name="addressDetails" label="Address details"
+                                    style="font-weight: 500;">
+                                    <template if:true={accountDetails}>
+                                        <div>
+                                            <!-- address details content here -->
+                                            <div class="slds-grid slds-gutters">
+                                                <!-- first column -->
+                                                <div class="slds-col" >
+                                                    <!-- Country -->
+                                                    <div class="slds-grid slds-grid_vertical mobilepersonal">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Country</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1
+                                                                style="border-bottom: 1px solid lightgray; font-size: initial;">
+                                                                {accountDetails.Country__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- State -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">State</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1
+                                                                style="border-bottom: 1px solid lightgray; font-size: initial;">
+                                                                {accountDetails.State__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- City -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">City</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1
+                                                                style="border-bottom: 1px solid lightgray; font-size: initial;">
+                                                                {accountDetails.City__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- PinCode -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">PinCode</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1
+                                                                style="border-bottom: 1px solid lightgray; font-size: initial;">
+                                                                {accountDetails.PinCode__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Landmark -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Landmark</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1
+                                                                style="border-bottom: 1px solid lightgray; font-size: initial;">
+                                                                {accountDetails.Landmark__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- CommunicationResidentAddress -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">
+                                                                ResidentAddress</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1
+                                                                style="border-bottom: 1px solid lightgray; font-size: initial;">
+                                                                {accountDetails.CommunicationResidentAddress__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Same as Resident Address -->
+                                                    <!-- <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Same as Resident Address
+                                                            </p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <lightning-checkbox-group options={options} value={value}
+                                                                style="border-bottom: 1px solid lightgray;">
+                                                            </lightning-checkbox-group>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Same as Resident Address
+                                                            </p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <div class="slds-form-element">
+                                                                <div class="slds-form-element__control">
+                                                                    <div class="slds-checkbox"
+                                                                        style="border-bottom: 1px solid lightgray;">
+                                                                        <input
+                                                                            type="checkbox"
+                                                                            name="pancard"
+                                                                            id="checkbox-unique-id-81"
+                                                                            value="checkbox-unique-id-81"
+                                                                            checked={isSameasResidentAddressChecked}
+                                                                            disabled
+
+                                                                        />
+                                                                        <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+                                                                            <span class="slds-checkbox_faux"></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- second column -->
+                                                <div class="slds-col">
+                                                    <!-- Country P -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Country p</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={ifCountypStyle}>
+                                                                {accountDetails.Country_P__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- State P -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">State p</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={ifStatepStyle}>
+                                                                {accountDetails.State_P__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- City P -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">City P</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={ifCitypNameStyle}>
+                                                                {accountDetails.City_P__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- PinCode P -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">PinCode P</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={ifPincodepNameStyle}>
+                                                                {accountDetails.PinCode_P__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Landmark P -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Landmark P</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={ifLandmarkpStyle}>
+                                                                {accountDetails.Landmark_P__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Permanent Address P -->
+                                                    <div class="slds-grid slds-grid_vertical" style="padding-top: 8px;">
+                                                        <div class="slds-col">
+                                                            <p style="font-weight: initial;">Permanent Address</p>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <h1 style={ifpermanentaddressStyle}>
+                                                                {accountDetails.Permanent_Address__c}</h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </lightning-accordion-section>
+                            </lightning-accordion>
+                        </lightning-tab>
+                        <!-- Files tab -->
+                        <lightning-tab class="custom-tab" label="Files">
+                            <c-files-tab></c-files-tab>
+                        </lightning-tab>
+                    </lightning-tabset>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+                    <div class="slds-grid slds-grid_vertical">
+                        <article class="slds-card mobileaccodian">
+                            <div class="slds-card__header slds-grid cardHeader">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__figure">
+                                        <lightning-icon icon-name='standard:partners' alternative-text='partners'
+                                            size='small' title='partners'></lightning-icon>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h1 class="slds-card__header-title">
+                                            Loans ({relatedLoans.length})
+                                        </h1>
+                                    </div>
+                                </header>
+                            </div>
+                            <div class="class1" style="padding-top: 0px;">
+                                <template if:true={visibleLoanDetails}>
+                                    <template for:each={visibleLoanDetails} for:item="loan">
+                                        <div class="slds-grid_vertical" key={loan.Id}>
+                                            <lightning-accordion allow-multiple-sections-open>
+                                                <lightning-accordion-section name="loandetails" label={loan.Name}
+                                                    style="font-weight: 500;">
+                                                    <div class="slds-grid" style="margin-top: 8px;">
+                                                        <div class="slds-col slds-order_1 slds-large-order_2">
+                                                            <p><strong> Approval Status</strong> :
+                                                                {loan.Approval_Status__c}</p>
+                                                            <p><strong> Loan Amount</strong> : {loan.Loan_Amount__c}</p>
+                                                        </div>
+                                                        <div class="slds-col slds-order_2 slds-large-order_1">
+                                                            <p><strong> Loan type</strong> : {loan.RecordType.Name}</p>
+                                                            <p><strong> Loan Purpose</strong> : {loan.Loan_Purpose__c}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <lightning-button label="View More" variant="base"
+                                                            onclick={handleAccountClick} data-id={loan.Id}
+                                                            data-name={loan.Name} style="margin-left: 21rem;">
+                                                        </lightning-button>
+                                                    </div>
+                                                </lightning-accordion-section>
+                                            </lightning-accordion>
+                                        </div>
+                                    </template>
+                                </template>
+                            </div>
+                            <footer class="slds-card__footer" style="border-top: 1px solid lightgray;">
+                                <a class="slds-card__footer-action" href="javascript:void(0);"
+                                    style="margin-right: 12rem;" onclick={handleViewAllClick}>View All</a>
+                            </footer>
+
+                        </article>
+
+                        <article class="slds-card mobileinsuranceacc">
+                            <div class="slds-card__header slds-grid cardHeader">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__figure">
+                                        <lightning-icon icon-name='custom:custom17' alternative-text='custom17' size='small' title='custom17'></lightning-icon>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h1 class="slds-card__header-title">
+                                            Insurances ({relatedInsurances.length})
+                                        </h1>
+                                    </div>
+                                </header>
+                            </div>
+                            <div class="class2" style="padding-top: 0px;">
+                                <template if:true={visibleInsuranceDetails}>
+                                    <template for:each={visibleInsuranceDetails} for:item="loan">
+                                        <div class="slds-grid_vertical" key={loan.Id}>
+                                            <lightning-accordion allow-multiple-sections-open>
+                                                <lightning-accordion-section name="loandetails" label={loan.Name}
+                                                    style="font-weight: 500;">
+                                                    <div class="slds-grid" style="margin-top: 8px;">
+                                                        <div class="slds-col slds-order_1 slds-large-order_2">
+                                                            <p><strong> Insurance Status</strong> :
+                                                                {loan.Status__c}</p>
+                                                            <p><strong> Policy Premium Amount</strong> : {loan.Policy_Premium_Amount__c}</p>
+                                                        </div>
+                                                        <div class="slds-col slds-order_2 slds-large-order_1">
+                                                            <p><strong> Underwriting Status</strong> : {loan.Underwriting_Status__c }</p>
+                                                            <p><strong> Policy End Date</strong> : {loan.Policy_End_Date__c}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <lightning-button label="View More" variant="base"
+                                                            onclick={handleInsuranceAccountClick} data-id={loan.Id}
+                                                            data-name={loan.Name} style="margin-left: 21rem;">
+                                                        </lightning-button>
+                                                    </div>
+                                                </lightning-accordion-section>
+                                            </lightning-accordion>
+                                        </div>
+                                    </template>
+                                </template>
+                            </div>
+                            <footer class="slds-card__footer" style="border-top: 1px solid lightgray;">
+                                <a class="slds-card__footer-action" href="javascript:void(0);"
+                                    style="margin-right: 12rem;" onclick={handleInsuranceViewAllClick}>View All</a>
+                            </footer>
+
+                        </article>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- aadhar doc
+    <template if:true={isaadharOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                Modal/Popup Header
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={closeaadhar}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium">Aadhar Document</h2>
+                </header>
+
+                Modal/Popup Body
+                <template if:true={accountDetails}>
+                    <div class="slds-col uploaded-file" style="background-color: white;" lwc:dom="manual"></div>
+                </template>
+
+                Modal/Popup Footer
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeaadhar}>Close</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template> -->
+</template>

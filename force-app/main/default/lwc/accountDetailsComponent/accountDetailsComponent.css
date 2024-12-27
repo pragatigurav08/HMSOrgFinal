@@ -1,0 +1,124 @@
+.custom-container{
+	color : black;
+}
+.slds-tabs_card, .slds-tabs_card.slds-tabs_card {
+    padding: var(--lwc-varSpacingVerticalSmall, 0.75rem) var(--lwc-varSpacingHorizontalMedium, 1rem);
+    background: var(--slds-c-card-color-background, var(--sds-c-card-color-background, var(--slds-g-color-neutral-base-100, var(rgb(255, 255, 255)))));
+    border-width: var(--slds-c-card-sizing-border, var(--sds-c-card-sizing-border, var(--lwc-borderWidthThin, 1px)));
+    border-style: solid;
+    border-color: var(--slds-c-card-color-border, var(--sds-c-card-color-border, var(--slds-g-color-border-base-1, var(rgb(201, 201, 201)))));
+    border-radius: var(--slds-c-card-radius-border, var(--sds-c-card-radius-border, var(--lwc-borderRadiusMedium, 0.25rem)));
+    box-shadow: var(--slds-c-card-shadow, var(--sds-c-card-shadow, var( 0 2px 2px 0 rgba(0, 0, 0, 0.10))));
+}
+
+.custom-tab .slds-tabs_default__item {
+    font-size: larger;
+}
+
+.slds-accordion__section {
+    padding: 10px;
+}
+
+.lightning-input {
+    margin-bottom: 10px;
+}
+.button{
+    width: 100%;
+}
+.cardHeader {
+    background-color: rgb(243, 243, 243);
+    height: 50px;
+}
+.slds-media_center {
+    align-items: center;
+}
+.cardHeaderloan {
+    background-color: rgb(243, 243, 243);
+            height: 22px;
+}
+.namemobile{
+    padding-left: 12px;
+}
+.namemobile1{
+    padding-left: 12px;
+}
+.mobileaccodian{
+    margin-left: 1rem;
+}
+.mobileinsuranceacc{
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+.widthrem11{
+    width: 29rem;
+}
+@media (max-width: 320px) {
+    .mobileend{
+    margin-left: 0px;
+    font-size: 9px;
+    margin-right: -17px;
+    }
+    .namemobile{
+  padding-left: 0px;
+        font-size: 9px;
+        width: 65px;
+}
+  .namemobile1{
+  padding-left: 0px;
+        font-size: 8px;
+        width: 59px;
+}
+.mobileaccodian{
+    margin-top: 1rem;
+    margin-left: 0rem;
+}
+.mobileinsuranceacc{
+    margin-left: 0rem;
+    margin-top: 1rem;
+}
+.mobilepersonal{
+    padding-top: 8px;
+    width: 100px;
+}
+.widthrem{
+    width: 8rem;
+}
+.widthrem11{
+    width: 8rem;
+}
+}
+@media (max-width: 425px) {
+    .mobileend{
+    margin-left: 0px;
+    font-size: 9px;
+    margin-right: -17px;
+    }
+    .namemobile{
+  padding-left: 0px;
+        font-size: 9px;
+        width: 65px;
+}
+  .namemobile1{
+  padding-left: 0px;
+        font-size: 8px;
+        width: 59px;
+}
+.mobileaccodian{
+    margin-top: 1rem;
+    margin-left: 0rem;
+}
+.mobileinsuranceacc{
+    margin-left: 0rem;
+    margin-top: 1rem;
+}
+.mobilepersonal{
+    padding-top: 8px;
+    width: 100px;
+}
+.widthrem{
+    width: 8rem;
+}
+.widthrem11{
+    width: 8rem;
+}
+}

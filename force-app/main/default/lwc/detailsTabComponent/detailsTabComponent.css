@@ -1,0 +1,24 @@
+.custom-container{
+	color : black;
+}
+.slds-tabs_card, .slds-tabs_card.slds-tabs_card {
+    padding: var(--lwc-varSpacingVerticalSmall, 0.75rem) var(--lwc-varSpacingHorizontalMedium, 1rem);
+    background: var(--slds-c-card-color-background, var(--sds-c-card-color-background, var(--slds-g-color-neutral-base-100, var(rgb(255, 255, 255)))));
+    border-width: var(--slds-c-card-sizing-border, var(--sds-c-card-sizing-border, var(--lwc-borderWidthThin, 1px)));
+    border-style: solid;
+    border-color: var(--slds-c-card-color-border, var(--sds-c-card-color-border, var(--slds-g-color-border-base-1, var(rgb(201, 201, 201)))));
+    border-radius: var(--slds-c-card-radius-border, var(--sds-c-card-radius-border, var(--lwc-borderRadiusMedium, 0.25rem)));
+    box-shadow: var(--slds-c-card-shadow, var(--sds-c-card-shadow, var( 0 2px 2px 0 rgba(0, 0, 0, 0.10))));
+}
+
+.custom-tab .slds-tabs_default__item {
+    font-size: larger;
+}
+
+.slds-accordion__section {
+    padding: 10px;
+}
+
+.lightning-input {
+    margin-bottom: 10px;
+}

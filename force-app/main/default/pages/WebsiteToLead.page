@@ -1,0 +1,24 @@
+<!--
+  @description       : 
+  @author            : Saurav Kashyap
+  @group             : SK Group
+  @last modified on  : 11-08-2023
+  @last modified by  : Saurav Kashyap
+  Modifications Log
+  Ver   Date         Author           Modification
+  1.0   11-08-2023   Saurav Kashyap   Initial Version
+-->
+<apex:page showHeader="false" sidebar="false">
+    <apex:includeLightning />    
+    <div id="LightningComponentid" />    
+    <script>
+    $Lightning.use("c:WebsitePageApp", function() {
+        $Lightning.createComponent("c:websitePageComponent",
+          {},
+          "LightningComponentid",
+          function(cmp) {
+             console.log('Welcome Bole toh Sahi Wala Welcome');
+          });
+    });
+    </script>
+</apex:page>

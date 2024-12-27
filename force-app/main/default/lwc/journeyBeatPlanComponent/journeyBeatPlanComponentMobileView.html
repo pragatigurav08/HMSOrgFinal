@@ -1,0 +1,168 @@
+<!--
+  @description       : 
+  @author            : Tejaswini Gonuru
+  @group             : 
+  @last modified on  : 08-07-2022
+  @last modified by  : Tejaswini Gonuru
+-->
+<template>
+    <template if:true={firstPage}>
+        <div class="bottom-top-padding-class">
+            <div class="sidewise-padding">
+                <div class="slds-grid slds-grid_vertical frame-class frame-color-class frame-border-radius">
+                    <div class="slds-col header-background" style="border-radius: 10px 10px 0px 0px;">
+                        <div class="slds-grid" style="padding: 10px;">
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="your-lead-styling">
+                                    <h1 class="slds-text-heading_medium form-header">New Plan</h1>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <div class="slds-float_right your-lead-styling">
+                                    <h1 class="next-form-header-page-number">1/2</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col" style="padding: 15px;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12">
+                                <lightning-input type="text" label="Plan Name" value={journeyDetails.planItemName} onchange={planname} class="slds-align_absolute-center" required></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12">
+                                <lightning-input type="date" label="Plan Start Date" value={journeyDetails.startDateValue} onchange={startdate}  ></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12">
+                                <lightning-input type="date" label="Plan End Date" value={journeyDetails.endDateValue} onchange={enddate} ></lightning-input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-align--absolute-center slds-col slds-p-around--small">
+                        <button class="slds-button slds-button_brand action-button"
+                            onclick={handleCancel}>
+                            Cancel
+                        </button>
+                        <button class="slds-button slds-button_brand action-button"
+                            onclick={handleStart}>
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={secondPage}>
+        <div class="bottom-top-padding-class">
+            <div class="sidewise-padding">
+                <div class="slds-grid slds-grid_vertical frame-class frame-color-class frame-border-radius">
+                    <div class="slds-col header-background" style="border-radius: 10px 10px 0px 0px;">
+                        <div class="slds-grid" style="padding: 10px;">
+                            <div class="slds-col slds-size_1-of-4">
+                                <div class="your-lead-styling">
+                                    <lightning-icon class="add-icon" icon-name='utility:new' alternative-text='Add Row' size='medium' title='add' onclick={addRow} ></lightning-icon>
+                                </div>
+                            </div>
+                            <div class="slds-align--absolute-center slds-col slds-size_2-of-4">
+                                <div class="your-lead-styling">
+                                    <span style="font-size:16px"><b>Plan Your Visits</b></span>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-4">
+                                <div class="slds-float_right your-lead-styling">
+                                    <h1 class="next-form-header-page-number">2/2</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col" style="padding: 15px;">
+                        <template for:each={addRowsFields} for:item="data">
+                            <div  key={data.key} id={data.key}>
+                                <div class="slds-box slds-col; slds-m-vertical_medium slds-p-around_medium">
+                                    <div class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-size_2-of-3">
+                                        <span>
+                                            <c-custom-lookup obj-name="Route__c" unique-id={data.uniqueId} input-label="Sales Route" data-id={data.uniqueId}
+                                            icon-name="custom:custom80" default-name={beatSelected.Name}
+                                            onlookupselected={handleBeatChange} onnolookupselected={handleBeatNoChange} required>
+                                            </c-custom-lookup>        
+                                        </span>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-3">
+                                        <span>
+                                            <div class="slds-float_right">
+                                            <lightning-button-icon icon-name="utility:delete"  
+                                                variant="bare" 
+                                                alternative-text="Delete"
+                                                title="Delete Row"
+                                                size="large"
+                                                data-id={data.uniqueId}
+                                                onclick={handleDeleteRow}>
+                                            </lightning-button-icon>
+                                            </div>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <template for:each={data.accountsRecord} for:item="con">
+                                            <div key={con.Id} class="slds-card slds-p-around_x-small">
+                                                <div class="slds-grid slds-grid_vertical">
+                                                    <div class="slds-col">
+                                                    <span>
+                                                        <div class="slds-media slds-media_center">
+                                                            <div class="slds-media__figure">
+                                                                <lightning-input type="checkbox" value={con.Id}  onchange={checkedHandler} name={data.uniqueId} data-id={con.Id} checked={con.checkValue}></lightning-input>
+                                                            </div>
+                                                            <div class="slds-media__body">
+                                                                <span class="slds-truncate"><b>{con.Name}</b></span>
+                                                            </div>
+                                                        </div>
+                                                    </span>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                    <span>
+                                                        <dl class="slds-list_horizontal slds-wrap">
+                                                            <dt class="slds-item_label slds-text-color_weak slds-truncate" style="font-size:13px">
+                                                                Start Time</dt>
+                                                            <dd class="slds-item_detail slds-text-color_default">
+                                                                <lightning-input type="datetime"  dropdown-alignment="auto" onchange={startDateAccount} value={con.starttime} name={data.uniqueId} data-id={con.Id} disabled={con.isDisabled} required={con.checkValue}></lightning-input>
+                                                            </dd>
+                                                        </dl>
+                                                    </span>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                    <span>
+                                                        <dl class="slds-list_horizontal slds-wrap">
+                                                            <dt class="slds-item_label slds-text-color_weak slds-truncate" style="font-size:13px">
+                                                                End Time</dt>
+                                                            <dd class="slds-item_detail slds-text-color_default">
+                                                                <lightning-input type="datetime"  dropdown-alignment="auto" onchange={endDateAccount} value={con.endtime} name={data.uniqueId} data-id={con.Id} disabled={con.isDisabled} required ={con.checkValue}></lightning-input>
+                                                            </dd>
+                                                        </dl>
+                                                    </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="slds-col" style="padding: 0px 15px 15px 15px;">
+                        <div class="slds-align--absolute-center slds-col slds-p-around--small">
+                            <button class="slds-button slds-button_brand action-button"
+                            onclick={saveClicked}>
+                            Save
+                            </button>
+                            <button class="slds-button slds-button_brand action-button"
+                                onclick={handleCancel}>
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

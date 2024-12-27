@@ -1,0 +1,158 @@
+<!--
+  @description       : 
+  @author            : Saurav Kashyap
+  @group             : SK Group
+  @last modified on  : 17-08-2023
+  @last modified by  : Saurav Kashyap
+  Modifications Log
+  Ver   Date         Author           Modification
+  1.0   16-08-2023   Saurav Kashyap   Initial Version
+-->
+<template>
+    <div class="slds-card">
+        <div class="feedback-form">
+            <!-- Title - Header -->
+            <h1 class="slds-align_absolute-center title-header">Electric Vehicle Test Ride Feedback</h1>
+
+            <!-- Title Sub Header -->
+            <p class="slds-align_absolute-center title-sub-header">We appreciate your feedback. Please take a moment to share your experience:</p>
+            
+            <!-- Form Body -->
+            <div class="slds-grid slds-wrap">
+                <!-- Row - 1 -->
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <lightning-input label="Name" value={name} onchange={handleNameChange} required></lightning-input>
+                </div>
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <lightning-input label="Email" value={email} onchange={handleEmailChange} required
+                        type="email"></lightning-input>
+                </div>
+
+                <!-- Row - 2 -->
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">1. How satisfied were you with your overall test ride experience?</p>
+                        <lightning-combobox options={satisfactionOptions} value={rating} onchange={handleRatingChange}
+                            ></lightning-combobox>
+                    </div>
+                </div>
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">2. How would you rate the performance and handling of the Electric Vehicle during the test
+                            ride?</p>
+                        <lightning-combobox options={performanceOptions} value={performanceRating}
+                            onchange={handlePerformanceRatingChange}></lightning-combobox>
+                    </div>
+                </div>
+
+                <!-- Row - 3 -->
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">3. Did the Electric Vehicle meet your expectations in terms of comfort and interior features?
+                        </p>
+                        <lightning-combobox options={comfortOptions}
+                        value={comfortRating} onchange={handleComfortRatingChange}></lightning-combobox>
+                    </div>
+                </div>
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">4. Were you satisfied with the range and battery life of the Electric Vehicle during the test
+                            ride?</p>
+                        <lightning-combobox options={rangeOptions}
+                        value={rangeRating} onchange={handleRangeRatingChange} ></lightning-combobox>
+                    </div>
+                </div>
+
+                <!-- Row - 4 -->
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">5. How would you rate the exterior design and aesthetics of the Electric Vehicle?</p>
+                        <lightning-combobox options={designOptions}
+                            value={designRating} onchange={handleDesignRatingChange}></lightning-combobox>
+                    </div>
+                </div>
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">6. Were you provided with clear and sufficient information about the Electric Vehicle's
+                            features and capabilities before the test ride?</p>
+                        <lightning-combobox options={informationOptions}
+                            value={informationRating} onchange={handleInformationRatingChange}></lightning-combobox>
+                    </div>
+                </div>
+
+                <!-- Row - 5 -->
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">7. Did you find the test ride booking process and scheduling convenient?</p>
+                        <lightning-combobox options={bookingConvenienceOptions}
+                            value={bookingConvenienceRating}
+                            onchange={handleBookingConvenienceRatingChange}></lightning-combobox>
+                    </div>
+                </div>
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">8. How would you rate the customer service and assistance you received during the test ride?
+                        </p>
+                        <lightning-combobox options={customerServiceOptions}
+                            value={customerServiceRating}
+                            onchange={handleCustomerServiceRatingChange}></lightning-combobox>
+                    </div>
+                </div>
+                <!-- Row - 6 -->
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">9. Were there any specific features of the Electric Vehicle that stood out to you during the test ride?</p>
+                        <lightning-combobox options={standoutOptions}
+                            value={standoutFeatures}
+                            onchange={handleStandoutFeaturesChange}></lightning-combobox>
+                    </div>
+                </div>
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">10. Do you have any suggestions for improving the test ride experience or the Electric Vehicle itself?</p>
+                        <lightning-combobox options={improvementOptions}
+                            value={improvementSuggestions}
+                            onchange={handleImprovementSuggestionsChange}></lightning-combobox>
+                    </div>
+                </div>
+
+                <!-- Row - 7 -->
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">11. Would you consider purchasing or leasing an Electric Vehicle based on your test ride experience?</p>
+                        <lightning-combobox options={considerPurchaseOptions}
+                            value={considerPurchase}
+                            onchange={handleConsiderPurchaseChange}></lightning-combobox>
+                    </div>
+                </div>
+                <div class="slds-col col-css slds-size--1-of-2">
+                    <div class="rating-section">
+                        <p class="questions-css">12. How likely are you to recommend our Electric Vehicles to a friend or colleague?</p>
+                        <lightning-combobox options={recommendationLikeOptions}
+                            value={recommendationLikelihood}
+                            onchange={handleRecommendationLikelihoodChange}></lightning-combobox>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Button -->
+            <div class="button-css">
+                <lightning-button class="slds-align_absolute-center " label="Submit Feedback" onclick={handleSubmit}></lightning-button>
+            </div>
+
+            <!-- Feedback Form Submitted -->
+            <template if:true={feedbackSubmitted}>
+                <p class="success-message">Thank you for your feedback!</p>
+            </template>
+            <!-- Feedback Error -->
+            <template if:true={feedbackError}>
+                <p class="error-message">{feedbackError}</p>
+            </template>
+
+        </div>
+
+        <div class="copyright">
+
+        </div>
+    </div>
+</template>

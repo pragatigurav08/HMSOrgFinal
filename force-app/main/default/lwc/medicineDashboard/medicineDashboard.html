@@ -1,0 +1,44 @@
+<template>
+    <div class="dashboard-container">
+        <!-- Card Container -->
+        <div class="card">
+            <div class="card-header">
+                <h3>Medicine Types Distribution</h3>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <!-- Y-axis Labels -->
+                    <div class="y-axis">
+                        <span>50</span>
+                        <span>40</span>
+                        <span>30</span>
+                        <span>20</span>
+                        <span>10</span>
+                        <span>0</span>
+                    </div>
+
+                    <!-- Chart Bars and X-axis Labels -->
+                    <div class="bar-chart-container">
+                        <div class="bar-chart">
+                            <template for:each={medicineData} for:item="medicine">
+                                <div 
+                                    key={medicine.label} 
+                                    class="bar" 
+                                    style={medicine.style}>
+                                    {medicine.count}
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- X-axis Labels -->
+                        <div class="x-axis">
+                            <template for:each={medicineData} for:item="medicine">
+                                <span key={medicine.label} class="x-axis-label">{medicine.label}</span>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,47 @@
+<template>
+    <div class="passbook-container">
+        <div class="passbook-header">
+            <div class="bank-logo">
+              <lightning-icon icon-name='utility:custom_apps' class='white-utility-icon' alternative-text='custom_apps' size='large' title='custom_apps'></lightning-icon>
+                 </div>
+            <div class="branch-info">
+                <!-- <p>BRANCH: {branchName}</p> -->
+            </div>
+            <div>
+
+    <div class="parallelogram-container">
+        <div class="parallelogram" style="position: absolute;
+    left: 31%;
+    top: 5%;"></div>
+    </div>
+            </div>
+        </div>
+
+        <div class="passbook-body">
+            <div class="customer-details">
+                <p><strong>Customer Name: </strong>{customerName}</p>
+                <p><strong>Father's Name: </strong>{fathersName}</p>
+                <p><strong>Account No: </strong>{accountNo}</p>
+                <p><strong>Customer ID: </strong>{customerId}</p>
+                <p><strong>IFSC Code: </strong>{ifscCode}</p>
+                <p><strong>A/C Type: </strong>{accountType}</p>
+                <p><strong>Aadhaar No: </strong>{aadhaarNo}</p>
+                <p><strong>Address: </strong>{address}</p>
+                <p><strong>BC Name: </strong>{bcName}</p>
+                <p><strong>BC ID: </strong>{bcId}</p>
+                <p><strong>BC Location: </strong>{bcLocation}</p>
+            </div>
+
+            <!-- <div class="photo-section">
+                <div class="photo-placeholder">
+                    <p>Photo</p>
+                </div>
+                <p>Sign / Seal of BC</p>
+            </div> -->
+        </div>
+
+        <div class="passbook-footer">
+            <p>Customer Care No: 1860 419 5555</p>
+        </div>
+    </div>
+</template>

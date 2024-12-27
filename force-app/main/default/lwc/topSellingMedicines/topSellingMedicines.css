@@ -1,0 +1,60 @@
+.top-selling-medicines {
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.medicines-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.medicine-card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    width: 150px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.medicine-card:hover {
+    transform: translateY(-5px); /* Slightly lift the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance the shadow effect */
+}
+
+.medicine-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 0.5rem;
+}
+
+.medicine-details {
+    margin-top: 0.5rem;
+}
+
+.medicine-name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.medicine-units {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.error-message {
+    color: red;
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+}

@@ -1,0 +1,37 @@
+/* Styling for the Loan Dashboard inside the bill card */
+.dashboard h1 {
+    font-size: 1.5rem;
+    color: #333; /* Darker color for visibility */
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.summary {
+    display: flex; /* Arrange cards side by side */
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+/* Individual cards for total loan amount and amount to be repaid */
+.card {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+    width: 100%; /* Flex width for equal spacing */
+    margin: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.card p {
+    font-size: 0.9rem;
+       color: #666;
+    margin-bottom: 8px;
+}
+
+.card h2 {
+    font-size: 1.25rem;
+    color: #1e88e5; /* Distinctive color */
+    margin: 0;
+}

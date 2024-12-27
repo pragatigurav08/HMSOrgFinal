@@ -1,0 +1,1538 @@
+<!--RECEPTIONINS DAshboard-->
+
+<template>
+    
+
+    <!--new Dashboard-->
+
+
+    <lightning-card> 
+        <div class="slds-grid slds-wrap">
+            <!-- Left Sidebar -->
+            <div class="slds-col slds-size_1-of-5 slds-small-size_1-of-4 slds-p-around_medium sidebar" style="padding-top: 5px !important;">        
+               <!-- <div class="slds-page-header">
+                    <div class="slds-page-header__row">
+                        <div class="slds-page-header__col-title">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <lightning-icon class="slds-text-align_right custom-icon" icon-name="standard:queue" alternative-text="case" title="case"></lightning-icon>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <h1>
+                                                <span class="slds-page-header__title slds-truncate" title="Rohde Corp - 80,000 Widgets">Health Care</span>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+                <div class="slds-page-header" style="text-align: center;">
+                    <div class="header-container receptionRightSiteBarcl">
+                        <!-- Profile Image -->
+                        <img src={receptionRightSiteBar} alt="Doctor Image" class="profile-image" />
+                
+                        <!-- Health Care Title -->
+                        <h1 class="header-title">Health Care</h1>
+                    </div>
+                </div>
+            
+                <br>
+                <div class="slds-nav-vertical">
+                    <div class="slds-nav-vertical__section">
+                        <ul>
+                            <!-- Dashboard -->
+                            <li class="slds-nav-vertical__item">
+                                <a href="javascript:void(0);" class={getClassForDashboard} onclick={showDashboard}>
+                                    <lightning-icon class="acon_abc" icon-name="utility:apps" size="small"></lightning-icon>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+            
+                            <!-- Patients -->
+                            <li class="slds-nav-vertical__item">
+                                <a href="javascript:void(0);" class={getClassForPatients} onclick={showPatients}>
+                                    <lightning-icon class="acon_abc" icon-name="utility:user" size="small"></lightning-icon>
+                                    <span>Patients</span>
+                                </a>
+                            </li>
+            
+                            <!-- Doctors -->
+                            <li class="slds-nav-vertical__item">
+                                <a href="javascript:void(0);" class={getClassForDoctors} onclick={showDoctorsView}>
+                                    <lightning-icon class="acon_abc" icon-name="utility:locked_with_additions" size="small"></lightning-icon>
+                                    <span>Doctors</span>
+                                </a>
+                            </li>
+            
+                            <!-- Appointments -->
+                            <li class="slds-nav-vertical__item">
+                                <a href="javascript:void(0);" class={getClassForAppointments} onclick={showAppointments}>
+                                    <lightning-icon class="acon_abc" icon-name="utility:event" size="small"></lightning-icon>
+                                    <span>Appointments</span>
+                                </a>
+                            </li>
+                            
+                            <!-- Billing -->
+                            <li class="slds-nav-vertical__item">
+                                <a href="javascript:void(0);" class={getClassForBilling} onclick={showBilling}>
+                                    <lightning-icon class="acon_abc" icon-name="utility:money" size="small"></lightning-icon>
+                                    <span>Billing</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            
+
+
+            <!-- part 1 -->
+
+            <!-- Right Main Content -->
+            <!--div class="slds-col slds-size_4-of-5 slds-p-around_medium"-->
+            <div class="slds-col slds-size_4-of-5">
+                <!-- Welcome Header -->
+                <div class="slds-page-header" style="padding-bottom: 4px;">
+                    <div class="slds-page-header__row slds-grid slds-wrap">
+                        <!-- Title Section -->
+                        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-1 slds-p-around_small" style="padding-top: 0px;">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <img src={receptionProfile} alt="Doctor Image" class="slds-m-bottom_small" style="width: 50px; height: 50px; border-radius: 50%;" />
+                                        
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-grid slds-wrap" style="padding-top: 12px">
+                                        <!-- Left side (Welcome Message) -->
+                                        <div class="slds-col slds-size_1-of-2 slds-text-align_left">
+                                            <h1 class="slds-text-heading_medium slds-m-bottom_medium">{welcomeMessage}</h1>
+                                        </div>
+                                        <!-- Right side (Register Button) -->
+                                        <div class="slds-col slds-size_1-of-2 slds-text-align_right reg" style="padding-top:0px">
+                                            <lightning-button class="slds-p-around_small" variant="brand" label="Register" onclick={openModal}></lightning-button>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+
+                            </div>
+                        </div>
+                
+        
+                    </div>
+                </div>
+
+                
+                
+
+                <!-- Content Section -->
+                <template if:true={isDashboardVisible}>
+
+                    <div class="welcome-card slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+                        <div class="card-content">
+                            <h2>Welcome to Health Care!</h2>
+                            <p>We are dedicated to providing exceptional medical services to improve your well-being.</p>
+                            <p>Our team of experts ensures personalized care tailored to your health needs.</p>
+                            <p>Your health and comfort are our top priorities every step of the way.</p>
+                        </div>
+                        <div class="image-container rec">
+                            <img alt="Dashboard Illustration" style="width:230px" class="image" src="/resource/receptionClinic" />
+                        </div>
+                    </div>
+
+
+                    <div class="slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+                        <lightning-card title="Overview" icon-name="standard:dashboard_component" class="overview">
+                            
+                            
+                         
+                            
+                            
+                            <div class="slds-grid slds-wrap slds-m-around_medium">
+
+                                <!-- Box for Total Doctors -->
+                                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-p-around_small">
+                                    <div class="slds-box slds-box_small slds-text-align_center custom-box doctor-box">
+                                        <lightning-icon icon-name="custom:custom94" alternative-text="Total Doctors" size="medium" class="slds-m-bottom_small"></lightning-icon>
+                                        <p><strong>Available Doctors</strong></p>
+                                        <p class="slds-text-heading_medium">
+                                            <template if:true={doctorCount}>
+                                                {doctorCount}
+                                            </template>
+                                            <template if:false={doctorCount}>
+                                                0
+                                            </template>
+                                        </p>
+                                    </div>
+                                </div>
+                
+                                <!-- Box for Total Patients -->
+                                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-p-around_small">
+                                    <div class="slds-box slds-box_small slds-text-align_center custom-box patient-box">
+                                        <lightning-icon icon-name="custom:custom103" alternative-text="Total Patients" size="medium" class="slds-m-bottom_small"></lightning-icon>
+                                        <p><strong>Total Patients</strong></p>
+                                        <p class="slds-text-heading_medium">
+                                            <template if:true={patientCount}>
+                                                {patientCount}
+                                            </template>
+                                            <template if:false={patientCount}>
+                                                0
+                                            </template>
+                                        </p>
+                                    </div>
+                                </div>
+                
+                                <!-- Box for New Patients Today -->
+                                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-p-around_small">
+                                    <div class="slds-box slds-box_small slds-text-align_center custom-box new-patients-box">
+                                        <lightning-icon icon-name="custom:custom15" alternative-text="New Patients Today" size="medium" class="slds-m-bottom_small"></lightning-icon>
+                                        <p><strong>New Patients Today</strong></p>
+                                        <p class="slds-text-heading_medium">
+                                            <template if:true={newPatientsToday}>
+                                                {newPatientsToday}
+                                            </template>
+                                            <template if:false={newPatientsToday}>
+                                                0
+                                            </template>
+                                        </p>
+                                    </div>
+                                </div>
+                
+                                <!-- Box for Appointments Today -->
+                                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-p-around_small">
+                                    <div class="slds-box slds-box_small slds-text-align_center custom-box appointments-box">
+                                        <lightning-icon icon-name="custom:custom25" alternative-text="Appointments Today" size="medium" class="slds-m-bottom_small"></lightning-icon>
+                                        <p><strong>Appointments Today</strong></p>
+                                        <p class="slds-text-heading_medium">
+                                            <template if:true={appointmentsToday}>
+                                                {appointmentsToday}
+                                            </template>
+                                            <template if:false={appointmentsToday}>
+                                                0
+                                            </template>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <!-- Error Handling -->
+                            <template if:true={error}>
+                                <p class="slds-text-color_error slds-m-around_medium">Error: {error}</p>
+                            </template>
+                            <div class="slds-m-top_medium slds-text-align_center">
+                                <p class="slds-text-body_small slds-text-color_weak">For more details, visit the <a href="#" class="slds-text-link">dashboard page</a>.</p>
+                            </div>
+                            
+                        </lightning-card>
+                    </div>
+
+                    
+                 <!--   <lightning-card title="Healthcare Dashboard">
+                        <div class="slds-grid slds-wrap slds-grid_align-spread slds-p-around_medium">
+                            
+                            
+                            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-2 slds-box slds-box_x-small slds-theme_default slds-m-around_medium">
+                                
+                            
+                                <div class="slds-align_absolute-center">
+                                    <div class="slds-align_absolute-center slds-m-bottom_medium">
+                                        <canvas class="donut" style="max-width: 100%; height: 300px;" lwc:dom="manual"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                           
+                            <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-2 slds-box slds-box_x-small slds-theme_default slds-m-around_medium">
+                            
+                                <div class="slds-align_absolute-center">
+                                    <div class="slds-align_absolute-center slds-m-bottom_medium">
+                                        <canvas class="chart" style="max-width: 100%; height: 300px;" lwc:dom="manual"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </lightning-card>-->
+
+                    
+                    <lightning-card title="Healthcare Dashboard" class="slds-m-around_medium">
+                        <div class="slds-grid slds-wrap slds-gutters slds-m-around_medium">
+                            <!-- First Column -->
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-p-around_small responsive-container">
+                                <div class="slds-box slds-theme_default slds-border">
+                                    <div class="slds-align_absolute-center slds-m-bottom_medium">
+                                        <canvas class="donut" lwc:dom="manual"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <!-- Second Column -->
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-p-around_small responsive-container">
+                                <div class="slds-box slds-theme_default slds-border">
+                                    <div class="slds-align_absolute-center slds-m-bottom_medium">
+                                        <canvas class="chart" lwc:dom="manual"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-card>
+                    
+                    
+                    
+                    
+
+                    
+                    
+
+
+
+                </template>
+             
+
+                <template if:true={isPatientsVisible}>
+                    <div class="welcome-card slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+                        <div class="card-content">
+                            <h2>Your Health, Our Priority!</h2>
+                            <p>Explore personalized insights to stay on top of your well-being.</p>
+                            <p>We are dedicated to providing you with the best care and support.</p>
+                            <p>Access your health updates and manage appointments effortlessly.</p>
+                           </div>
+                        <div class="image-container rec">
+                            <img alt="Dashboard Illustration" class="image" src="/resource/receptionPatientImg1" />
+                        </div>
+                    </div>
+
+
+
+                    <div class="slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+                        <lightning-card>
+                            <div class="slds-grid slds-nowrap slds-p-horizontal_small slds-m-bottom_small">
+                                <!-- Total Patients on the left -->
+                                <div class="slds-col slds-size_1-of-2 slds-align_left">
+                                    <div class="slds-grid slds-align_left">
+                                        <!-- Icon for Total Patients -->
+                                        <div class="slds-media__figure">
+                          
+                                 
+                                            <img src={receptionPatient} alt="Doctor Image" class="slds-m-bottom_small" style="width: 50px; height: 50px; border-radius: 50%;" />
+                                       
+                                        </div>
+                                        <!-- Total Patients Text next to the icon -->
+                                        <h2 class="slds-text-heading_medium" style="padding-top:12px">Total Patients</h2>
+                                    </div>
+                                </div>
+                        
+                                <!-- Search bar on the right -->
+                                <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+                                    <lightning-input class="searchh" type="search" value={searchQuery} onchange={handleSearchChange} placeholder="Search Patient"></lightning-input>
+                                </div>
+                            </div>
+
+                            
+                           
+                                <!-- Datatable -->
+                                <div class="table-container">
+                                    <div class="slds-scrollable_y" style="height: 290px;">
+                                        <template if:true={filteredPatients}>
+                                            <lightning-datatable
+                                                key-field="Id"
+                                                data={filteredPatients}
+                                                columns={columns1}
+                                                onrowaction={handleRowAction1}
+                                                class="responsive-table">
+                                            </lightning-datatable>
+                                        </template>
+                                        <template if:false={filteredPatients}>
+                                            <p>No patients found.</p>
+                                        </template>
+                                    </div>
+                                </div>
+                                
+                                
+                                <!-- Confirmation Modal -->
+                                <template if:true={showDeleteConfirmation}>
+                                    <section class="slds-modal slds-fade-in-open">
+                                        <div class="slds-modal__container">
+                                            <header class="slds-modal__header">
+                                                <h2 class="slds-text-heading_medium">Confirm Deletion</h2>
+                                            </header>
+                                            <div class="slds-modal__content slds-p-around_medium">
+                                                <p>Are you sure you want to delete <strong>{patientToDelete.Name}</strong>?</p>
+                                            </div>
+                                            <footer class="slds-modal__footer">
+                                                <lightning-button variant="neutral" label="Cancel" class="slds-m-right_medium"  onclick={cancelDelete}></lightning-button>
+                                                <lightning-button variant="destructive" label="Delete" onclick={confirmDelete}></lightning-button>
+                                            </footer>
+                                        </div>
+                                    </section>
+                                    <div class="slds-backdrop slds-backdrop_open"></div>
+                                </template>
+                            
+                            
+
+
+
+                            <template if:true={error}>
+                                <c-error-panel message={error}></c-error-panel>
+                            </template>
+                        </lightning-card>
+                
+                        <template if:true={showPatientDetails}>
+                            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                                <div class="slds-modal__container">
+                                    <header class="slds-modal__header">
+                                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseModal}>
+                                            <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                                        </button>
+                                        <h2 class="slds-text-heading_medium">Patient Profile</h2>
+                                    </header>
+                
+                                    <div class="slds-modal__content slds-p-around_medium">
+                                        <div class="slds-grid slds-wrap">
+                                            <!-- Patient Profile Section -->
+                                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-around_medium profile-section">
+                                                <div class="slds-box slds-box_xx-large profile-background">
+                                                    <div class="slds-p-horizontal_medium">
+                                                        <h1 style="font-size: 16px; padding-left: 47px;"><b>Patient Information</b></h1><br>
+                                                        <lightning-avatar alternative-text="Patient Profile Picture" src={profileImageUrl} size="large"></lightning-avatar>
+                                                        <p><strong>Name:</strong> {selectedPatient.Name}</p>
+                                                        <p><strong>Age:</strong> {selectedPatient.Age__c}</p>
+                                                        <p><strong>Email:</strong> {selectedPatient.Email__c}</p>
+                                                        <p><strong>Phone:</strong> {selectedPatient.phone_number__c}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                
+                                            <!-- Medical History Section -->
+                                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-around_medium medical-history-section">
+                                                <div class="slds-box slds-box_xx-large medical-history-background">
+                                                    <div class="slds-p-horizontal_medium">
+                                                        <h1 style="font-size: 16px; padding-left: 47px;"><b>Medical Details</b></h1><br>
+                                                        <template if:true={hasRecords}>
+                                                            <template for:each={medicalRecords} for:item="record">
+                                                                <div key={record.Id}>
+                                                                    <!-- <p><strong>Blood Group:</strong> {selectedPatient.blood_group__c}</p> -->
+                                                                    <p><strong>Doctor:</strong> {record.patient_appointment_id__r.Dr__r.Name}</p>
+                                                                    <p><strong>Next Visit Date:</strong> {record.Visit_Date__c}</p>
+                                                                    <p><strong>Remarks:</strong> {record.Remarks__c}</p>
+                                                                </div>
+                                                            </template>
+                                                        </template>
+                                                       <template if:false={hasRecords}>
+                                                            <h2>No Medical History Found !</h2>
+                                                        </template>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <footer class="slds-modal__footer">
+                                        <lightning-button variant="neutral" label="Close" onclick={handleCloseModal}></lightning-button>
+                                    </footer>
+                                </div>
+                            </section>
+                            <div class="slds-backdrop slds-backdrop_open"></div>
+                        </template>
+                    </div>
+                </template>
+                <!-- part... -->
+
+<!-- --------------------------link view by pragati ended----------------------------------- -->
+ <!--
+<template if:true={isDoctorsVisible}>
+    <div class="slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium">
+        <div class="slds-text-heading_medium">Doctors</div>
+
+        <lightning-card>
+            <div class="slds-grid slds-wrap slds-gutters">-->
+                <!-- Doctors Card -->
+               <!-- <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_small">
+                    <lightning-card class="custom-card card-1" onclick={handleCardClick}>
+                        <div class="slds-card__body">
+                            <lightning-icon icon-name="standard:facility_bed" size="small" alternative-text="Doctors"></lightning-icon>
+                            <span class="cls-space">Doctors</span>
+                            <br><br>
+                            <div>Details</div><br>
+                        </div>
+                    </lightning-card>
+                </div>
+            </div>-->
+
+            <!-- Display Doctors List -->
+           <!-- <template if:true={showDoctorsCard}>
+                <lightning-card title="Doctors List">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer tab_css">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Name">Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Specialty">Specialty</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Slot">Slot</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={doctorsCard} for:item="doctor">
+                                <tr key={doctor.Id}>
+                                    <td>
+                                        <div class="slds-truncate" title={doctor.Name}>{doctor.Name}</div>
+                                    </td>
+                                    <td>
+                                        <div class="slds-truncate" title={doctor.Specialist__c}>{doctor.Specialist__c}</div>
+                                    </td>
+                                    <td>
+                                        <lightning-button label="View" data-id={doctor.Id} onclick={handleViewClick}></lightning-button>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </lightning-card>
+            </template>-->
+
+            <!-- Display Appointments for Selected Doctor -->
+           <!-- <template if:true={isAppointmentsTableVisible}>
+                <template if:true={appointmentsCard.length}>
+                    <lightning-card title="Appointments for {selectedDoctor1.Name}">
+                        <lightning-datatable
+                            key-field="Id"
+                            data={appointmentsCard}
+                            columns={appointmentColumns}
+                            hide-checkbox-column="true"
+                            onrowaction={handleRowActionCard}
+                        ></lightning-datatable>
+                    </lightning-card>
+                </template>-->
+
+                <!-- Display an error message if there is an error fetching the records -->
+               <!-- <template if:true={errorAppointments}>
+                    <p>Error loading appointments: {errorAppointments.message}</p>
+                </template>
+            </template>
+        </lightning-card>
+    </div>
+</template>-->
+
+<!--------------------------------Doctors tab--------------------------------------------------------------------->
+ <!-- Display Doctors List -->
+    <template if:true={isDoctorsVisible}>
+ 
+        <div class="welcome-card slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+            <div class="card-content">
+                <h2>Empowering Doctors, Enhancing Care!</h2>
+                <p>Providing the tools and insights needed to deliver outstanding patient care.</p>
+                <p>Collaborate seamlessly with a team dedicated to transforming health outcomes.</p>
+                <p>Your expertise combined with our platform ensures personalized and effective treatment.</p>
+            </div>
+            <div class="image-container rec">
+                <img alt="Dashboard Illustration" class="image" src="/resource/receptionDoctorImg" />
+            </div>
+        </div>
+ 
+        <lightning-card title="Doctors" icon-name="standard:dashboard_component" class="overview">
+            <div class="slds-grid slds-wrap slds-m-around_medium">
+                <!-- Box for Total Doctors -->
+               
+               
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-2 slds-p-around_small">
+                    <div class="slds-box slds-box_small slds-text-align_center custom-box doctor-box" onclick={handleDoctorBoxClick} >
+                        <lightning-icon icon-name="custom:custom94" alternative-text="Total Doctors" size="medium" class="slds-m-bottom_small"></lightning-icon>
+                        <p><strong>Available Doctors</strong></p>
+                        <p class="slds-text-heading_medium">
+                            <template if:true={doctorCount}>
+                               
+                                {doctorCount}
+                            </template>
+                            <template if:false={doctorCount}>
+                                0
+                            </template>
+                        </p>
+                    </div>
+                </div>
+     
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-2 slds-p-around_small">
+                    <div class="slds-box slds-box_small slds-text-align_center custom-box appointments-box" onclick={toggleDoctorDirectory}>
+                        <lightning-icon icon-name="custom:custom86" alternative-text="Total Doctors" size="medium" class="slds-m-bottom_small"></lightning-icon>
+                        <p><strong>Total Doctors</strong></p>
+                        <p class="slds-text-heading_medium">
+                            <template if:true={totaldoctor}>
+                                {totaldoctor}
+                            </template>
+                            <template if:false={totaldoctor}>
+                                0
+                            </template>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </lightning-card>
+     
+        
+        <template if:true={isDoctorDirectoryVisible}>
+            <div class="doctor-directory slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+                <lightning-card title="Doctor Directory">
+                    <template if:true={doctorCount}>
+                        <div class="doctor-card-container slds-grid slds-wrap slds-gutters">
+                            <template for:each={doctorsCard} for:item="doctor">
+                                <div key={doctor.Id} class="slds-col slds-size_1-of-3 slds-medium-size_1-of-3 slds-p-around_small">
+                                    <div class="doctor-card slds-box slds-p-around_medium slds-theme_default slds-card slds-card__hover">
+                                        <div class="slds-media slds-media_center slds-m-bottom_small">
+                                            <!-- Lightning Icon -->
+                                            <div class="slds-media__figure">
+                                                <img src={doctorImageUrl} alt="Doctor Image" class="slds-m-bottom_small" style="width: 50px; height: 50px; border-radius: 50%;" />
+                                            </div>
+                                            <div class="slds-media__body">
+                                                <!-- Doctor Name -->
+                                                <h2 class="slds-text-heading_medium slds-m-bottom_x-small slds-text-color_default">{doctor.Name}</h2>
+                                                <!-- Doctor Specialty -->
+                                                <p class="slds-text-body_small slds-text-color_weak">{doctor.Specialist__c}</p>
+                                                
+                                            </div>
+                                        </div>
+                                        <!-- Additional Section for Designation -->
+                                        
+                                        <!-- View Button -->
+                                        <div class="slds-text-align_right slds-m-top_small">
+                                            <lightning-button label="View" data-id={doctor.Id} onclick={handleViewClick1}></lightning-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <template if:false={doctorCount}>
+                        <!-- Message is displayed if doctorCount == 0 -->
+                        <p class="slds-text-heading_medium slds-text-align_center">No doctors available.</p>
+                    </template>
+                </lightning-card>
+            </div>
+        </template>
+        
+
+     
+        
+     
+         <!-- Doctor Directory (Shown/Hidden on Button Click) -->
+         <template if:true={showDoctorDirectory}>
+            <div class="doctor-directory slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+                <lightning-card title="All Doctors">
+                    <div class="doctor-card-container slds-grid slds-wrap slds-gutters">
+                        <template for:each={doctorsCard} for:item="doctor">
+                            <div key={doctor.Id} class="slds-col slds-size_1-of-3 slds-medium-size_1-of-3 slds-p-around_small">
+                                <div class="doctor-card slds-box slds-p-around_medium slds-theme_default slds-card slds-card__hover">
+                                    <div class="slds-media slds-media_center slds-m-bottom_small">
+                                        <!-- Lightning Icon -->
+                                        <div class="slds-media__figure">
+                                            <img src={doctorImageUrl} alt="Doctor Image" class="slds-m-bottom_small" style="width: 50px; height: 50px; border-radius: 50%;" />
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <!-- Doctor Name -->
+                                            <h2 class="slds-text-heading_medium slds-m-bottom_x-small slds-text-color_default">{doctor.Name}</h2>
+                                            <!-- Doctor Specialty -->
+                                            <p class="slds-text-body_small slds-text-color_weak">{doctor.Specialist__c}</p>
+                                            <p class="slds-text-body_small slds-text-color_weak">{doctor.Email}</p>
+                                            <p class="slds-text-body_small slds-text-color_weak">{doctor.Phone}</p>
+                                        </div>
+                                    </div>
+                                    <!-- Additional Section for Designation -->
+                                    <p class="slds-text-body_small slds-text-align_center slds-m-top_small slds-text-color_default">{doctor.Designation}</p>
+                                    <!-- Department Section (if relevant) -->
+                                    <p class="slds-text-body_small slds-text-align_center slds-m-top_small slds-text-color_default">{doctor.Department}</p>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </lightning-card>
+            </div>
+        </template>
+    </template>
+     
+<!---
+<template if:true={view}>
+    <template if:true={appointmentss}> 
+                    
+                    <div class="slds-grid slds-wrap">
+                        <template for:each={appointmentss} for:item="appointment">
+                            <div key={appointment.Id} class="slds-col slds-size_12-of-12 slds-large-size_4-of-12 slds-p-around_small">
+                                <div class="appointment-box">
+                                    <div class="appointment-header">
+                                        <p class="appointment-name"><strong>Patient Name:</strong> {appointment.Patient__r.Name}</p>
+                                    </div>
+                                    <div class="appointment-details">
+                                        <div class="detail">
+                                            <span class="label">Start Time:</span>
+                                            <span class="time">{appointment.Start_Time__c}</span>
+                                        </div>
+                                        <div class="detail">
+                                            <span class="label">End Time:</span>
+                                            <span class="time">{appointment.End_Time__c}</span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+    </template>
+    
+</template>
+-->
+
+
+
+<template if:true={view}>
+    <div class="slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+        <lightning-card title="Appointments Directory">
+            <!-- Check if appointments exist -->
+            
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer tab_css">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Patient Name">Patient Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Start Time">Start Time</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="End Time">End Time</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={appointmentss} for:item="appointment">
+                            <tr key={appointment.Id}>
+                                <td>
+                                    <div class="slds-truncate" title={appointment.Patient__r.Name}>{appointment.Patient__r.Name}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate" title={appointment.Start_Time__c}>{appointment.Start_Time__c}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate" title={appointment.End_Time__c}>{appointment.End_Time__c}</div>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            
+            
+        </lightning-card>
+    </div>
+</template>
+
+<template if:true={noAppointments}>
+    <div class="slds-text-align_left slds-m-top_medium slds-m-around_medium">
+        <p class="slds-text-color_error slds-text-heading_small">No appointments found for today.</p>
+    </div>
+</template>
+ <!-- part... -->
+
+ <template if:true={isAppointmentsVisible}>
+
+    <div class="welcome-card slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+        <div class="card-content">
+            <h2>Manage Your Appointments with Ease!</h2>
+            <p>Stay on top of your health by scheduling and tracking your appointments effortlessly.</p>
+            <p>Our platform ensures timely reminders and seamless coordination with your healthcare provider.</p>
+            <p>Your journey to better health starts with just one click.</p>
+        </div>
+        <div class="image-container rec">
+            <img alt="Dashboard Illustration" class="image" src="/resource/receptionAppointmentImg" />
+        </div>
+    </div>
+    <div class="slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+       
+        <!-- Display the appointment details -->
+        <lightning-card>
+            <div class="slds-grid slds-nowrap slds-p-horizontal_small slds-m-bottom_small">
+                <!-- Total Patients on the left -->
+                <div class="slds-col slds-size_1-of-2 slds-align_left">
+                    <div class="slds-grid slds-align_left">
+                        <!-- Icon for Total Patients -->
+                        <div class="slds-media__figure">
+                          
+                                 
+                            <img src={bookApointment} alt="Doctor Image" class="slds-m-bottom_small" style="width: 50px; height: 50px; border-radius: 50%;" />
+                       
+                        </div>
+                        <!-- Total Patients Text next to the icon -->
+                        <h2 class="slds-text-heading_medium" style="padding-top:12px">Book Appointments</h2>
+                    </div>
+                </div>
+        
+                <!-- Search bar on the right -->
+                <!-- <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+                    <lightning-input class="searchh" type="search" value={search} onchange={handleSearchChange1} placeholder="Search Patient"></lightning-input>
+                </div> -->
+            </div>
+            
+
+
+            <!-- <template if:true={patientAppointment}>
+                <lightning-datatable key-field="Id" data={patientAppointment} columns={columns} onrowaction={handleRowAction}></lightning-datatable>
+            </template>
+
+            <template if:true={error}>
+                <c-error-panel message={error}></c-error-panel>
+            </template> -->
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        </lightning-card>
+    </div>
+</template>
+
+                
+                            <!--
+                            <template if:true={isModalOpen}>
+                                <section role="dialog" tabindex="-1"
+                                    class="slds-modal slds-fade-in-open">
+                                    <div class="slds-modal__container">
+                                        <header class="slds-modal__header">
+                                            <button
+                                                class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                                title="Close" onclick={closeModal}>
+                                                <lightning-icon icon-name="utility:close"
+                                                    alternative-text="close"
+                                                    size="small"></lightning-icon>
+                                                <span class="slds-assistive-text">Close</span>
+                                            </button>
+                                            <h2 class="slds-text-heading_medium">Book Slot</h2>
+                                        </header>
+                                        <div class="slds-modal__content slds-p-around_medium">
+
+
+                                            <lightning-input type="text" label="Appointment Name"
+                                                value={appointmentName} data-field="appointmentName"
+                                                onchange={handleInputChange} required>
+
+                                            </lightning-input>
+
+
+                                            <lightning-combobox label="Department" options={departments}
+                                                value={department} data-field="department"
+                                                onchange={handleInputChange} required>
+                                            </lightning-combobox>
+                                            <lightning-combobox label="Doctor" options={doctors}
+                                                value={doctor} data-field="doctor"
+                                                onchange={handleInputChange} required>
+                                            </lightning-combobox>
+                                            <lightning-input type="date" label="Date" value={date}
+                                                data-field="date" onchange={handleInputChange} required>
+                                            </lightning-input>
+                                            <lightning-input type="time" label="Start Time"
+                                                value={startTime} data-field="startTime"
+                                                onchange={handleInputChange} required>
+                                            </lightning-input>
+                                            <lightning-input type="time" label="End Time"
+                                                value={endTime} data-field="endTime"
+                                                onchange={handleInputChange} required>
+                                            </lightning-input>
+                                        </div>
+                                        <footer class="slds-modal__footer">
+                                            <button class="slds-button slds-button_neutral"
+                                                onclick={closeModal}>Cancel</button>
+                                            <button class="slds-button slds-button_brand"
+                                                onclick={handleBookSlot}>Book Slot</button>
+                                        </footer>
+                                    </div>
+                                </section>
+                                <div class="slds-backdrop slds-backdrop_open"></div>
+                            </template>-->
+                        
+
+                        <!-- Display the appointment details -->
+                   
+
+
+                        <template if:true={isBillingVisible}>
+                            <div class="welcome-card slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+                                <div class="card-content">
+                                    <h2>Manage Your Billing with Ease!</h2>
+                                    <p>Stay on top of your payments by managing and tracking your billing effortlessly.</p>
+                                    <p>Our platform ensures timely reminders and seamless coordination with your healthcare provider.</p>
+                                    <p>Your journey to better financial health starts with just one click.</p>
+                                </div>
+                                <div class="image-container rec">
+                                    <img alt="Dashboard Illustration" class="image" src="/resource/receptionAppointmentImg" />
+                                </div>
+                            </div>
+                        
+                            <div class="slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+                                <!-- Display the billing details -->
+                                <lightning-card>
+                                    <div class="slds-grid slds-nowrap slds-p-horizontal_small slds-m-bottom_small">
+                                        <!-- Total Patients on the left -->
+                                        <div class="slds-col slds-size_1-of-2 slds-align_left">
+                                            <div class="slds-grid slds-align_left">
+                                                <!-- Icon for Billing -->
+                                                <div class="slds-media__figure">
+                                                    <img src={bookApointment} alt="Billing Image" class="slds-m-bottom_small" style="width: 50px; height: 50px; border-radius: 50%;" />
+                                                </div>
+                                                <!-- Billing Text next to the icon -->
+                                                <h2 class="slds-text-heading_medium" style="padding-top:12px">Manage Billing</h2>
+                                            </div>
+                                        </div>
+                        
+                                        <!-- Search bar on the right -->
+                                        <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+                                            <lightning-input class="searchh" type="search" value={search} onchange={handleSearchChange1} placeholder="Search Billing Records"></lightning-input>
+                                        </div>
+                                    </div>
+                        
+                                    <template if:true={filteredPatients}>
+                                        <div class="slds-box slds-m-around_medium slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_medium">
+                                            <div 
+                                                class="slds-grid slds-wrap slds-gutters slds-scrollable_y" 
+                                                style="max-height: 400px; overflow-y: auto;">
+                                                <template for:each={filteredPatients} for:item="patient">
+                                                    <div key={patient.Id} class="slds-col slds-size_1-of-1">
+                                                        <div class="slds-grid slds-box slds-m-bottom_x-small slds-p-around_x-small slds-align_absolute-center" style="padding: 10px;">
+                                                            <!-- Patient Name -->
+                                                            <div class="slds-col slds-size_10-of-12 slds-grid">
+                                                                <!-- <lightning-avatar alternative-text="Patient Profile Picture" src={profileImageUrl} size="small"></lightning-avatar> -->
+                                                                <!-- <lightning-icon icon-name="standard:user" size="small" class="slds-m-right_small"></lightning-icon> -->
+                                                                <img src={profileImageUrl} alt="profile image" style="width: 25px; height: 25px; margin: left 5px;"  />
+                                                                <p class="slds-text-body_large slds-text-align_left"><span>{patient.Name}</span></p>
+                                                            </div>
+                                            
+                                                            <!-- Action Button -->
+                                                            <div class="slds-col slds-size_2-of-12 slds-text-align_center custom-button-container">
+                                                                <lightning-button 
+                                                                    label="View" 
+                                                                    onclick={handleBillDetails} 
+                                                                    data-id={patient.Id} 
+                                                                    variant="brand"
+                                                                    class="small-button">
+                                                                </lightning-button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    
+                                    <template if:true={error}>
+                                        <c-error-panel message={error}></c-error-panel>
+                                    </template>
+                                    
+                                </lightning-card>
+                            </div>
+                        </template>
+                        
+
+            </div>
+        </div>
+                
+                <template if:true={isPatientModalOpen}>
+                    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                            <!-- Content displaying Health Care -->
+                            <div class="slds-modal__content slds-p-around_medium">
+                                <div class="logo-image-container slds-text-align_center">
+                                    <img src={receptionRightSiteBar} alt="logo Image" class="profile-image" />
+                                    <h2 class="slds-text-heading_medium ">Health Care</h2>
+                                </div>
+                
+
+                                <!-- <div class="slds-progress slds-progress_shade slds-progress_large">
+                                    <ol class="slds-progress__list">
+                                        
+                                        <li class="slds-progress__item slds-is-completed">
+                                            <div class="slds-progress__line"></div>
+                                            <img src={progress_registration} alt="Registered"
+                                                style="background-color: white; width: 40px; height: 40px; margin: -14px; padding: 6px;" />
+                                            <span
+                                                style="position: absolute; color: #147813;margin-top: 25px; font-weight: 600;white-space: nowrap;">
+                                                Registered
+                                            </span>
+                                        </li>
+                
+                                       
+                                        <li class="slds-progress__item slds-is-completed">
+                                            <div class="slds-progress__line"></div>
+                                            <img src={progress_scheduled} alt="Scheduled"
+                                                style="background-color: white; width: 40px; height: 40px; margin: -14px; padding: 6px;" />
+                                            <span
+                                                style="position: absolute; color: #147813; margin-top: 25px;font-weight: 600; white-space: nowrap; font-size: 95%;">
+                                                Scheduled
+                                            </span>
+                                        </li>
+                
+                                        
+                                        <li class="slds-progress__item slds-is-completed">
+                                            <div class="slds-progress__line"></div>
+                                            <img src={progress_scheduled} alt="Treatment"
+                                                style="background-color: white; width: 40px; height: 40px; margin: -14px; padding: 6px; " />
+                                            <span
+                                                style="position: absolute; color: #147813;font-weight: 600; margin-top: 25px; white-space: nowrap; font-size: 95%;">
+                                                Treatment
+                                            </span>
+                                        </li>
+                
+                                        <li class="slds-progress__item slds-is-completed">
+                                            <div class="slds-progress__line"></div>
+                                            <img src={progress_medication} alt="Medication"
+                                                style="background-color: white; width: 40px; height: 40px; margin: -14px; padding: 6px;" />
+                                            <span
+                                                style="position: absolute; color: #147813; font-weight: 600; margin-top: 25px; white-space: nowrap; font-size: 95%;">
+                                                Medication
+                                            </span>
+                                        </li>
+                                        
+                                        <li class="slds-progress__item slds-is-active">
+                                            <div class="slds-progress__line"></div>
+                                            <img src={progress_billing} alt="Billing"
+                                                style="background-color: white; width: 40px; height: 40px; margin: -14px; padding: 6px;" />
+                                            <span
+                                                style="position: absolute; color: #137cd7; font-weight: 700;  margin-top: 25px; white-space: nowrap; font-size: 96%; ">
+                                                Payments & Billing
+
+                                            </span>
+                                        </li>
+                                    </ol>
+                                </div> -->
+
+
+
+                                <div class="slds-grid slds-wrap slds-m-top_large slds-grid_align-space">
+                                    <!-- Patient Name -->
+                                    <div class="slds-col slds-size_1-of-3">
+                                        <p>
+                                            <span class="slds-text-title_bold">Patient: </span>
+                                            {patientName}
+                                        </p>
+                                    </div>
+                
+                                    <!-- Doctor Name -->
+                                    <div class="slds-col slds-size_1-of-3">
+                                        <p>
+                                            <span class="slds-text-title_bold">Doctor: </span>
+                                            {doctorName}
+                                        </p>
+                                    </div>
+                
+                                    <!-- Appointment Date -->
+                                    <div class="slds-col slds-size_1-of-3">
+                                        <p>
+                                            <span class="slds-text-title_bold">Date: </span>
+                                            {appointmentDate}
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Billing Payments Section -->
+                                <div class="slds-m-top_medium">
+                                    <h2 class="slds-text-heading_small">Billing Payments</h2>
+                                </div>
+                                <!-- Consultant Fees -->
+                                <div class="slds-grid slds-wrap slds-m-top_small">
+                                    <div class="slds-col slds-size_1-of-3 slds-text-title_bold">Consultant Fees:</div>
+                                    <div class="slds-col slds-size_2-of-3">₹500/-</div>
+                                </div>
+                
+                
+                
+                                <!-- progresssss indicator -->
+                                <!-- <lightning-card title="Healthcare Progress" icon-name="custom:custom88"> 
+                    <div class="slds-grid slds-wrap">
+                        <lightning-progress-indicator type="path" current-step={currentStage}>
+                            <template for:each={stages} for:item="stage">
+                                <lightning-progress-step key={stage.value} value={stage.value} label={stage.label}>
+                                    <lightning-icon
+                                        if:true={stage.completed}
+                                        icon-name="utility:success"
+                                        alternative-text="Completed"
+                                        size="small"
+                                        class="slds-icon-text-success">
+                                    </lightning-icon>
+                                </lightning-progress-step>
+                            </template>
+                        </lightning-progress-indicator>
+                    </div>
+                </lightning-card> -->
+                
+                                
+
+
+
+
+
+
+
+                    
+                    </div>
+                    <!-- Modal Footer with Close Button -->
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Close" onclick={closePatientModal}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <!-- Model-->
+         <template if:true={isModalOpenReg}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModalReg}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-text-heading_medium">Patient Registration</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+
+
+
+                    <div class="slds-progress slds-progress_shade slds-progress_large">
+                            <ol class="slds-progress__list">
+                                <template for:each={stages} for:item="stage">
+                                    <li key={stage.value} class={stage.class}>
+                                        <div class="slds-progress__line"></div>
+                                        <div class="stage-container">
+                                            <img src={stage.icon} alt={stage.name} class="stage-icon" />
+                                            <span class="stage-name">{stage.label}</span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ol>
+                        </div>
+
+
+
+                        <lightning-card>
+                            <div class="slds-m-around_medium">
+                                <lightning-layout multiple-rows="true">
+                                    <lightning-layout-item size="12" small-device-size="12">
+                                        <h2>Personal Information</h2>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="12">
+                                        <c-custom-input label="First Name" value={firstName} required data-id="name" onchange={handleChange}></c-custom-input>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="12">
+                                        <c-custom-input label="Last Name" value={lastName} onchange={handleChange}></c-custom-input>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="12">
+                                        <c-custom-input label="Phone Number" value={phoneNumber} required data-id="phone" onchange={handleChange}></c-custom-input>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="12">
+                                        <c-custom-input label="Emergency Number" value={EmergencyNumber} onchange={handleChange}></c-custom-input>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="12">
+                                        <c-custom-input label="Email" value={Email} required data-id="email" onchange={handleChange}></c-custom-input>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="12">
+                                        <lightning-combobox label="Gender" value={gender} placeholder="Select Gender" options={genderOptions} onchange={handleGenderChange}>
+                                        </lightning-combobox>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="12">
+                                        <c-custom-input label="Age" value={age} onchange={handleChange}></c-custom-input>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="12">
+                                        <c-custom-input label="Address" value={address} onchange={handleChange}></c-custom-input>
+                                    </lightning-layout-item>
+                                    <lightning-layout-item size="12" small-device-size="12">
+                                        <lightning-combobox label="Blood Group" options={bloodGroupOptions} value={bloodGroup__c} data-field="blood_group__c" onchange={handleBloodGroupChange}>
+                                        </lightning-combobox>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </div>
+                        </lightning-card>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <!-- <lightning-button class="cls_button" variant="neutral" label="Cancel" onclick={closeModalReg}></lightning-button> -->
+                        <lightning-button class="cls_button slds-m-left_medium" variant="brand" label="Register" onclick={handleRegister}></lightning-button>
+                        <lightning-button class="cls_button slds-m-left_medium" variant="neutral" label="Next" onclick={handleNext}></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template> 
+        
+    
+        
+
+       
+       
+           <!-- <lightning-card title="Patient Details Form" icon-name="custom:custom63">
+                <div class="slds-m-around_medium">
+                   
+                    <lightning-input
+                        type="text"
+                        label="Patient Name"
+                        name="patientName"
+                        value={patientName}
+                        onchange={handleFieldChange}>
+                    </lightning-input>
+        
+                    <lightning-combobox
+                        label="Gender"
+                        name="patientGender"
+                        value={patientGender}
+                        placeholder="Select Gender"
+                        options={genderPicklistOptions}
+                        onchange={handleFieldChange}>
+                    </lightning-combobox>
+        
+                    
+                    <lightning-combobox
+                        label="Blood Group"
+                        name="patientBloodGroup"
+                        value={patientBloodGroup}
+                        placeholder="Select Blood Group"
+                        options={bloodGroupPicklistOptions}
+                        onchange={handleFieldChange}>
+                    </lightning-combobox>
+        
+                  
+                    <lightning-button
+                        class="slds-m-top_medium"
+                        label="Save"
+                        variant="brand"
+                        onclick={savePatientDetails}>
+                    </lightning-button>
+                </div>
+            </lightning-card>-->
+       
+        
+        
+
+
+    </lightning-card>
+
+    
+
+<!-- part... -->
+
+
+    <!-- Popup Modal for book Appointment -->
+
+    <template if:true={isModalOpen}> 
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium">Book Slot</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                
+                    <!-- Patient Name (updated to use patient__c) -->
+                    <lightning-input type="text" label="Patient Name" value={patient__c} data-field="patient__c"
+                        onchange={handleInputChange} required>
+                    </lightning-input>
+                
+                    <!-- Doctor Picklist -->
+                    <lightning-combobox label="Doctor" options={doctors} value={dr__c} data-field="dr__c" onchange={handleInputChange}
+                        required>
+                    </lightning-combobox>
+         
+                    <!-- Date -->
+                    <lightning-input type="date" label="Date" value={date} data-field="date" onchange={handleInputChange} required>
+                    </lightning-input>
+                
+                    <!-- Start Time -->
+                    <lightning-input type="time" label="Start Time" value={startTime} data-field="startTime"
+                        onchange={handleInputChange} required>
+                    </lightning-input>
+                
+                    <!-- End Time -->
+                    <lightning-input type="time" label="End Time" value={endTime} data-field="endTime" onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+                
+                    <!-- Reason to Visit -->
+                    <lightning-input type="text" label="Reason to Visit" value={reasonToVisit} data-field="Reason_To_Visit__c"
+                        onchange={handleInputChange} required>
+                    </lightning-input>
+                
+                    <!-- Sugar and BP Checkboxes (side by side) -->
+                    <!-- <div class="slds-grid slds-gutters slds-m-top_medium">
+                                       
+                                        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-2">
+                                            <lightning-input type="checkbox" label="Sugar"
+                                                checked={sugarChecked} data-field="Sugar__c"
+                                                onchange={handleInputChange}>
+                                            </lightning-input>
+                                        </div>
+                                        
+                                        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-2">
+                                            <lightning-input type="checkbox" label="BP"
+                                                checked={bpChecked} data-field="BP__c"
+                                                onchange={handleInputChange}>
+                                            </lightning-input>
+                                        </div>
+                                    </div> -->
+                
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={handleBookSlot}>Book Slot</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+    <template if:true={isScheduleModalOpen}> 
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium">Book Slot</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                
+                
+                  
+                        <div class="slds-progress slds-progress_shade slds-progress_large">
+                            <ol class="slds-progress__list">
+                                <template for:each={stages} for:item="stage">
+                                    <li key={stage.value} class={stage.class}>
+                                        <div class="slds-progress__line"></div>
+                                        <div class="stage-container">
+                                            <img src={stage.icon} alt={stage.label} class="stage-icon" />
+                                            <span class="stage-name">{stage.label}</span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ol>
+                        </div>
+                       
+                    
+                        <!-- <div class="slds-progress slds-progress_shade slds-progress_large">
+                            <ol class="slds-progress__list">
+                                <template for:each={stages} for:item="stage">
+                                    <li key={stage.value} class={stage.class}>
+                                        <div class="slds-progress__line"></div>
+                                        <div class="stage-container">
+                                            <img src={stage.icon} alt={stage.name} class="stage-icon" />
+                                            <span class="stage-name">{stage.label}</span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ol>
+                        </div> -->
+                    
+                
+                
+                
+                    <!-- Patient Name (updated to use patient__c) -->
+                    <lightning-input type="text" label="Patient Name" value={patientName} readonly>
+                    </lightning-input>
+                
+                    <!-- Doctor Picklist -->
+                    <lightning-combobox label="Doctor" options={doctors} value={dr__c} data-field="dr__c" onchange={handleInputChange}
+                        required>
+                    </lightning-combobox>
+         
+                    <!-- Date -->
+                    <lightning-input type="date" label="Date" value={date} data-field="date" onchange={handleInputChange} required>
+                    </lightning-input>
+                
+                    <!-- Start Time -->
+                    <lightning-input type="time" label="Start Time" value={startTime} data-field="startTime"
+                        onchange={handleInputChange} required>
+                    </lightning-input>
+                
+                    <!-- End Time -->
+                    <lightning-input type="time" label="End Time" value={endTime} data-field="endTime" onchange={handleInputChange}
+                        required>
+                    </lightning-input>
+                
+                    <!-- Reason to Visit -->
+                    <lightning-input type="text" label="Reason to Visit" value={reasonToVisit} data-field="Reason_To_Visit__c"
+                        onchange={handleInputChange} required>
+                    </lightning-input>
+                
+                    <!-- Sugar and BP Checkboxes (side by side) -->
+                    <!-- <div class="slds-grid slds-gutters slds-m-top_medium">
+                                       
+                                        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-2">
+                                            <lightning-input type="checkbox" label="Sugar"
+                                                checked={sugarChecked} data-field="Sugar__c"
+                                                onchange={handleInputChange}>
+                                            </lightning-input>
+                                        </div>
+                                        
+                                        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-2">
+                                            <lightning-input type="checkbox" label="BP"
+                                                checked={bpChecked} data-field="BP__c"
+                                                onchange={handleInputChange}>
+                                            </lightning-input>
+                                        </div>
+                                    </div> -->
+                
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={handleBookAppointmentSlot}>Book Slot</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+
+    <!-- pop up model for reschedule -->
+<template if:true={isModalOpenR}> 
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeRescheduleModal}>
+                    <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 class="slds-text-heading_medium">Reschedule Appointment</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+
+                <!-- Patient Name -->
+                <lightning-input type="text" label="Patient Name"
+                    value={patient__c} data-field="patient__c"
+                    onchange={handleInputChange} readonly>
+                </lightning-input>
+
+                <!-- Doctor Picklist -->
+                <lightning-combobox label="Doctor" options={doctors}
+                    value={dr__c} data-field="dr__c"
+                    onchange={handleInputChange} required>
+                </lightning-combobox>
+
+                <!-- Date -->
+                <lightning-input type="date" label="Date"
+                    value={date} data-field="date"
+                    onchange={handleInputChange} required>
+                </lightning-input>
+
+                <!-- Start Time -->
+                <lightning-input type="time" label="Start Time"
+                    value={startTime} data-field="startTime"
+                    onchange={handleInputChange} required>
+                </lightning-input>
+
+                <!-- End Time -->
+                <lightning-input type="time" label="End Time"
+                    value={endTime} data-field="endTime"
+                    onchange={handleInputChange} required>
+                </lightning-input>
+
+                <!-- Reason to Visit -->
+                <!-- <lightning-input type="text" label="Reason to Visit"
+                    value={reasonToVisit} data-field="Reason_To_Visit__c"
+                    onchange={handleInputChange} required>
+                </lightning-input> -->
+            </div>
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={closeRescheduleModal}>Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={handleRescheduleSlot}>Save</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+
+
+    <template if:true={isModalOpen1}>
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closeModal1}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small" onclick={closeModal1}></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium">Edit Patient</h2>
+                </header>
+                <!--<div class="slds-modal__content">
+                    <lightning-record-form 
+                        record-id={paatID} 
+                        object-api-name="Patient_Registration__c" 
+                        layout-type="Full" 
+                        mode="edit">
+                    </lightning-record-form>
+                </div>-->
+                <lightning-card title="Patient Registration">
+        <div class="slds-p-around_medium">
+            <!-- Create a grid to hold two columns -->
+            <div class="slds-grid slds-wrap">
+
+                <!-- First Column (Left) -->
+                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                    <lightning-record-edit-form object-api-name="Patient_Registration__c" record-id={paatID}>
+                        <!-- Individual Field Inputs for First Column -->
+                        <lightning-input-field field-name="Name"></lightning-input-field>
+                        <lightning-input-field field-name="Email__c"></lightning-input-field>
+                        <lightning-input-field field-name="phone_number__c"></lightning-input-field>
+                         <lightning-input-field field-name="Emergency_Contact__c"></lightning-input-field>
+                         <lightning-input-field field-name="Age__c"></lightning-input-field>
+                    </lightning-record-edit-form>
+                </div>
+
+                <!-- Second Column (Right) -->
+                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                    <lightning-record-edit-form object-api-name="Patient_Registration__c" record-id={paatID}>
+                        <!-- Individual Field Inputs for Second Column -->
+                        <lightning-input-field field-name="Gender__c"></lightning-input-field>
+                         <lightning-input-field field-name="Appointed_To__c"></lightning-input-field>
+                        
+                        <lightning-input-field field-name="Country__c"></lightning-input-field>
+                        <lightning-input-field field-name="City__c"></lightning-input-field>
+                        <lightning-input-field field-name="Address__c"></lightning-input-field>
+                    </lightning-record-edit-form>
+                </div>
+            </div>
+             <!-- Save Button -->
+            <div class="slds-m-top_medium slds-grid slds-wrap slds-grid_align-end">
+    
+    <lightning-button label="Close" variant="neutral" onclick={closeModal1} ></lightning-button>
+    <lightning-button label="Save" variant="brand" onclick={handleSave} class="slds-m-left_small"></lightning-button>
+</div>
+
+        </div>
+    </lightning-card>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+    
+
+
+</template>

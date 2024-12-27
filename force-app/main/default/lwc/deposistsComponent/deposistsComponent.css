@@ -1,0 +1,26 @@
+.custom-container{
+	color : black;
+}
+.slds-listbox {
+    /* border: 1px solid #d8dde6;
+    background-color: #ffffff;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%; */
+	border: 1px solid #d8dde6;
+    background-color: #ffffff;
+    max-height: 20%;
+    overflow-y: auto;
+    position: absolute;
+    width: 20%;
+  	z-index: 1;
+}
+
+.slds-listbox__item {
+    cursor: pointer;
+}
+
+.slds-listbox__item:hover {
+    background-color: #f4f6f9;
+}

@@ -1,0 +1,282 @@
+/*rowssssssssssssss*/
+.slds-box {
+    background-color: #f9f2e6;
+    border: 1px solid #e0d6c2;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e0d6c2;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.feature-item p {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.icon {
+    color: #b4374e;
+}
+
+/*<!-- MULTISELECT CHECKBOXES FOR DOCUMENTS -->*/
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.checkbox-item label {
+    margin-left: 5px;
+}
+/*<!-- MULTISELECT CHECKBOXES FOR DOCUMENTS -->*/
+
+
+
+
+.landing-page {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #dbd6e3; /* A vibrant purple background */
+    padding: 20px;
+    color: black;
+}
+
+
+
+
+.main-content {
+    margin-top: 50px;
+}
+
+.main-content h1 {
+        font-size: x-large;
+    font-weight: bold;
+}
+
+.main-content p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    color: black;
+}
+
+.cta-button {
+    background-color: #ff9500;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.cta-button:hover {
+    background-color: #ff7400;
+}
+
+
+
+/* Loan Boxes Section */
+.loan-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+.loancontainer {
+    display: flex;
+    gap: 20px;
+    padding: 59px;
+    flex-wrap: wrap;
+}
+
+.loan-box {
+    margin-left:8rem;
+        width: 13rem;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.loan-box:hover {
+    transform: scale(1.05);
+    background-color: #e6f7ff;
+}
+.container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.slider-container {
+    margin-bottom: 20px;
+}
+
+.slider-container label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.range-values {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.result-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.result-section {
+    text-align: center;
+}
+
+.result-section h2 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.result-section p {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+  
+.header {
+    font-size: 30px;
+    color: #f3eff7;
+}
+.slds-table {
+    width: 100%;
+}
+
+.slds-truncate {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.slds-grid {
+    margin-bottom: 1rem;
+}
+
+.slds-p-top_medium {
+    padding-top: 1rem;
+}
+.inputboxes{
+    width: 100%;
+    padding: 10px 15px;
+}
+.slds-dropdown {
+    position: absolute;
+    z-index: 1;
+    left: 8%;
+    float: left;
+    width: 11rem;
+    padding-left: 14px;}
+.MainText{
+	font-weight: bold;
+    font-size: 17px;
+    margin-top:1rem;
+}
+.slds-listbox {
+    /* border: 1px solid #d8dde6;
+    background-color: #ffffff;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%; */
+	border: 1px solid #d8dde6;
+    background-color: #ffffff;
+    max-height: 20%;
+    overflow-y: auto;
+    position: absolute;
+    width: 20%;
+  	z-index: 1;
+}
+
+.slds-listbox__item {
+    cursor: pointer;
+}
+
+.slds-listbox__item:hover {
+    background-color: #f4f6f9;
+}
+.back-button {
+    margin-bottom: 20px;
+}
+ 
+.back-button button {
+    padding: 10px 20px;
+    background-color: #004d99;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+ 
+.back-button button:hover {
+    background-color: #003366;
+}
+.input-group{
+  display: flex;
+  border-radius:7px;
+  overflow: hidden;
+}
+.btn{
+  height:40px;
+  border: none;
+  outline:none;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 0 5%;
+  background: #393e46;
+  transition: .3s ease;
+  color: #4ecca3;
+}
+ 
+.loanbutton{
+border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    background-color: #004d99;
+    border-radius: 5px;
+}

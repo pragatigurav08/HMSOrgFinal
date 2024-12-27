@@ -1,0 +1,36 @@
+<template>
+    <section class="bill-card-container">
+     <lightning-card title="Loan Details" class="bill-card" onclick={toggleDetails}>
+        <div slot="actions" class="chevron-container">
+                <lightning-icon icon-name={chevronIcon} alternative-text="Toggle Details" size="xx-small" class="chevron-icon"></lightning-icon>
+            </div>
+<template if:true={showDetails}>
+        <template if:true={loanDetails.length}>
+            <div class="slds-box slds-box_xx-small custom-background" style="margin-left: 8px; margin-right: 8px;">
+                <template for:each={loanDetails} for:item="loan">
+                    <div key={loan.Id} class="loan-card slds-box slds-box_xx-small slds-m-bottom_small">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2">
+                                <p><strong>Type of Loan:</strong> {loan.RecordType.Name}</p>
+                                <p><strong>Loan Id:</strong> {loan.Name}</p>
+                                <p><strong>Loan Amount:</strong> {loan.Loan_Amount__c}</p>
+                                <p><strong>Borrower's Name:</strong> {loan.Borrower_s_Name__c}</p>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <p><strong>EMI Amount:</strong> {loan.EMI_Amount__c}</p>
+                                <p><strong>Interest Rate:</strong> {loan.Interest_Rate__c}</p>
+                                <p><strong>Loan Purpose:</strong> {loan.Loan_Purpose__c}</p>
+                                <p><strong>Account Holder:</strong> {loan.New_Account__r.Name}</p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template if:false={loanDetails.length}>
+            <p>No loan details found for the associated New Account.</p>
+        </template>
+</template>
+    </lightning-card>
+    </section>
+</template>

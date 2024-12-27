@@ -1,0 +1,46 @@
+.container{
+    padding: 0;
+    margin:0;
+    height: 450px;
+    width: 300px;
+    background-color:#DCD4E7 ;
+    border-radius: 10px ;
+    /* border: 0px solid #DCD4E7; */
+    box-shadow:-2px -3px  48px rgba(7,9,12,.1);
+}
+.image{
+    height: 76%;
+    width: 90%;
+    border: 1px solid #af99cd;
+    border-radius: 10px ;
+    margin: 10px;
+    box-shadow:-2px -3px  48px rgba(7,9,12,.1);
+    margin-left: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.image:hover{
+    background-color: red;
+    transform: translateX(5.2);
+}
+
+.description{
+    z-index: 1;
+    height: 21%;
+    width: 100%;
+    border-radius: 10px ;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    background-color: #322E3B;
+}
+.descriptionChild{
+    width: 100%;
+}
+.first-child{
+    width: 20%;
+    border-right: 2px solid #2d1ccc;
+}
+.second-child{
+    width: 80%;
+    border-right: 2px solid #2d1ccc;
+}
