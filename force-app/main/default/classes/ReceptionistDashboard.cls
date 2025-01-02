@@ -235,6 +235,9 @@ public static Id registerPatient(Patient_Registration__c patient) {
 
         // Insert the patient if no duplicates are found
         insert patient;
+        
+        patient.Stage__c = 'Scheduled';  
+        update patient; 
         System.debug('Patient successfully registered: ' + patient);
         return patient.Id;
     } catch (AuraHandledException e) {
@@ -507,4 +510,46 @@ public static String bookAppointmentSlot(Map<String, Object> appointmentDetails)
         throw new AuraHandledException('Error booking appointment: ' + e.getMessage());
     }
 }
+    
+    
+    @AuraEnabled(cacheable=true)
+    public static List<Appointment__c> getCalenderAppointments( Date selectedDate) {
+        // Validate input parameters
+        if (selectedDate == null) {
+            throw new AuraHandledException('Invalid parameters: Patient ID and selected date are required.');
+        }
+
+        // Query appointments for the given patient and date
+        return [
+            SELECT Id, Name, Start_Time__c, End_Time__c, Status__c
+            FROM Appointment__c
+            ORDER BY Start_Time__c ASC
+        ];
+    }
+    @AuraEnabled(cacheable=true)
+public static Patient_Registration__c getPatientDetails(Id patientId) {
+    system.debug('Patientid'+Patientid);
+   Patient_Registration__c patient = [
+        SELECT Id, Name, Status__c, Phone_Number__c, Email__c, Address__c, Emergency_Contact__c, 
+               Gender__c, Age__c, Blood_group__c, PatientID__c, Date_of_Birth__c, Insurance_Provider_Name__c
+        FROM Patient_Registration__c
+        WHERE Id = :Patientid
+        LIMIT 1
+    ];
+    system.debug('Fetched Patient Details: ' + patient);
+    return patient;
+}
+
+@AuraEnabled(cacheable=true)
+public static List<Diagonisis__c> getPatientNotes(Id patientId) {
+     system.debug('Patientid'+Patientid);
+    List<Diagonisis__c> notes = [
+        SELECT Id, Notes__c, CreatedDate
+        FROM Diagonisis__c
+        WHERE Patient_Name__c = :Patientid
+        ORDER BY CreatedDate DESC];
+     system.debug('Fetched Notes Details: ' + notes);
+    return notes;
+}
+
 }

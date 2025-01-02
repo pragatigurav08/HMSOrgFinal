@@ -7,9 +7,10 @@ import chartjs from '@salesforce/resourceUrl/graphChart';
 import { loadScript } from 'lightning/platformResourceLoader';
 import getHealthMetrics from '@salesforce/apex/GraphController.getHealthMetrics';
 import getAppointmentCounts from '@salesforce/apex/GraphController.getAppointmentCounts';
-import updateStageInBackend from '@salesforce/apex/ReceptionistDashboard.updateStageInBackend'; 
-import getProgressStages from '@salesforce/apex/ReceptionistDashboard.getProgressStages';
+import getCalenderAppointments from '@salesforce/apex/ReceptionistDashboard.getCalenderAppointments';
 import bookAppointmentSlot from '@salesforce/apex/ReceptionistDashboard.bookAppointmentSlot';
+import getPatientDetails from '@salesforce/apex/ReceptionistDashboard.getPatientDetails';
+import getPatientNotes from '@salesforce/apex/ReceptionistDashboard.getPatientNotes';
 
 import deletePatient from '@salesforce/apex/ReceptionistDashboard.deletePatient';
 import { refreshApex } from '@salesforce/apex'; 
@@ -1073,6 +1074,13 @@ clearForm() {
     showPatients() {
         this.resetViews();
         this.isPatientsVisible = true;
+        this.showPatientDetails = false;
+        this.activeTab = 'patients';
+    }
+    
+    showPatientss() {
+        this.resetViews();
+        this.isPatientsVisible = false;
         this.activeTab = 'patients';
     }
 
@@ -1374,8 +1382,14 @@ handleBookAppointmentSlot() {
 
         if (actionName === 'viewProfile') {
             this.selectedPatient = row;
-            this.showPatientDetails = true;  // Show modal for the selected patient
-            this.fetchRecords();
+           // showPatientss(); 
+            console.log('isPatientsVisible' + this.isPatientsVisible);
+            this.showPatientDetails = true; 
+            console.log('showPatientDetails' + this.showPatientDetails);
+           this.isPatientsVisible=false; // Show modal for the selected patient
+           // this.fetchRecords();
+            this.patientHandle();
+           
         }
        else if (actionName === 'Delete') {
             //this.deletePatient(row.Id);  // Call the delete method with patient Id
@@ -1575,16 +1589,6 @@ handleSearchChange1(event) {
         this.patientAppointment = [...this.patientAppointment]; // Reset if no search query
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2125,4 +2129,112 @@ wiredStages({ error, data }) {
         }; white-space: nowrap; font-size: 95%;`;
     }
 */
+
+@track patient;
+@track patientNotes = [];
+@track isLoading = false;
+/*patientHandle() {
+    console.log('Patient handled entered');
+    this.isLoading = true;
+    getPatientDetails({ patientId: this.selectedPatient.Id }) // Replace with dynamic ID
+        .then(result => {
+            this.patient = result;
+            console.log(this.patient);
+            console.log('selectedPatient'+this.selectedPatient.Id );
+            return getPatientNotes({ patientId: this.selectedPatient.Id });
+        })
+        .then(notes => {
+            this.patientNotes = notes.map(note => {
+                const dateObj = new Date(note.CreatedDate);
+                const formattedDate = `${dateObj.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: '2-digit',
+                })}, ${dateObj.toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                })}`;
+                return {
+                    ...note,
+                    FormattedDate: formattedDate,
+                };
+            });
+            this.showPatientDetails = true;
+            this.isLoading = false;
+        })
+        .catch(error => {
+            console.error(error);
+            this.isLoading = false;
+        });
+}*/
+patientHandle() {
+    console.log('Patient handle entered');
+    this.isLoading = true;
+    this.patientNotes = [];
+
+    this.showPatientDetails = false;
+    const patientId = this.selectedPatient.Id; // Use correct variable
+
+    getPatientDetails({ patientId }) // Pass dynamic ID
+        .then(result => {
+            if (result) {
+                this.patient = result;
+                console.log('Patient Name:', this.patient.Name);
+                console.log('Patient Phone number:', this.patient.phone_number__c);
+                console.log('Patient Address:', this.patient.Address__c);
+                console.log('Patient Date of birth:', this.patient.Date_of_Birth__c);
+                console.log('Patient Email:', this.patient.Email__c);
+                console.log('Patient Gender:', this.patient.Gender__c);
+            } else {
+                console.warn('No patient details returned.');
+            }
+            return getPatientNotes({ patientId });
+        })
+        .then(notes => {
+            if (notes && notes.length > 0) {
+                this.patientNotes = notes.map(note => {
+                    const dateObj = new Date(note.CreatedDate);
+                    const formattedDate = `${dateObj.toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: '2-digit',
+                    })}, ${dateObj.toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true,
+                    })}`;
+                    return {
+                        ...note,
+                        FormattedDate: formattedDate,
+                    };
+                });
+                console.log('Patient Notes:', this.patientNotes);
+            } else {
+                console.warn('No patient notes returned.');
+            }
+            this.showPatientDetails = true;
+        })
+        .catch(error => {
+            console.error('Error fetching patient details or notes:', error);
+        })
+        .finally(() => {
+            this.isLoading = false;
+        });
+}
+
+
+
+
+// Navigate back to patient list
+navigateBack() {
+    this.showPatientDetails = false;
+   // this.isPatientsVisible = true;
+   this.showPatients() ;
+}
+get recentNotes() {
+    // Return only the three most recent notes
+    return this.patientNotes ? this.patientNotes.slice(0, 3) : [];
+}
+
 }

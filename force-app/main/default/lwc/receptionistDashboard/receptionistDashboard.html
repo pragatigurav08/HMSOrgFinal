@@ -384,8 +384,121 @@
                             </template>
                         </lightning-card>
                 
-                        <template if:true={showPatientDetails}>
-                            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                    <!--  <template if:true={showPatientDetails}>
+                           
+                            <div class="patient-details-container">-->
+                                <!-- Back Button -->
+                               <!-- <div class="header">
+                                    <div class="back-button" onclick={navigateBack}>
+                                        <lightning-icon icon-name="utility:back" size="small" alternative-text="Back"></lightning-icon>
+                                    </div>
+                                    <div>
+                                        <p style="font-size: 12px;">Back to Patient List</p>
+                                        <p style="font-size: 21px;">Patient Details</p>
+                                    </div>
+                                    
+                                </div>-->
+                        
+                                <!-- Patient Header -->
+                               <!-- <div class="patient-header">
+                                    <div class="patient-avatar">
+                                        <lightning-icon icon-name="utility:user" size="small" alternative-text="Back"></lightning-icon>
+                                    </div>
+                                    <div class="patient-info">
+                                        <template if:true={patient}>
+                                            <h2>{patient.Name}</h2>
+                                            <p><strong>Patient ID: </strong>{patient.patientID__c} </p>
+                                        </template>
+                                        
+                                    </div>-->
+                                   <!-- <div class="justice">
+                                    <template if:true={patient}>
+                                        <lightning-icon icon-name="utility:chat" size="small" alternative-text="Back"></lightning-icon>
+                                        <lightning-icon icon-name="utility:call" size="small" alternative-text="Back"></lightning-icon>
+                                        <lightning-button 
+                                        label="Edit" 
+                                        variant="brand"></lightning-button>
+                                    
+                                    </div>-->
+                               <!-- </div>-->
+                        
+                                <!-- Details Section -->
+                              <!--  <div class="details-section">-->
+                                    <!-- Contact Info -->
+                                   
+                                  <!--  <div class="card">
+                                        <h3>
+                                            <lightning-icon icon-name="utility:contact" size="small"></lightning-icon>
+                                            Contact Info
+                                            
+                                        </h3>
+                                        
+                                        <template if:true={patient}>
+                                       <p><strong>Phone:</strong><br> {patient.phone_number__c}</p>
+                                        <p><strong>Email:</strong><br>{patient.Email__c}</p>
+                                        <p><strong>Address:</strong><br> {patient.Address__c}</p>
+                                        <p><strong>Emergency Contact:</strong><br> {patient.Emergency_Contact__c}</p>
+                                           </template>
+                                          
+                                    </div>-->
+                                    
+                        
+                                    <!-- General Info -->
+                                <!-- <div class="card2-container">
+                                    <template if:true={patient}>
+                                    <div class="card2">
+                                        <h3>
+                                            <lightning-icon icon-name="utility:user" size="small"></lightning-icon>
+                                            General Info
+                                        </h3>
+                                        <template if:true={patient}></template>
+                                        <div class="info-grid">
+                                            <div class="info-item">
+                                                <p><strong>Gender: </strong>{patient.Gender__c}</p>
+                                            </div>
+                                            <div class="info-item">
+                                                <p><strong>Insurance: </strong>{patient.Insurance_Provider_Name__c} </p>
+                                            </div>
+                                            <div class="info-item">
+                                                <p><strong>Age: </strong>{patient.Age__c} years old</p>
+                                            </div>
+                                            <div class="info-item">
+                                                <p><strong>Blood Group: </strong>{patient.Blood_group__c}</p>
+                                            </div>
+                                            <div class="info-item">
+                                                <p><strong>Date of Birth: </strong>{patient.Date_of_Birth__c}</p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="card1">
+                                        <h3>
+                                            <lightning-icon icon-name="utility:note" size="small"></lightning-icon>
+                                            Patient Notes
+                                        </h3>
+                                        <div  style="width: 100%; max-width: 1200px; margin: 0 auto;">
+                                        <div class="info-gridd">
+                                            <template for:each={patientNotes} for:item="note">
+                                                <div    key={note.Id} class="note-card">
+                                                    <p style="color: grey;">{note.FormattedDate}</p>
+                                                    <p>{note.Notes__c}</p>
+                                                   
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                    
+                                    </div>
+                                </template>
+                                </div>-->
+                        
+                                    <!-- Patient Notes -->
+                                    
+                              <!-- </div>  
+                                
+                                
+                            </div>-->
+                           <!--<section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
                                 <div class="slds-modal__container">
                                     <header class="slds-modal__header">
                                         <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseModal}>
@@ -395,9 +508,9 @@
                                     </header>
                 
                                     <div class="slds-modal__content slds-p-around_medium">
-                                        <div class="slds-grid slds-wrap">
+                                        <div class="slds-grid slds-wrap">-->
                                             <!-- Patient Profile Section -->
-                                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-around_medium profile-section">
+                                           <!-- <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-around_medium profile-section">
                                                 <div class="slds-box slds-box_xx-large profile-background">
                                                     <div class="slds-p-horizontal_medium">
                                                         <h1 style="font-size: 16px; padding-left: 47px;"><b>Patient Information</b></h1><br>
@@ -408,18 +521,18 @@
                                                         <p><strong>Phone:</strong> {selectedPatient.phone_number__c}</p>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
                 
                                             <!-- Medical History Section -->
-                                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-around_medium medical-history-section">
+                                           <!-- <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-around_medium medical-history-section">
                                                 <div class="slds-box slds-box_xx-large medical-history-background">
                                                     <div class="slds-p-horizontal_medium">
                                                         <h1 style="font-size: 16px; padding-left: 47px;"><b>Medical Details</b></h1><br>
                                                         <template if:true={hasRecords}>
                                                             <template for:each={medicalRecords} for:item="record">
-                                                                <div key={record.Id}>
+                                                                <div key={record.Id}>-->
                                                                     <!-- <p><strong>Blood Group:</strong> {selectedPatient.blood_group__c}</p> -->
-                                                                    <p><strong>Doctor:</strong> {record.patient_appointment_id__r.Dr__r.Name}</p>
+                                                                   <!--<p><strong>Doctor:</strong> {record.patient_appointment_id__r.Dr__r.Name}</p>
                                                                     <p><strong>Next Visit Date:</strong> {record.Visit_Date__c}</p>
                                                                     <p><strong>Remarks:</strong> {record.Remarks__c}</p>
                                                                 </div>
@@ -440,11 +553,131 @@
                                 </div>
                             </section>
                             <div class="slds-backdrop slds-backdrop_open"></div>
-                        </template>
+                        </template>-->
                     </div>
                 </template>
                 <!-- part... -->
-
+                <template if:true={showPatientDetails}>
+                           
+                    <div class="patient-details-container">
+                        <!-- Back Button -->
+                        <div class="header">
+                            <div class="back-button" onclick={navigateBack}>
+                                <lightning-icon icon-name="utility:back" size="small" alternative-text="Back"></lightning-icon>
+                            </div>
+                            <div>
+                                <p style="font-size: 12px;">Back to Patient List</p>
+                                <p style="font-size: 21px;">Patient Details</p>
+                            </div>
+                            
+                        </div>
+                
+                        <!-- Patient Header -->
+                        <div class="patient-header">
+                            <div class="patient-avatar">
+                                <lightning-icon icon-name="utility:user" size="small" alternative-text="Back"></lightning-icon>
+                            </div>
+                            <div class="patient-info">
+                                <template if:true={patient}>
+                                    <h2>{patient.Name}</h2>
+                                    <p><strong>Patient ID: </strong>{patient.patientID__c} </p>
+                                </template>
+                                
+                            </div>
+                           <!-- <div class="justice">
+                            <template if:true={patient}>
+                                <lightning-icon icon-name="utility:chat" size="small" alternative-text="Back"></lightning-icon>
+                                <lightning-icon icon-name="utility:call" size="small" alternative-text="Back"></lightning-icon>
+                                <lightning-button 
+                                label="Edit" 
+                                variant="brand"></lightning-button>
+                            
+                            </div>-->
+                        </div>
+                
+                        <!-- Details Section -->
+                        <div class="details-section">
+                            <!-- Contact Info -->
+                           
+                            <div class="card">
+                                <h3>
+                                    <lightning-icon icon-name="utility:contact" size="small"></lightning-icon>
+                                    Contact Info
+                                    
+                                </h3>
+                                
+                                <template if:true={patient}>
+                               <p><strong>Phone:</strong><br> {patient.phone_number__c}</p>
+                                <p><strong>Email:</strong><br>{patient.Email__c}</p>
+                                <p><strong>Address:</strong><br> {patient.Address__c}</p>
+                                <p><strong>Emergency Contact:</strong><br> {patient.Emergency_Contact__c}</p>
+                                   </template>
+                                  
+                            </div>
+                            
+                
+                            <!-- General Info -->
+                         <div class="card2-container">
+                            <template if:true={patient}>
+                            <div class="card2">
+                                <h3>
+                                    <lightning-icon icon-name="utility:user" size="small"></lightning-icon>
+                                    General Info
+                                </h3>
+                                <template if:true={patient}></template>
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <p><strong>Gender: </strong>{patient.Gender__c}</p>
+                                    </div>
+                                    <div class="info-item">
+                                        <p><strong>Insurance: </strong>{patient.Insurance_Provider_Name__c} </p>
+                                    </div>
+                                    <div class="info-item">
+                                        <p><strong>Age: </strong>{patient.Age__c} years old</p>
+                                    </div>
+                                    <div class="info-item">
+                                        <p><strong>Blood Group: </strong>{patient.Blood_group__c}</p>
+                                    </div>
+                                    <div class="info-item">
+                                        <p><strong>Date of Birth: </strong>{patient.Date_of_Birth__c}</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="card1">
+                                <h3>
+                                    <lightning-icon icon-name="utility:note" size="small"></lightning-icon>
+                                    Patient Notes
+                                </h3>
+                                <div  style="width: 100%; max-width: 1200px; margin: 0 auto;">
+                                <div class="info-gridd">
+                                    <template if:true={patientNotes.length}>
+                                    <template for:each={patientNotes} for:item="note">
+                                        <div    key={note.Id} class="note-card">
+                                            <p style="color: grey;">{note.FormattedDate}</p>
+                                            <p>{note.Notes__c}</p>
+                                        </div>
+                                    </template>
+                                </template>
+                                <template if:false={patientNotes.length}>
+                                    <p>No notes found</p>
+                                </template>
+                                </div>
+                            </div>
+                            
+                            </div>
+                        </template>
+                        </div>
+                
+                            <!-- Patient Notes -->
+                            
+                        </div>  
+                        
+                        
+                    </div>
+                </template>
+           
+        
 <!-- --------------------------link view by pragati ended----------------------------------- -->
  <!--
 <template if:true={isDoctorsVisible}>
@@ -658,7 +891,7 @@
             </div>
         </template>
     </template>
-     
+
 <!---
 <template if:true={view}>
     <template if:true={appointmentss}> 
@@ -774,32 +1007,26 @@
                 </div>
         
                 <!-- Search bar on the right -->
-                <!-- <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+                <div class="slds-col slds-size_1-of-2 slds-text-align_right">
                     <lightning-input class="searchh" type="search" value={search} onchange={handleSearchChange1} placeholder="Search Patient"></lightning-input>
-                </div> -->
+                </div>
             </div>
             
 
 
-            <!-- <template if:true={patientAppointment}>
+            <template if:true={patientAppointment}>
                 <lightning-datatable key-field="Id" data={patientAppointment} columns={columns} onrowaction={handleRowAction}></lightning-datatable>
             </template>
 
             <template if:true={error}>
                 <c-error-panel message={error}></c-error-panel>
-            </template> -->
+            </template>
 
-
-
-
-
-
-
-
-
-
-
-
+          
+            
+               
+            
+            
             
         </lightning-card>
     </div>

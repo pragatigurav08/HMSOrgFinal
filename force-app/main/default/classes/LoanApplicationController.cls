@@ -126,40 +126,40 @@ public class LoanApplicationController {
     @AuraEnabled
     public static String saveLoanApplication(
         String borrowerName, 
-        String accountId,
-        String emailaddress, 
-        String phoneNumber, 
-        Date dob, 
-        String nationality, 
-        String address, 
-        String maritail, 
-        String occupation, 
-        Decimal loanamount, 
-        String loanpurpose, 
-        Integer loantenure, 
-        Decimal income,
-        String documentId,
-        String loanType
+    String accountId,
+    String emailaddress, 
+    String phoneNumber, 
+    Date dob, 
+    String nationality, 
+    String address, 
+    String maritail, 
+    String occupation, 
+    Decimal loanamount, 
+    String loanpurpose, 
+    Integer loantenure, 
+    Decimal income,
+    String documentId, // Comma-separated document IDs
+    String loanType
     ) {
         system.debug('inside home loan method');
         try {
             
             Loan__c loanApplication = new Loan__c(
                 New_Account__c = accountId, 
-                Borrower_s_Name__c = borrowerName,
-                EmailAddress__c = emailaddress,
-                Phone_number__c = phoneNumber,
-                Date_Of_Birth__c = dob, 
-                Nationality__c = nationality,
-                Residential_Address__c = address,
-                Marital__c = maritail,
-                Occupation__c = occupation,
-                Loan_Amount__c = loanamount,
-                Loan_Purpose__c = loanpurpose,
-                Loan_Term_Months__c = loantenure,
-                Annual_Income__c = income, 
-                Uploaded_Documents__c = documentId,
-                Loan_Type__c = loanType
+            Borrower_s_Name__c = borrowerName,
+            EmailAddress__c = emailaddress,
+            Phone_number__c = phoneNumber,
+            Date_Of_Birth__c = dob, 
+            Nationality__c = nationality,
+            Residential_Address__c = address,
+            Marital__c = maritail,
+            Occupation__c = occupation,
+            Loan_Amount__c = loanamount,
+            Loan_Purpose__c = loanpurpose,
+            Loan_Term_Months__c = loantenure,
+            Annual_Income__c = income, 
+            Loan_Type__c = loanType,
+            doc__c	 = documentId //
             //     Uploaded_Documents__c = panDocumentId,
             //    Uploaded_Documents__c = drivingLicenseDocumentId,
             //     Uploaded_Documents__c = salarySlipDocumentId,

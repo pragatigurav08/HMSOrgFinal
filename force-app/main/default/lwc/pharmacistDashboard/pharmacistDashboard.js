@@ -32,6 +32,8 @@ import DesktopView from './pharmacistDashboard.html';
 import getSalesData from '@salesforce/apex/SalesDataController.getSalesData';
 import getTopSellingMedicines from "@salesforce/apex/TopSellingMedicinesController.getTopSellingMedicines";
 import medicine from '@salesforce/resourceUrl/medicine';
+import generateAndAttachPDF from '@salesforce/apex/PharmacistDashboard.generateAndAttachPDF';
+import generateAndAttachPDFF from '@salesforce/apex/PharmacistDashboard.generateAndAttachPDFF';
 // import MonthlySalesDashboard from 'c/monthlySalesDashboard/monthlySalesDashboard';
 
 
@@ -954,17 +956,130 @@ resetForm() {
         this.dispatchEvent(evt);
     }*/
     // Method to open the Visualforce page for printing
+/*Printprescription() {
+    console.log('patient id', this.patientId);
+    const vfPageUrl = `/apex/PrintPrescription?patientId=${this.patientId}`;
+    window.open(vfPageUrl, '_blank');
+}*/
 Printprescription() {
     console.log('patient id', this.patientId);
     const vfPageUrl = `/apex/PrintPrescription?patientId=${this.patientId}`;
     window.open(vfPageUrl, '_blank');
-}
-PrintInvoice(){
+    
+     /*if (!this.patientId) {
+            this.showToast('Error', 'Patient ID is missing.', 'error');
+            return;
+        }
+
+        console.log('Generating PDF for patient ID:', this.patientId);
+
+        // Call Apex method
+        generateAndAttachPDF({ patientId: this.patientId })
+            .then((result) => {
+                console.log(result); // Log success message
+                this.showToast('Success', result, 'success');
+            })
+            .catch((error) => {
+                console.error(error); // Log error details
+                this.showToast('Error', error.body.message, 'error');
+            });*/
+             if (!this.patientId) {
+            this.showToast('Error', 'Patient ID is missing.', 'error');
+            return;
+            }
+
+        console.log('Generating PDF for patient ID:', this.patientId);
+
+        // Call Apex method
+        generateAndAttachPDF({ patientId: this.patientId })
+            .then((result) => {
+                console.log(result); // Log success message
+                this.showToast('Success', result, 'success');
+            })
+            .catch((error) => {
+                console.error(error); // Log error details
+                this.showToast('Error', error.body.message, 'error');
+            });
+    }
+  
+   showToast(title, message, variant) {
+        const event = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: variant,
+        });
+        this.dispatchEvent(event);
+    }  
+   
+/*PrintInvoice(){
     console.log('patient id', this.patientId);
     const vfPageUrl = `/apex/printinvoice?patientId=${this.patientId}&savedRecordIds=${this.savedRecordIds.join(',')}`;
 
     window.open(vfPageUrl, '_blank');
+    if (!this.patientId) {
+        this.showToast('Error', 'Patient ID is missing.', 'error');
+        return;
+        }
+
+    console.log('Generating PDF for patient ID:', this.patientId);
+
+    // Call Apex method
+    generateAndAttachPDFF({ patientId: this.patientId })
+        .then((result) => {
+            console.log(result); // Log success message
+            this.showToast('Success', result, 'success');
+        })
+        .catch((error) => {
+            console.error(error); // Log error details
+            this.showToast('Error', error.body.message, 'error');
+        });
 }
+
+showToast(title, message, variant) {
+    const event = new ShowToastEvent({
+        title: title,
+        message: message,
+        variant: variant,
+    });
+    this.dispatchEvent(event);
+}*/
+PrintInvoice() {
+    if (!this.patientId) {
+        this.showToast('Error', 'Patient ID is missing.', 'error');
+        return;
+    }
+
+    if (!this.savedRecordIds || this.savedRecordIds.length === 0) {
+        this.showToast('Error', 'No saved record IDs provided.', 'error');
+        return;
+    }
+
+    // Convert savedRecordIds array to a comma-separated string
+    const savedRecordIdsString = this.savedRecordIds.join(',');
+
+    console.log('Patient ID:', this.patientId);
+    console.log('Saved Record IDs as String:', savedRecordIdsString);
+
+    // Open VF Page for preview
+    const vfPageUrl = `/apex/printinvoice?patientId=${this.patientId}&savedRecordIds=${savedRecordIdsString}`;
+    window.open(vfPageUrl, '_blank');
+
+    // Call Apex method to generate and attach PDF
+    generateAndAttachPDFF({
+        patientId: this.patientId,
+        savedRecordIds: savedRecordIdsString
+    })
+        .then((result) => {
+            console.log('Apex Success:', result);
+            this.showToast('Success', result, 'success');
+        })
+        .catch((error) => {
+            console.error('Apex Error:', error);
+            this.showToast('Error', error.body.message, 'error');
+        });
+}
+
+
 
 
 

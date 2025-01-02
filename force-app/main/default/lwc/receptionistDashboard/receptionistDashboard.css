@@ -902,3 +902,333 @@ lightning-icon.acon_abc.slds-icon-utility-event .slds-icon {
     color: #137cd7;
     font-weight: 700;
 }
+.patient-details-container {
+    background-color: #f7f7f7; /* Light grey background */
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+    color: #000000; /* Navy blue text for professional look */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+   
+    margin-bottom: 20px;
+}
+
+.back-button {
+    display: flex;
+    flex-direction: column; /* Align "Back to Patient List" and "Patient Details" vertically */
+    align-items: flex-start;
+    color: #000000; /* Emerald green color for text and icon */
+    font-size: 14px; /* Decreased font size */
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 12px;
+    margin-top: -30px;
+}
+
+.back-button lightning-icon {
+    margin-right: 8px;
+    margin-bottom: 4px; /* Adds spacing between icon and text */
+}
+
+.header-title {
+    color: #1F4E78; /* Navy blue title */
+    font-size: 20px; /* Decreased font size */
+    font-weight: bold;
+}
+
+.patient-header {
+    display: flex;
+    align-items: center;
+    background-color: #fff; /* White background */
+    border: 1px solid #e0e0e0; /* Light border */
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.patient-avatar {
+    margin-right: 20px;
+}
+
+.patient-info h2 {
+    color: #1F4E78; /* Emerald green name */
+    font-size: 18px; /* Decreased font size */
+    font-weight: bold;
+}
+
+.status {
+    background-color:#1F4E78; /* Emerald green badge */
+    color: #fff;
+    border-radius: 12px;
+    padding: 4px 12px; /* Slightly larger padding for a polished look */
+    font-size: 12px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.details-section {
+    display: grid;
+    grid-template-columns: 300px auto; /* First column is 200px, second column takes the rest of the space */
+    gap: 20px;
+    align-items: start;
+}
+
+@media screen and (max-width: 768px) {
+    .details-section {
+        grid-template-columns: 1fr; /* Single-column layout for mobile */
+    }
+}
+
+/* Card styling */
+.card {
+    background-color: #ffffff; /* White background for clean look */
+    border: 1px solid #e0e0e0; /* Light grey border */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animation on hover */
+}
+
+/* Hover effect */
+/*.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}*/
+
+/* Card heading */
+.card h3 {
+    display: flex;
+    align-items: center;
+    color: #1F4E78; /* Green for the heading */
+    font-size: 18px; /* Slightly larger font for the heading */
+    font-weight: bold;
+    margin-bottom: 15px;
+   /* border-bottom: 2px solid #000000; /* Green underline for separation */
+    padding-bottom: 5px;
+}
+
+/* Icon in the heading */
+.card h3 lightning-icon {
+    margin-right: 8px;
+}
+
+/* Content styling */
+.card p {
+    color: #333; /* Dark grey for better readability */
+    font-size: 14px; /* Standard font size for content */
+    line-height: 1.6; /* Improve spacing between lines */
+    margin-bottom: 12px;
+}
+
+/* Highlight for labels */
+.card p strong {
+    color: #000000; /* Green for labels to match heading */
+    font-size: 15px; /* Slightly larger font for labels */
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .card {
+        padding: 15px;
+    }
+
+    .card h3 {
+        font-size: 16px;
+    }
+
+    .card p {
+        font-size: 13px;
+    }
+
+    .card p strong {
+        font-size: 14px;
+    }
+}
+
+
+.info-gridd {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    gap: 20px; /* Space between cards */
+    margin-top: 20px;
+    width: 100%; /* Ensure the grid takes full width */
+}
+
+.note-card {
+    background: #ffffff; /* White background */
+    padding: 10px; /* Reduced padding */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 1px solid #e0e0e0; /* Light border */
+    text-align: left; /* Left-align content */
+    max-width: 100%; /* Prevent overflowing */
+    min-width: 0; /* Fix for shrinking issues */
+}
+
+@media screen and (max-width: 1024px) {
+    .info-gridd {
+        grid-template-columns: repeat(3, 1fr); /* Two cards per row for medium screens */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .info-gridd {
+        grid-template-columns: 1fr; /* One card per row for smaller screens */
+        gap: 10px;
+    }
+}
+
+
+/* Card styling */
+.card2 {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #e0e0e0; /* Light grey border */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom:8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+/*.card2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}*/
+
+/* Card heading */
+.card2 h3 {
+    display: flex;
+    margin-top: 0px;
+    align-items: center;
+    color: #1F4E78; /* Green for the heading */
+    font-size: 18px; /* Slightly larger font */
+    font-weight: bold;
+    margin-bottom: 15px;
+    /*border-bottom: 2px solid #000000; /* Green underline */
+    padding-bottom: 5px;
+}
+
+/* Icon in heading */
+.card2 h3 lightning-icon {
+    margin-right: 8px;
+}
+
+/* Grid layout for content */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 15px; /* Spacing between grid items */
+    margin-top: 10px;
+}
+
+/* Individual info items */
+.info-item p {
+    color: #333; /* Dark grey for text */
+    font-size: 14px; /* Standard font size */
+    line-height: 1; /* Better spacing */
+    margin: 0; /* Remove default margin */
+}
+
+.info-item p strong {
+    color: #000000; /* Green for labels */
+    font-size: 15px; /* Slightly larger for labels */
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr; /* Switch to one column on smaller screens */
+    }
+
+    .card2 h3 {
+        font-size: 16px;
+    }
+
+    .info-item p {
+        font-size: 13px;
+    }
+
+    .info-item p strong {
+        font-size: 14px;
+    }
+}
+.card1 {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #e0e0e0; /* Light grey border */
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+/*.card2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}*/
+
+/* Card heading */
+.card1 h3 {
+    display: flex;
+    align-items: center;
+    color: #1F4E78; /* Green for the heading */
+    font-size: 18px; /* Slightly larger font */
+    font-weight: bold;
+    margin-bottom: 15px;
+   /* border-bottom: 2px solid #4CAF50; /* Green underline */
+    padding-bottom: 5px;
+}
+
+/* Icon in heading */
+.card1 h3 lightning-icon {
+    margin-right: 8px;
+}
+
+/* Grid layout for content */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 15px; /* Spacing between grid items */
+    margin-top: 10px;
+}
+
+/* Individual info items */
+.info-item p {
+    color: #333; /* Dark grey for text */
+    font-size: 14px; /* Standard font size */
+    line-height: 1; /* Better spacing */
+    margin: 0; /* Remove default margin */
+}
+
+.info-item p strong {
+    color: #000000; /* Green for labels */
+    font-size: 15px; /* Slightly larger for labels */
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr; /* Switch to one column on smaller screens */
+    }
+
+    .card1 h3 {
+        font-size: 16px;
+    }
+
+    .info-item p {
+        font-size: 13px;
+    }
+
+    .info-item p strong {
+        font-size: 14px;
+    }
+}

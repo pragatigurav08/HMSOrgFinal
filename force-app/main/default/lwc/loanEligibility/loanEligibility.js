@@ -17,6 +17,10 @@ import LoanPic from '@salesforce/resourceUrl/LoanPic';
 
 export default class LoanEligibility extends LightningElement {
 
+    isModalOpen = false; // Controls modal visibility
+    popupTitle = ''; // Title of the popup
+    popupContent = ''; // Content of the popup
+
     @track disableApplyButton = true; // Initially disable the "Apply for Loan" button
     //  @track toastMessage = '';
     loanPicUrl=LoanPic;
@@ -129,6 +133,46 @@ export default class LoanEligibility extends LightningElement {
         { label: '22K', value: '22K' },
         { label: '24K', value: '24K' }
     ];
+
+
+    showNoCollateralPopup() {
+        this.popupTitle = 'No Collateral Required';
+        this.popupContent = 'No collateral is required to apply for this loan.';
+        this.isModalOpen = true;
+    }
+
+    // Show popup for "Simple, Easy Online Process"
+    showOnlineProcessPopup() {
+        this.popupTitle = 'Simple, Easy Online Process';
+        this.popupContent = 'Our loan application process is simple and online.';
+        this.isModalOpen = true;
+    }
+
+    // Show popup for "Low Interest Rates"
+    showLowInterestPopup() {
+        this.popupTitle = 'Low Interest Rates';
+        this.popupContent = 'Enjoy low-interest rates on your loan.';
+        this.isModalOpen = true;
+    }
+
+    // Show popup for "Transparent Terms"
+    showTransparentTermsPopup() {
+        this.popupTitle = 'Transparent Terms';
+        this.popupContent = 'Our loan terms are clear and transparent.';
+        this.isModalOpen = true;
+    }
+
+    // Show popup for "Flexible Tenure"
+    showFlexibleTenurePopup() {
+        this.popupTitle = 'Flexible Tenure';
+        this.popupContent = 'Choose a repayment tenure that suits you.';
+        this.isModalOpen = true;
+    }
+
+    // Close the modal
+    closeModal() {
+        this.isModalOpen = false;
+    }
 
 
     handleBackClickMain() {
@@ -574,43 +618,25 @@ export default class LoanEligibility extends LightningElement {
     @track salarySlipFileName = '';
     @track bankStatementFileName = '';
 
-    handleFileUpload(event) {
-        const uploadedFiles = event.detail.files; // Get the uploaded files
-        const fileType = event.target.dataset.type; // Get the document type
+   uploadedDocuments = []; // Store document IDs
+aadhaarFileName = '';
+panFileName = '';
+drivingLicenseFileName = '';
+salarySlipFileName = '';
+bankStatementFileName = '';
 
-        // Add files to the uploadedDocuments array
-        uploadedFiles.forEach(file => {
-        const documentDetails = {
-            id: file.documentId,
-            fileName: file.name,
-            previewUrl: `/sfc/servlet.shepherd/document/download/${file.documentId}`, // Preview URL for Salesforce
-        };
-             if (fileType === 'aadhaar') {
-            this.aadhaarFileName = file.name;
-            this.aadhaarFileDetails = documentDetails;
-        } else if (fileType === 'pan') {
-            this.panFileName = file.name;
-            this.panFileDetails = documentDetails;
-        } else if (fileType === 'drivingLicense') {
-            this.drivingLicenseFileName = file.name;
-            this.drivingLicenseFileDetails = documentDetails;
-        } else if (fileType === 'salarySlip') {
-            this.salarySlipFileName = file.name;
-            this.salarySlipFileDetails = documentDetails;
-        } else if (fileType === 'bankStatement') {
-            this.bankStatementFileName = file.name;
-            this.bankStatementFileDetails = documentDetails;
-        }
-
-        // Push the file details into the uploadedDocuments array
-        this.uploadedDocuments.push({
-            label: this.getDocumentLabel(fileType),
-            ...documentDetails,
-        });
+handleFileUpload(event) {
+    const uploadedFiles = event.detail.files;
+    const fileType = event.target.dataset.type; // Get document type from the lightning-file-upload component
+    uploadedFiles.forEach(file => {
+        this.uploadedDocuments.push(file.documentId); // Add document ID to the array
+        if (fileType === 'aadhaar') this.aadhaarFileName = file.name;
+        if (fileType === 'pan') this.panFileName = file.name;
+        if (fileType === 'drivingLicense') this.drivingLicenseFileName = file.name;
+        if (fileType === 'salarySlip') this.salarySlipFileName = file.name;
+        if (fileType === 'bankStatement') this.bankStatementFileName = file.name;
     });
-
-        this.showToast('File Upload', 'File uploaded successfully!', 'success');
-    }
+}
     getDocumentLabel(fileType) {
         const labels = {
             aadhaar: 'Aadhaar Card',

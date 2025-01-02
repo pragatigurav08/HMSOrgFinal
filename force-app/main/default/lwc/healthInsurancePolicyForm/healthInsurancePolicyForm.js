@@ -22,6 +22,7 @@ export default class HealthInsurancePolicyForm extends NavigationMixin(Lightning
     @track policyPremiumAmount = null;
     @track coveragAmount = null;
     @track status = '';
+    @track AadharNo='';
     @track paymentFrequency = '';
     @track underwritingStatus = '';
     @track policyStartDate = '';
@@ -75,6 +76,7 @@ connectedCallback() {
         this.lastName = this.accountDetails.Last_Name__c;
         this.phoneNo = this.accountDetails.Phone_number__c;
         this.gender = this.accountDetails.Gender__c;
+        this.AadharNo=this.accountDetails.Aadhar_Number__c;
     }
     handleNext() {
         // Show the document upload section when "Next" is clicked
@@ -179,6 +181,7 @@ calculatePolicyEndDate() {
             policyPremiumAmount: this.premimumAmount,
             covetrageamt: this.covetrageamt,
             status: this.status,
+            aadharNo:this.AadharNo,
             paymentFrequency: this.paymentFrequency,
             underwritingStatus: this.underwritingStatus,
             policyStartDate: this.policyStartDate,
@@ -202,6 +205,7 @@ calculatePolicyEndDate() {
             policyPremiumAmount: this.premimumAmount,
             covetrageamt: this.covetrageamt,
             status: this.status,
+            aadharNo:this.AadharNo,
             paymentFrequency: this.paymentFrequency,
             underwritingStatus: this.underwritingStatus,
             policyStartDate: this.policyStartDate,
@@ -316,7 +320,7 @@ saveBeneficiaries() {
             firstName: member.fullname,
             Dob:member.dob,      
             policyId: this.polocyid,
-            AadharNo:member.aadhar
+            AadharNo:member.AadharNo
             
         });
     });

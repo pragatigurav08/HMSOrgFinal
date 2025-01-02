@@ -12,6 +12,7 @@ public static Id savePolicyData(
     Decimal policyPremiumAmount, 
     Decimal covetrageamt, 
     String status, 
+    String aadharNo,
     String paymentFrequency, 
     String underwritingStatus, 
     Date policyStartDate, 
@@ -42,6 +43,7 @@ public static Id savePolicyData(
         policy.Policy_Start_Date__c = policyStartDate;
         policy.Policy_End_Date__c = policyEndDate;
         policy.Claimable__c = claimable;
+        policy.Aadhar_Number__c = aadharNo;
         policy.Critical_Illness_Covered__c = criticalIllnessCovered;
         policy.Pre_Existing_Conditions_Coverage__c = preExistingConditionsCoverage;
         policy.OPD_Coverage__c = opdCoverage;

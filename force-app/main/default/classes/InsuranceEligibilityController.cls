@@ -3,7 +3,7 @@ public with sharing class InsuranceEligibilityController {
     // Fetch details from New_Account__c object based on Account ID
     @AuraEnabled(cacheable=true)
     public static New_Account__c getAccountDetails(Id accountId) {
-        return [SELECT Annual_Income__c, FirstName__c,Gender__c,DateOfBirth__c FROM New_Account__c WHERE Id = :accountId];
+        return [SELECT Annual_Income__c, FirstName__c,Gender__c,DateOfBirth__c,Aadhar_Number__c FROM New_Account__c WHERE Id = :accountId];
     }
 	@AuraEnabled(cacheable=true)
 public static List<New_Account__c> searchAccounts(String searchTerm) {

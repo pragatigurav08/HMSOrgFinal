@@ -29,6 +29,7 @@ export default class InsuranceEligibility extends NavigationMixin(LightningEleme
     @track errorMessage = '';
     @track firstName; // Add a trackable property for FirstName
     @track dateOB;
+    @track aadharNo;
     @track searchKey = '';
     @track accounts = [];
     @track myaccount = [];
@@ -225,6 +226,7 @@ export default class InsuranceEligibility extends NavigationMixin(LightningEleme
                 member.isSelected = true;
                 member.dob = this.dateOB;
                 member.fullname = this.firstName;
+                member.AadharNo=this.aadharNo;
                 this.openself = false;
             }
             else {
@@ -682,6 +684,7 @@ validateaadhar(aadharno) {
                     this.firstName = result.FirstName__c; // Populate FirstName__c
                     this.gender = result.Gender__c;
                     this.dateOB = result.DateOfBirth__c;
+                    this.aadharNo=result.Aadhar_Number__c;
                     this.errorMessage = '';
                     this.updateDisplayedFamilyMembers();
                     this.calculateEligibility();  // Recalculate eligibility whenever account details are fetched

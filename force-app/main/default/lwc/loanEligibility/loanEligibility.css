@@ -1415,3 +1415,113 @@ body {
   font-weight: bold;
   margin-top: 10px;
 }
+
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f4f6f9; /* Light background for the feature container */
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    border: 2px solid #dfe3e8; /* Border for separation */
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px); /* Slight upward movement on hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.feature-item .icon {
+    margin-bottom: 10px;
+}
+
+.feature-item .blue-utility-icon {
+    width: 50px;
+    height: 50px;
+    fill: #66b3ff; /* Light blue color */
+}
+
+
+.feature-item .title {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: #333333; /* Dark gray text */
+}
+
+/* Modal styling */
+.slds-modal__container {
+    width: 400px;
+    max-width: 90%; /* Responsive design for smaller screens */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.slds-modal__header {
+    background-color: #66b3ff; /* Light blue color */
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.slds-modal__header h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.slds-modal__content {
+    padding: 20px;
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.5;
+}
+
+.slds-modal__footer {
+    background-color: #f4f6f9;
+    padding: 15px;
+    text-align: right;
+}
+
+.slds-button_neutral {
+    background-color: #0070d2;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.slds-button_neutral:hover {
+    background-color: #005fb3; /* Slightly darker blue on hover */
+}
+
+.slds-backdrop_open {
+    background-color: rgba(0, 0, 0, 0.5); /* Dim background when modal is open */
+}
+
+.titles {
+    font-weight: bold;
+}

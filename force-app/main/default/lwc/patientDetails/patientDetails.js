@@ -18,23 +18,10 @@ export default class PatientDetails extends LightningElement {
         }
     }
 
-    // connectedCallback() {
-    //     console.log('Connected Callback: Initializing calendar');
-    //     this.initializeCalendar(new Date());
-    // }
     connectedCallback() {
-        console.log('Connected Callback: Initializing calendar with today\'s date');
-        const today = new Date();
-        this.initializeCalendar(today);
-        this.selectedDate = this.formatDate(today); // Set today's date as the selected date
-        this.fetchAppointments(this.selectedDate); // Fetch appointments for today's date
+        console.log('Connected Callback: Initializing calendar');
+        this.initializeCalendar(new Date());
     }
-    
-    formatDate(date) {
-        // Format the date as YYYY-MM-DD to match the expected format
-        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-    }
-    
 
     renderedCallback() {
         console.log('Rendered Callback: Updating day classes');

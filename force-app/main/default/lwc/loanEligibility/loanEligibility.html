@@ -204,17 +204,14 @@
     <template if:true={isNewLoanPage}>
         <div class="new-loan-container">
             <button class="slds-button slds-button_neutral" onclick={handleBackToDashboard}>
-                Back
-            </button>
+                    Back
+                </button>
             <h2>Check For Eligibility</h2>
             <div class="card-container1">
-
                 <!-- Your Loan Eligibility Cards -->
                 <div class="card-container1">
-
                     <!-- First Card -->
                     <div class="card">
-
                         <div class="card-content">
                             <h2 class="card-title">
                                 Personal Loan
@@ -235,14 +232,12 @@
                                 <li>No Hidden Charges</li>
                             </ul>
                             <button class="card-button" onclick={personalEligibility}>
-                   Personal Loan ELigibility
-                </button>
+                       Personal Loan ELigibility
+                    </button>
                         </div>
                     </div>
-
                     <!-- Second Card -->
                     <div class="card">
-
                         <div class="card-content">
                             <h2 class="card-title">
                                 Home Loan
@@ -261,15 +256,13 @@
                                 <li>Dedicated Support</li>
                             </ul>
                             <button class="card-button" onclick={homeEligibility}>
-                  Home Loan Eligibility
-                </button>
+                      Home Loan Eligibility
+                    </button>
                         </div>
                     </div>
-
                     <!-- Third Card -->
                     <div class="card">
-
-
+    
                         <div class="card-content">
                             <h2 class="card-title">
                                 Gold Loan
@@ -288,17 +281,16 @@
                                 <li>Flexible Repayment Options</li>
                             </ul>
                             <button class="card-button" onclick={goldEligibility}>
-                    Gold Loan Eligibility
-                </button>
+                        Gold Loan Eligibility
+                    </button>
                         </div>
                     </div>
                 </div>
-
-
-
+    
             </div>
         </div>
     </template>
+
 
     <template if:true={showEligibility1PersonalLoan}>
         <div class="slds-grid slds-gutters">
@@ -316,7 +308,7 @@
 
                             <!-- Title -->
                             <div class="slds-col slds-align_absolute-center">
-                                <p class="slds-text-heading_medium slds-text-align_center" style="margin-left: -469px;">
+                                <p class="slds-text-heading_medium slds-text-align_center" style="margin-left: -350px;">
                                     Personal Loan Eligibility</p>
                             </div>
                         </div>
@@ -462,43 +454,107 @@
             </div>
 
         </div>
+        
+
+
+    <div>
+        <!-- Main Features Container -->
         <div class="features-container">
-            <div class="feature-item">
+            <!-- Feature Item: No Collateral Required -->
+            <div class="feature-item" onclick={showNoCollateralPopup}>
                 <div class="icon">
                     <lightning-icon icon-name="utility:moneybag" alternative-text="No Collateral Required"
                         class="blue-utility-icon"></lightning-icon>
                 </div>
-                <p class="title">No Collateral Required</p>
+                <p class="titles">No Collateral Required</p>
             </div>
-            <div class="feature-item">
+    
+            <!-- Feature Item: Simple, Easy Online Process -->
+            <div class="feature-item" onclick={showOnlineProcessPopup}>
                 <div class="icon">
                     <lightning-icon icon-name="utility:desktop" alternative-text="Simple, Easy Online Process"
                         class="blue-utility-icon"></lightning-icon>
                 </div>
                 <p class="title">Simple, Easy Online Process</p>
             </div>
-            <div class="feature-item">
+    
+            <!-- Feature Item: Low Interest Rates -->
+            <div class="feature-item" onclick={showLowInterestPopup}>
                 <div class="icon">
                     <lightning-icon icon-name="utility:money" alternative-text="Low Interest Rates"
                         class="blue-utility-icon"></lightning-icon>
                 </div>
                 <p class="title">Low Interest Rates</p>
             </div>
-            <div class="feature-item">
+    
+            <!-- Feature Item: Transparent Terms -->
+            <div class="feature-item" onclick={showTransparentTermsPopup}>
                 <div class="icon">
                     <lightning-icon icon-name="utility:contract" alternative-text="Transparent Terms"
                         class="blue-utility-icon"></lightning-icon>
                 </div>
                 <p class="title">Transparent Terms</p>
             </div>
-            <div class="feature-item">
+    
+            <!-- Feature Item: Flexible Tenure -->
+            <div class="feature-item" onclick={showFlexibleTenurePopup}>
                 <div class="icon">
-                    <lightning-icon icon-name="utility:event" alternative-text="Flexible Tenure"
-                        class="blue-utility-icon"></lightning-icon>
+                    <lightning-icon icon-name="utility:event" alternative-text="Flexible Tenure" class="blue-utility-icon">
+                    </lightning-icon>
                 </div>
                 <p class="title">Flexible Tenure</p>
             </div>
         </div>
+    
+        <!-- Popup Modal -->
+        <template if:true={isModalOpen}>
+            <section class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                        </button>
+                        <h2 class="slds-text-heading_medium">{popupTitle}</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <p>{popupContent}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={closeModal}>Close</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+
+
+
+    <!-- Popup Modal -->
+    <template if:true={isModalOpen}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+                        title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                    </button>
+                    <h2 class="slds-text-heading_medium">{popupTitle}</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p>{popupContent}</p>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal}>Close</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+
     </template>
 
     <template if:true={showEligibilityHomeLoan}>
@@ -518,7 +574,7 @@
 
                         <!-- Title -->
                         <div class="slds-col slds-align_absolute-center">
-                            <p class="slds-text-heading_medium slds-text-align_center" style="margin-left: -469px;">Home
+                            <p class="slds-text-heading_medium slds-text-align_center" style="margin-left: -350px;">Home
                                 Loan Eligibility</p>
                         </div>
                     </div>
@@ -677,7 +733,7 @@
 
                         <!-- Title -->
                         <div class="slds-col slds-align_absolute-center">
-                            <p class="slds-text-heading_medium slds-text-align_center" style="margin-left: -469px;">Gold
+                            <p class="slds-text-heading_medium slds-text-align_center" style="margin-left: -350px;">Gold
                                 Loan Eligibility</p>
                         </div>
                     </div>

@@ -134,5 +134,82 @@ Patient_Registration__c order by CreatedDate DESC];
         Manufacturer__c newManufacturer = new Manufacturer__c(Name = name);
         insert newManufacturer;
     }
-    
+    @AuraEnabled
+    public static String generateAndAttachPDF(String patientId) {
+        try {
+            // Generate the PDF content
+            PageReference pdfPage = Page.PrintPrescription;
+            pdfPage.getParameters().put('patientId', patientId);
+
+            // Asynchronously get PDF content
+            Blob pdfBlob = pdfPage.getContentAsPDF();
+
+            // Create Attachment or ContentDocument
+            Attachment attachment = new Attachment();
+            attachment.ParentId = patientId;
+            attachment.Name = 'Prescription_' +Datetime.now().format('dd/MM/yyyy_hh:mm a') + '.pdf';
+            attachment.Body = pdfBlob;
+            attachment.ContentType = 'application/pdf';
+            insert attachment;
+
+            return 'Prescription PDF successfully attached to the patient record.';
+        } catch (Exception e) {
+            return 'Error generating PDF: ' + e.getMessage();
+        }
+    }
+    /* @AuraEnabled
+    public static String generateAndAttachPDFF(String patientId) {
+        try {
+            // Generate the PDF content
+            PageReference pdfPage = Page.printinvoice;
+            pdfPage.getParameters().put('patientId', patientId);
+
+            // Asynchronously get PDF content
+            Blob pdfBlob = pdfPage.getContentAsPDF();
+
+            // Create Attachment or ContentDocument
+            Attachment attachment = new Attachment();
+            attachment.ParentId = patientId;
+            attachment.Name = 'Invoice_' + Date.today().format() + '.pdf';
+            attachment.Body = pdfBlob;
+            attachment.ContentType = 'application/pdf';
+            insert attachment;
+
+            return 'Prescription PDF successfully attached to the patient record.';
+        } catch (Exception e) {
+            return 'Error generating PDF: ' + e.getMessage();
+        }
+    }*/
+    @AuraEnabled
+public static String generateAndAttachPDFF(String patientId, String savedRecordIds) {
+    if (String.isBlank(patientId)) {
+        return 'Error: Patient ID is required.';
+    }
+
+    try {
+        PageReference pdfPage = Page.printinvoice;
+        pdfPage.getParameters().put('patientId', patientId);
+        pdfPage.getParameters().put('savedRecordIds', savedRecordIds);
+        System.debug('Patient ID: ' + patientId);
+System.debug('Saved Record IDs: ' + savedRecordIds);
+
+
+        System.debug('PDF Page URL: ' + pdfPage.getUrl());
+
+        Blob pdfBlob = pdfPage.getContentAsPDF();
+
+        Attachment attachment = new Attachment();
+        attachment.ParentId = patientId;
+       attachment.Name = 'Invoice_' + Datetime.now().format('dd/MM/yyyy_hh:mm a') + '.pdf';
+        attachment.Body = pdfBlob;
+        attachment.ContentType = 'application/pdf';
+        insert attachment;
+
+        return 'Invoice PDF successfully attached to the patient record.';
+    } catch (Exception e) {
+        System.debug('Error: ' + e.getMessage());
+        throw new AuraHandledException('Error generating PDF: ' + e.getMessage());
+    }
+}
+
 }

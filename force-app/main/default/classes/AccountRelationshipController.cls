@@ -2,7 +2,7 @@ public with sharing class AccountRelationshipController {
     @AuraEnabled(cacheable=true)
     public static List<New_Account__c> getNewAccounts() {
         try {
-            return [SELECT Id, Name, RecordType.Name,FirstName__c,Last_Name__c FROM New_Account__c];
+            return [SELECT Id, Name, RecordType.Name,FirstName__c,Last_Name__c,Aadhar_Number__c FROM New_Account__c];
         } catch (Exception e) {
             throw new AuraHandledException('Error retrieving New Account records: ' + e.getMessage());
         }
